@@ -1,0 +1,171 @@
+/* ==========================================================================
+ * Cards Component — Blog Card & App Post Card
+ * Card blog untuk grid homepage dan card app-style untuk halaman berita.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Blog Card (Grid Homepage)
+ * -------------------------------------------------------------------------- */
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--brand-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.blog-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+}
+
+.blog-card-img {
+    position: relative;
+    width: 100%;
+}
+
+.blog-card-img img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-category-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--brand-red);
+    color: var(--brand-white);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-top-right-radius: 4px;
+}
+
+.blog-card-body {
+    padding: 1.25rem 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.blog-card-body h3 {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. App Post Card (Halaman Berita)
+ * -------------------------------------------------------------------------- */
+.app-post-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.app-post-card:active {
+    transform: scale(0.98);
+}
+
+.card-link-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+.card-image-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #e2e8f0;
+}
+
+.card-image-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    z-index: 5;
+}
+
+.card-img-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #94a3b8;
+}
+
+.card-content {
+    padding: 16px;
+    text-align: center;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.meta-separator {
+    font-size: 0.5rem;
+    opacity: 0.5;
+}
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px;
+    line-height: 1.4;
+}
+
+.card-excerpt {
+    font-size: 0.875rem;
+    color: #475569;
+    margin: 0;
+    line-height: 1.5;
+    display: none;
+}

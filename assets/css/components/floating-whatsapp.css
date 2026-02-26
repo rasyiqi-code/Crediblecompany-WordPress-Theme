@@ -1,0 +1,113 @@
+/**
+ * Floating WhatsApp Chat Button
+ *
+ * Tombol melayang di pojok kanan bawah layar untuk
+ * mengarahkan pengunjung ke WhatsApp chat.
+ *
+ * @package CredibleCompany
+ */
+
+/* === Container === */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* === Tooltip Label === */
+.floating-whatsapp__label {
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+/* Tampilkan tooltip saat hover container */
+.floating-whatsapp:hover .floating-whatsapp__label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* === Tombol Utama === */
+.floating-whatsapp__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25d366;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Animasi pulse untuk menarik perhatian */
+    animation: wa-pulse 2s infinite;
+}
+
+.floating-whatsapp__btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+    animation: none;
+    /* Hentikan pulse saat hover */
+}
+
+.floating-whatsapp__btn:active {
+    transform: scale(0.95);
+}
+
+/* === Ikon WhatsApp SVG === */
+.floating-whatsapp__btn svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+}
+
+/* === Animasi Pulse === */
+@keyframes wa-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* === Responsive: Mobile — lebih kecil & lebih dekat ke tepi === */
+@media (max-width: 768px) {
+    .floating-whatsapp {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .floating-whatsapp__btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .floating-whatsapp__btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Sembunyikan tooltip di mobile untuk hemat ruang */
+    .floating-whatsapp__label {
+        display: none;
+    }
+}

@@ -1,0 +1,315 @@
+/* ==========================================================================
+ * Hero Section
+ * Hero parallax, visual, floating shapes, animasi, dan section divider.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Hero Layout & Content
+ * ---------------------------------------------------------------------- */
+.hero-section {
+    background-color: var(--brand-white);
+    color: var(--brand-dark);
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--brand-dark);
+}
+
+.hero-title .highlight-text {
+    position: relative;
+    display: inline-block;
+    color: var(--brand-dark);
+}
+
+/* Garis aksen di bawah satu kata spesifik */
+.hero-title .highlight-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 8px;
+    background-color: #FACC15;
+    /* Kuning aksen */
+    z-index: -1;
+    border-radius: 4px;
+}
+
+.hero-desc {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--gray-500);
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Hero Buttons & Stats
+ * ---------------------------------------------------------------------- */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.hero-btn {
+    padding: 1rem 2.25rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    filter: brightness(1.1);
+}
+
+.hero-btn:active {
+    transform: translateY(0);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.hero-stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #F59E0B;
+    /* Warna emas/oranye */
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    line-height: 1.4;
+    max-width: 120px;
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Hero Visual & Parallax
+ * ---------------------------------------------------------------------- */
+.hero-visual {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-visual-inner {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+}
+
+/* Lingkaran Oranye Utama */
+.hero-bg-circle {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    /* background-color diatur inline via php, ini fallback-nya */
+    background-color: #ea580c;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Jika elemen circle digantikan Gambar/SVG via Customizer */
+img.hero-bg-image {
+    background-color: transparent !important;
+    border-radius: 0;
+    object-fit: contain;
+}
+
+/* Gambar Orang Utama */
+.hero-main-img {
+    position: absolute;
+    bottom: -10%;
+    /* Badannya tembus ke luar border bawah lingkaran */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    z-index: 10;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Floating Shapes (Micro-interactions)
+ * ---------------------------------------------------------------------- */
+.floating-shape {
+    position: absolute;
+    z-index: 15;
+}
+
+/* Animasi Melayang — Keyframes */
+@keyframes morphSlow {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes morphFast {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-10deg) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+.morph-slow {
+    animation: morphSlow 6s ease-in-out infinite;
+}
+
+.morph-fast {
+    animation: morphFast 4s ease-in-out infinite;
+}
+
+/* Posisi setiap elemen mikro layout */
+.shape-rocket {
+    top: 5%;
+    left: -5%;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+}
+
+.shape-trophy {
+    bottom: 0%;
+    right: -5%;
+    z-index: 20;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.15));
+}
+
+.shape-purple-circle {
+    top: 15%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    background-color: #8B5CF6;
+    /* Ungu */
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.shape-red-circle {
+    top: 35%;
+    right: -5%;
+    width: 40px;
+    height: 40px;
+    background-color: #EF4444;
+    /* Merah */
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.shape-blue-circle {
+    bottom: 25%;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background-color: #3B82F6;
+    /* Biru */
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.shape-yellow-blob {
+    bottom: 10%;
+    left: 5%;
+    width: 90px;
+    height: 110px;
+    background-color: #EAB308;
+    /* Kuning */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: 0;
+    border: 3px solid #000;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Section Divider
+ * CSS-only, compact & modern. 
+ * Class .section-divider-top / .section-divider-bottom pada <section>.
+ * ---------------------------------------------------------------------- */
+.section-divider-top,
+.section-divider-bottom {
+    position: relative;
+}
+
+.section-divider-top::before,
+.section-divider-bottom::after {
+    content: '';
+    position: absolute;
+    left: -5%;
+    width: auto;
+    height: 30px;
+    background: var(--brand-white);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.section-divider-top::before {
+    top: -15px;
+}
+
+.section-divider-bottom::after {
+    bottom: -15px;
+}
+
+/* Varian: divider merah (untuk section putih yang dikelilingi merah) */
+.section-divider-top--red::before,
+.section-divider-bottom--red::after {
+    background: var(--brand-red);
+}

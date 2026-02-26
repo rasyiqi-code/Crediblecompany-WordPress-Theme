@@ -1,0 +1,174 @@
+/* ==========================================================================
+ * Landing Mobile — Header & Navigation
+ * Header sticky dengan navigasi horizontal scroll ala mobile app.
+ * Hanya aktif di layar ≤ 1024px.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* ----------------------------------------------------------------------
+     * 1. Site Header
+     * ---------------------------------------------------------------------- */
+    .site-header {
+        position: relative !important;
+        top: 0;
+        background-color: var(--brand-red);
+        z-index: 2000;
+        border: none;
+        margin: 0 !important;
+    }
+
+    /* Kompensasi Admin Bar WordPress */
+    .admin-bar .site-header {
+        top: calc(-50px + 32px) !important;
+    }
+
+    @media screen and (max-width: 600px) {
+        .admin-bar .site-header {
+            top: calc(-50px + 46px) !important;
+        }
+    }
+
+    .site-header .container {
+        height: auto;
+        padding: 0;
+        gap: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: flex-start;
+        background-color: var(--brand-red);
+    }
+
+    /* Baris Logo & Icons (Row 1) */
+    .site-header .site-logo,
+    .site-header .header-icons {
+        height: 50px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        background-color: var(--brand-red);
+        box-sizing: border-box;
+        margin: 0 !important;
+    }
+
+    /* Sembunyikan hamburger toggle */
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .site-logo img {
+        height: 30px !important;
+        width: auto !important;
+        display: block;
+    }
+
+    .site-logo {
+        flex-shrink: 0;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 2. Header Icons
+     * ---------------------------------------------------------------------- */
+    .header-icons {
+        display: flex !important;
+        margin-left: auto;
+        align-items: center;
+        gap: 16px;
+        height: 100%;
+    }
+
+    .header-icons button {
+        color: #ffffff !important;
+        background: transparent !important;
+        border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 40px;
+    }
+
+    .header-icons svg {
+        width: 20px;
+        height: 20px;
+        stroke: #ffffff;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 3. Navigasi Horizontal Scroll (App Tabs)
+     * ---------------------------------------------------------------------- */
+    .primary-nav {
+        display: block !important;
+        width: 100%;
+        background: #f1f5f9 !important;
+        padding: 0 16px;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        order: 10;
+        margin: 0 !important;
+        box-sizing: border-box;
+        height: 44px;
+        /* Sticky di atas, overlap header utama */
+        position: sticky;
+        top: 0;
+        z-index: 2001;
+    }
+
+    .primary-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .primary-nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        align-items: center;
+    }
+
+    .primary-nav li {
+        flex-shrink: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .primary-nav a {
+        padding: 7px 14px !important;
+        font-size: 0.8rem !important;
+        background: #f1f5f9 !important;
+        color: #475569;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 50px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 600;
+        border: none;
+        line-height: 1;
+    }
+
+    /* Highlight untuk menu aktif */
+    .primary-nav a:active,
+    .primary-nav a:hover,
+    .primary-nav li.current-menu-item a {
+        background: var(--brand-red) !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 8px rgba(220, 38, 38, 0.2);
+    }
+
+    .primary-nav a::after {
+        display: none;
+    }
+}

@@ -1,0 +1,235 @@
+/* ==========================================================================
+ * Landing Mobile — Section Components
+ * Horizontal scroll, feature cards, pricing, blog, mitra, dan footer
+ * untuk mobile app-like landing page. Hanya aktif di layar ≤ 1024px.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* ----------------------------------------------------------------------
+     * 1. Horizontal Scroll Container (App-style)
+     * Hanya aktif jika class .has-horizontal-scroll ditambahkan via Customizer
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .has-horizontal-scroll {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 16px;
+        overflow-x: auto !important;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 10px 20px 20px;
+        margin: 0 -20px;
+        flex-wrap: nowrap !important;
+    }
+
+    .app-landing-wrapper .has-horizontal-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Card individual proporsional saat di-scroll */
+    .app-landing-wrapper .has-horizontal-scroll .feature-item,
+    .app-landing-wrapper .has-horizontal-scroll .stat-item,
+    .app-landing-wrapper .has-horizontal-scroll .book-item,
+    .app-landing-wrapper .has-horizontal-scroll .blog-card,
+    .app-landing-wrapper .has-horizontal-scroll .card-post,
+    .app-landing-wrapper .has-horizontal-scroll .app-post-card {
+        flex: 0 0 85% !important;
+        width: 85% !important;
+        max-width: 85% !important;
+        flex-shrink: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        white-space: normal;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+        min-height: 100%;
+        color: #ffffff !important;
+    }
+
+    /* Features: pusat teks */
+    .features h2 {
+        text-align: center;
+        width: 100%;
+    }
+
+    .app-landing-wrapper .has-horizontal-scroll .feature-item {
+        text-align: center;
+        align-items: center;
+    }
+
+    /* Kontras teks putih di background gelap */
+    .app-landing-wrapper .has-horizontal-scroll .feature-item p,
+    .app-landing-wrapper .has-horizontal-scroll .feature-item h3,
+    .app-landing-wrapper .has-horizontal-scroll .stat-item p,
+    .app-landing-wrapper .has-horizontal-scroll .stat-item h2 {
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 2. Khusus Kartu Harga (Scrollable)
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .has-horizontal-scroll .price-card {
+        flex: 0 0 85% !important;
+        width: 85% !important;
+        max-width: 85% !important;
+        flex-shrink: 0 !important;
+        white-space: normal;
+        box-sizing: border-box;
+        margin-bottom: 0 !important;
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+        color: inherit;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 3. Khusus Testimoni (Scrollable)
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .has-horizontal-scroll .testimonial-card {
+        flex: 0 0 85% !important;
+        width: 85% !important;
+        max-width: 85% !important;
+        flex-shrink: 0 !important;
+        white-space: normal;
+        box-sizing: border-box;
+        margin-bottom: 0 !important;
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden !important;
+    }
+
+    .app-landing-wrapper .has-horizontal-scroll .testimonial-card blockquote {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 0;
+        scrollbar-width: none;
+    }
+
+    .app-landing-wrapper .has-horizontal-scroll .testimonial-card blockquote::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 4. Card Styling (Non-Scroll Mode)
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .feature-item,
+    .app-landing-wrapper .stat-item,
+    .app-landing-wrapper .price-card {
+        background: var(--brand-white);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 15, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+    }
+
+    /* Buku dalam mode scroll */
+    .app-landing-wrapper .has-horizontal-scroll .book-item img {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Blog Card di landing */
+    .app-landing-wrapper .blog-grid .blog-card h3,
+    .app-landing-wrapper .blog-grid .app-post-card .card-title {
+        font-size: 1.15rem !important;
+        line-height: 1.4;
+        margin-top: 12px;
+        margin-bottom: 8px;
+        color: #0f172a;
+    }
+
+    .app-landing-wrapper .blog-grid .blog-card img,
+    .app-landing-wrapper .blog-grid .app-post-card img {
+        border-radius: 12px;
+        width: 100%;
+        height: auto;
+    }
+
+    .app-landing-wrapper .feature-item p,
+    .app-landing-wrapper .blog-card p {
+        color: #475569;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 5. Feature Icon Styling
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .feature-item .feature-icon {
+        margin: 0 auto 16px;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #dc2626;
+        border-radius: 16px;
+        color: #ffffff;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+    }
+
+    .app-landing-wrapper .feature-item .feature-icon i,
+    .app-landing-wrapper .feature-item .feature-icon svg {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+    }
+
+    .app-landing-wrapper .feature-item h3 {
+        font-size: 1.125rem;
+        margin-bottom: 8px;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 6. Pricing Mobile Adjustments
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .price-card {
+        margin-bottom: 24px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+    }
+
+    .app-landing-wrapper .price-card.popular {
+        border: 2px solid var(--brand-red);
+        transform: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* ----------------------------------------------------------------------
+     * 7. Partners & Footer
+     * ---------------------------------------------------------------------- */
+    .app-landing-wrapper .partners-logos img {
+        height: 24px;
+    }
+
+    .app-landing-wrapper .mitra-resmi-logos {
+        gap: 20px;
+    }
+
+    /* Hilangkan divider bawaan desktop */
+    .app-landing-wrapper .section-divider-top::before,
+    .app-landing-wrapper .section-divider-bottom::after {
+        display: none !important;
+    }
+
+    /* Footer Sederhana */
+    .app-landing-wrapper .site-footer {
+        padding: 40px 20px;
+        text-align: center;
+        background: #0f172a;
+        margin-top: 20px;
+    }
+}

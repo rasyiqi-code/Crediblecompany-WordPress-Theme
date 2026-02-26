@@ -1,0 +1,173 @@
+/* ==========================================================================
+ * Blog Section (Landing Page) + Blog Hexa Style Redesign
+ * Grid blog di halaman utama dan redesign halaman arsip blog.
+ * Card blog styles ada di components/cards.css.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Blog Section (Landing Page)
+ * ---------------------------------------------------------------------- */
+.blog-section {
+    padding: 4rem 0;
+    background: var(--brand-white);
+}
+
+.blog-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 3rem;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* Style card blog dipindahkan ke assets/css/components/cards.css */
+
+/* --------------------------------------------------------------------------
+ * 2. Blog Hexa Style Redesign (Halaman Arsip Blog)
+ * ---------------------------------------------------------------------- */
+.blog-hero {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    padding: 30px 0 40px;
+    border-radius: 16px;
+    margin: 15px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+.blog-hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+.blog-hero h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    padding: 0 15px;
+}
+
+.blog-hero-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+    padding: 0 15px;
+}
+
+/* Decorative SVG shapes */
+.blog-hero-decor {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Blog Search
+ * ---------------------------------------------------------------------- */
+.blog-search-container {
+    max-width: 600px;
+    margin: -25px auto 25px;
+    padding: 0 15px;
+    position: relative;
+    z-index: 10;
+}
+
+.blog-search-wrap {
+    background: #fff;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px 8px 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.blog-search-wrap input {
+    border: none;
+    flex: 1;
+    font-size: 1rem;
+    outline: none;
+    color: #1e293b;
+}
+
+.blog-search-wrap button {
+    background: var(--brand-red);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.blog-search-wrap button:hover {
+    transform: scale(1.05);
+    background: #b91c1c;
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Category Pills Nav
+ * ---------------------------------------------------------------------- */
+.blog-categories-pills {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: nowrap;
+    margin-bottom: 40px;
+    padding: 0 15px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+.blog-categories-pills::-webkit-scrollbar {
+    display: none;
+    /* Chrome */
+}
+
+.pill-item {
+    flex-shrink: 0;
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: transparent;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.pill-item:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.pill-item.active {
+    background: #3b82f6;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Featured Post Layout
+ * ---------------------------------------------------------------------- */
+.featured-post-container {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 15px;
+}

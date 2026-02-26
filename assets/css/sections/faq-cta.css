@@ -1,0 +1,98 @@
+/* ==========================================================================
+ * FAQ Section + CTA Section
+ * Accordion FAQ dan Call-to-Action.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. FAQ Section
+ * ---------------------------------------------------------------------- */
+.faq {
+    background-color: var(--brand-red);
+    padding: 4rem 0;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    color: var(--brand-white);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.faq-question:hover {
+    opacity: 0.8;
+}
+
+.faq-question svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    stroke: var(--brand-white);
+    fill: none;
+    transition: var(--transition);
+}
+
+.faq-question .faq-arrow {
+    margin-left: auto;
+    transform: rotate(0deg);
+    transition: var(--transition);
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. CTA Section
+ * ---------------------------------------------------------------------- */
+.cta {
+    padding: 4rem 0;
+    background: var(--brand-white);
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--brand-red);
+    margin-bottom: 0.75rem;
+}
+
+.cta p {
+    color: var(--brand-red);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}

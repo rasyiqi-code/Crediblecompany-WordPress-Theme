@@ -1,0 +1,44 @@
+/* ==========================================================================
+ * Books Section
+ * Grid buku-buku yang sudah diterbitkan.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+.books {
+    background-color: var(--brand-red);
+    color: var(--brand-white);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.books h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.book-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.book-item:hover {
+    transform: scale(1.05);
+}
+
+.book-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}

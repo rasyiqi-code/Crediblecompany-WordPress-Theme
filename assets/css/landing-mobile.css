@@ -1,0 +1,11 @@
+/* ==========================================================================
+ * Credible Company — Mobile Landing Page Stylesheet (Hub)
+ * CSS Eksklusif untuk Landing Page "Mobile App-like" di layar mobile.
+ * Layout desktop *tidak akan terpengaruh*.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+@import url('./landing/header-mobile.css');
+@import url('./landing/layout-mobile.css');
+@import url('./landing/sections-mobile.css');

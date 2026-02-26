@@ -1,0 +1,28 @@
+/* ==========================================================================
+ * Credible Company — Main Stylesheet (Hub)
+ * Tema landing page KBM Indonesia Group.
+ * File ini berfungsi sebagai hub yang meng-import semua modul CSS.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --- Base: Variables, Reset, Utilities --- */
+@import url('./base/variables.css');
+@import url('./base/reset.css');
+@import url('./base/utilities.css');
+
+/* --- Components: Header, Footer, Search, Floating WhatsApp --- */
+@import url('./components/header.css');
+@import url('./components/footer.css');
+@import url('./components/search.css');
+@import url('./components/floating-whatsapp.css');
+
+/* --- Sections: Halaman Landing Page --- */
+@import url('./sections/hero.css');
+@import url('./sections/about-features.css');
+@import url('./sections/pricing.css');
+@import url('./sections/testimonials.css');
+@import url('./sections/partners.css');
+@import url('./sections/books.css');
+@import url('./sections/blog.css');
+@import url('./sections/faq-cta.css');

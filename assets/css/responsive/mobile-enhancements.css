@@ -1,0 +1,128 @@
+/* ==========================================================================
+ * Mobile-Only Enhancements
+ * Carousel testimoni, drawer mobile, dan form instruction side.
+ * Hanya aktif di layar ≤ 1023px.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+@media (max-width: 1023px) {
+
+    .section-title-premium {
+        margin-left: 20px;
+    }
+
+    /* Carousel Testimoni Lainnya */
+    .testi-carousel-container {
+        margin: 0 -20px;
+        padding-bottom: 30px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-padding-left: 40px;
+    }
+
+    .testi-carousel-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .testi-carousel-container .carousel-track {
+        display: flex !important;
+        gap: 24px;
+        width: max-content;
+        padding: 0 40px 10px 40px;
+    }
+
+    .testi-carousel-container .testimonial-card {
+        width: 300px;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+
+    /* Drawer Mobile */
+    .app-drawer {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100vh;
+        background: var(--brand-white);
+        z-index: 2000;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+        padding: 24px !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        display: block !important;
+        visibility: hidden;
+    }
+
+    .app-drawer.active {
+        transform: translateX(-320px);
+        visibility: visible;
+    }
+
+    .drawer-header-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1.5px solid #f1f5f9;
+    }
+
+    .drawer-header-mobile h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--brand-red);
+        font-weight: 800;
+    }
+
+    .close-drawer {
+        background: #f1f5f9;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-size: 1.25rem;
+        color: #64748b;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+    .drawer-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.4);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+    }
+
+    .drawer-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .form-instruction-side {
+        margin-bottom: 32px;
+        padding: 0 20px;
+    }
+
+    .instruction-icon {
+        display: none;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+}

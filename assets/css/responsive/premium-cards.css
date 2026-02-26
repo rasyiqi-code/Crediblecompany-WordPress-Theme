@@ -1,0 +1,135 @@
+/* ==========================================================================
+ * Premium Card Upgrades (Testimoni Card Baru)
+ * Card inner, avatar, rating modern, body preview, footer, dan read link.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+.testimonial-card {
+    padding: 0;
+    position: relative;
+    border: none;
+}
+
+.testi-card-link-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.testi-card-link-wrapper:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.testi-card-link-wrapper>* {
+    width: 100%;
+}
+
+.testi-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.testi-card-inner {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testi-card-app:hover .testi-card-inner {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    border-color: #e2e8f0;
+}
+
+.testi-avatar img,
+.avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    background: #f1f5f9;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.testi-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.testi-role {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: block;
+    margin-top: 2px;
+}
+
+.testi-rating-modern {
+    margin-top: 16px;
+    display: flex;
+    gap: 4px;
+}
+
+.testi-rating-modern .star {
+    font-size: 1.125rem;
+    color: #e2e8f0;
+}
+
+.testi-rating-modern .star.filled {
+    color: #f59e0b;
+    /* Premium Gold */
+}
+
+.testi-body-preview {
+    margin-top: 16px;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: #334155;
+    flex: 1;
+}
+
+.testi-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f8fafc;
+}
+
+.read-link {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #dc2626;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    display: inline-flex;
+    align-items: center;
+}
+
+.read-link::after {
+    content: "→";
+    margin-left: 6px;
+    transition: transform 0.2s;
+}
+
+.testi-card-app:hover .read-link::after {
+    transform: translateX(4px);
+}

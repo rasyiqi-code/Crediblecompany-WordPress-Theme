@@ -1,0 +1,70 @@
+/* ==========================================================================
+ * Footer Styles
+ * Layout footer, copyright, social links, dan navigation links.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+.site-footer {
+    background: var(--brand-red);
+    color: var(--brand-white);
+    padding: 2.5rem 0;
+    border-top: 4px solid var(--brand-white);
+}
+
+.site-footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+}
+
+/* --- Social Links --- */
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.footer-social-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.footer-social a {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.footer-social a:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.footer-social a svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--brand-white);
+}
+
+/* --- Footer Nav Links --- */
+.footer-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,47 @@
+/* ==========================================================================
+ * Reset & Base Styles
+ * Normalisasi browser default dan aturan dasar elemen HTML.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    position: relative;
+    max-width: 100vw;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--brand-dark);
+    background-color: var(--brand-light);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul,
+ol {
+    list-style: none;
+}

@@ -1,0 +1,143 @@
+/* ==========================================================================
+ * Utility Classes
+ * Container, grid, flex, gap, dan button utilities.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Container & Layout
+ * ---------------------------------------------------------------------- */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Grid Utilities
+ * ---------------------------------------------------------------------- */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Flex Utilities
+ * ---------------------------------------------------------------------- */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Gap Utilities
+ * ---------------------------------------------------------------------- */
+.gap-1 {
+    gap: 0.5rem;
+}
+
+.gap-2 {
+    gap: 1rem;
+}
+
+.gap-3 {
+    gap: 1.5rem;
+}
+
+.gap-4 {
+    gap: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Button Utilities
+ * ---------------------------------------------------------------------- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--brand-red);
+    color: var(--brand-white);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-red-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+    background-color: var(--brand-white);
+    color: var(--brand-red);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover {
+    background-color: var(--gray-100);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    padding: 0.625rem 1rem;
+}
+
+/* --------------------------------------------------------------------------
+ * 6. Display Helpers
+ * ---------------------------------------------------------------------- */
+.flex-center-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}

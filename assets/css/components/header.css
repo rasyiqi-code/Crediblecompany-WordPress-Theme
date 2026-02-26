@@ -1,0 +1,196 @@
+/* ==========================================================================
+ * Header / Navbar Styles
+ * Sticky header, navigasi utama, ikon, dan mobile toggle.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+.site-header {
+    background-color: var(--brand-red);
+    color: var(--brand-white);
+    position: relative;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.site-logo a {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--brand-white);
+    letter-spacing: -0.5px;
+}
+
+.site-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Navigasi Utama */
+.primary-nav ul {
+    display: flex;
+    gap: 2rem;
+}
+
+.primary-nav a {
+    color: var(--brand-white);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.primary-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand-white);
+    transition: var(--transition);
+}
+
+.primary-nav a:hover::after {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+ * Desktop Nav (inline di header, drawer di mobile)
+ * -------------------------------------------------------------------------- */
+.desktop-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+}
+
+.desktop-nav li {
+    white-space: nowrap;
+}
+
+.desktop-nav a {
+    color: var(--brand-white);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    text-decoration: none;
+}
+
+.desktop-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand-white);
+    transition: var(--transition);
+}
+
+.desktop-nav a:hover::after {
+    width: 100%;
+}
+
+/* Mobile: desktop-nav jadi drawer slide-down */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--brand-red);
+        padding: 1rem 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+    }
+
+    .desktop-nav.active {
+        display: block;
+    }
+
+    .desktop-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .desktop-nav a {
+        display: block;
+        padding: 0.75rem 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .desktop-nav li:last-child a {
+        border-bottom: none;
+    }
+
+    .desktop-nav a::after {
+        display: none;
+    }
+}
+
+/* Desktop: sembunyikan primary-nav (horizontal scroll khusus mobile) */
+@media (min-width: 769px) {
+    .primary-nav {
+        display: none !important;
+    }
+}
+
+/* Header Icons */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-icons button {
+    background: none;
+    border: none;
+    color: var(--brand-white);
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: var(--transition);
+}
+
+.header-icons button:hover {
+    opacity: 0.7;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--brand-white);
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Header Search Overlay Tweaks */
+.header-search-overlay {
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
