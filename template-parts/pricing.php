@@ -82,8 +82,8 @@ $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox=
 
                         <!-- Tombol CTA -->
                         <div class="price-card-action">
-                            <a href="<?php echo esc_url( $btn_url ); ?>" class="btn btn-primary btn-block" target="_blank" rel="noopener">
-                                <?php echo esc_html( $btn_text ); ?>
+                            <a href="<?php echo esc_url( cc_dynamic_wa_url( $btn_url ) ); ?>" class="btn btn-primary btn-block" target="_blank" rel="noopener">
+                                <?php echo esc_html( cc_dynamic_text( $btn_text ) ); ?>
                             </a>
                         </div>
                     </div>

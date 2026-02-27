@@ -74,7 +74,7 @@ if ( ! empty( $wa_number ) ) :
 ?>
 <div class="floating-whatsapp" id="floating-whatsapp">
     <span class="floating-whatsapp__label">Chat via WhatsApp</span>
-    <a href="<?php echo esc_url( $wa_url ); ?>"
+    <a href="<?php echo esc_url( cc_dynamic_wa_url( $wa_url ) ); ?>"
        class="floating-whatsapp__btn"
        target="_blank"
        rel="noopener noreferrer"

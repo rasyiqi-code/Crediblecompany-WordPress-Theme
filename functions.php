@@ -19,8 +19,10 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/cpt-paket-jasa.php';
 require_once get_template_directory() . '/inc/cpt-testimoni.php';
+require_once get_template_directory() . '/inc/cpt-marketing.php';
 require_once get_template_directory() . '/inc/custom-comments.php';
 require_once get_template_directory() . '/inc/toc-generator.php';
+require_once get_template_directory() . '/inc/dynamic-wa.php';
 
 /* --------------------------------------------------------------------------
  * 2. Setup Tema

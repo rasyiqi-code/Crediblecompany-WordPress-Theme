@@ -15,14 +15,9 @@
  * @package CredibleCompany
  */
 
-// Placeholder gambar buku — nanti diganti gambar asli
-$books = array(
-    array( 'title' => 'Ilmu Tajwid',           'img' => 'https://via.placeholder.com/300x450' ),
-    array( 'title' => 'Komunikasi Korporat',    'img' => 'https://via.placeholder.com/300x450' ),
-    array( 'title' => 'Free Line',              'img' => 'https://via.placeholder.com/300x450' ),
-    array( 'title' => 'From Zero to Hero',      'img' => 'https://via.placeholder.com/300x450' ),
-    array( 'title' => 'Islamic Early Childhood', 'img' => 'https://via.placeholder.com/300x450' ),
-);
+// Ambil produk asli dari OwwCommerce
+$product_repo = new \OwwCommerce\Repositories\ProductRepository();
+$books = $product_repo->get_all( 5, 0, ['orderby' => 'newest'] );
 ?>
 
 <section class="books section-divider-top section-divider-bottom">
@@ -31,11 +26,19 @@ $books = array(
         <?php $scroll_class = cc_get( 'mobile_scroll_books', true ) ? 'has-horizontal-scroll' : ''; ?>
         <div class="books-grid <?php echo esc_attr( $scroll_class ); ?>">
             <?php foreach ( $books as $book ) : ?>
-                <div class="book-item">
-                    <img src="<?php echo esc_url( $book['img'] ); ?>" alt="<?php echo esc_attr( $book['title'] ); ?>">
-                </div>
+                <a href="<?php echo esc_url( \OwwCommerce\Frontend\Router::get_product_link( $book->slug ) ); ?>" class="book-item">
+                    <?php if ( $book->image_url ) : ?>
+                        <img src="<?php echo esc_url( $book->image_url ); ?>" alt="<?php echo esc_attr( $book->title ); ?>">
+                    <?php else : ?>
+                        <div class="book-placeholder"><?php echo esc_html( $book->title ); ?></div>
+                    <?php endif; ?>
+                </a>
             <?php endforeach; ?>
         </div>
-        <button class="btn btn-outline">Lihat Lainnya</button>
+        <?php 
+            $shop_page_id = get_option('owwc_page_shop_id');
+            $shop_url = $shop_page_id ? get_permalink($shop_page_id) : home_url('/shop/');
+        ?>
+        <a href="<?php echo esc_url( $shop_url ); ?>" class="btn btn-outline">Lihat Lainnya</a>
     </div>
 </section>
