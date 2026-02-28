@@ -23,7 +23,9 @@
  * Tablet (max-width: 1024px)
  * ---------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-    .pricing-grid {
+
+    .pricing-grid,
+    .pricing-grid[class*="grid-cols-"] {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -123,7 +125,8 @@
     }
 
     /* Pricing */
-    .pricing-grid {
+    .pricing-grid,
+    .pricing-grid[class*="grid-cols-"] {
         grid-template-columns: 1fr;
     }
 
