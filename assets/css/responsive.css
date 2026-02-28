@@ -7,7 +7,7 @@
  * ========================================================================== */
 
 /* --- Landing Page Responsive (breakpoints section utama) --- */
-@import url('./responsive/landing-responsive.css');
+@import url('./responsive/landing-responsive.css?v=1.1.44');
 
 /* --- App-Like Layout (blog & testimoni mobile-first) --- */
 @import url('./responsive/app-layout.css');

@@ -20,7 +20,7 @@
 /* --- Sections: Halaman Landing Page --- */
 @import url('./sections/hero.css');
 @import url('./sections/about-features.css');
-@import url('./sections/pricing.css');
+@import url('./sections/pricing.css?v=1.1.44');
 @import url('./sections/testimonials.css');
 @import url('./sections/partners.css');
 @import url('./sections/books.css');
