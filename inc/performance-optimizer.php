@@ -133,8 +133,11 @@ function cc_lazy_load_iframes( $content ) {
 // Optimasi Font (Swap Display)
 add_filter( 'style_loader_tag', 'cc_font_display_swap', 10, 2 );
 function cc_font_display_swap( $tag, $handle ) {
-    if ( strpos( $tag, 'fonts.googleapis.com' ) !== false ) {
-        return str_replace( "href='", "href='" . esc_url( "https://fonts.googleapis.com/css2?display=swap&" ), $tag );
+    if ( strpos( $tag, 'fonts.googleapis.com' ) !== false && strpos( $tag, 'display=swap' ) === false ) {
+        // Tentukan separator (? atau &) berdasarkan keberadaan query string
+        $sep = ( strpos( $tag, '?' ) !== false ) ? '&' : '?';
+        // Injeksi parameter hanya ke dalam atribut href
+        $tag = preg_replace( '/href=(["\'])(.*?)\1/', 'href=$1$2' . $sep . 'display=swap$1', $tag );
     }
     return $tag;
 }

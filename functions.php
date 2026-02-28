@@ -24,6 +24,7 @@ require_once get_template_directory() . '/inc/custom-comments.php';
 require_once get_template_directory() . '/inc/toc-generator.php';
 require_once get_template_directory() . '/inc/dynamic-wa.php';
 require_once get_template_directory() . '/inc/performance-optimizer.php';
+require_once get_template_directory() . '/inc/security-optimizer.php';
 
 /* --------------------------------------------------------------------------
  * 2. Setup Tema
