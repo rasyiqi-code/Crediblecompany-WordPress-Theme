@@ -1,0 +1,128 @@
+/* ==========================================================================
+ * Page Section Styles (Static Pages)
+ * Desain khusus untuk halaman Privacy Policy, FAQ, dll.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+.main-content-page {
+    padding-bottom: 80px;
+}
+
+/* --- Page Hero Header --- */
+.page-hero {
+    background: linear-gradient(135deg, #000 0%, #1f2937 100%);
+    padding: 60px 0;
+    color: var(--brand-white);
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--brand-white);
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}
+
+.page-hero .entry-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 15px;
+    letter-spacing: -0.02em;
+}
+
+.page-hero .cc-breadcrumbs {
+    display: inline-flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+}
+
+/* --- Content Container --- */
+.page-content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-card {
+    background: var(--brand-white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+}
+
+/* --- Typography Optimization --- */
+.entry-content {
+    line-height: 1.8;
+    color: var(--gray-700);
+}
+
+.entry-content h2 {
+    font-size: 1.5rem;
+    color: var(--brand-dark);
+    margin: 40px 0 20px;
+    border-left: 4px solid var(--brand-red);
+    padding-left: 15px;
+}
+
+.entry-content p {
+    margin-bottom: 20px;
+}
+
+.entry-content ul,
+.entry-content ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.entry-content li {
+    margin-bottom: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 40px 0 60px;
+        /* Tambah padding bawah untuk ruang clip-path */
+        margin-bottom: 20px;
+    }
+
+    .page-hero .entry-title {
+        font-size: 1.8rem;
+        padding: 0 15px;
+    }
+
+    .page-hero .cc-breadcrumbs {
+        font-size: 0.75rem;
+        padding: 6px 15px;
+        margin-bottom: 10px;
+    }
+
+    .page-content-wrapper {
+        padding: 0 15px;
+    }
+
+    .page-card {
+        padding: 20px 10px;
+        /* Padding lebih tipis di samping untuk mobile */
+        border: none;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .entry-content h2 {
+        font-size: 1.3rem;
+        margin: 30px 0 15px;
+    }
+}

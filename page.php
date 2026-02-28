@@ -11,21 +11,32 @@
 
 get_header(); ?>
 
-<main id="main" class="main-content">
+<main id="main" class="main-content main-content-page">
     <?php if ( have_posts() ) : ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <header class="entry-header">
-                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                <!-- Header: Page Hero -->
+                <header class="page-hero">
+                    <div class="container">
+                        <?php if ( function_exists( 'cc_breadcrumbs' ) ) cc_breadcrumbs(); ?>
+                        <h1 class="entry-title"><?php the_title(); ?></h1>
+                    </div>
                 </header>
 
-                <div class="entry-content">
-                    <?php the_content(); ?>
+                <!-- Body: Page Content -->
+                <div class="page-content-wrapper">
+                    <div class="page-card">
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div>
+                    </div>
                 </div>
             </article>
         <?php endwhile; ?>
     <?php else : ?>
-        <p><?php esc_html_e( 'Tidak ada konten ditemukan.', 'crediblecompany' ); ?></p>
+        <div class="container">
+            <p><?php esc_html_e( 'Tidak ada konten ditemukan.', 'crediblecompany' ); ?></p>
+        </div>
     <?php endif; ?>
 </main>
 
