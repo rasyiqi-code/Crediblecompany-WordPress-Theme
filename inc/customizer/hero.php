@@ -44,7 +44,12 @@ add_action( 'customize_register', function( $wp_customize ) {
     $wp_customize->add_control( 'cc_hero_btn1_text', array( 'label' => __( 'Teks Tombol Utama', 'crediblecompany' ), 'section' => 'cc_hero_section', 'type' => 'text' ) );
 
     $wp_customize->add_setting( 'cc_hero_btn1_url', array( 'default' => '#daftar', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( 'cc_hero_btn1_url', array( 'label' => __( 'URL Tombol Utama', 'crediblecompany' ), 'section' => 'cc_hero_section', 'type' => 'url' ) );
+    $wp_customize->add_control( 'cc_hero_btn1_url', array(
+        'label'       => __( 'URL Tombol Utama', 'crediblecompany' ),
+        'description' => __( 'Gunakan ID section untuk smooth scroll: #hero-kbm, #how-it-works, #daftar-paket, #books, #testimonials, #blog, #faq, #mitra', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'url',
+    ) );
 
     // Warna Latar & Teks Tombol Utama
     $wp_customize->add_setting( 'cc_hero_btn1_bg_color', array( 'default' => '#1d4ed8', 'sanitize_callback' => 'sanitize_hex_color' ) );
@@ -61,7 +66,12 @@ add_action( 'customize_register', function( $wp_customize ) {
     $wp_customize->add_control( 'cc_hero_btn2_text', array( 'label' => __( 'Teks Tombol Sekunder', 'crediblecompany' ), 'section' => 'cc_hero_section', 'type' => 'text' ) );
 
     $wp_customize->add_setting( 'cc_hero_btn2_url', array( 'default' => '#how-it-works', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( 'cc_hero_btn2_url', array( 'label' => __( 'URL Tombol Sekunder', 'crediblecompany' ), 'section' => 'cc_hero_section', 'type' => 'url' ) );
+    $wp_customize->add_control( 'cc_hero_btn2_url', array(
+        'label'       => __( 'URL Tombol Sekunder', 'crediblecompany' ),
+        'description' => __( 'Gunakan ID section untuk smooth scroll (lihat daftar ID di tombol utama).', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'url',
+    ) );
     
     // Warna Latar & Teks Tombol Sekunder
     $wp_customize->add_setting( 'cc_hero_btn2_bg_color', array( 'default' => 'transparent', 'sanitize_callback' => 'sanitize_hex_color' ) );

@@ -13,6 +13,8 @@
 - 🛠️ **Modular CSS & JS**: Kode yang terstruktur rapi menggunakan pattern `@import` untuk CSS dan ES Modules untuk JavaScript.
 - 🎯 **Custom Post Types**: Dilengkapi dengan CPT khusus untuk **Paket Jasa**, **Marketing**, dan **Testimoni**.
 - ⚙️ **Advanced Customizer**: Atur semua konten landing page (Hero, Statistik, Fitur, Harga, Kontak) langsung dari panel kustomisasi WordPress.
+- 🚀 **Smooth Scroll & Anchor IDs**: Navigasi antar-section yang mulus menggunakan sistem anchor link (`#id`).
+- 🔍 **SEO Optimized FAQ**: Bagian FAQ kini dilengkapi dengan Schema JSON-LD (FAQPage) otomatis untuk Google Rich Results.
 - 📄 **TOC Generator**: Daftar isi otomatis untuk artikel blog guna meningkatkan SEO dan pengalaman baca.
 
 ## 🚀 Instalasi
@@ -40,6 +42,21 @@ Tema ini memiliki sistem referal *native* sehingga tiap-tiap agen marketing ("Sa
 
 ### Pengaturan Landing Page
 Gunakan panel **Pengaturan Homepage** di Customizer untuk mengubah konten Hero, Statistik, Fitur, hingga FAQ tanpa menyentuh kode.
+- **Marketing Options**: Tambahkan "Fallback Nama Marketing" (misal: "Admin" atau "Tim CS") jika pengunjung tidak lewat link referal.
+
+### Anchor Navigation (Section IDs)
+Gunakan ID berikut pada kolom URL tombol atau menu di Customizer untuk membuat navigasi *scroll* halus ke bagian tertentu:
+
+| ID Section | Deskripsi Bagian |
+| :--- | :--- |
+| `#hero-kbm` | Bagian Atas / Hero Utama |
+| `#how-it-works` | Fitur & Keunggulan (Mengapa Memilih Kami) |
+| `#daftar-paket` | Daftar Harga & Paket Jasa Penerbitan |
+| `#books` | Katalog Buku Terbitan KBM |
+| `#testimonials` | Testimoni Mitra/Pelanggan |
+| `#blog` | Artikel & Berita Terbaru |
+| `#faq` | Tanya Jawab (FAQ) |
+| `#mitra` | Logo Mitra & Partner Kerja |
 
 ## 📂 Struktur Folder
 

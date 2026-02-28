@@ -32,7 +32,7 @@ $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_r
 ?>
 
 <!-- ===== Mitra Resmi / Sertifikasi ===== -->
-<section class="mitra-resmi section-divider-top">
+<section class="mitra-resmi section-divider-top" id="mitra">
     <div class="container text-center">
         <!-- Logo mitra resmi (infinite marquee style) -->
         <div class="mitra-resmi-logos">

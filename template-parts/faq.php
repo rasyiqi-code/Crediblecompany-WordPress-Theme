@@ -23,18 +23,47 @@ if ( ! is_array( $faqs ) ) {
 }
 ?>
 
-<?php if ( ! empty( $faqs ) ) : ?>
-<section class="faq">
+<?php if ( ! empty( $faqs ) ) : 
+    // Prepare Schema Data
+    $schema_items = array();
+    foreach ( $faqs as $faq ) {
+        $schema_items[] = array(
+            '@type'          => 'Question',
+            'name'           => $faq['q'],
+            'acceptedAnswer' => array(
+                '@type' => 'Answer',
+                'text'  => $faq['a'],
+            ),
+        );
+    }
+    $schema_json = json_encode( array(
+        '@context'   => 'https://schema.org',
+        '@type'      => 'FAQPage',
+        'mainEntity' => $schema_items,
+    ) );
+?>
+<!-- FAQ Schema JSON-LD -->
+<script type="application/ld+json"><?php echo $schema_json; ?></script>
+
+<section class="faq" id="faq">
     <div class="container">
         <div class="faq-list">
-            <?php foreach ( $faqs as $faq ) : ?>
+            <?php foreach ( $faqs as $index => $faq ) : 
+                $faq_id = 'faq-answer-' . $index;
+            ?>
                 <div class="faq-item">
-                    <button type="button" class="faq-question">
+                    <button type="button" 
+                            class="faq-question" 
+                            aria-expanded="false" 
+                            aria-controls="<?php echo esc_attr( $faq_id ); ?>">
                         <?php echo $check_svg; ?>
                         <span><?php echo esc_html( $faq['q'] ); ?></span>
                         <?php echo $arrow_svg; ?>
                     </button>
-                    <div class="faq-answer">
+                    <div id="<?php echo esc_attr( $faq_id ); ?>" 
+                         class="faq-answer" 
+                         role="region" 
+                         aria-labelledby="faq-question-<?php echo esc_attr( $index ); ?>">
                         <p><?php echo esc_html( $faq['a'] ); ?></p>
                     </div>
                 </div>

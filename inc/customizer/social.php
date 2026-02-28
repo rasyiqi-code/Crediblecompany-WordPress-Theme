@@ -12,7 +12,7 @@ add_action( 'customize_register', function( $wp_customize ) {
         'panel' => 'cc_homepage_panel',
     ) );
 
-    $socials = array( 'facebook', 'twitter', 'instagram' );
+    $socials = array( 'facebook', 'twitter', 'instagram', 'youtube', 'tiktok' );
     foreach ( $socials as $social ) {
         $wp_customize->add_setting( "cc_social_{$social}", array(
             'default'           => '#',

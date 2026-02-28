@@ -14,7 +14,7 @@ $blog_query = new WP_Query( array(
 ) );
 ?>
 
-<section class="blog-section section-divider-top section-divider-bottom" style="background-color: var(--brand-light);">
+<section class="blog-section section-divider-top section-divider-bottom" id="blog" style="background-color: var(--brand-light);">
     <div class="container">
         <h2 class="text-center" style="margin-bottom: 3rem;">Blog Penerbit KBM</h2>
 

@@ -23,7 +23,7 @@ $testi_query = new WP_Query( array(
 ) );
 ?>
 
-<section class="testimonials">
+<section class="testimonials" id="testimonials">
     <div class="container">
         <h2>Testimoni Mitra<br>KBM Indonesia Group</h2>
 

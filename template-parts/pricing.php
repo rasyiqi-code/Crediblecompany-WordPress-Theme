@@ -21,7 +21,7 @@ $paket_query = new WP_Query( array(
 $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
 ?>
 
-<section class="pricing">
+<section class="pricing" id="daftar-paket">
     <div class="container text-center">
         <h2><?php echo esc_html( $section_title ); ?></h2>
         <p><?php echo esc_html( $section_subtitle ); ?></p>

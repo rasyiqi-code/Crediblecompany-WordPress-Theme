@@ -12,6 +12,17 @@ add_action( 'customize_register', function( $wp_customize ) {
         'panel' => 'cc_homepage_panel',
     ) );
 
+    // Judul Utama (Mengapa Memilih Kami?)
+    $wp_customize->add_setting( 'cc_features_main_title', array(
+        'default'           => __( 'Mengapa Memilih Kami?', 'crediblecompany' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_features_main_title', array(
+        'label'   => __( 'Judul Utama Seksi', 'crediblecompany' ),
+        'section' => 'cc_features_section',
+        'type'    => 'text',
+    ) );
+
     $feat_defaults = array(
         array( 'Profesional', 'Ditangani langsung oleh tim ahli yang berkompeten di bidang penerbitan.' ),
         array( 'Harga Murah', 'Biaya terjangkau dengan kualitas maksimal. Ada berbagai diskon menarik.' ),

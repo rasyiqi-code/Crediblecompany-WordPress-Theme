@@ -17,9 +17,9 @@ $icons = array(
 );
 ?>
 
-<section class="features section-divider-top section-divider-bottom">
+<section class="features section-divider-top section-divider-bottom" id="how-it-works">
     <div class="container">
-        <h2><?php cc_e( 'features_title', 'Mengapa Memilih Kami?' ); ?></h2>
+        <h2><?php cc_e( 'features_main_title', 'Mengapa Memilih Kami?' ); ?></h2>
 
         <?php $scroll_class = cc_get( 'mobile_scroll_features', true ) ? 'has-horizontal-scroll' : ''; ?>
         <div class="features-grid <?php echo esc_attr( $scroll_class ); ?>">

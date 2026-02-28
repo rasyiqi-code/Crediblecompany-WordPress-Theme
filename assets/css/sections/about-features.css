@@ -112,8 +112,7 @@
 
 .feature-item p {
     font-size: 0.875rem;
-    opacity: 0.85;
-    font-weight: 300;
+    font-weight: 400;
     max-width: 280px;
     margin: 0 auto;
 }

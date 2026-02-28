@@ -15,15 +15,18 @@
 
             if (question) {
                 question.addEventListener('click', function () {
-                    // Tutup item lain (accordion single-open)
+                    // Toggle item yang diklik
+                    const isActive = item.classList.toggle('active');
+                    question.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+
+                    // Update aria-expanded untuk item lain yang tertutup
                     faqItems.forEach(function (other) {
                         if (other !== item) {
                             other.classList.remove('active');
+                            const otherIdx = other.querySelector('.faq-question');
+                            if (otherIdx) otherIdx.setAttribute('aria-expanded', 'false');
                         }
                     });
-
-                    // Toggle item yang diklik
-                    item.classList.toggle('active');
                 });
             }
         });
