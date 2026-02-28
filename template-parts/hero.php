@@ -75,7 +75,11 @@ $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
 
             <!-- Area Angka Statistik Inline (Dipindah dari statistics.php) -->
             <div class="hero-stats">
-                <?php for ( $i = 1; $i <= 3; $i++ ) :
+                <?php
+                $num_color   = cc_get( 'stat_number_color', '#F59E0B' );
+                $label_color = cc_get( 'stat_label_color', '#1e293b' );
+                
+                for ( $i = 1; $i <= 3; $i++ ) :
                     $number = cc_get( "stat_number_{$i}", '' );
                     $label  = cc_get( "stat_label_{$i}", '' );
                     if ( empty( $number ) && empty( $label ) ) {
@@ -86,8 +90,8 @@ $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                     }
                 ?>
                     <div class="hero-stat-item">
-                        <h3 class="stat-number"><?php echo esc_html( $number ); ?></h3>
-                        <p class="stat-label"><?php echo esc_html( $label ); ?></p>
+                        <h3 class="stat-number" style="color: <?php echo esc_attr( $num_color ); ?>;"><?php echo esc_html( $number ); ?></h3>
+                        <p class="stat-label" style="color: <?php echo esc_attr( $label_color ); ?>;"><?php echo esc_html( $label ); ?></p>
                     </div>
                 <?php endfor; ?>
             </div>

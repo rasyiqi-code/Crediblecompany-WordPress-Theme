@@ -43,6 +43,25 @@ add_action( 'customize_register', function( $wp_customize ) {
         ) );
     }
 
+    // Warna Statistik
+    $wp_customize->add_setting( 'cc_stat_number_color', array(
+        'default'           => '#F59E0B',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_stat_number_color', array(
+        'label'   => __( 'Warna Angka Statistik', 'crediblecompany' ),
+        'section' => 'cc_stats_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_stat_label_color', array(
+        'default'           => '#1e293b',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_stat_label_color', array(
+        'label'   => __( 'Warna Label Statistik', 'crediblecompany' ),
+        'section' => 'cc_stats_section',
+    ) ) );
+
     // About Deskripsi
     $wp_customize->add_setting( 'cc_about_desc', array(
         'default'           => 'KBM Indonesia Group telah terbukti menjadi mitra penerbitan terpercaya. Dengan dedikasi melayani para penulis di seluruh Indonesia, ribuan karya telah berhasil kami cetak dan dipasarkan.',
