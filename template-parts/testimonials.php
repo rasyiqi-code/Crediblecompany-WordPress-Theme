@@ -31,7 +31,7 @@ $testi_query = new WP_Query( array(
             <?php $scroll_class = cc_get( 'mobile_scroll_testimonials', true ) ? 'has-horizontal-scroll' : ''; ?>
             <div class="testimonials-grid <?php echo esc_attr( $scroll_class ); ?>">
                 <?php while ( $testi_query->have_posts() ) : $testi_query->the_post();
-                    get_template_part( 'template-parts/card-testimoni' );
+                    get_template_part( 'template-parts/card-testimoni', null, array( 'is_link' => true ) );
                 endwhile; ?>
             </div>
 

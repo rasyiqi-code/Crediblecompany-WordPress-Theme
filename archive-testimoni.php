@@ -13,7 +13,7 @@ get_header(); ?>
         <a href="javascript:history.back()" class="app-back-btn">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
         </a>
-        <h1 class="app-page-title"><?php post_type_archive_title(); ?></h1>
+        <div class="app-page-title" style="font-size: 1.1rem; font-weight: 600; text-align: center; color: var(--text-dark); margin: 0; padding: 0 10px;"><?php post_type_archive_title(); ?></div>
     </div>
 
     <div class="app-feed-container">

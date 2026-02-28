@@ -23,6 +23,7 @@ require_once get_template_directory() . '/inc/cpt-marketing.php';
 require_once get_template_directory() . '/inc/custom-comments.php';
 require_once get_template_directory() . '/inc/toc-generator.php';
 require_once get_template_directory() . '/inc/dynamic-wa.php';
+require_once get_template_directory() . '/inc/performance-optimizer.php';
 
 /* --------------------------------------------------------------------------
  * 2. Setup Tema
@@ -174,3 +175,10 @@ add_action( 'pre_get_posts', function ( $query ) {
         $query->set( 'posts_per_page', 9 );
     }
 } );
+
+require_once get_template_directory() . '/inc/breadcrumbs.php';
+require_once get_template_directory() . '/inc/seo-optimizer.php';
+
+/* --------------------------------------------------------------------------
+ * 2. Setup Tema
+ * ---------------------------------------------------------------------- */

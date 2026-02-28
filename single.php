@@ -21,7 +21,7 @@ cc_set_post_views( get_the_ID() );
             <a href="javascript:history.back()" class="app-back-btn">
                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             </a>
-            <h1 class="app-page-title"><?php the_title(); ?></h1>
+            <div class="app-page-title" style="font-size: 1.1rem; font-weight: 600; flex: 1; text-align: center; color: var(--text-dark); margin: 0; padding: 0 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php the_title(); ?></div>
             <div class="header-actions-app">
                 <!-- Icon Share -->
                 <button class="app-share-btn" data-share-title="<?php the_title_attribute(); ?>" data-share-url="<?php echo esc_url( get_permalink() ); ?>">
@@ -84,6 +84,12 @@ cc_set_post_views( get_the_ID() );
                             <span class="meta-date"><?php echo get_the_date(); ?></span>
                         </div>
                         
+                        <?php 
+                        // Tampilkan Breadcrumbs
+                        if ( function_exists( 'cc_breadcrumbs' ) ) {
+                            cc_breadcrumbs();
+                        }
+                        ?>
                         <h1 class="app-article-title"><?php the_title(); ?></h1>
                         
                         <div class="app-author-row">
@@ -119,6 +125,8 @@ cc_set_post_views( get_the_ID() );
                         ) );
                         ?>
                     </div>
+                    
+                    <?php if ( function_exists('cc_social_share') ) cc_social_share(); ?>
 
                     <footer class="app-article-footer">
                         <?php $tags = get_the_tags(); if ( $tags ) : ?>
