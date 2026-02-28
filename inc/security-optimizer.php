@@ -147,7 +147,7 @@ function cc_remove_wp_logo_admin_bar() {
 add_action( 'admin_menu', 'cc_clean_admin_menu' );
 function cc_clean_admin_menu() {
     // Sembunyikan komentar jika tidak dipakai
-    remove_menu_page( 'edit-comments.php' );
+    // remove_menu_page( 'edit-comments.php' );
     
     // Sembunyikan Dashboard asli (bisa membingungkan klien)
     // remove_menu_page( 'index.php' ); 
