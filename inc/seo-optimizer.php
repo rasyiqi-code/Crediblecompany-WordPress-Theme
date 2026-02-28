@@ -229,7 +229,7 @@ function cc_social_share() {
     $url = urlencode( esc_url( get_permalink() ) );
     $title = urlencode( get_the_title() );
     
-    echo '<div class="cc-share-buttons" style="display: flex; gap: 10px; align-items: center; margin: 25px 0 15px 0; flex-wrap: wrap; padding-top: 15px; border-top: 1px solid #e2e8f0;">';
+    echo '<div class="cc-share-buttons" style="display: flex; gap: 10px; align-items: center; justify-content: center; margin: 25px 0 15px 0; flex-wrap: wrap; padding-top: 15px; border-top: 1px solid #e2e8f0;">';
     echo '<span style="font-weight: 600; font-size: 0.95rem; color: var(--text-dark);">Bagikan:</span>';
     
     // Facebook

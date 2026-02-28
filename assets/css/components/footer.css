@@ -133,10 +133,10 @@
 }
 
 .footer-address-text {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 /* --- Row 3: Bottom (Red BG) --- */

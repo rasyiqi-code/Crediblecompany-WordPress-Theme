@@ -130,7 +130,7 @@ cc_set_post_views( get_the_ID() );
 
                     <footer class="app-article-footer">
                         <?php $tags = get_the_tags(); if ( $tags ) : ?>
-                            <div class="app-article-tags">
+                            <div class="app-article-tags" style="justify-content: center;">
                                 <?php foreach ( $tags as $tag ) : ?>
                                     <a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>" class="tag-pill">#<?php echo esc_html( $tag->name ); ?></a>
                                 <?php endforeach; ?>

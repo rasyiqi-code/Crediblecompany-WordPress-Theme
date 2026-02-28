@@ -120,7 +120,7 @@
 $wa_number  = cc_get( 'whatsapp_number', '' );
 $wa_message = cc_get( 'whatsapp_message', 'Halo, saya tertarik dengan layanan Anda.' );
 
-if ( ! empty( $wa_number ) ) :
+if ( ! empty( $wa_number ) && ! is_single() ) :
     // Bersihkan nomor dari karakter non-digit
     $wa_number_clean = preg_replace( '/[^0-9]/', '', $wa_number );
     $wa_url = 'https://wa.me/' . $wa_number_clean . '?text=' . rawurlencode( $wa_message );

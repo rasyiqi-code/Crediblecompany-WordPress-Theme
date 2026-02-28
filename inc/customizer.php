@@ -15,6 +15,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
 // 2. Load Modular Sections (Setiap file memiliki add_action mandiri)
 // Note: Pastikan file-file ini didaftarkan di luar block action panel utama
+require_once get_template_directory() . '/inc/customizer/header.php';
 require_once get_template_directory() . '/inc/customizer/hero.php';
 require_once get_template_directory() . '/inc/customizer/statistics.php';
 require_once get_template_directory() . '/inc/customizer/features.php';
