@@ -25,4 +25,5 @@ require_once get_template_directory() . '/inc/customizer/mitra.php';
 require_once get_template_directory() . '/inc/customizer/faq.php';
 require_once get_template_directory() . '/inc/customizer/blog.php';
 require_once get_template_directory() . '/inc/customizer/marketing.php';
+require_once get_template_directory() . '/inc/customizer/footer.php';
 require_once get_template_directory() . '/inc/customizer/mobile-layout.php';

@@ -2,16 +2,6 @@
 /**
  * Template Part: Buku Terbitan Section.
  *
- * TODO: Section ini masih menggunakan data placeholder.
- * Rencana implementasi (pilih salah satu):
- *   1. Buat CPT 'buku' built-in di tema (mirip paket_jasa/testimoni)
- *   2. Integrasikan dengan WooCommerce Product
- *   3. Ambil dari kategori post tertentu
- *
- * TODO: Ganti gambar placeholder dengan cover buku asli
- * TODO: Tambahkan link ke halaman detail / toko buku
- * TODO: Pertimbangkan slider/carousel jika jumlah buku banyak
- *
  * @package CredibleCompany
  */
 

@@ -1,32 +1,50 @@
 /* ==========================================================================
- * Footer Styles
- * Layout footer, copyright, social links, dan navigation links.
+ * Footer Styles (3-Row Layout)
+ * Layout footer kontras tinggi: Hitam (Top) - Putih (Middle) - Hitam (Bottom).
  *
  * @package CredibleCompany
  * ========================================================================== */
 
 .site-footer {
-    background: var(--brand-red);
-    color: var(--brand-white);
-    padding: 2.5rem 0;
-    border-top: 4px solid var(--brand-white);
+    padding: 0;
+    border-top: none;
+    background: var(--brand-red, #cc0000);
+    color: #ffffff;
 }
 
-.site-footer .container {
+.footer-flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.footer-copy {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #ffffff;
+/* --- Row 1: Top (Red BG) --- */
+.footer-top {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* --- Social Links --- */
+/* Logo Boxed */
+.footer-logo-box {
+    background: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.footer-logo-box img {
+    max-height: 40px;
+    width: auto;
+    display: block;
+    filter: none !important;
+}
+
+/* Restorasi Footer Social Lama */
 .footer-social {
     display: flex;
     align-items: center;
@@ -34,61 +52,140 @@
 }
 
 .footer-social-label {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #ffffff;
-    margin-right: 0.5rem;
 }
 
 .footer-social a {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0.5rem;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition);
-}
-
-/* --- Social Icons Coloring (Default) --- */
-.footer-social a.social-fb {
-    background-color: #1877F2;
-}
-
-.footer-social a.social-tw {
-    background-color: #1DA1F2;
-}
-
-.footer-social a.social-ig {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-
-.footer-social a.social-yt {
-    background-color: #FF0000;
-}
-
-.footer-social a.social-tk {
-    background-color: #000000;
+    color: #ffffff;
+    transition: transform 0.2s;
 }
 
 .footer-social a:hover {
-    background: #555555 !important;
+    transform: translateY(-2px);
 }
 
-.footer-social a svg {
+.footer-social svg {
     width: 16px;
     height: 16px;
-    fill: var(--brand-white);
+    fill: currentColor;
 }
 
-/* --- Footer Nav Links --- */
-.footer-links {
+.social-fb {
+    background-color: #3b5998;
+}
+
+.social-tw {
+    background-color: #1da1f2;
+}
+
+.social-ig {
+    background-color: #e1306c;
+}
+
+.social-yt {
+    background-color: #ff0000;
+}
+
+.social-tk {
+    background-color: #000000;
+}
+
+/* Stats Widget */
+.stats-card {
+    background: #ffffff;
+    color: #000000;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
     display: flex;
-    gap: 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.footer-links a:hover {
+.stats-icon {
+    display: flex;
+    color: #666;
+}
+
+.stats-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* --- Row 2: Middle (White BG) --- */
+.footer-middle {
+    background: #ffffff;
+    color: #000000;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+.container--narrow {
+    max-width: 900px;
+}
+
+.footer-address-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- Row 3: Bottom (Red BG) --- */
+.footer-bottom {
+    padding: 1.5rem 0;
+    background: var(--brand-red, #cc0000);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.875rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-nav a {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.footer-nav a:hover {
     text-decoration: underline;
+}
+
+.footer-copyright {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .footer-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-social-v2 {
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-bottom .footer-flex {
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+
+    .footer-nav {
+        justify-content: center;
+    }
 }
