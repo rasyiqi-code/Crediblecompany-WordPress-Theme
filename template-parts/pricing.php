@@ -28,11 +28,12 @@ $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox=
 
         <?php
         $scroll_class = cc_get( 'mobile_scroll_pricing', true ) ? 'has-horizontal-scroll' : '';
+        $grid_columns = cc_get( 'pricing_grid_columns', 4 );
         ?>
 
 
         <?php if ( $paket_query->have_posts() ) : // The condition remains $paket_query->have_posts() based on the original file structure. ?>
-            <div class="pricing-grid <?php echo esc_attr( $scroll_class ); ?>">
+            <div class="pricing-grid <?php echo esc_attr( $scroll_class ); ?>" style="--pricing-cols: <?php echo esc_attr( $grid_columns ); ?>;">
                 <?php while ( $paket_query->have_posts() ) : $paket_query->the_post();
                     $badge       = get_post_meta( get_the_ID(), '_cc_badge', true );
                     $price       = get_post_meta( get_the_ID(), '_cc_price', true );
