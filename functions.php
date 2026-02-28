@@ -116,6 +116,23 @@ function cc_handle_submit_testimoni() {
         exit;
     }
 
+    // Validasi Ukuran File (Max 2MB)
+    $max_size = 2 * 1024 * 1024; // 2MB
+    if ( $_FILES['client_photo']['size'] > $max_size ) {
+        wp_die( 'Ukuran file foto melebihi batas maksimum 2MB.', 'Error Upload', array( 'response' => 400 ) );
+    }
+
+    // Validasi Ekstensi/MIME Type (Hanya JPG/PNG)
+    $allowed_mimes = array(
+        'jpg'  => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'png'  => 'image/png',
+    );
+    $file_info = wp_check_filetype( basename( $_FILES['client_photo']['name'] ), $allowed_mimes );
+    if ( empty( $file_info['ext'] ) || empty( $file_info['type'] ) ) {
+        wp_die( 'Hanya format gambar JPG dan PNG yang diperbolehkan.', 'Error Upload', array( 'response' => 400 ) );
+    }
+
     // Buat Postingan Testimoni "Menunggu Peninjauan" (Pending)
     $post_id = wp_insert_post( array(
         'post_title'   => $name,

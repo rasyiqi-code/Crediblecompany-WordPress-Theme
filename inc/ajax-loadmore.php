@@ -11,7 +11,9 @@ add_action( 'wp_ajax_nopriv_cc_load_more', 'cc_ajax_load_more_handler' );
 
 function cc_ajax_load_more_handler() {
     $paged     = isset( $_POST['page'] ) ? intval( $_POST['page'] ) + 1 : 1;
-    $post_type = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'post';
+    $post_type_raw = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'post';
+    $allowed_post_types = array( 'post', 'testimoni' );
+    $post_type = in_array( $post_type_raw, $allowed_post_types, true ) ? $post_type_raw : 'post';
     $orderby   = isset( $_POST['orderby'] ) ? sanitize_text_field( $_POST['orderby'] ) : 'date';
     $exclude   = isset( $_POST['exclude'] ) ? intval( $_POST['exclude'] ) : 0;
 
