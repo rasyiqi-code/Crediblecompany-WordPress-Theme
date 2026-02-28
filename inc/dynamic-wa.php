@@ -116,7 +116,7 @@ function cc_dynamic_wa_url( $original_url ) {
     $marketing_name = get_the_title( $marketing_id );
     $query_array['text'] = str_replace( array( '{Nama Marketing}', '{nama marketing}' ), $marketing_name, $query_array['text'] );
 
-    $query_string = http_build_query( $query_array );
+    $query_string = http_build_query( $query_array, '', '&', PHP_QUERY_RFC3986 );
     
     // 6. Rakit kembali URL menggunakan Standarisasi API wa.me
     $new_url = 'https://wa.me/' . $marketing_wa . '?' . $query_string;

@@ -40,12 +40,12 @@ add_action( 'customize_register', function( $wp_customize ) {
     /* --- Pesan Default WhatsApp --- */
     $wp_customize->add_setting( 'cc_whatsapp_message', array(
         'default'           => 'Halo, saya tertarik dengan layanan Anda.',
-        'sanitize_callback' => 'sanitize_text_field',
+        'sanitize_callback' => 'sanitize_textarea_field',
     ) );
     $wp_customize->add_control( 'cc_whatsapp_message', array(
         'label'   => __( 'Pesan Default WhatsApp', 'crediblecompany' ),
         'section' => 'cc_social_section',
-        'type'    => 'text',
+        'type'    => 'textarea',
     ) );
 
 } );
