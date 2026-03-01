@@ -26,6 +26,10 @@ function cc_ajax_load_more_handler() {
         if ( $paged > 1 ) {
             $offset = ( ($paged - 2) * 9 ) + 10;
         }
+    } else {
+        // Tipe konten lainnya (termasuk testimoni) menggunakan pagination standar
+        // paged 1 = offset 0, paged 2 = offset ppp, dst.
+        $offset = ( $paged - 1 ) * $ppp;
     }
 
     if ( 'testimoni' === $post_type && $exclude ) {
