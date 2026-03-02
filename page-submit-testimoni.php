@@ -84,6 +84,11 @@ get_header(); ?>
                     </div>
 
                     <div class="form-group-app">
+                        <label for="client_city">Kota Asal <span class="req">*</span></label>
+                        <input type="text" id="client_city" name="client_city" class="form-control" required placeholder="Cth: Jakarta, Surabaya">
+                    </div>
+
+                    <div class="form-group-app">
                         <label>Rating Kepuasan <span class="req">*</span></label>
                         <div class="star-rating-input">
                             <select name="client_rating" id="client_rating" class="form-control" required>
@@ -110,7 +115,7 @@ get_header(); ?>
                                 <span>Pilih Gambar</span>
                             </div>
                         </div>
-                        <small class="form-help">Maksimal 2MB (JPG/PNG).</small>
+                        <small class="form-help">Maksimal 2MB (JPG/PNG). Rasio disarankan sama sisi 1:1.</small>
                     </div>
 
                     <div class="form-actions-app">
@@ -122,5 +127,29 @@ get_header(); ?>
 
     </div>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('client_photo');
+    const uploadUi = document.querySelector('.custom-file-upload .upload-ui span');
+    
+    if (fileInput && uploadUi) {
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                const fileName = this.files[0].name;
+                uploadUi.textContent = fileName;
+                uploadUi.parentElement.classList.add('has-file');
+                uploadUi.parentElement.style.borderColor = 'var(--accent-color, #2563eb)';
+                uploadUi.parentElement.style.background = '#f0f7ff';
+            } else {
+                uploadUi.textContent = 'Pilih Gambar';
+                uploadUi.parentElement.classList.remove('has-file');
+                uploadUi.parentElement.style.borderColor = '';
+                uploadUi.parentElement.style.background = '';
+            }
+        });
+    }
+});
+</script>
 
 <?php get_footer(); ?>

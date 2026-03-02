@@ -18,28 +18,11 @@ function cc_ajax_load_more_handler() {
     $exclude   = isset( $_POST['exclude'] ) ? intval( $_POST['exclude'] ) : 0;
 
     $ppp = 9;
-    $offset = 0;
-
-    if ( 'post' === $post_type ) {
-        // Halaman 1 memuat 10 post (1 Featured + 9 Grid)
-        // Halaman 2+ memuat 9 post
-        if ( $paged > 1 ) {
-            $offset = ( ($paged - 2) * 9 ) + 10;
-        }
-    } else {
-        // Tipe konten lainnya (termasuk testimoni) menggunakan pagination standar
-        // paged 1 = offset 0, paged 2 = offset ppp, dst.
-        $offset = ( $paged - 1 ) * $ppp;
-    }
-
-    if ( 'testimoni' === $post_type && $exclude ) {
-        $ppp = 4; // Konsisten dengan limit testimoni lainnya
-    }
 
     $args = array(
         'post_type'      => $post_type,
         'posts_per_page' => $ppp,
-        'offset'         => $offset,
+        'paged'          => $paged,
         'post_status'    => 'publish',
     );
 

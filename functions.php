@@ -110,10 +110,11 @@ function cc_handle_submit_testimoni() {
 
     $name    = sanitize_text_field( $_POST['client_name'] );
     $title   = sanitize_text_field( $_POST['client_title'] );
+    $city    = sanitize_text_field( $_POST['client_city'] );
     $rating  = intval( $_POST['client_rating'] );
     $review  = sanitize_textarea_field( $_POST['client_review'] );
 
-    if ( empty( $name ) || empty( $title ) || empty( $rating ) || empty( $review ) || empty( $_FILES['client_photo']['name'] ) ) {
+    if ( empty( $name ) || empty( $title ) || empty( $city ) || empty( $rating ) || empty( $review ) || empty( $_FILES['client_photo']['name'] ) ) {
         wp_redirect( add_query_arg( 'err', '1', wp_get_referer() ) );
         exit;
     }
@@ -144,6 +145,13 @@ function cc_handle_submit_testimoni() {
     ) );
 
     if ( $post_id ) {
+        // 1. Simpan ke meta key canonical tema (_customer_*) - Digunakan untuk Kolom Admin & Kartu Testimoni
+        update_post_meta( $post_id, '_customer_name', $name );
+        update_post_meta( $post_id, '_customer_profession', $title );
+        update_post_meta( $post_id, '_customer_city', $city );
+        update_post_meta( $post_id, '_customer_rating', $rating );
+
+        // 2. Simpan ke meta key legacy/SEO (cc_testimonial_*) - Digunakan untuk SEO Optimizer & kompatibilitas lama
         update_post_meta( $post_id, 'cc_testimonial_title', $title );
         update_post_meta( $post_id, 'cc_testimonial_rating', $rating );
 
