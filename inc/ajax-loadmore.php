@@ -17,7 +17,10 @@ function cc_ajax_load_more_handler() {
     $orderby   = isset( $_POST['orderby'] ) ? sanitize_text_field( $_POST['orderby'] ) : 'date';
     $exclude   = isset( $_POST['exclude'] ) ? intval( $_POST['exclude'] ) : 0;
 
-    $ppp = 9;
+    // Pastikan PPP (Posts Per Page) konsisten dengan halaman utama (home.php)
+    // yaitu 1 feature + 9 grid = 10 total di halaman pertama.
+    // Jika post_type adalah testimoni, default bisa tetap 9 atau disesuaikan.
+    $ppp = ( 'testimoni' === $post_type ) ? 9 : 10;
 
     $args = array(
         'post_type'      => $post_type,

@@ -5,10 +5,17 @@
  * @package CredibleCompany
  */
 
-// 1. Daftarkan Panel Utama (Homepage)
+// 1. Daftarkan Panel Utama
 add_action( 'customize_register', function ( $wp_customize ) {
+    // Panel 1: Konfigurasi Global
+    $wp_customize->add_panel( 'cc_global_panel', array(
+        'title'    => __( 'Konfigurasi Dasar & SEO', 'crediblecompany' ),
+        'priority' => 25,
+    ) );
+
+    // Panel 2: Tata Letak Homepage
     $wp_customize->add_panel( 'cc_homepage_panel', array(
-        'title'    => __( 'Pengaturan Homepage', 'crediblecompany' ),
+        'title'    => __( 'Tata Letak Beranda (Sections)', 'crediblecompany' ),
         'priority' => 30,
     ) );
 } );
@@ -27,4 +34,5 @@ require_once get_template_directory() . '/inc/customizer/faq.php';
 require_once get_template_directory() . '/inc/customizer/blog.php';
 require_once get_template_directory() . '/inc/customizer/marketing.php';
 require_once get_template_directory() . '/inc/customizer/footer.php';
+require_once get_template_directory() . '/inc/customizer/seo.php';
 require_once get_template_directory() . '/inc/customizer/mobile-layout.php';

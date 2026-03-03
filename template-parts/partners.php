@@ -42,9 +42,9 @@ $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_r
                         <?php
                         if ( ! empty( $mitra_logos ) ) :
                             // Tampilkan gambar logo
-                            foreach ( $mitra_logos as $logo ) : ?>
+                            foreach ( $mitra_logos as $index => $logo ) : ?>
                                 <div class="mitra-resmi-item mitra-item-img">
-                                    <img src="<?php echo esc_url( $logo ); ?>" alt="Mitra Resmi KBM">
+                                    <img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( "Mitra Resmi CredibleCompany - Logo " . ($index + 1) ); ?>">
                                 </div>
                             <?php endforeach;
                         else :

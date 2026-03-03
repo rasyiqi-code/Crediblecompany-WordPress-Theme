@@ -9,7 +9,8 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_footer_section', array(
         'title'    => __( 'Footer Settings', 'crediblecompany' ),
-        'priority' => 100,
+        'panel'    => 'cc_global_panel',
+        'priority' => 50,
     ) );
 
     /* --- Alamat Kantor --- */

@@ -8,8 +8,9 @@
 add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_hero_section', array(
-        'title' => __( 'Hero Section', 'crediblecompany' ),
-        'panel' => 'cc_homepage_panel',
+        'title'    => __( 'Hero Section', 'crediblecompany' ),
+        'panel'    => 'cc_homepage_panel',
+        'priority' => 10,
     ) );
 
     // Judul Hero

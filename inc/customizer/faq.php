@@ -8,8 +8,9 @@
 add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_faq_section', array(
-        'title' => __( 'FAQ', 'crediblecompany' ),
-        'panel' => 'cc_homepage_panel',
+        'title'    => __( 'FAQ', 'crediblecompany' ),
+        'panel'    => 'cc_homepage_panel',
+        'priority' => 60,
     ) );
 
     // Custom Control Class untuk Repeater JSON

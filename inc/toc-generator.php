@@ -77,7 +77,7 @@ function cc_generate_toc_html( $content ) {
             $toc_html .= '</ul></li>';
         } else {
             // Jika level sama, tutup tag <li> sebelumnya
-            if ( $match !== reset($matches) && ! str_ends_with($toc_html, 'ul class="toc-sublist">') ) {
+            if ( $match !== reset($matches) && ! str_ends_with($toc_html, '<ul class="toc-sublist">') ) {
                  $toc_html .= '</li>';
             }
         }

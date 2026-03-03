@@ -43,6 +43,25 @@ function cc_advanced_seo_meta() {
     } else {
         $title = $site_name;
         $desc  = $site_desc;
+        
+        // Homepage SEO: Hybrid (Manual > Excerpt > Konten > Global)
+        if ( is_front_page() && ! is_home() ) {
+            // 1. Cek Input Manual dari Customizer
+            $manual_desc = cc_get( 'seo_home_description', '' );
+            
+            if ( ! empty( $manual_desc ) ) {
+                $desc = $manual_desc;
+            } else {
+                // 2. Fallback Otomatis: Excerpt atau Konten
+                global $post;
+                $desc = get_the_excerpt( $post->ID );
+                if ( empty( $desc ) ) {
+                    $desc = wp_trim_words( strip_shortcodes( strip_tags( $post->post_content ) ), 25, '...' );
+                }
+                if ( empty( $desc ) ) $desc = $site_desc;
+            }
+        }
+
         if ( is_category() ) {
             $title = single_cat_title( '', false ) . ' - ' . $site_name;
             $desc  = wp_trim_words( strip_tags( category_description() ), 25, '...' );
@@ -52,19 +71,21 @@ function cc_advanced_seo_meta() {
         }
     }
 
-    // Jika belum ada gambar, pasang fallback logo situs atau icon (favicon)
+    // Penanganan Gambar Open Graph (Prioritas: Post Thumbnail > Manual OG Image > Logo > Icon)
     if ( empty( $image ) ) {
-        if ( has_site_icon() ) {
-            $image = get_site_icon_url( 512 );
+        // 1. Cek Manual OG Image dari Customizer
+        $manual_og_image = cc_get( 'seo_og_image', '' );
+        
+        if ( ! empty( $manual_og_image ) ) {
+            $image = $manual_og_image;
         } elseif ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) {
+            // 2. Fallback Logo Situs
             $logo_id = get_theme_mod( 'custom_logo' );
-            $logo_url = wp_get_attachment_image_src( $logo_id, 'full' );
-            if ( $logo_url && isset($logo_url[0]) ) {
-                $image = $logo_url[0];
-            }
-        } else {
-            // Bisa tambahkan path absolut gambar statis dari theme jika mau
-            $image = get_template_directory_uri() . '/assets/img/default-share.jpg'; 
+            $logo_data = wp_get_attachment_image_src( $logo_id, 'full' );
+            if ( $logo_data ) $image = $logo_data[0];
+        } elseif ( has_site_icon() ) {
+            // 3. Fallback Site Icon (Favicon)
+            $image = get_site_icon_url( 512 );
         }
     }
 
@@ -81,7 +102,15 @@ function cc_advanced_seo_meta() {
     echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
     
     if ( ! empty( $image ) ) {
-        echo '<meta property="og:image" content="' . esc_url( $image ) . '">' . "\n";
+        $image_url = esc_url( $image );
+        echo '<meta property="og:image" content="' . $image_url . '">' . "\n";
+        echo '<meta property="og:image:secure_url" content="' . $image_url . '">' . "\n";
+        
+        // Detect image type roughly
+        $ext = pathinfo( $image, PATHINFO_EXTENSION );
+        if ( in_array( $ext, ['jpg', 'jpeg'] ) ) echo '<meta property="og:image:type" content="image/jpeg">' . "\n";
+        elseif ( $ext === 'png' ) echo '<meta property="og:image:type" content="image/png">' . "\n";
+        elseif ( $ext === 'webp' ) echo '<meta property="og:image:type" content="image/webp">' . "\n";
     }
 }
 
@@ -139,12 +168,28 @@ function cc_json_ld_schema() {
             '@context'      => 'https://schema.org',
             '@type'         => 'WebSite',
             'name'          => get_bloginfo( 'name' ),
+            'description'   => get_bloginfo( 'description' ),
             'url'           => esc_url( home_url( '/' ) ),
             'potentialAction' => array(
                 '@type'       => 'SearchAction',
                 'target'      => esc_url( home_url( '/' ) ) . '?s={search_term_string}',
                 'query-input' => 'required name=search_term_string',
             ),
+            'publisher' => array(
+                '@type' => 'Organization',
+                'name'  => get_bloginfo( 'name' ),
+                'logo'  => array(
+                    '@type' => 'ImageObject',
+                    'url'   => has_custom_logo() ? wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) : get_site_icon_url( 512 ),
+                )
+            ),
+            'sameAs' => array(
+                // Ambil link sosial dari Customizer jika ada
+                cc_get( 'social_facebook', 'https://facebook.com/' ),
+                cc_get( 'social_twitter', 'https://twitter.com/' ),
+                cc_get( 'social_instagram', 'https://instagram.com/' ),
+                cc_get( 'social_linkedin', 'https://linkedin.com/' ),
+            )
         );
         echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>' . "\n";
         echo '<!-- /Advanced SEO Meta -->' . "\n";
@@ -196,11 +241,11 @@ function cc_render_sitemap() {
         echo '    <priority>1.0</priority>' . "\n";
         echo '  </url>' . "\n";
 
-        // Query Semua Post & Testimoni
+        // Query Post, Page & Testimoni (Limit untuk skalabilitas)
         $args = array(
-            'post_type'      => array( 'post', 'testimoni' ),
+            'post_type'      => array( 'post', 'page', 'testimoni' ),
             'post_status'    => 'publish',
-            'posts_per_page' => -1,
+            'posts_per_page' => 500, // Limit aman untuk sitemap satu file
             'fields'         => 'ids',
         );
         
@@ -217,6 +262,24 @@ function cc_render_sitemap() {
             echo '    <changefreq>weekly</changefreq>' . "\n";
             echo '    <priority>0.8</priority>' . "\n";
             echo '  </url>' . "\n";
+        }
+
+        // Tambah Kategori & Tag
+        $taxonomies = array( 'category', 'post_tag' );
+        foreach ( $taxonomies as $tax ) {
+            $terms = get_terms( array(
+                'taxonomy'   => $tax,
+                'hide_empty' => true,
+            ) );
+            if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+                foreach ( $terms as $term ) {
+                    echo '  <url>' . "\n";
+                    echo '    <loc>' . esc_url( get_term_link( $term ) ) . '</loc>' . "\n";
+                    echo '    <changefreq>weekly</changefreq>' . "\n";
+                    echo '    <priority>0.5</priority>' . "\n";
+                    echo '  </url>' . "\n";
+                }
+            }
         }
 
         echo '</urlset>';
@@ -259,7 +322,13 @@ function cc_optimize_robots_txt( $output, $public ) {
     $output .= "Allow: /wp-admin/admin-ajax.php\n";
     $output .= "Disallow: /trackback/\n";
     $output .= "Disallow: /xmlrpc.php\n";
-    $output .= "Sitemap: " . esc_url( $sitemap_url ) . "\n";
+
+    // AI & Crawler Control (Generative Engine Optimization)
+    $output .= "\nUser-agent: GPTBot\nDisallow: /wp-admin/\n";
+    $output .= "User-agent: CCBot\nDisallow: /\n"; // Common Crawl seringkali berat
+    $output .= "User-agent: PerplexityBot\nDisallow: /wp-admin/\n";
+
+    $output .= "\nSitemap: " . esc_url( $sitemap_url ) . "\n";
     return $output;
 }
 
@@ -273,8 +342,8 @@ function cc_seo_head_extra() {
         echo '<link rel="canonical" href="' . esc_url( home_url( '/' ) ) . '">' . "\n";
     }
 
-    // 2. Noindex: Memberi instruksi Google jangan indeks halaman Sampah/404/Search
-    if ( is_404() || is_search() ) {
+    // 2. Noindex: Memberi instruksi Google jangan indeks halaman Sampah/404/Search atau Paginasi
+    if ( is_404() || is_search() || is_paged() ) {
         echo '<meta name="robots" content="noindex, follow">' . "\n";
     }
 }
@@ -290,6 +359,13 @@ function cc_seo_title_parts( $title ) {
             $title['site'] = $site_name;
         }
     }
+
+    // Tambahkan info halaman jika ada paginasi
+    if ( is_paged() ) {
+        $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 );
+        $title['page'] = sprintf( 'Halaman %d', $paged );
+    }
+
     return $title;
 }
 

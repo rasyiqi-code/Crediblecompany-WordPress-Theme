@@ -66,9 +66,14 @@ function cc_track_daily_views() {
     $count++;
     update_option( $option_name, $count );
     
-    // Opsional: Hapus data kemarin agar database tetap bersih
-    $yesterday = date( 'Y-m-d', strtotime( '-1 day' ) );
-    delete_option( 'cc_views_today_' . $yesterday );
+    // Optimalisasi: Hapus data lama agar database tetap bersih
+    // Kita hapus semua option yang polanya cc_views_today_ tetapi bukan hari ini
+    global $wpdb;
+    $wpdb->query( $wpdb->prepare( 
+        "DELETE FROM $wpdb->options WHERE option_name LIKE %s AND option_name != %s", 
+        'cc_views_today_%', 
+        $option_name 
+    ) );
 }
 add_action( 'template_redirect', 'cc_track_daily_views' );
 

@@ -8,8 +8,9 @@
 add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_pricing_section', array(
-        'title' => __( 'Section Paket Jasa', 'crediblecompany' ),
-        'panel' => 'cc_homepage_panel',
+        'title'    => __( 'Section Paket Jasa', 'crediblecompany' ),
+        'panel'    => 'cc_homepage_panel',
+        'priority' => 40,
     ) );
 
     $wp_customize->add_setting( 'cc_pricing_title', array(

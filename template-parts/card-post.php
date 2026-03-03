@@ -15,7 +15,7 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
     <a href="<?php the_permalink(); ?>" class="featured-post-card">
         <div class="featured-img-wrap">
             <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'large' ); ?>
+                <?php the_post_thumbnail( 'large', array( 'alt' => get_the_title() ) ); ?>
             <?php else : ?>
                 <img src="https://via.placeholder.com/800x600/6366f1/ffffff?text=Featured+Article" alt="<?php the_title_attribute(); ?>">
             <?php endif; ?>
@@ -60,9 +60,9 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
         <a href="<?php echo esc_url( get_permalink() ); ?>" class="card-link-overlay"></a>
         <div class="card-image-wrap">
             <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'medium', ['class' => 'card-img'] ); ?>
+                <?php the_post_thumbnail( 'medium', [ 'class' => 'card-img', 'alt' => get_the_title() ] ); ?>
             <?php else : ?>
-                <div class="card-img-placeholder">📝</div>
+                <div class="card-img-placeholder" title="<?php the_title_attribute(); ?>">📝</div>
             <?php endif; ?>
             
             <div class="card-badge">

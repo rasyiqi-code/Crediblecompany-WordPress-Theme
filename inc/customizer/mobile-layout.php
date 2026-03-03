@@ -9,9 +9,10 @@
 add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_mobile_layout_section', array(
-        'title' => __( 'Layout Mobile', 'crediblecompany' ),
-        'panel' => 'cc_homepage_panel',
+        'title'       => __( 'Layout Mobile', 'crediblecompany' ),
+        'panel'       => 'cc_homepage_panel',
         'description' => __( 'Atur tampilan beranda khusus untuk perangkat mobile.', 'crediblecompany' ),
+        'priority'    => 80,
     ) );
 
     // Daftar section yang mendukung horizontal scroll

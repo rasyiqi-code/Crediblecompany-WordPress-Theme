@@ -43,4 +43,51 @@ function cc_breadcrumbs() {
 
     echo '</ol>';
     echo '</nav>';
+
+    // --- Tambahan JSON-LD untuk Breadcrumb SEO ---
+    $breadcrumb_schema = array(
+        '@context'        => 'https://schema.org',
+        '@type'           => 'BreadcrumbList',
+        'itemListElement' => array(),
+    );
+
+    // 1. Beranda
+    $breadcrumb_schema['itemListElement'][] = array(
+        '@type'    => 'ListItem',
+        'position' => 1,
+        'name'     => 'Beranda',
+        'item'     => home_url( '/' ),
+    );
+
+    $pos = 2;
+    if ( is_category() || is_single() ) {
+        $categories = get_the_category();
+        if ( ! empty( $categories ) ) {
+            $breadcrumb_schema['itemListElement'][] = array(
+                '@type'    => 'ListItem',
+                'position' => $pos++,
+                'name'     => $categories[0]->name,
+                'item'     => get_category_link( $categories[0]->term_id ),
+            );
+        }
+        if ( is_single() ) {
+            $breadcrumb_schema['itemListElement'][] = array(
+                '@type'    => 'ListItem',
+                'position' => $pos++,
+                'name'     => get_the_title(),
+                'item'     => get_permalink(),
+            );
+        }
+    } elseif ( is_page() ) {
+        $breadcrumb_schema['itemListElement'][] = array(
+            '@type'    => 'ListItem',
+            'position' => $pos++,
+            'name'     => get_the_title(),
+            'item'     => get_permalink(),
+        );
+    }
+
+    if ( ! empty( $breadcrumb_schema['itemListElement'] ) ) {
+        echo '<script type="application/ld+json">' . wp_json_encode( $breadcrumb_schema ) . '</script>' . "\n";
+    }
 }

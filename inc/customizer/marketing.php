@@ -9,8 +9,8 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_marketing_section', array(
         'title'    => __( 'Marketing Options', 'crediblecompany' ),
-        'panel'    => 'cc_homepage_panel',
-        'priority' => 160,
+        'panel'    => 'cc_global_panel',
+        'priority' => 40,
     ) );
 
     // Fallback Nama Marketing

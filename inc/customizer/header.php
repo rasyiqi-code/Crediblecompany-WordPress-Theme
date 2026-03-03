@@ -9,7 +9,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_header_section', array(
         'title'    => __( 'Ikon Header (Search & Akun)', 'crediblecompany' ),
-        'panel'    => 'cc_homepage_panel',
+        'panel'    => 'cc_global_panel',
         'priority' => 10,
     ) );
 

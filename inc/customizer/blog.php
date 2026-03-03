@@ -10,7 +10,8 @@ add_action( 'customize_register', function ( $wp_customize ) {
     // Panel untuk Blog (Jika belum ada)
     $wp_customize->add_section( 'cc_blog_section', array(
         'title'    => __( 'Pengaturan Blog', 'crediblecompany' ),
-        'priority' => 35,
+        'panel'    => 'cc_homepage_panel',
+        'priority' => 70,
     ) );
 
     // 1. Warna Banner Hero (Gradient Start)

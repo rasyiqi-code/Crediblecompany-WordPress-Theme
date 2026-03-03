@@ -8,8 +8,9 @@
 add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_social_section', array(
-        'title' => __( 'Social Media', 'crediblecompany' ),
-        'panel' => 'cc_homepage_panel',
+        'title'    => __( 'Social Media', 'crediblecompany' ),
+        'panel'    => 'cc_global_panel',
+        'priority' => 30,
     ) );
 
     $socials = array( 'facebook', 'twitter', 'instagram', 'youtube', 'tiktok' );
