@@ -1,0 +1,220 @@
+/* ==========================================================================
+ * Modern Comments Section
+ * Override WP default comments dengan desain app-like.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Comments Container
+ * ---------------------------------------------------------------------- */
+.app-comments-section {
+    background: #fff;
+    padding: 24px 20px;
+    margin-top: 10px;
+    border-top: 4px solid #f1f5f9;
+}
+
+.comments-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.comments-title span {
+    color: #1d4ed8;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Comment List
+ * ---------------------------------------------------------------------- */
+.app-comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+}
+
+.app-comment-item {
+    margin-bottom: 24px;
+}
+
+.app-comment-item.parent {
+    margin-bottom: 32px;
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Threaded Comments (Balas)
+ * ---------------------------------------------------------------------- */
+.app-comment-item .children {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 16px;
+    border-left: 2px solid #e2e8f0;
+}
+
+.app-comment-item .children .comment-body-app {
+    gap: 12px;
+}
+
+.app-comment-item .children .comment-author-avatar img {
+    width: 16px;
+    height: 16px;
+}
+
+.app-comment-item .children .comment-content-wrap {
+    background: #f1f5f9;
+    padding: 12px 16px;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Comment Body
+ * ---------------------------------------------------------------------- */
+.comment-body-app {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.comment-author-avatar img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f1f5f9;
+}
+
+.comment-content-wrap {
+    flex: 1;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    padding: 16px;
+    border-radius: 0 12px 12px 12px;
+}
+
+.comment-author-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.comment-author-name a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.replying-to {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+    background: #e2e8f0;
+    padding: 2px 8px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.replying-to svg {
+    opacity: 0.7;
+}
+
+.comment-time-app {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.comment-time-app a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.comment-awaiting-moderation {
+    font-size: 0.8125rem;
+    color: #eab308;
+    background: #fefce8;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.comment-text-app {
+    font-size: 0.9375rem;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.comment-text-app p {
+    margin-bottom: 8px;
+}
+
+.comment-text-app p:last-child {
+    margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Comment Reply & Form
+ * ---------------------------------------------------------------------- */
+.comment-reply-app {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.comment-reply-link {
+    color: #1d4ed8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.comment-reply-link:hover {
+    color: #1e40af;
+}
+
+/* Comment Form Override — overrides WP defaults */
+.comment-respond {
+    margin-top: 32px;
+}
+
+.reply-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.comment-form .form-instruction {
+    margin-bottom: 20px;
+}
+
+/* Form inputs dikelola oleh .form-group-app dari forms.css */
+.comment-form .form-group-app {
+    margin-bottom: 16px;
+}
+
+.comment-notes,
+.logged-in-as {
+    display: none;
+    /* fallback hiding */
+}
+
+/* Desktop spacing adjustment */
+@media (min-width: 768px) {
+    .app-comments-section {
+        padding: 40px;
+    }
+
+    .app-comment-item ul.children {
+        padding-left: 40px;
+        margin-left: 24px;
+    }
+}

@@ -1,0 +1,144 @@
+/* ==========================================================================
+ * Mitra Resmi & Partners Section
+ * Marquee logo mitra resmi + logo pembayaran & pengiriman.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Mitra Resmi / Sertifikasi
+ * ---------------------------------------------------------------------- */
+.mitra-resmi {
+    background-color: var(--brand-white);
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logo mitra — marquee / infinite scroll */
+.mitra-resmi-logos {
+    overflow: hidden;
+    margin-bottom: 2rem;
+    position: relative;
+    width: 100%;
+    /* Efek fade/blur di sisi kiri dan kanan agar transisi lebih elegan */
+    mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+    -webkit-mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+}
+
+.marquee-wrapper {
+    display: flex;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: 3rem;
+    padding-right: 3rem;
+    /* padding harus sama dengan gap agar loop nyambung */
+    animation: marquee 20s linear infinite;
+}
+
+/* Pause animasi saat dihover (opsional) */
+.marquee-wrapper:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.mitra-resmi-item {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gray-600);
+    letter-spacing: 1px;
+    opacity: 0.6;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.mitra-item-img {
+    opacity: 1;
+    /* Gambar asli jangan pakai opacity 0.6 */
+    padding: 0;
+}
+
+.mitra-item-img img {
+    max-height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Tagline Proses */
+.mitra-proses-tagline {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--brand-red);
+    font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Partners Section (Pembayaran & Pengiriman)
+ * ---------------------------------------------------------------------- */
+.partners {
+    padding: 2rem 0;
+    background: var(--brand-white);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.partners-label {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    margin-bottom: 1rem;
+}
+
+.partners-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.partners-logos span {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--gray-500);
+    letter-spacing: 2px;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.partners-logos span:first-child {
+    background: var(--gray-200);
+    color: var(--gray-600);
+}
+
+.partners-logos span:hover {
+    color: var(--brand-dark);
+    opacity: 1;
+}

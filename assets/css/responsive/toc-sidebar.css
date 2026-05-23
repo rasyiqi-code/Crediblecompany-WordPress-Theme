@@ -1,0 +1,305 @@
+/* ==========================================================================
+ * TOC & Sidebar Layout
+ * Table of Contents: mobile drawer dan desktop sidebar sticky.
+ * Widget recent posts dan scrollbar styling.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Transparan Hover Scrollbar (Universal)
+ * ---------------------------------------------------------------------- */
+.toc-drawer-body {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    /* Firefox */
+    transition: scrollbar-color 0.3s;
+}
+
+.toc-drawer-body:hover,
+.toc-drawer-body:focus-within {
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+.toc-drawer-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc-drawer-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.toc-drawer-body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.toc-drawer-body:hover::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Base TOC Links Styling
+ * ---------------------------------------------------------------------- */
+.cc-post-toc-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cc-post-toc-navigation .toc-sublist {
+    padding-left: 16px;
+    margin-top: 8px;
+    border-left: 1px solid #e2e8f0;
+}
+
+.cc-post-toc-navigation li {
+    margin-bottom: 12px;
+}
+
+.cc-post-toc-navigation li:last-child {
+    margin-bottom: 0;
+}
+
+.toc-link {
+    display: block;
+    font-size: 0.875rem;
+    color: #475569;
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.2s, background 0.2s;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.toc-link:hover {
+    color: #0f172a;
+    background: #f1f5f9;
+}
+
+.toc-link.active {
+    font-weight: 700;
+    color: #1d4ed8;
+    background: #eff6ff;
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Mobile: Drawer Style (< 1024px)
+ * ---------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+    .floating-toc-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 90;
+        background: #1d4ed8;
+        color: #fff;
+        border: none;
+        border-radius: 99px;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        box-shadow: 0 10px 15px -3px rgba(29, 78, 216, 0.4);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .floating-toc-btn:active {
+        transform: scale(0.95);
+    }
+
+    .toc-drawer-wrapper {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-height: 80vh;
+        background: #fff;
+        z-index: 100;
+        border-radius: 24px 24px 0 0;
+        box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1);
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .toc-drawer-wrapper.active {
+        transform: translateY(0);
+    }
+
+    .drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(2px);
+        z-index: 95;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+    }
+
+    .drawer-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .toc-drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .toc-title {
+        font-size: 1.125rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0;
+    }
+
+    .close-drawer-btn {
+        background: #f1f5f9;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #475569;
+        cursor: pointer;
+    }
+
+    .toc-drawer-body {
+        padding: 24px;
+        flex: 1;
+        overflow-y: auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Desktop: Sidebar Layout (>= 1024px)
+ * ---------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+
+    .floating-toc-btn,
+    .drawer-overlay {
+        display: none !important;
+    }
+
+    .single-page-layout.layout-2-cols {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 24px;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    .single-page-layout.layout-3-cols {
+        display: grid;
+        grid-template-columns: 280px minmax(500px, 1fr) 280px;
+        gap: 24px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .single-page-layout {
+        overflow: visible !important;
+        position: relative;
+    }
+
+    .single-sidebar {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 88px;
+        /* Offset dari site-header (72px) + 16px gap */
+        align-self: start;
+        height: auto;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        z-index: 10;
+        scrollbar-width: none;
+        /* Sembunyikan scrollbar sidebar */
+    }
+
+    .single-sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .toc-drawer-wrapper {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 120px);
+    }
+
+    .toc-drawer-header {
+        padding: 20px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .toc-drawer-header .close-drawer-btn {
+        display: none;
+    }
+
+    .toc-drawer-body {
+        padding: 20px;
+        overflow-y: auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Sidebar Recent Posts Widget
+ * ---------------------------------------------------------------------- */
+.widget-recent-posts .recent-post-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.widget-recent-posts .post-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.widget-recent-posts .post-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.widget-recent-posts .post-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.widget-recent-posts .post-title a {
+    color: #0f172a;
+    text-decoration: none;
+}
+
+.widget-recent-posts .post-title a:hover {
+    color: #dc2626;
+}
+
+.widget-recent-posts .post-date {
+    font-size: 0.75rem;
+    color: #64748b;
+}
