@@ -13,30 +13,47 @@
 </div>
 
 <script>
-    // Inisialisasi event listener interaksi buka-tutup pencarian
+    // Inisialisasi event listener interaksi buka-tutup pencarian dengan aman
     document.addEventListener('DOMContentLoaded', function() {
         var searchToggle  = document.getElementById('header-search-toggle');
         var searchOverlay = document.getElementById('header-search-overlay');
-        var searchInput   = searchOverlay ? searchOverlay.querySelector('input[type="search"]') : null;
-
+        
         if (searchToggle && searchOverlay) {
-            // Toggle form pencarian saat tombol cari di-klik
-            searchToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (searchOverlay.style.display === 'none') {
-                    searchOverlay.style.display = 'block';
-                    if (searchInput) searchInput.focus();
-                } else {
-                    searchOverlay.style.display = 'none';
-                }
-            });
+            var searchInput = searchOverlay.querySelector('input[type="search"]');
 
-            // Tutup overlay jika pengguna mengklik di luar area form pencarian
+            // Fungsi untuk menampilkan/menyembunyikan form pencarian
+            function toggleSearch(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Mencegah event merambat ke document click listener
+                
+                // Cek status tampilan computed yang sebenarnya secara akurat
+                var isHidden = window.getComputedStyle(searchOverlay).display === 'none';
+                
+                if (isHidden) {
+                    searchOverlay.style.setProperty('display', 'block', 'important');
+                    if (searchInput) {
+                        setTimeout(function() {
+                            searchInput.focus();
+                        }, 50); // Delay kecil agar transpirasi transisi CSS selesai fokus
+                    }
+                } else {
+                    searchOverlay.style.setProperty('display', 'none', 'important');
+                }
+            }
+
+            searchToggle.addEventListener('click', toggleSearch);
+
+            // Tutup overlay pencarian secara otomatis jika mengklik area lain di luar form
             document.addEventListener('click', function(event) {
                 var isClickInside = searchToggle.contains(event.target) || searchOverlay.contains(event.target);
-                if (!isClickInside && searchOverlay.style.display === 'block') {
-                    searchOverlay.style.display = 'none';
+                if (!isClickInside) {
+                    searchOverlay.style.setProperty('display', 'none', 'important');
                 }
+            });
+            
+            // Mencegah klik di dalam form pencarian menutup overlay-nya sendiri
+            searchOverlay.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
         }
     });
