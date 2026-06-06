@@ -482,7 +482,7 @@ img.hero-bg-image {
 
 
 /* --------------------------------------------------------------------------
- * 7. Hero Variant 3: Jasper Layout (Centered Content, Visual Grid, Floating Cards)
+ * 7. Hero Varian 3: Layout Jasper (Konten Terpusat, Grid Visual, Kartu Melayang)
  * ---------------------------------------------------------------------- */
 .hero-v3-section {
     background-color: var(--brand-white);
@@ -512,7 +512,7 @@ img.hero-bg-image {
     width: 100%;
 }
 
-/* 1. Promo / Announcement Badge */
+/* 1. Badge Promo / Pengumuman */
 .hero-v3-promo-wrapper {
     margin-bottom: 2rem;
     text-align: center;
@@ -564,7 +564,7 @@ img.hero-bg-image {
     transform: translateX(3px);
 }
 
-/* 2. Centered Text Content */
+/* 2. Konten Teks Terpusat (Centered) */
 .hero-v3-text-content {
     text-align: center;
     max-width: 850px;
@@ -615,7 +615,7 @@ img.hero-bg-image {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* 3. Visual Graphics Area (Neon Green Grid Canvas) */
+/* 3. Area Grafis Visual (Canvas Grid Hijau Neon) */
 .hero-v3-visual-canvas {
     position: relative;
     width: 100%;
@@ -807,7 +807,7 @@ img.hero-bg-image {
     z-index: 3;
 }
 
-/* 4. Partner Logos */
+/* 4. Logo-Logo Mitra / Partners */
 .hero-v3-partners {
     width: 100%;
     padding: 5rem 0 3rem;
@@ -863,7 +863,7 @@ img.hero-bg-image {
 }
 
 /* --------------------------------------------------------------------------
- * 8. Responsive Styles
+ * 8. Aturan Styles Responsif (Responsive) 
  * ---------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .hero-v2-title {

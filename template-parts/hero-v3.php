@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Part: Hero Section - Variant 3 (Jasper AI Centered Style)
+ * Bagian Template: Section Hero - Varian 3 (Gaya Terpusat Jasper AI)
  * Desain terpusat dengan promo badge di atas, visual grafis grid hijau di bawah teks,
  * dengan ornamen melayang dan logo mitra sebagai social proof.
  *
@@ -43,7 +43,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
 <section class="hero-section hero-v3-section section-divider-bottom" id="hero">
     <div class="container hero-v3-container">
         
-        <!-- 1. Promo Badge (Announcement) -->
+        <!-- 1. Badge Promo (Pengumuman) -->
         <?php if ( ! empty( $promo_text ) ) : ?>
             <div class="hero-v3-promo-wrapper">
                 <a href="<?php echo esc_url( $promo_url ); ?>" class="hero-v3-promo-badge">
@@ -54,7 +54,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
             </div>
         <?php endif; ?>
 
-        <!-- 2. Centered Content -->
+        <!-- 2. Konten Terpusat (Centered) -->
         <div class="hero-v3-text-content">
             <h1 class="hero-v3-title">
                 <?php 
@@ -90,7 +90,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
             </div>
         </div>
 
-        <!-- 3. Visual Graphics Area -->
+        <!-- 3. Area Grafis Visual -->
         <div class="hero-v3-visual-canvas">
             <!-- Pola Grid Hijau Terang -->
             <div class="hero-v3-grid-pattern"></div>
@@ -99,20 +99,20 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                 <!-- Foto Model Utama -->
                 <img src="<?php echo $hero_image; ?>" alt="<?php echo esc_attr( $hero_title ); ?>" class="hero-v3-main-img">
 
-                <!-- Ornamen Melayang Kiri: Slanted Magenta/Pink Triangle + Text Card -->
+                <!-- Ornamen Melayang Kiri: Segitiga Pink Miring + Kartu Teks -->
                 <div class="floating-shape-v3 shape-v3-pink-triangle"></div>
                 <div class="floating-card-v3 card-v3-left">
                     <span class="card-dot-red">🔴</span>
-                    <span class="card-text">Create 6,000 hyper-personalized emails within minutes</span>
+                    <span class="card-text">Buat 6.000 email super-personal dalam hitungan menit</span>
                 </div>
 
-                <!-- Ornamen Melayang Kanan: Blue Badge "11x click-through rate" -->
+                <!-- Ornamen Melayang Kanan: Badge Biru "11x rasio klik-tayang" -->
                 <div class="floating-card-v3 card-v3-right">
                     <div class="rate-number">11x</div>
-                    <div class="rate-label">click-through rate</div>
+                    <div class="rate-label">rasio klik-tayang</div>
                 </div>
 
-                <!-- Column of 3 Green Circles (Right) -->
+                <!-- Kolom berisi 3 Lingkaran Hijau (Kanan) -->
                 <div class="floating-shape-v3 shape-v3-circle-column">
                     <span class="circle-item"></span>
                     <span class="circle-item"></span>
@@ -130,7 +130,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                 <div class="floating-shape-v3 shape-v3-green-circle-bottom"></div>
             </div>
 
-            <!-- Jagged/Pixelated Mask Border di bawah canvas -->
+            <!-- Pembatas Masker Bergerigi (Jagged Mask Border) di bawah kanvas -->
             <div class="hero-v3-jagged-bottom">
                 <div class="jagged-step step-1"></div>
                 <div class="jagged-step step-2"></div>
@@ -140,9 +140,9 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
             </div>
         </div>
 
-        <!-- 4. Partner Trust Logos -->
+        <!-- 4. Logo Kredibilitas Mitra / Partners -->
         <div class="hero-v3-partners">
-            <h3 class="partners-title"><?php esc_html_e( 'World-class marketing teams trust Jasper', 'crediblecompany' ); ?></h3>
+            <h3 class="partners-title"><?php esc_html_e( 'Dipercaya oleh tim pemasaran kelas dunia', 'crediblecompany' ); ?></h3>
             <div class="partners-logos-container">
                 <?php
                 $mitra_logos = array();
@@ -158,7 +158,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                         echo '<div class="partner-logo-item"><img src="' . esc_url( $logo ) . '" alt="Partner Logo"></div>';
                     }
                 } else {
-                    // Fallback logo placeholder grayscaled jika kosong
+                    // Placeholder logo cadangan dalam skala abu-abu jika kosong
                     $fallbacks = array( 'wayfair', 'BOEING', 'alliantgroup', 'CUSHMAN & WAKEFIELD', 'Cox AUTOMOTIVE', 'ANTHROPOLOGIE' );
                     foreach ( $fallbacks as $fb ) {
                         echo '<span class="partner-logo-text">' . esc_html( $fb ) . '</span>';
