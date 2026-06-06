@@ -11,7 +11,14 @@ get_header(); ?>
 <div class="app-landing-wrapper">
     <?php
     // Panggil setiap section secara berurutan dan modular
-    get_template_part( 'template-parts/hero' );
+    $hero_variant = cc_get( 'hero_variant', 'default' );
+    if ( 'v2' === $hero_variant ) {
+        get_template_part( 'template-parts/hero-v2' );
+    } elseif ( 'v3' === $hero_variant ) {
+        get_template_part( 'template-parts/hero-v3' );
+    } else {
+        get_template_part( 'template-parts/hero' );
+    }
     get_template_part( 'template-parts/statistics' );
     get_template_part( 'template-parts/features' );
     get_template_part( 'template-parts/pricing' );

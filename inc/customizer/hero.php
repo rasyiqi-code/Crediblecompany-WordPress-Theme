@@ -13,6 +13,24 @@ add_action( 'customize_register', function( $wp_customize ) {
         'priority' => 10,
     ) );
 
+    // --- PILIHAN LAYOUT / VARIANT HERO ---
+    $wp_customize->add_setting( 'cc_hero_variant', array(
+        'default'           => 'default',
+        'sanitize_callback' => 'sanitize_key',
+    ) );
+    $wp_customize->add_control( 'cc_hero_variant', array(
+        'label'       => __( 'Layout Hero', 'crediblecompany' ),
+        'description' => __( 'Pilih tampilan hero yang digunakan di halaman depan.', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'select',
+        'choices'     => array(
+            'default' => 'Default — Teks kiri, gambar kanan dengan shapes',
+            'v2'      => 'Centered — Teks tengah, gradient latar, tanpa gambar',
+            'v3'      => 'Split Glass — Teks kanan, card glassmorphism kiri',
+        ),
+        'priority'    => 1, // Paling atas
+    ) );
+
     // Judul Hero
     $wp_customize->add_setting( 'cc_hero_title', array(
         'default'           => 'Lorem Ipsum Dolor Sit Amet',
