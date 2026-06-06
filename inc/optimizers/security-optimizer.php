@@ -79,7 +79,18 @@ function cc_protect_login_page() {
         global $wp_query;
         $wp_query->set_404();
         status_header( 404 );
-        include( get_query_template( '404' ) );
+        // Cari file template 404 secara dinamis di folder templates/ atau root tema
+        $template = locate_template( array( 'templates/404.php', '404.php' ) );
+        if ( empty( $template ) && file_exists( get_template_directory() . '/templates/404.php' ) ) {
+            $template = get_template_directory() . '/templates/404.php';
+        }
+
+        if ( ! empty( $template ) && file_exists( $template ) ) {
+            include $template;
+        } else {
+            // Fallback sederhana jika file template tidak ditemukan, cegah ValueError dari include('')
+            wp_die( esc_html__( 'Halaman tidak ditemukan.', 'crediblecompany' ), '404 Not Found', array( 'response' => 404 ) );
+        }
         exit;
     }
 }
