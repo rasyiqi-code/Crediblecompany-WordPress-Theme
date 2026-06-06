@@ -303,4 +303,16 @@
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-top: none;
     }
+
+    /* Memastikan teks, menu-toggle, dan ikon di header glassmorphism mobile selalu terbaca (kontras gelap) */
+    .header-style-glass .site-logo a,
+    .header-style-glass .header-icons a,
+    .header-style-glass .header-icons button,
+    .header-style-glass .menu-toggle {
+        color: #1e293b !important;
+    }
+
+    .header-style-glass .header-icons svg {
+        stroke: #1e293b !important;
+    }
 }
