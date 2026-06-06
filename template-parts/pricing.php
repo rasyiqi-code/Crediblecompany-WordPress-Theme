@@ -7,7 +7,7 @@
  * @package CredibleCompany
  */
 
-$section_title    = cc_get( 'pricing_title', 'Paket Layanan Penerbitan' );
+$section_title    = cc_get( 'pricing_title', 'Lorem Ipsum Dolor' );
 $section_subtitle = cc_get( 'pricing_subtitle', 'Anda bisa memilih kami untuk jasa berikut:' );
 
 $paket_query = new WP_Query( array(
@@ -21,19 +21,20 @@ $paket_query = new WP_Query( array(
 $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
 ?>
 
-<section class="pricing" id="daftar-paket">
-    <div class="container text-center">
-        <h2><?php echo esc_html( $section_title ); ?></h2>
-        <p><?php echo esc_html( $section_subtitle ); ?></p>
+<section class="pricing section-divider-top" id="daftar-paket">
+    <div class="container">
+        <div class="pricing-header text-center">
+            <h2><?php echo esc_html( cc_dynamic_text( $section_title ) ); ?></h2>
+            <p><?php echo esc_html( $section_subtitle ); ?></p>
+        </div>
 
-        <?php
+        <?php 
         $scroll_class = cc_get( 'mobile_scroll_pricing', true ) ? 'has-horizontal-scroll' : '';
         $grid_columns = cc_get( 'pricing_grid_columns', 4 );
         ?>
 
-
-        <?php if ( $paket_query->have_posts() ) : // The condition remains $paket_query->have_posts() based on the original file structure. ?>
-            <div class="pricing-grid grid-cols-<?php echo esc_attr( $grid_columns ); ?> <?php echo esc_attr( $scroll_class ); ?>">
+        <?php if ( $paket_query->have_posts() ) : ?>
+            <div class="pricing-grid <?php echo esc_attr( $scroll_class ); ?>" style="--grid-cols: <?php echo esc_attr( $grid_columns ); ?>;">
                 <?php while ( $paket_query->have_posts() ) : $paket_query->the_post();
                     $badge       = get_post_meta( get_the_ID(), '_cc_badge', true );
                     $price       = get_post_meta( get_the_ID(), '_cc_price', true );
@@ -51,7 +52,7 @@ $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox=
                             <?php if ( $badge ) : ?>
                                 <span class="price-card-badge"><?php echo esc_html( $badge ); ?></span>
                             <?php endif; ?>
-                            <p class="price-card-label">Paket Penerbitan</p>
+                            <p class="price-card-label">Lorem Ipsum</p>
                             <h3 class="price-card-name"><?php the_title(); ?></h3>
                         </div>
 

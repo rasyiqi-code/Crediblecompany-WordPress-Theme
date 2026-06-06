@@ -111,9 +111,9 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Default FAQ data in JSON
     $faq_defaults_json = json_encode(array(
-        array( 'q' => 'Berapa lama estimasi proses penerbitan?', 'a' => 'Proses penerbitan umumnya memakan waktu 4-8 minggu, tergantung paket yang dipilih dan kompleksitas naskah.' ),
-        array( 'q' => 'Apakah penulis mendapatkan royalti dari penjualan?', 'a' => 'Ya, penulis mendapatkan royalti sesuai kesepakatan di kontrak. Persentase bervariasi pada setiap paket.' ),
-        array( 'q' => 'Bagaimana cara mendaftarkan naskah penerbitan?', 'a' => 'Anda bisa menghubungi admin kami melalui WhatsApp atau mengisi formulir pendaftaran di website.' ),
+        array( 'q' => 'Lorem ipsum dolor sit amet?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'q' => 'Consectetur adipiscing elit?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'q' => 'Proin sodales imperdiet diam?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
     ));
 
     $wp_customize->add_setting( 'cc_faq_repeater_data', array(

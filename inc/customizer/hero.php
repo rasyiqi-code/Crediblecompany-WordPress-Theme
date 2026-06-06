@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Judul Hero
     $wp_customize->add_setting( 'cc_hero_title', array(
-        'default'           => 'Bukumu Segera Terbit!',
+        'default'           => 'Lorem Ipsum Dolor Sit Amet',
         'sanitize_callback' => 'sanitize_text_field',
         'transport'         => 'postMessage',
     ) );

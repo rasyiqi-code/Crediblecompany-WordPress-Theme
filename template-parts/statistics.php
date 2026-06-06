@@ -7,7 +7,7 @@
  */
 
 $about_desc  = cc_get( 'about_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi, eget elementum ligula tempor sit amet.' );
-$about_image = cc_img( 'about_image', 'https://via.placeholder.com/600x400.png/e2e8f0/64748b?text=Kantor+Penerbit' );
+$about_image = cc_img( 'about_image', 'https://via.placeholder.com/600x400.png/e2e8f0/64748b?text=Lorem+Ipsum' );
 ?>
 
 <section class="statistics">
@@ -16,7 +16,7 @@ $about_image = cc_img( 'about_image', 'https://via.placeholder.com/600x400.png/e
 
         <!-- About Block -->
         <div class="about-block">
-            <img src="<?php echo esc_url( $about_image ); ?>" alt="<?php esc_attr_e( 'Kantor Penerbit', 'crediblecompany' ); ?>">
+            <img src="<?php echo esc_url( $about_image ); ?>" alt="<?php esc_attr_e( 'Lorem Ipsum', 'crediblecompany' ); ?>">
             <p><?php echo esc_html( $about_desc ); ?></p>
         </div>
     </div>
