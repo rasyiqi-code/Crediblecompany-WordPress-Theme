@@ -65,6 +65,35 @@
             border: 1px solid <?php echo esc_attr( $border_color ); ?> !important;
             <?php endif; ?>
         }
+        /* Penyelarasan Warna Dinamis Kapsul Kaca Compact */
+        .header-style-glass .site-logo a {
+            color: <?php echo esc_attr( $text_hover ); ?> !important; /* Logo menggunakan warna hover/accent (kuning/emas) */
+        }
+        .header-style-glass .desktop-nav a {
+            color: <?php echo esc_attr( $header_text ); ?> !important; /* Teks menu mengikuti warna teks header utama */
+        }
+        .header-style-glass .desktop-nav a:hover {
+            color: <?php echo esc_attr( $text_hover ); ?> !important;
+        }
+        .header-style-glass .header-icons a,
+        .header-style-glass .header-icons button {
+            background-color: <?php echo esc_attr( $text_hover ); ?> !important; /* Tombol bulat menggunakan warna hover (kuning/emas) */
+            color: <?php echo esc_attr( $header_bg ); ?> !important; /* Ikon di dalam tombol bulat menggunakan warna bg header (gelap) */
+            box-shadow: 0 4px 12px <?php echo esc_attr( cc_hex_to_rgba( $text_hover, 0.25 ) ); ?> !important;
+        }
+        .header-style-glass .header-icons svg {
+            stroke: <?php echo esc_attr( $header_bg ); ?> !important;
+        }
+        .header-style-glass .header-icons a:hover,
+        .header-style-glass .header-icons button:hover {
+            background-color: <?php echo esc_attr( $header_text ); ?> !important;
+            color: <?php echo esc_attr( $header_bg ); ?> !important;
+            box-shadow: 0 6px 16px <?php echo esc_attr( cc_hex_to_rgba( $header_text, 0.35 ) ); ?> !important;
+        }
+        .header-style-glass .header-icons a:hover svg,
+        .header-style-glass .header-icons button:hover svg {
+            stroke: <?php echo esc_attr( $header_bg ); ?> !important;
+        }
         <?php endif; ?>
 
         .site-header .container {
