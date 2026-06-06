@@ -28,7 +28,9 @@ get_header(); ?>
     get_template_part( 'template-parts/testimonials' );
     get_template_part( 'template-parts/partners' );
     get_template_part( 'template-parts/books' );
-    get_template_part( 'template-parts/blog' );
+    if ( cc_get( 'show_blog', true ) ) {
+        get_template_part( 'template-parts/blog' );
+    }
     get_template_part( 'template-parts/faq' );
     get_template_part( 'template-parts/cta' );
     ?>

@@ -14,6 +14,17 @@ add_action( 'customize_register', function ( $wp_customize ) {
         'priority' => 70,
     ) );
 
+    // 0. Tampilkan / Sembunyikan Blog di Homepage
+    $wp_customize->add_setting( 'cc_show_blog', array(
+        'default'           => true,
+        'sanitize_callback' => 'cc_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'cc_show_blog', array(
+        'label'    => __( 'Tampilkan Blog di Halaman Depan', 'crediblecompany' ),
+        'section'  => 'cc_blog_section',
+        'type'     => 'checkbox',
+    ) );
+
     // 1. Warna Banner Hero (Gradient Start)
     $wp_customize->add_setting( 'cc_blog_hero_bg_start', array(
         'default'           => '#6366f1',
