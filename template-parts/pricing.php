@@ -7,7 +7,7 @@
  * @package CredibleCompany
  */
 
-$section_title    = cc_get( 'pricing_title', 'Jasa KBM Indonesia Group' );
+$section_title    = cc_get( 'pricing_title', 'Paket Layanan Penerbitan' );
 $section_subtitle = cc_get( 'pricing_subtitle', 'Anda bisa memilih kami untuk jasa berikut:' );
 
 $paket_query = new WP_Query( array(

@@ -27,7 +27,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Deskripsi Hero
     $wp_customize->add_setting( 'cc_hero_desc', array(
-        'default'           => 'Penerbit KBM mempersembahkan lebih dari 3000 judul buku. Yuk, wujudkan mimpimu menjadi penulis — jadikan nyata naskah ceritamu.',
+        'default'           => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.',
         'sanitize_callback' => 'sanitize_textarea_field',
         'transport'         => 'postMessage',
     ) );
@@ -47,7 +47,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     $wp_customize->add_setting( 'cc_hero_btn1_url', array( 'default' => '#daftar', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'cc_hero_btn1_url', array(
         'label'       => __( 'URL Tombol Utama', 'crediblecompany' ),
-        'description' => __( 'Gunakan ID section untuk smooth scroll: #hero-kbm, #how-it-works, #daftar-paket, #books, #testimonials, #blog, #faq, #mitra', 'crediblecompany' ),
+        'description' => __( 'Gunakan ID section untuk smooth scroll: #hero, #how-it-works, #daftar-paket, #books, #testimonials, #blog, #faq, #mitra', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
         'type'        => 'url',
     ) );

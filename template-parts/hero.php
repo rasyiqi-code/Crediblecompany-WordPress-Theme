@@ -7,8 +7,8 @@
  */
 
 $hero_title = cc_get( 'hero_title', 'Bukumu Segera Terbit!' );
-$hero_desc       = cc_get( 'hero_desc', 'Penerbit KBM mempersembahkan lebih dari 3000 judul buku. Yuk, wujudkan mimpimu menjadi penulis — jadikan nyata naskah ceritamu.' );
-$hero_image      = cc_img( 'hero_image', 'https://via.placeholder.com/500x400.png/c01314/fff?text=Model+KBM' );
+$hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
+$hero_image      = cc_img( 'hero_image', 'https://via.placeholder.com/500x400.png/c01314/fff?text=Model+Penerbit' );
 $hero_ornament_1 = cc_get( 'hero_ornament_1', '📚' );
 $hero_ornament_2 = cc_get( 'hero_ornament_2', '🎓' );
 
@@ -36,7 +36,7 @@ $color_red    = cc_get( 'hero_shape_red_color', '#EF4444' );
 $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
 ?>
 
-<section class="hero-section section-divider-bottom" id="hero-kbm">
+<section class="hero-section section-divider-bottom" id="hero">
     <div class="container hero-container">
         <!-- Area Teks Kiri -->
         <div class="hero-content">

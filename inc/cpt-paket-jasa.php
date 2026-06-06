@@ -4,7 +4,7 @@
  * Mendaftarkan CPT 'paket_jasa' dan meta box untuk data pricing.
  * Admin bisa menambah paket secara dinamis dari dashboard.
  *
- * Struktur data per paket (sesuai poster KBM):
+ * Struktur data per paket:
  * - Nama Paket (post_title)
  * - Badge (label kecil, misal "Best Promo")
  * - Harga

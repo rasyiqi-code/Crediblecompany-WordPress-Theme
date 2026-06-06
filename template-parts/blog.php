@@ -16,7 +16,7 @@ $blog_query = new WP_Query( array(
 
 <section class="blog-section section-divider-top section-divider-bottom" id="blog" style="background-color: var(--brand-light);">
     <div class="container">
-        <h2 class="text-center" style="margin-bottom: 3rem;">Blog Penerbit KBM</h2>
+        <h2 class="text-center" style="margin-bottom: 3rem;"><?php echo esc_html( cc_get( 'blog_title', 'Blog & Berita' ) ); ?></h2>
 
         <?php if ( $blog_query->have_posts() ) : ?>
             <?php $scroll_class = cc_get( 'mobile_scroll_blog', true ) ? 'has-horizontal-scroll' : ''; ?>

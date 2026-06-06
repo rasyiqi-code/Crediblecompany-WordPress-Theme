@@ -25,7 +25,7 @@ $testi_query = new WP_Query( array(
 
 <section class="testimonials" id="testimonials">
     <div class="container">
-        <h2>Testimoni Mitra<br>KBM Indonesia Group</h2>
+        <h2><?php echo esc_html( cc_get( 'testimonials_title', 'Testimoni Mitra Kami' ) ); ?></h2>
 
         <?php if ( $testi_query->have_posts() ) : ?>
             <?php $scroll_class = cc_get( 'mobile_scroll_testimonials', true ) ? 'has-horizontal-scroll' : ''; ?>

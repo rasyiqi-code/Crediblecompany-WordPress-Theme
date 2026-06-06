@@ -14,7 +14,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_pricing_title', array(
-        'default'           => 'Jasa KBM Indonesia Group',
+        'default'           => 'Paket Layanan Penerbitan',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_pricing_title', array(

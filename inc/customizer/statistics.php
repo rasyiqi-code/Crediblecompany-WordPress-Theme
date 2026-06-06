@@ -65,7 +65,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // About Deskripsi
     $wp_customize->add_setting( 'cc_about_desc', array(
-        'default'           => 'KBM Indonesia Group telah terbukti menjadi mitra penerbitan terpercaya. Dengan dedikasi melayani para penulis di seluruh Indonesia, ribuan karya telah berhasil kami cetak dan dipasarkan.',
+        'default'           => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi, eget elementum ligula tempor sit amet.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ) );
     $wp_customize->add_control( 'cc_about_desc', array(

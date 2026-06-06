@@ -28,7 +28,7 @@ function cc_seed_paket_jasa() {
             'catatan'   => 'Layanan ini berlaku untuk 150 Halaman. Jika lebih, dikenai tarif tambahan.',
             'btn_text'  => 'Ambil Promo',
             'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n2 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi 3 Kali\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 2 Eksemplar\n1 MUG Logo KBM",
+            'features'  => "Layout\n2 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi 3 Kali\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 2 Eksemplar\n1 Merchandise Eksklusif",
         ),
         array(
             'title'     => 'Nusantara',
@@ -39,7 +39,7 @@ function cc_seed_paket_jasa() {
             'catatan'   => 'Layanan ini berlaku untuk 200 Halaman. Jika lebih, dikenai tarif tambahan.',
             'btn_text'  => 'Ambil Promo',
             'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n3 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi 5 Kali\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 5 Eksemplar\n1 MUG Logo KBM",
+            'features'  => "Layout\n3 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi 5 Kali\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 5 Eksemplar\n1 Merchandise Eksklusif",
         ),
         array(
             'title'     => 'Sriwijaya',
@@ -50,7 +50,7 @@ function cc_seed_paket_jasa() {
             'catatan'   => 'Layanan ini berlaku untuk 250 Halaman. Jika lebih, dikenai tarif tambahan.',
             'btn_text'  => 'Ambil Promo',
             'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n4 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi Unlimited\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 10 Eksemplar\n2 MUG Logo KBM\nVideo Promo 30 Detik",
+            'features'  => "Layout\n4 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi Unlimited\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 10 Eksemplar\n2 Merchandise Eksklusif\nVideo Promo 30 Detik",
         ),
         array(
             'title'     => 'Mataram',
@@ -61,7 +61,7 @@ function cc_seed_paket_jasa() {
             'catatan'   => 'Layanan ini berlaku untuk 300 Halaman. Jika lebih, dikenai tarif tambahan.',
             'btn_text'  => 'Ambil Promo',
             'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n5 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi Unlimited\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 20 Eksemplar\n3 MUG Logo KBM\nVideo Promo 60 Detik\nBanner Promosi Digital",
+            'features'  => "Layout\n5 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi Unlimited\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 20 Eksemplar\n3 Merchandise Eksklusif\nVideo Promo 60 Detik\nBanner Promosi Digital",
         ),
     );
 

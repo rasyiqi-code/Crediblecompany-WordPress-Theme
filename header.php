@@ -44,7 +44,7 @@
                     ) );
                 } else {
                     echo '<ul>';
-                    echo '<li><a href="#">Blogpedia KBM</a></li>';
+                    echo '<li><a href="#">Blog</a></li>';
                     echo '<li><a href="#">Testimoni</a></li>';
                     echo '<li><a href="#">Toko Buku</a></li>';
                     echo '</ul>';
@@ -127,7 +127,7 @@
             ) );
         } else {
             echo '<ul>';
-            echo '<li><a href="#">Blogpedia KBM</a></li>';
+            echo '<li><a href="#">Blog</a></li>';
             echo '<li><a href="#">Testimoni</a></li>';
             echo '<li><a href="#">Toko Buku</a></li>';
             echo '</ul>';

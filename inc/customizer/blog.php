@@ -36,7 +36,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
     // 2. Judul Blog
     $wp_customize->add_setting( 'cc_blog_title', array(
-        'default'           => __( 'Blog', 'crediblecompany' ),
+        'default'           => __( 'Blog & Berita', 'crediblecompany' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_blog_title', array(

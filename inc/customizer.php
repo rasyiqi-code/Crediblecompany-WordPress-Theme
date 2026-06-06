@@ -30,6 +30,8 @@ require_once get_template_directory() . '/inc/customizer/cta.php';
 require_once get_template_directory() . '/inc/customizer/social.php';
 require_once get_template_directory() . '/inc/customizer/pricing.php';
 require_once get_template_directory() . '/inc/customizer/mitra.php';
+require_once get_template_directory() . '/inc/customizer/testimonials.php';
+require_once get_template_directory() . '/inc/customizer/books.php';
 require_once get_template_directory() . '/inc/customizer/faq.php';
 require_once get_template_directory() . '/inc/customizer/blog.php';
 require_once get_template_directory() . '/inc/customizer/marketing.php';

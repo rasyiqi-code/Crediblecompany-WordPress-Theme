@@ -104,7 +104,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright">
-                    &copy; <?php echo date( 'Y' ); ?> <?php cc_e( 'footer_copyright', 'KBM Group Indonesia.' ); ?> All Rights Reserved.
+                    &copy; <?php echo date( 'Y' ); ?> <?php cc_e( 'footer_copyright', 'Credible Company.' ); ?> All Rights Reserved.
                 </div>
             </div>
         </div>

@@ -49,10 +49,10 @@ Gunakan ID berikut pada kolom URL tombol atau menu di Customizer untuk membuat n
 
 | ID Section | Deskripsi Bagian |
 | :--- | :--- |
-| `#hero-kbm` | Bagian Atas / Hero Utama |
+| `#hero` | Bagian Atas / Hero Utama |
 | `#how-it-works` | Fitur & Keunggulan (Mengapa Memilih Kami) |
 | `#daftar-paket` | Daftar Harga & Paket Jasa Penerbitan |
-| `#books` | Katalog Buku Terbitan KBM |
+| `#books` | Katalog Buku Terbitan |
 | `#testimonials` | Testimoni Mitra/Pelanggan |
 | `#blog` | Artikel & Berita Terbaru |
 | `#faq` | Tanya Jawab (FAQ) |
