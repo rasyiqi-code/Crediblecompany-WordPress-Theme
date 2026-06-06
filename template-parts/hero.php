@@ -112,7 +112,7 @@ $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                 <?php endif; ?>
 
                 <!-- Gambar Utama / Model -->
-                <img src="<?php echo esc_url( $hero_image ); ?>" alt="<?php echo esc_attr( $hero_title ); ?>" class="hero-main-img">
+                <img src="<?php echo $hero_image; ?>" alt="<?php echo esc_attr( $hero_title ); ?>" class="hero-main-img">
 
                 <!-- Ornamen Abstrak (Micro interactions) -->
                 <!-- Shape 1: Roket/Elemen Melayang 1 (Kiri Atas) -->

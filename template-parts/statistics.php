@@ -16,7 +16,7 @@ $about_image = cc_img( 'about_image', cc_placeholder_svg( 600, 400, 'e2e8f0', '6
 
         <!-- About Block -->
         <div class="about-block">
-            <img src="<?php echo esc_url( $about_image ); ?>" alt="<?php esc_attr_e( 'Lorem Ipsum', 'crediblecompany' ); ?>">
+            <img src="<?php echo $about_image; ?>" alt="<?php esc_attr_e( 'Lorem Ipsum', 'crediblecompany' ); ?>">
             <p><?php echo esc_html( $about_desc ); ?></p>
         </div>
     </div>
