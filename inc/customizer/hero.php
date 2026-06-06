@@ -160,7 +160,7 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section'     => 'cc_hero_section',
         'type'        => 'text',
     ) );
-
+ 
     // Ornamen Melayang 2
     $wp_customize->add_setting( 'cc_hero_ornament_2', array(
         'default'           => '🎓', // Default Toga
@@ -169,6 +169,90 @@ add_action( 'customize_register', function( $wp_customize ) {
     $wp_customize->add_control( 'cc_hero_ornament_2', array(
         'label'       => __( 'Ornamen Melayang 2 (Emoji/Teks)', 'crediblecompany' ),
         'description' => __( 'Tampil di kanan bawah gambar hero.', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    // Ornamen Melayang 3 (Aksen Tambahan V2)
+    $wp_customize->add_setting( 'cc_hero_ornament_3', array(
+        'default'           => '✨',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_ornament_3', array(
+        'label'       => __( 'Ornamen Melayang 3 (Emoji/Teks)', 'crediblecompany' ),
+        'description' => __( 'Tampil di kanan atas layout Centered (V2).', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    // --- PENGATURAN SPESIFIK LAYOUT CENTRED (V2) ---
+    $wp_customize->add_setting( 'cc_hero_v2_badge_text', array(
+        'default'           => 'Solusi Terpercaya & Modern',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_v2_badge_text', array(
+        'label'       => __( 'Teks Badge Hero V2', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    // --- PENGATURAN SPESIFIK LAYOUT JASPER (V3) ---
+    $wp_customize->add_setting( 'cc_hero_promo_tag', array(
+        'default'           => 'New!',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_promo_tag', array(
+        'label'       => __( 'Label Promo Badge Hero V3', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'cc_hero_v3_card_left_icon', array(
+        'default'           => '🔴',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_v3_card_left_icon', array(
+        'label'       => __( 'Emoji Kartu Melayang Kiri V3', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'cc_hero_v3_card_left_text', array(
+        'default'           => 'Buat 6.000 email super-personal dalam hitungan menit',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_v3_card_left_text', array(
+        'label'       => __( 'Teks Kartu Melayang Kiri V3', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'cc_hero_v3_card_right_num', array(
+        'default'           => '11x',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_v3_card_right_num', array(
+        'label'       => __( 'Angka Kartu Melayang Kanan V3', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'cc_hero_v3_card_right_text', array(
+        'default'           => 'rasio klik-tayang',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_v3_card_right_text', array(
+        'label'       => __( 'Label Kartu Melayang Kanan V3', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'cc_hero_v3_partners_title', array(
+        'default'           => 'Dipercaya oleh tim pemasaran kelas dunia',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_v3_partners_title', array(
+        'label'       => __( 'Judul Logo Kredibilitas Mitra V3', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
         'type'        => 'text',
     ) );

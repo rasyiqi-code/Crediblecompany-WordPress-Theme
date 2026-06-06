@@ -10,6 +10,8 @@ $hero_title = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
 $hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
 $hero_ornament_1 = cc_get( 'hero_ornament_1', '🚀' );
 $hero_ornament_2 = cc_get( 'hero_ornament_2', '✨' );
+$hero_ornament_3 = cc_get( 'hero_ornament_3', '🎓' );
+$badge_text      = cc_get( 'hero_v2_badge_text', 'Solusi Terpercaya & Modern' );
 
 // Tombol CTA
 $btn1_enable     = cc_get( 'hero_btn1_enable', true );
@@ -43,7 +45,7 @@ $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
         <!-- Badge Ornamen / Pengumuman Kecil -->
         <div class="hero-v2-badge">
             <span class="hero-v2-badge-icon"><?php echo esc_html( $hero_ornament_1 ); ?></span>
-            <span class="hero-v2-badge-text"><?php esc_html_e( 'Solusi Terpercaya & Modern', 'crediblecompany' ); ?></span>
+            <span class="hero-v2-badge-text"><?php echo esc_html( $badge_text ); ?></span>
         </div>
 
         <!-- Judul Utama -->
@@ -113,7 +115,7 @@ $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
         <span style="font-size: 2.5rem;"><?php echo esc_html( $hero_ornament_2 ); ?></span>
     </div>
     <div class="floating-shape-v2 shape-right-1 morph-fast" style="background-color: <?php echo esc_attr( $color_purple ); ?>1A;">
-        <span style="font-size: 3rem;">🎓</span>
+        <span style="font-size: 3rem;"><?php echo esc_html( $hero_ornament_3 ); ?></span>
     </div>
     <div class="floating-shape-v2 shape-left-2" style="background-color: <?php echo esc_attr( $color_yellow ); ?>;"></div>
     <div class="floating-shape-v2 shape-right-2" style="background-color: <?php echo esc_attr( $color_blue ); ?>;"></div>

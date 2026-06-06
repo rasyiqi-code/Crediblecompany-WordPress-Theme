@@ -16,6 +16,14 @@ $hero_ornament_2 = cc_get( 'hero_ornament_2', '📈' );
 // Teks promo / pengumuman
 $promo_text      = cc_get( 'hero_promo_text', 'New! Introducing the new Jasper: Canvas, Agents, and a bold rebrand.' );
 $promo_url       = cc_get( 'hero_promo_url', '#' );
+$promo_tag       = cc_get( 'hero_promo_tag', 'New!' );
+
+// Pengaturan Kartu Melayang & Kredibilitas
+$card_left_icon  = cc_get( 'hero_v3_card_left_icon', '🔴' );
+$card_left_text  = cc_get( 'hero_v3_card_left_text', 'Buat 6.000 email super-personal dalam hitungan menit' );
+$card_right_num  = cc_get( 'hero_v3_card_right_num', '11x' );
+$card_right_text = cc_get( 'hero_v3_card_right_text', 'rasio klik-tayang' );
+$partners_title  = cc_get( 'hero_v3_partners_title', 'Dipercaya oleh tim pemasaran kelas dunia' );
 
 // Tombol CTA
 $btn1_enable     = cc_get( 'hero_btn1_enable', true );
@@ -47,7 +55,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
         <?php if ( ! empty( $promo_text ) ) : ?>
             <div class="hero-v3-promo-wrapper">
                 <a href="<?php echo esc_url( $promo_url ); ?>" class="hero-v3-promo-badge">
-                    <span class="promo-badge-tag"><?php esc_html_e( 'New!', 'crediblecompany' ); ?></span>
+                    <span class="promo-badge-tag"><?php echo esc_html( $promo_tag ); ?></span>
                     <span class="promo-badge-text"><?php echo esc_html( $promo_text ); ?></span>
                     <span class="promo-badge-arrow">&rarr;</span>
                 </a>
@@ -102,14 +110,14 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                 <!-- Ornamen Melayang Kiri: Segitiga Pink Miring + Kartu Teks -->
                 <div class="floating-shape-v3 shape-v3-pink-triangle"></div>
                 <div class="floating-card-v3 card-v3-left">
-                    <span class="card-dot-red">🔴</span>
-                    <span class="card-text">Buat 6.000 email super-personal dalam hitungan menit</span>
+                    <span class="card-dot-red"><?php echo esc_html( $card_left_icon ); ?></span>
+                    <span class="card-text"><?php echo esc_html( $card_left_text ); ?></span>
                 </div>
 
                 <!-- Ornamen Melayang Kanan: Badge Biru "11x rasio klik-tayang" -->
                 <div class="floating-card-v3 card-v3-right">
-                    <div class="rate-number">11x</div>
-                    <div class="rate-label">rasio klik-tayang</div>
+                    <div class="rate-number"><?php echo esc_html( $card_right_num ); ?></div>
+                    <div class="rate-label"><?php echo esc_html( $card_right_text ); ?></div>
                 </div>
 
                 <!-- Kolom berisi 3 Lingkaran Hijau (Kanan) -->
@@ -142,7 +150,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
 
         <!-- 4. Logo Kredibilitas Mitra / Partners -->
         <div class="hero-v3-partners">
-            <h3 class="partners-title"><?php esc_html_e( 'Dipercaya oleh tim pemasaran kelas dunia', 'crediblecompany' ); ?></h3>
+            <h3 class="partners-title"><?php echo esc_html( $partners_title ); ?></h3>
             <div class="partners-logos-container">
                 <?php
                 $mitra_logos = array();
