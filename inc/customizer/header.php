@@ -8,10 +8,41 @@
 add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_header_section', array(
-        'title'    => __( 'Ikon Header (Search & Akun)', 'crediblecompany' ),
+        'title'    => __( 'Pengaturan Header (Navbar)', 'crediblecompany' ),
         'panel'    => 'cc_global_panel',
         'priority' => 10,
     ) );
+
+    // Sticky Header Toggle
+    $wp_customize->add_setting( 'cc_header_sticky', array(
+        'default'           => true,
+        'sanitize_callback' => 'cc_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'cc_header_sticky', array(
+        'label'   => __( 'Aktifkan Sticky Header (Melayang saat di-scroll)', 'crediblecompany' ),
+        'section' => 'cc_header_section',
+        'type'    => 'checkbox',
+    ) );
+
+    // Warna Latar Belakang Header
+    $wp_customize->add_setting( 'cc_header_bg_color', array(
+        'default'           => '#c01314', // Brand Red default
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_header_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Header', 'crediblecompany' ),
+        'section' => 'cc_header_section',
+    ) ) );
+
+    // Warna Teks / Ikon Header
+    $wp_customize->add_setting( 'cc_header_text_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_header_text_color', array(
+        'label'   => __( 'Warna Teks & Ikon Header', 'crediblecompany' ),
+        'section' => 'cc_header_section',
+    ) ) );
 
     // Header Search URL
     $wp_customize->add_setting( 'header_search_url', array(

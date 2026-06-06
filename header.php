@@ -12,6 +12,50 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
+    <?php
+    $header_bg     = cc_get( 'header_bg_color', '#c01314' );
+    $header_text   = cc_get( 'header_text_color', '#ffffff' );
+    $header_sticky = cc_get( 'header_sticky', true );
+    ?>
+    <style id="cc-header-customizer-inline-css">
+        .site-header, 
+        .site-header .container,
+        .site-header .site-logo,
+        .site-header .header-icons {
+            background-color: <?php echo esc_attr( $header_bg ); ?> !important;
+        }
+        .site-header,
+        .site-logo a,
+        .desktop-nav a,
+        .header-icons a,
+        .header-icons button,
+        .menu-toggle {
+            color: <?php echo esc_attr( $header_text ); ?> !important;
+        }
+        .header-icons svg {
+            stroke: <?php echo esc_attr( $header_text ); ?> !important;
+        }
+        .desktop-nav a::after {
+            background: <?php echo esc_attr( $header_text ); ?> !important;
+        }
+        <?php if ( $header_sticky ) : ?>
+        .site-header {
+            position: sticky !important;
+            top: 0;
+            z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        /* Kompensasi Admin Bar WordPress untuk Sticky Header */
+        .admin-bar .site-header {
+            top: 32px !important;
+        }
+        @media screen and (max-width: 782px) {
+            .admin-bar .site-header {
+                top: 46px !important;
+            }
+        }
+        <?php endif; ?>
+    </style>
 </head>
 
 <body <?php body_class(); ?>>
