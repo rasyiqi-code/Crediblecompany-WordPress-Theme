@@ -184,7 +184,54 @@
         width: calc(100% - 1.5rem) !important;
         border-radius: 20px !important;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08) !important;
-        overflow: hidden;
+        /* Hapus overflow: hidden agar search overlay tidak terpotong saat aktif */
+        overflow: visible !important;
+    }
+
+    /* Penyelarasan Search Overlay khusus tipe Glassmorphism */
+    .header-style-glass .header-search-overlay {
+        background: rgba(15, 23, 42, 0.95) !important; /* Senada dengan warna kapsul gelap */
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 20px !important;
+        margin-top: 0.5rem !important;
+        padding: 0.75rem 1.25rem !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+        width: 100% !important;
+        left: 0 !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        box-sizing: border-box;
+    }
+
+    .header-style-glass .header-search-overlay form {
+        display: flex !important;
+        gap: 0.5rem !important;
+        align-items: center !important;
+    }
+
+    .header-style-glass .header-search-overlay input[type="search"] {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 99px !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+        flex: 1 !important;
+    }
+
+    .header-style-glass .header-search-overlay input[type="search"]::placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    .header-style-glass .header-search-overlay button {
+        background-color: var(--brand-yellow, #EAB308) !important;
+        color: #0f172a !important;
+        border-radius: 99px !important;
+        padding: 0.5rem 1.25rem !important;
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        border: none !important;
+        cursor: pointer !important;
     }
 
     .site-header.header-style-glass .container,
