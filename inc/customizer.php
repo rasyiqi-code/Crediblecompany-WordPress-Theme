@@ -38,3 +38,40 @@ require_once get_template_directory() . '/inc/customizer/marketing.php';
 require_once get_template_directory() . '/inc/customizer/footer.php';
 require_once get_template_directory() . '/inc/customizer/seo.php';
 require_once get_template_directory() . '/inc/customizer/mobile-layout.php';
+
+/**
+ * Sanitasi checkbox (Global)
+ */
+if ( ! function_exists( 'cc_sanitize_checkbox' ) ) {
+    function cc_sanitize_checkbox( $checked ) {
+        return ( ( isset( $checked ) && true == $checked ) ? true : false );
+    }
+}
+
+/**
+ * Sanitasi data JSON FAQ secara aman (Global)
+ */
+if ( ! function_exists( 'cc_sanitize_faq_json' ) ) {
+    function cc_sanitize_faq_json( $value ) {
+        if ( empty( $value ) ) {
+            return '';
+        }
+
+        // Dekode string JSON
+        $data = json_decode( $value, true );
+        if ( ! is_array( $data ) ) {
+            return '';
+        }
+
+        $clean_data = array();
+        foreach ( $data as $item ) {
+            $q = isset( $item['q'] ) ? sanitize_text_field( $item['q'] ) : '';
+            $a = isset( $item['a'] ) ? wp_kses_post( $item['a'] ) : '';
+            if ( $q !== '' || $a !== '' ) {
+                $clean_data[] = array( 'q' => $q, 'a' => $a );
+            }
+        }
+
+        return json_encode( $clean_data );
+    }
+}

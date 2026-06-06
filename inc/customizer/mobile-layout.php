@@ -43,11 +43,3 @@ add_action( 'customize_register', function( $wp_customize ) {
 
 } );
 
-/**
- * Sanitasi checkbox
- */
-if ( ! function_exists( 'cc_sanitize_checkbox' ) ) {
-    function cc_sanitize_checkbox( $checked ) {
-        return ( ( isset( $checked ) && true == $checked ) ? true : false );
-    }
-}

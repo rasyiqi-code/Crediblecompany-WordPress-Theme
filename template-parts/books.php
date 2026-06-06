@@ -5,12 +5,18 @@
  * @package CredibleCompany
  */
 
+// Keluar jika seksi dinonaktifkan di Customizer
+if ( ! cc_get( 'books_enable', true ) ) {
+    return;
+}
+
 // Ambil produk asli dari OwwCommerce
 if ( ! class_exists( '\OwwCommerce\Repositories\ProductRepository' ) ) {
     return; // Don't render the section if OwwCommerce is not active
 }
+$books_limit  = intval( cc_get( 'books_limit', 5 ) );
 $product_repo = new \OwwCommerce\Repositories\ProductRepository();
-$books = $product_repo->get_all( 5, 0, ['orderby' => 'newest'] );
+$books        = $product_repo->get_all( $books_limit, 0, ['orderby' => 'newest'] );
 ?>
 
 <section class="books section-divider-top section-divider-bottom" id="books">

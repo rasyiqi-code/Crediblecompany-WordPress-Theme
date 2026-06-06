@@ -72,10 +72,6 @@
                     <a href="<?php echo esc_url( $account_url ); ?>" aria-label="Akun" class="header-icon-link" style="color: inherit; text-decoration: none; padding: 0.5rem; display: flex; align-items: center; justify-content: center;">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                     </a>
-                <?php else : ?>
-                    <button type="button" aria-label="Akun">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                    </button>
                 <?php endif; ?>
             </div>
 

@@ -14,9 +14,16 @@
  * @package CredibleCompany
  */
 
+// Keluar jika seksi dinonaktifkan di Customizer
+if ( ! cc_get( 'testimonials_enable', true ) ) {
+    return;
+}
+
+$testi_limit = intval( cc_get( 'testimonials_limit', 6 ) );
+
 $testi_query = new WP_Query( array(
     'post_type'      => 'testimoni',
-    'posts_per_page' => 6,
+    'posts_per_page' => $testi_limit,
     'post_status'    => 'publish',
     'orderby'        => 'date',
     'order'          => 'DESC',

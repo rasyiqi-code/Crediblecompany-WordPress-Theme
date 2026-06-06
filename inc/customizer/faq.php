@@ -118,7 +118,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_setting( 'cc_faq_repeater_data', array(
         'default'           => $faq_defaults_json,
-        'sanitize_callback' => 'wp_kses_post', // JSON string basically tapi allow raw chars unless script
+        'sanitize_callback' => 'cc_sanitize_faq_json',
     ) );
 
     $wp_customize->add_control( new CC_FAQ_Repeater_Control( $wp_customize, 'cc_faq_repeater_data', array(
