@@ -12,6 +12,23 @@ add_action( 'customize_register', function( $wp_customize ) {
         'panel' => 'cc_homepage_panel',
     ) );
 
+    // Pilihan Layout CTA
+    $wp_customize->add_setting( 'cc_cta_layout', array(
+        'default'           => 'centered',
+        'sanitize_callback' => 'sanitize_key',
+    ) );
+    $wp_customize->add_control( 'cc_cta_layout', array(
+        'label'   => __( 'Pilih Layout CTA', 'crediblecompany' ),
+        'section' => 'cc_cta_section',
+        'type'    => 'select',
+        'choices' => array(
+            'centered'    => __( 'Centered (Teks di Tengah)', 'crediblecompany' ),
+            'split'       => __( 'Split (Kiri-Kanan)', 'crediblecompany' ),
+            'dark-banner' => __( 'Dark Banner (Tengah, Latar Gelap)', 'crediblecompany' ),
+            'red-banner'  => __( 'Red Banner (Split, Latar Merah)', 'crediblecompany' ),
+        ),
+    ) );
+
     // Judul CTA
     $wp_customize->add_setting( 'cc_cta_title', array(
         'default'           => 'Hubungi Marketing Kami',

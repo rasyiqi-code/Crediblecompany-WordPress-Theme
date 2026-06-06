@@ -80,19 +80,121 @@
  * ---------------------------------------------------------------------- */
 .cta {
     padding: 4rem 0;
+    transition: var(--transition);
+}
+
+/* --- Varian Centered (Default) --- */
+.cta-layout-centered {
     background: var(--brand-white);
     text-align: center;
 }
-
-.cta h2 {
-    font-size: 2rem;
+.cta-layout-centered h2 {
+    font-size: 2.25rem;
     font-weight: 800;
     color: var(--brand-red);
     margin-bottom: 0.75rem;
 }
-
-.cta p {
-    color: var(--brand-red);
-    font-weight: 600;
+.cta-layout-centered p {
+    color: var(--gray-600);
+    font-weight: 500;
     margin-bottom: 2rem;
+    font-size: 1.125rem;
+}
+
+/* --- Varian Split (Kiri-Kanan) --- */
+.cta-layout-split {
+    background: var(--brand-white);
+}
+.cta-layout-split .cta-split-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    text-align: left;
+}
+.cta-layout-split h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--brand-red);
+    margin-bottom: 0.5rem;
+}
+.cta-layout-split p {
+    color: var(--gray-600);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    margin: 0;
+}
+
+/* --- Varian Dark Banner (Tengah, Latar Gelap) --- */
+.cta-layout-dark-banner {
+    background: var(--brand-dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.cta-layout-dark-banner h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--brand-white);
+    margin-bottom: 0.75rem;
+}
+.cta-layout-dark-banner p {
+    color: var(--gray-300);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+}
+.cta-layout-dark-banner .btn {
+    background: var(--brand-white);
+    color: var(--brand-dark);
+    border-color: var(--brand-white);
+}
+.cta-layout-dark-banner .btn:hover {
+    background: var(--brand-red);
+    color: var(--brand-white);
+    border-color: var(--brand-red);
+}
+
+/* --- Varian Red Banner (Split, Latar Merah) --- */
+.cta-layout-red-banner {
+    background: var(--brand-red);
+}
+.cta-layout-red-banner .cta-split-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    text-align: left;
+}
+.cta-layout-red-banner h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--brand-white);
+    margin-bottom: 0.5rem;
+}
+.cta-layout-red-banner p {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 1.0625rem;
+    margin: 0;
+}
+.cta-layout-red-banner .btn {
+    background: var(--brand-white);
+    color: var(--brand-red);
+    border-color: var(--brand-white);
+}
+.cta-layout-red-banner .btn:hover {
+    background: var(--brand-dark);
+    color: var(--brand-white);
+    border-color: var(--brand-dark);
+}
+
+/* --- Responsive untuk Split & Red Banner --- */
+@media (max-width: 768px) {
+    .cta-layout-split .cta-split-wrapper,
+    .cta-layout-red-banner .cta-split-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
 }
