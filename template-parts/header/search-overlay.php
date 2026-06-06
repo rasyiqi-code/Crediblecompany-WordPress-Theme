@@ -14,7 +14,12 @@
     
     <!-- Konten Box Tengah -->
     <div class="search-overlay-content">
-        <h2 class="search-overlay-title"><?php esc_html_e( 'Cari di Credible Company', 'crediblecompany' ); ?></h2>
+        <h2 class="search-overlay-title">
+            <?php 
+            /* Menampilkan judul pencarian dinamis berdasarkan nama situs */
+            printf( esc_html__( 'Cari di %s', 'crediblecompany' ), esc_html( get_bloginfo( 'name' ) ) ); 
+            ?>
+        </h2>
         
         <form role="search" method="get" class="search-form-full" action="<?php echo esc_url( home_url( '/' ) ); ?>">
             <div class="search-input-wrapper-full">
@@ -195,7 +200,7 @@
 </style>
 
 <script>
-    // Skrip Interaktivitas Open/Close Search Layar Penuh
+    /* Skrip Interaktivitas Open/Close Search Layar Penuh */
     document.addEventListener('DOMContentLoaded', function() {
         var searchToggle  = document.getElementById('header-search-toggle');
         var searchOverlay = document.getElementById('header-search-overlay');
@@ -204,22 +209,22 @@
         if (searchToggle && searchOverlay) {
             var searchInput = searchOverlay.querySelector('input[type="search"]');
 
-            // Fungsi Buka Overlay
+            /* Fungsi Buka Overlay */
             function openSearch(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                // Tampilkan wadah kontainer secara flexbox
+                /* Tampilkan wadah kontainer secara flexbox */
                 searchOverlay.style.setProperty('display', 'flex', 'important');
                 
-                // Delay mikro agar transisi opacity opacity terpicu
+                /* Delay mikro agar transisi opacity opacity terpicu */
                 setTimeout(function() {
                     searchOverlay.classList.add('active');
                     if (searchInput) searchInput.focus();
                 }, 15);
             }
 
-            // Fungsi Tutup Overlay
+            /* Fungsi Tutup Overlay */
             function closeSearch(e) {
                 if (e) {
                     e.preventDefault();
@@ -228,7 +233,7 @@
                 
                 searchOverlay.classList.remove('active');
                 
-                // Sembunyikan display setelah efek fade-out opacity selesai (300ms)
+                /* Sembunyikan display setelah efek fade-out opacity selesai (300ms) */
                 setTimeout(function() {
                     if (!searchOverlay.classList.contains('active')) {
                         searchOverlay.style.setProperty('display', 'none', 'important');
@@ -236,13 +241,13 @@
                 }, 300);
             }
 
-            // Pemicu Klik
+            /* Pemicu Klik */
             searchToggle.addEventListener('click', openSearch);
             if (searchClose) {
                 searchClose.addEventListener('click', closeSearch);
             }
 
-            // Integrasi Tombol Keyboard ESC (Escape)
+            /* Integrasi Tombol Keyboard ESC (Escape) */
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
                     closeSearch(e);
