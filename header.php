@@ -16,7 +16,7 @@
     $header_bg     = cc_get( 'header_bg_color', '#c01314' );
     $header_text   = cc_get( 'header_text_color', '#ffffff' );
     $header_sticky = cc_get( 'header_sticky', true );
-    $header_style  = cc_get( 'header_style', 'style-classic' );
+    $header_style  = cc_get( 'header_style', 'classic' );
     ?>
     <style id="cc-header-customizer-inline-css">
         .site-header, 
@@ -24,7 +24,7 @@
         .site-header .site-logo,
         .site-header .header-icons,
         .desktop-nav {
-            <?php if ( $header_style === 'style-glass' ) : ?>
+            <?php if ( $header_style === 'glass' ) : ?>
             background-color: <?php echo esc_attr( cc_hex_to_rgba( $header_bg, 0.85 ) ); ?> !important;
             <?php else : ?>
             background-color: <?php echo esc_attr( $header_bg ); ?> !important;
@@ -49,7 +49,7 @@
             position: sticky !important;
             z-index: 2000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            <?php if ( $header_style === 'style-glass' ) : ?>
+            <?php if ( $header_style === 'glass' ) : ?>
             top: 1.25rem;
             <?php else : ?>
             top: 0;
@@ -57,7 +57,7 @@
         }
         /* Kompensasi Admin Bar WordPress untuk Sticky Header */
         .admin-bar .site-header {
-            <?php if ( $header_style === 'style-glass' ) : ?>
+            <?php if ( $header_style === 'glass' ) : ?>
             top: calc(32px + 1.25rem) !important;
             <?php else : ?>
             top: 32px !important;
@@ -65,12 +65,12 @@
         }
         @media screen and (max-width: 782px) {
             .site-header {
-                <?php if ( $header_style === 'style-glass' ) : ?>
+                <?php if ( $header_style === 'glass' ) : ?>
                 top: 0.75rem;
                 <?php endif; ?>
             }
             .admin-bar .site-header {
-                <?php if ( $header_style === 'style-glass' ) : ?>
+                <?php if ( $header_style === 'glass' ) : ?>
                 top: calc(46px + 0.75rem) !important;
                 <?php else : ?>
                 top: 46px !important;

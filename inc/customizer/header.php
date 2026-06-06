@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Pilihan Gaya Header
     $wp_customize->add_setting( 'cc_header_style', array(
-        'default'           => 'style-classic',
+        'default'           => 'classic',
         'sanitize_callback' => 'sanitize_key',
     ) );
     $wp_customize->add_control( 'cc_header_style', array(
@@ -23,9 +23,9 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section'  => 'cc_header_section',
         'type'     => 'radio',
         'choices'  => array(
-            'style-classic'  => __( 'Klasik (Default)', 'crediblecompany' ),
-            'style-centered' => __( 'Logo Terpusat & Stacked Menu', 'crediblecompany' ),
-            'style-glass'    => __( 'Glassmorphism Floating', 'crediblecompany' ),
+            'classic'  => __( 'Klasik (Default)', 'crediblecompany' ),
+            'centered' => __( 'Logo Terpusat & Stacked Menu', 'crediblecompany' ),
+            'glass'    => __( 'Glassmorphism Floating', 'crediblecompany' ),
         ),
     ) );
 
