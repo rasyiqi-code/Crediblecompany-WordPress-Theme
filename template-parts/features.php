@@ -21,12 +21,24 @@ $icons = array(
     <div class="container">
         <h2><?php cc_e( 'features_main_title', 'Mengapa Memilih Kami?' ); ?></h2>
 
-        <?php $scroll_class = cc_get( 'mobile_scroll_features', true ) ? 'has-horizontal-scroll' : ''; ?>
+        <?php
+        $feat_defaults = array(
+            array( 'Profesional', 'Ditangani langsung oleh tim ahli yang berkompeten di bidang penerbitan.' ),
+            array( 'Harga Murah', 'Biaya terjangkau dengan kualitas maksimal. Ada berbagai diskon menarik.' ),
+            array( 'Cepat', 'Proses cetak dan pengerjaan tepat waktu sesuai dengan target.' ),
+            array( 'Free Ongkir', 'Gratis ongkir untuk pengiriman ke beberapa wilayah tertentu.' ),
+            array( 'Proses Bergaransi', 'Garansi cetak ulang tanpa tambahan biaya bila terjadi cacat produk.' ),
+            array( 'Distribusi Luas', 'Buku kamu akan disebarkan ke berbagai channel marketplace nasional.' ),
+        );
+
+        $scroll_class = cc_get( 'mobile_scroll_features', true ) ? 'has-horizontal-scroll' : ''; 
+        ?>
         <div class="features-grid <?php echo esc_attr( $scroll_class ); ?>">
             <?php for ( $i = 1; $i <= 6; $i++ ) :
-                $title = cc_get( "feat_title_{$i}", '' );
-                $desc  = cc_get( "feat_desc_{$i}", '' );
-                $icon  = isset( $icons[ $i - 1 ] ) ? $icons[ $i - 1 ] : '';
+                $idx   = $i - 1;
+                $title = cc_get( "feat_title_{$i}", $feat_defaults[ $idx ][0] );
+                $desc  = cc_get( "feat_desc_{$i}", $feat_defaults[ $idx ][1] );
+                $icon  = isset( $icons[ $idx ] ) ? $icons[ $idx ] : '';
             ?>
                 <div class="feature-item">
                     <div class="feature-icon">

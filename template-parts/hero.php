@@ -84,7 +84,11 @@ $color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                     $label  = cc_get( "stat_label_{$i}", '' );
                     if ( empty( $number ) && empty( $label ) ) {
                         // Data stat default sebagai fallback jika Customizer kosong
-                        $defaults = [ 1 => ['1000+', 'Courses to choose from'], 2 => ['5000+', 'Students Trained'], 3 => ['200+', 'Professional Trainers'] ];
+                        $defaults = [ 
+                            1 => ['3,000+', 'Judul Buku'], 
+                            2 => ['200,000+', 'Eksemplar Cetak'], 
+                            3 => ['2,500+', 'Penulis Puas'] 
+                        ];
                         $number = $defaults[$i][0];
                         $label = $defaults[$i][1];
                     }
