@@ -172,6 +172,32 @@
                 <?php endif; ?>
             }
         }
+
+        /* Aturan Khusus Mobile: Jika tipe menu Klasik / Terpusat dan sticky aktif */
+        <?php if ( $header_style !== 'glass' ) : ?>
+        @media (max-width: 1024px) {
+            .site-header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 2000 !important;
+            }
+            .admin-bar .site-header {
+                top: 32px !important;
+            }
+            @media screen and (max-width: 782px) {
+                .admin-bar .site-header {
+                    top: 46px !important;
+                }
+            }
+            /* Navigasi horizontal mobile (.primary-nav) di bawahnya tidak sticky */
+            .primary-nav {
+                position: relative !important;
+                top: auto !important;
+                z-index: 1000 !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+            }
+        }
+        <?php endif; ?>
         <?php endif; ?>
     </style>
 </head>
