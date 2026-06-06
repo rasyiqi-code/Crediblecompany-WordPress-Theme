@@ -13,10 +13,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
     <?php
+    $hero_variant        = cc_get( 'hero_variant', 'default' );
     $header_bg           = cc_get( 'header_bg_color', '#c01314' );
     $header_text         = cc_get( 'header_text_color', '#ffffff' );
     $header_sticky       = cc_get( 'header_sticky', true );
     $header_style        = cc_get( 'header_style', 'classic' );
+    
+    // Jika menggunakan varian Hero V3 (Split Glass), paksa header ke gaya glassmorphism
+    if ( 'v3' === $hero_variant ) {
+        $header_style = 'glass';
+    }
+    
     $logo_width          = cc_get( 'header_logo_width', 150 );
     $header_padding      = cc_get( 'header_padding', 12 );
     $menu_font_size      = cc_get( 'header_menu_font_size', 14 );
@@ -238,7 +245,7 @@
     </header>
 
     <!-- Navigasi Mobile (horizontal scroll, sticky, hidden di desktop via CSS) -->
-    <nav class="primary-nav" aria-label="<?php esc_attr_e( 'Navigasi Utama', 'crediblecompany' ); ?>">
+    <nav class="primary-nav <?php echo ( 'glass' === $header_style ) ? 'header-style-glass' : ''; ?>" aria-label="<?php esc_attr_e( 'Navigasi Utama', 'crediblecompany' ); ?>">
         <?php
         if ( has_nav_menu( 'primary_navigation' ) ) {
             wp_nav_menu( array(

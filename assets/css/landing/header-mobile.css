@@ -171,4 +171,64 @@
     .primary-nav a::after {
         display: none;
     }
+
+    /* ----------------------------------------------------------------------
+     * 4. Glassmorphism Mobile Override
+     * ---------------------------------------------------------------------- */
+    .site-header.header-style-glass {
+        background-color: rgba(255, 255, 255, 0.45) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        margin: 0.75rem auto 0 auto !important;
+        width: calc(100% - 1.5rem) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08) !important;
+        overflow: hidden;
+    }
+
+    .site-header.header-style-glass .container,
+    .site-header.header-style-glass .site-logo,
+    .site-header.header-style-glass .header-icons {
+        background-color: transparent !important;
+    }
+
+    .site-header.header-style-glass .site-logo a,
+    .site-header.header-style-glass .header-icons button,
+    .site-header.header-style-glass .header-icons a {
+        color: #1e293b !important;
+    }
+
+    .site-header.header-style-glass .header-icons svg {
+        stroke: #1e293b !important;
+    }
+
+    /* Primary Nav (Horizontal Scroll) Glassmorphism */
+    .primary-nav.header-style-glass {
+        background: rgba(255, 255, 255, 0.45) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-top: none !important;
+        margin: 0 auto 0 auto !important;
+        width: calc(100% - 1.5rem) !important;
+        border-radius: 0 0 20px 20px !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05) !important;
+        padding: 0 16px;
+    }
+
+    .primary-nav.header-style-glass a {
+        background: rgba(255, 255, 255, 0.5) !important;
+        color: #475569 !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    }
+
+    .primary-nav.header-style-glass a:active,
+    .primary-nav.header-style-glass a:hover,
+    .primary-nav.header-style-glass li.current-menu-item a {
+        background: var(--brand-blue, #1d4ed8) !important;
+        color: #ffffff !important;
+        border-color: var(--brand-blue, #1d4ed8) !important;
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25) !important;
+    }
 }
