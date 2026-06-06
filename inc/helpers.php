@@ -35,8 +35,15 @@ function cc_e( $key, $default = '' ) {
  * @return string
  */
 function cc_img( $key, $default = '' ) {
-    $value = cc_get( $key, $default );
-    return esc_url( $value );
+    // Ambil nilai theme mod tanpa default — hindari WordPress memanggil
+    // sprintf() pada string default yang mungkin berisi karakter % (data URI).
+    $value = get_theme_mod( 'cc_' . $key, '' );
+
+    if ( $value ) {
+        return esc_url( $value ); // URL nyata: aman di-escape
+    }
+
+    return $default; // Fallback (data URI, empty string) dikembalikan apa adanya
 }
 
 /**
@@ -57,7 +64,10 @@ function cc_placeholder_svg( $width = 600, $height = 400, $bg = 'e2e8f0', $color
          . 'font-family="system-ui,sans-serif" font-size="18" fill="#' . $color . '">' . esc_html( $text ) . '</text>'
          . '</svg>';
 
-    return 'data:image/svg+xml;charset=UTF-8,' . rawurlencode( $svg );
+    // Gunakan base64 — hanya menghasilkan A-Z, a-z, 0-9, +, /, =
+    // Tidak ada karakter % sehingga aman ketika WordPress memanggil sprintf()
+    // pada string default di get_theme_mod().
+    return 'data:image/svg+xml;base64,' . base64_encode( $svg );
 }
 
 
