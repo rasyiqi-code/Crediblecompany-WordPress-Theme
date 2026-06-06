@@ -9,7 +9,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     $wp_customize->add_section( 'cc_header_section', array(
         'title'    => __( 'Pengaturan Header (Navbar)', 'crediblecompany' ),
-        'panel'    => 'cc_global_panel',
+        'panel'    => 'cc_homepage_panel',
         'priority' => 10,
     ) );
 
