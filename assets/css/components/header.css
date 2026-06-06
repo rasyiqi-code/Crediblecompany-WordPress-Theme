@@ -262,57 +262,207 @@
     }
 }
 
-/* 2. Gaya Glassmorphism Floating */
+/* 2. Gaya Glassmorphism Floating Compact */
 @media (min-width: 769px) {
     .header-style-glass {
-        margin: 1.25rem auto 0 auto;
-        width: calc(100% - 2.5rem);
-        max-width: 1200px;
-        border-radius: 99px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        transition: all 0.3s ease;
+        margin: 1.25rem auto 0 auto !important;
+        width: calc(100% - 2.5rem) !important;
+        max-width: 1100px !important;
+        border-radius: 99px !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+        background-color: rgba(15, 23, 42, 0.85) !important; /* Gelap transparan premium */
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        transition: all 0.3s ease !important;
     }
 
     .header-style-glass .container {
-        padding-left: 1.75rem;
-        padding-right: 1.75rem;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        padding-left: 1.5rem !important;
+        padding-right: 0.5rem !important;
+        height: auto !important;
+        min-height: unset !important;
+    }
+
+    .header-style-glass .site-logo a {
+        color: var(--brand-yellow, #EAB308) !important; /* Warna emas */
+        font-weight: 900 !important;
+    }
+
+    .header-style-glass .desktop-nav a {
+        font-size: 0.8rem !important;
+        text-transform: uppercase !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+
+    .header-style-glass .desktop-nav a::after {
+        background: var(--brand-yellow, #EAB308) !important;
+    }
+
+    .header-style-glass .desktop-nav a:hover {
+        color: var(--brand-yellow, #EAB308) !important;
+    }
+
+    /* Tombol Aksi Kanan Bulat Emas */
+    .header-style-glass .header-icons {
+        gap: 0.5rem !important;
+    }
+
+    .header-style-glass .header-icons a,
+    .header-style-glass .header-icons button {
+        background-color: var(--brand-yellow, #EAB308) !important;
+        color: #0f172a !important;
+        border-radius: 50% !important;
+        width: 38px !important;
+        height: 38px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .header-style-glass .header-icons a:hover,
+    .header-style-glass .header-icons button:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 6px 16px rgba(234, 179, 8, 0.4) !important;
+    }
+
+    .header-style-glass .header-icons svg {
+        stroke: #0f172a !important;
+        width: 16px !important;
+        height: 16px !important;
     }
 }
 
 @media (max-width: 768px) {
     .header-style-glass {
-        margin: 0.75rem auto 0 auto;
-        width: calc(100% - 1.5rem);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        margin: 0.75rem auto 0 auto !important;
+        width: calc(100% - 1.5rem) !important;
+        border-radius: 99px !important; /* Melengkung penuh */
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+        background-color: rgba(15, 23, 42, 0.85) !important; /* Gelap transparan */
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        position: relative !important;
+        z-index: 2000 !important;
     }
 
     .header-style-glass .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-top: 0.4rem !important;
+        padding-bottom: 0.4rem !important;
+        padding-left: 1.25rem !important;
+        padding-right: 0.5rem !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        background-color: transparent !important;
+        height: auto !important;
+        min-height: unset !important;
     }
 
+    .header-style-glass .site-logo {
+        background-color: transparent !important;
+        padding: 0 !important;
+        height: auto !important;
+        margin: 0 !important;
+    }
+
+    .header-style-glass .site-logo a {
+        color: var(--brand-yellow, #EAB308) !important;
+        font-size: 1.15rem !important;
+        font-weight: 900 !important;
+    }
+
+    .header-style-glass .site-logo img {
+        height: 24px !important;
+        width: auto !important;
+    }
+
+    /* Paksa Desktop Nav Tampil Horizontal di Mobile */
     .header-style-glass .desktop-nav {
-        border-radius: 0 0 20px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-top: none;
+        display: block !important;
+        position: static !important;
+        width: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
     }
 
-    /* Memastikan teks, menu-toggle, dan ikon di header glassmorphism mobile selalu terbaca (kontras gelap) */
-    .header-style-glass .site-logo a,
+    .header-style-glass .desktop-nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 0.75rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .header-style-glass .desktop-nav li {
+        display: inline-block !important;
+    }
+
+    .header-style-glass .desktop-nav a {
+        font-size: 0.7rem !important;
+        text-transform: uppercase !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        color: rgba(255, 255, 255, 0.75) !important;
+        padding: 0.25rem 0.35rem !important;
+        border-bottom: none !important;
+    }
+
+    .header-style-glass .desktop-nav a:hover,
+    .header-style-glass .desktop-nav a:active {
+        color: var(--brand-yellow, #EAB308) !important;
+    }
+
+    /* Tombol Aksi Kanan Bulat Emas di Mobile */
+    .header-style-glass .header-icons {
+        display: flex !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        height: auto !important;
+        margin: 0 !important;
+        gap: 0.35rem !important;
+    }
+
     .header-style-glass .header-icons a,
-    .header-style-glass .header-icons button,
-    .header-style-glass .menu-toggle {
-        color: #1e293b !important;
+    .header-style-glass .header-icons button {
+        background-color: var(--brand-yellow, #EAB308) !important;
+        color: #0f172a !important;
+        border-radius: 50% !important;
+        width: 32px !important;
+        height: 32px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: 0 4px 10px rgba(234, 179, 8, 0.2) !important;
     }
 
     .header-style-glass .header-icons svg {
-        stroke: #1e293b !important;
+        stroke: #0f172a !important;
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* Sembunyikan menu toggle dan primary nav scroll bar di mobile untuk Glassmorphism */
+    .header-style-glass .menu-toggle,
+    .site-header.header-style-glass ~ .primary-nav.header-style-glass,
+    .primary-nav.header-style-glass {
+        display: none !important;
     }
 }
