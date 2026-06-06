@@ -737,6 +737,14 @@ img.hero-v3-bg-image {
     .hero-v3-content-wrapper {
         order: 1;
     }
+
+    .hero-v3-glass-card {
+        padding: 2rem 1.5rem;
+        background: rgba(255, 255, 255, 0.85); /* Lebih solid di mobile agar keterbacaan teks maksimal */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+    }
     
     .hero-v3-title {
         font-size: 2.25rem;
@@ -744,10 +752,16 @@ img.hero-v3-bg-image {
     
     .hero-v3-buttons {
         flex-direction: column;
+        gap: 0.75rem;
     }
     
     .hero-v3-stats {
         flex-direction: column;
         gap: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .floating-shape-v3 {
+        display: none; /* Sembunyikan ornamen melayang di mobile agar tidak menyebabkan overflow horizontal */
     }
 }
