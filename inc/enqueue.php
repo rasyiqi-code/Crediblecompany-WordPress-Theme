@@ -110,6 +110,17 @@ add_action( 'wp_enqueue_scripts', function () {
         );
     }
 
+    // Submit Testimoni Validator (hanya di template Submit Testimoni)
+    if ( is_page_template( 'page-submit-testimoni.php' ) ) {
+        wp_enqueue_script(
+            'cc-submit-testimoni',
+            $theme_uri . '/assets/js/modules/submit-testimoni.js',
+            array(),
+            $theme_version,
+            true
+        );
+    }
+
     // Load More (arsip blog & testimoni)
     if ( is_home() || is_archive() || is_singular( 'testimoni' ) ) {
         wp_enqueue_script(
