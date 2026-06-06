@@ -185,3 +185,41 @@
     padding: 0.75rem 1.25rem 1.25rem;
     margin-top: auto;
 }
+
+/* --- Card Poster / Image Layout --- */
+.price-card.has-poster-image {
+    overflow: hidden;
+    position: relative;
+    background: var(--brand-white);
+}
+
+.price-card.has-poster-image .price-card-image-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--gray-100);
+}
+
+.price-card.has-poster-image .price-card-poster {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition);
+}
+
+.price-card.has-poster-image:hover .price-card-poster {
+    transform: scale(1.03);
+}
+
+/* Memposisikan badge di dalam poster agar tidak terpotong */
+.price-card.has-poster-image .price-card-badge {
+    top: 12px;
+    right: 12px;
+}
+
+/* Padding area action untuk poster card */
+.price-card.has-poster-image .price-card-action {
+    padding: 1rem 1.25rem 1.25rem;
+    background: var(--brand-white);
+    border-top: 1px solid var(--gray-100);
+}

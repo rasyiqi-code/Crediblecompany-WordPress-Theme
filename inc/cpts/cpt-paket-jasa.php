@@ -52,6 +52,14 @@ add_action( 'init', function () {
 /* --------------------------------------------------------------------------
  * 2. Meta Box — Detail Paket
  * ---------------------------------------------------------------------- */
+// Enqueue script media WordPress di halaman editor admin post type paket_jasa
+add_action( 'admin_enqueue_scripts', function ( $hook ) {
+    global $post;
+    if ( ( 'post.php' === $hook || 'post-new.php' === $hook ) && isset( $post->post_type ) && 'paket_jasa' === $post->post_type ) {
+        wp_enqueue_media();
+    }
+} );
+
 add_action( 'add_meta_boxes', function () {
     add_meta_box(
         'cc_paket_detail',
@@ -72,14 +80,15 @@ function cc_render_paket_meta_box( $post ) {
     wp_nonce_field( 'cc_paket_save', 'cc_paket_nonce' );
 
     // Ambil data tersimpan
-    $badge     = get_post_meta( $post->ID, '_cc_badge', true );
-    $price     = get_post_meta( $post->ID, '_cc_price', true );
-    $eksemplar = get_post_meta( $post->ID, '_cc_eksemplar', true );
-    $ukuran    = get_post_meta( $post->ID, '_cc_ukuran', true );
-    $catatan   = get_post_meta( $post->ID, '_cc_catatan', true );
-    $btn_text  = get_post_meta( $post->ID, '_cc_btn_text', true ) ?: 'Ambil Promo';
-    $btn_url   = get_post_meta( $post->ID, '_cc_btn_url', true ) ?: '#';
-    $features  = get_post_meta( $post->ID, '_cc_features', true );
+    $badge       = get_post_meta( $post->ID, '_cc_badge', true );
+    $price       = get_post_meta( $post->ID, '_cc_price', true );
+    $eksemplar   = get_post_meta( $post->ID, '_cc_eksemplar', true );
+    $ukuran      = get_post_meta( $post->ID, '_cc_ukuran', true );
+    $catatan     = get_post_meta( $post->ID, '_cc_catatan', true );
+    $btn_text    = get_post_meta( $post->ID, '_cc_btn_text', true ) ?: 'Ambil Promo';
+    $btn_url     = get_post_meta( $post->ID, '_cc_btn_url', true ) ?: '#';
+    $features    = get_post_meta( $post->ID, '_cc_features', true );
+    $paket_image = get_post_meta( $post->ID, '_cc_paket_image', true );
     ?>
     <style>
         .cc-meta-table { width: 100%; border-collapse: collapse; }
@@ -94,6 +103,21 @@ function cc_render_paket_meta_box( $post ) {
     </style>
 
     <table class="cc-meta-table">
+        <!-- Opsi Gambar Poster -->
+        <tr><td colspan="2"><div class="cc-meta-separator">🖼️ Opsi Gambar Poster (Alternatif Input Teks)</div></td></tr>
+        <tr>
+            <th><label for="cc_paket_image"><?php esc_html_e( 'Gambar Paket / Poster', 'crediblecompany' ); ?></label></th>
+            <td>
+                <input type="text" id="cc_paket_image" name="cc_paket_image" value="<?php echo esc_url( $paket_image ); ?>" style="width: 70%;" placeholder="https://example.com/image.jpg">
+                <button type="button" class="button cc-upload-image-btn" data-target="cc_paket_image"><?php esc_html_e( 'Pilih Gambar', 'crediblecompany' ); ?></button>
+                <button type="button" class="button cc-clear-image-btn" data-target="cc_paket_image"><?php esc_html_e( 'Hapus', 'crediblecompany' ); ?></button>
+                <div style="margin-top: 10px;">
+                    <img id="cc_paket_image_preview" src="<?php echo esc_url( $paket_image ); ?>" style="max-width: 150px; max-height: 200px; display: <?php echo $paket_image ? 'block' : 'none'; ?>; border: 1px solid #ccc; padding: 4px;" />
+                </div>
+                <p class="cc-meta-help">Upload gambar flyer/poster paket jasa. Jika diisi, kartu paket jasa di website akan menampilkan gambar ini secara penuh (mengabaikan teks harga & fasilitas).</p>
+            </td>
+        </tr>
+
         <!-- Info Utama -->
         <tr><td colspan="2"><div class="cc-meta-separator">📋 Informasi Utama</div></td></tr>
         <tr>
@@ -155,6 +179,34 @@ function cc_render_paket_meta_box( $post ) {
             </td>
         </tr>
     </table>
+
+    <script>
+    jQuery(document).ready(function($) {
+        $('.cc-upload-image-btn').click(function(e) {
+            e.preventDefault();
+            var btn = $(this);
+            var target_id = btn.data('target');
+            var image = wp.media({ 
+                title: 'Upload Gambar Paket',
+                multiple: false
+            }).open()
+            .on('select', function(e){
+                var uploaded_image = image.state().get('selection').first();
+                var image_url = uploaded_image.toJSON().url;
+                $('#' + target_id).val(image_url);
+                $('#' + target_id + '_preview').attr('src', image_url).show();
+            });
+        });
+
+        $('.cc-clear-image-btn').click(function(e) {
+            e.preventDefault();
+            var btn = $(this);
+            var target_id = btn.data('target');
+            $('#' + target_id).val('');
+            $('#' + target_id + '_preview').attr('src', '').hide();
+        });
+    });
+    </script>
     <?php
 }
 
@@ -184,6 +236,11 @@ add_action( 'save_post_paket_jasa', function ( $post_id ) {
     // URL tombol
     if ( isset( $_POST['cc_btn_url'] ) ) {
         update_post_meta( $post_id, '_cc_btn_url', esc_url_raw( $_POST['cc_btn_url'] ) );
+    }
+
+    // Gambar paket / poster
+    if ( isset( $_POST['cc_paket_image'] ) ) {
+        update_post_meta( $post_id, '_cc_paket_image', esc_url_raw( $_POST['cc_paket_image'] ) );
     }
 
     // Fasilitas (textarea)
