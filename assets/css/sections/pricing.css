@@ -17,10 +17,15 @@
     margin-bottom: 0.5rem;
 }
 
-.pricing>.container>p {
-    color: var(--gray-500);
-    margin-bottom: 3rem;
+.pricing-header {
+    margin-bottom: var(--cc-pricing-header-margin-bottom, 3rem);
 }
+
+.pricing-header p {
+    color: var(--gray-500);
+    margin-bottom: 0;
+}
+
 
 .pricing-grid {
     display: grid;

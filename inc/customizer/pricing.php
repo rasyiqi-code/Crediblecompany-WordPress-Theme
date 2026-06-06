@@ -50,4 +50,36 @@ add_action( 'customize_register', function( $wp_customize ) {
         ),
     ) );
 
+    // Jarak antara judul/deskripsi section dengan card (margin-bottom)
+    $wp_customize->add_setting( 'cc_pricing_header_margin_bottom', array(
+        'default'           => 48,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_pricing_header_margin_bottom', array(
+        'label'       => __( 'Jarak Antara Judul & Card (px)', 'crediblecompany' ),
+        'description' => __( 'Mengatur jarak (margin-bottom) antara judul/deskripsi dengan kartu paket jasa.', 'crediblecompany' ),
+        'section'     => 'cc_pricing_section',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 8,
+            'max'  => 120,
+            'step' => 4,
+        ),
+    ) );
+
 } );
+
+/**
+ * Suntikkan Variabel CSS Dinamis untuk Pricing Section ke Header.
+ */
+add_action( 'wp_head', function() {
+    $margin_bottom = cc_get( 'pricing_header_margin_bottom', 48 );
+    ?>
+    <style type="text/css" id="cc-pricing-dynamic-css">
+        :root {
+            --cc-pricing-header-margin-bottom: <?php echo esc_attr( $margin_bottom ) . 'px'; ?>;
+        }
+    </style>
+    <?php
+}, 100 );
+
