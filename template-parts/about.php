@@ -19,7 +19,7 @@ $about_image = cc_img( 'about_image', cc_placeholder_svg( 600, 400, 'e2e8f0', '6
     <div class="container">
         <div class="about-block">
             <?php if ( ! empty( $about_image ) ) : ?>
-                <img src="<?php echo esc_url( $about_image ); ?>" alt="<?php esc_attr_e( 'Tentang Kami', 'crediblecompany' ); ?>">
+                <img src="<?php echo $about_image; ?>" alt="<?php esc_attr_e( 'Tentang Kami', 'crediblecompany' ); ?>">
             <?php endif; ?>
             <p><?php echo esc_html( $about_desc ); ?></p>
         </div>
