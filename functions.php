@@ -17,14 +17,14 @@ require_once get_template_directory() . '/inc/post-views.php';
 require_once get_template_directory() . '/inc/ajax-loadmore.php';
 require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/customizer.php';
-require_once get_template_directory() . '/inc/cpt-paket-jasa.php';
-require_once get_template_directory() . '/inc/cpt-testimoni.php';
-require_once get_template_directory() . '/inc/cpt-marketing.php';
+require_once get_template_directory() . '/inc/cpts/cpt-paket-jasa.php';
+require_once get_template_directory() . '/inc/cpts/cpt-testimoni.php';
+require_once get_template_directory() . '/inc/cpts/cpt-marketing.php';
 require_once get_template_directory() . '/inc/custom-comments.php';
 require_once get_template_directory() . '/inc/toc-generator.php';
 require_once get_template_directory() . '/inc/dynamic-wa.php';
-require_once get_template_directory() . '/inc/performance-optimizer.php';
-require_once get_template_directory() . '/inc/security-optimizer.php';
+require_once get_template_directory() . '/inc/optimizers/performance-optimizer.php';
+require_once get_template_directory() . '/inc/optimizers/security-optimizer.php';
 
 /* --------------------------------------------------------------------------
  * 2. Setup Tema
@@ -113,7 +113,7 @@ add_action( 'pre_get_posts', function ( $query ) {
 } );
 
 require_once get_template_directory() . '/inc/breadcrumbs.php';
-require_once get_template_directory() . '/inc/seo-optimizer.php';
+require_once get_template_directory() . '/inc/optimizers/seo-optimizer.php';
 
 /* --------------------------------------------------------------------------
  * 2. Setup Tema

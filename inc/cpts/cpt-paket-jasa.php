@@ -223,4 +223,4 @@ add_action( 'manage_paket_jasa_posts_custom_column', function ( $column, $post_i
  * 5. Seed Data — Dipindahkan ke file terpisah untuk modularisasi.
  * Lihat: inc/seed-paket-jasa.php
  * ---------------------------------------------------------------------- */
-require_once get_template_directory() . '/inc/seed-paket-jasa.php';
+require_once __DIR__ . '/seed-paket-jasa.php';
