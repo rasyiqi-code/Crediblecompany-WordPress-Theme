@@ -6,7 +6,7 @@
 
 .hero-v3-section {
     background-color: var(--brand-white);
-    padding: var(--cc-hero-padding-top) 0 0;
+    padding: var(--cc-hero-v3-padding-top) 0 var(--cc-hero-v3-padding-bottom);
     position: relative;
     overflow: hidden;
 }
@@ -92,10 +92,10 @@
 }
 
 .hero-v3-title {
-    font-size: calc(var(--cc-hero-title-size) + 1rem);
+    font-size: var(--cc-hero-v3-title-size);
     font-weight: var(--cc-hero-title-weight);
     line-height: 1.1;
-    margin-bottom: var(--cc-hero-title-margin-bottom);
+    margin-bottom: var(--cc-hero-v3-title-margin-bottom);
     color: #0f172a;
     letter-spacing: -2px;
 }
@@ -108,7 +108,7 @@
 }
 
 .hero-v3-desc {
-    font-size: calc(var(--cc-hero-desc-size) + 0.125rem);
+    font-size: var(--cc-hero-v3-desc-size);
     line-height: 1.65;
     color: var(--gray-500);
     max-width: 650px;

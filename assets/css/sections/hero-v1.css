@@ -4,6 +4,10 @@
  * @package CredibleCompany
  * ========================================================================== */
 
+.hero-section {
+    padding: var(--cc-hero-v1-padding-top) 0 var(--cc-hero-v1-padding-bottom);
+}
+
 .hero-container {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -20,10 +24,10 @@
 }
 
 .hero-title {
-    font-size: var(--cc-hero-title-size);
+    font-size: var(--cc-hero-v1-title-size);
     font-weight: var(--cc-hero-title-weight);
     line-height: 1.15;
-    margin-bottom: var(--cc-hero-title-margin-bottom);
+    margin-bottom: var(--cc-hero-v1-title-margin-bottom);
     color: var(--brand-dark);
 }
 
@@ -33,6 +37,7 @@
     color: var(--brand-dark);
 }
 
+/* Garis aksen di bawah satu kata spesifik */
 .hero-title .highlight-text::after {
     content: '';
     position: absolute;
@@ -41,12 +46,13 @@
     width: 100%;
     height: 8px;
     background-color: #FACC15;
+    /* Kuning aksen */
     z-index: -1;
     border-radius: 4px;
 }
 
 .hero-desc {
-    font-size: var(--cc-hero-desc-size);
+    font-size: var(--cc-hero-v1-desc-size);
     line-height: 1.6;
     color: var(--gray-500);
     margin-bottom: 2.5rem;

@@ -5,7 +5,7 @@
  * ========================================================================== */
 
 .hero-v2-section {
-    padding: var(--cc-hero-padding-top) 0 var(--cc-hero-padding-bottom);
+    padding: var(--cc-hero-v2-padding-top) 0 var(--cc-hero-v2-padding-bottom);
     background-color: var(--brand-white);
 }
 
@@ -71,16 +71,16 @@
 }
 
 .hero-v2-title {
-    font-size: calc(var(--cc-hero-title-size) + 0.5rem);
+    font-size: var(--cc-hero-v2-title-size);
     font-weight: var(--cc-hero-title-weight);
     line-height: 1.1;
-    margin-bottom: var(--cc-hero-title-margin-bottom);
+    margin-bottom: var(--cc-hero-v2-title-margin-bottom);
     color: var(--brand-dark);
     letter-spacing: -1px;
 }
 
 .hero-v2-desc {
-    font-size: calc(var(--cc-hero-desc-size) + 0.125rem);
+    font-size: var(--cc-hero-v2-desc-size);
     line-height: 1.65;
     color: var(--gray-500);
     margin-bottom: 3rem;

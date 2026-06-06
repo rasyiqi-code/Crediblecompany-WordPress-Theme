@@ -8,7 +8,6 @@
 .hero-section {
     background-color: var(--brand-white);
     color: var(--brand-dark);
-    padding: var(--cc-hero-padding-top) 0 var(--cc-hero-padding-bottom);
     position: relative;
     overflow: hidden;
 }
