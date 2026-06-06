@@ -8,7 +8,7 @@
 
 $hero_title = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
 $hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
-$hero_image      = cc_img( 'hero_image', 'https://via.placeholder.com/500x400.png/c01314/fff?text=Lorem+Ipsum' );
+$hero_image      = cc_img( 'hero_image', cc_placeholder_svg( 500, 400, 'c01314', 'ffffff', 'Hero Image' ) );
 $hero_ornament_1 = cc_get( 'hero_ornament_1', '📚' );
 $hero_ornament_2 = cc_get( 'hero_ornament_2', '🎓' );
 

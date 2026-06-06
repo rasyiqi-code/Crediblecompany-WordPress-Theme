@@ -39,6 +39,27 @@ function cc_img( $key, $default = '' ) {
     return esc_url( $value );
 }
 
+/**
+ * Hasilkan URL placeholder gambar berbasis SVG inline (data URI).
+ * Tidak membutuhkan koneksi internet — aman untuk environment lokal/staging.
+ *
+ * @param int    $width  Lebar gambar placeholder dalam pixel.
+ * @param int    $height Tinggi gambar placeholder dalam pixel.
+ * @param string $bg     Warna latar (hex tanpa #, default: e2e8f0).
+ * @param string $color  Warna teks (hex tanpa #, default: 94a3b8).
+ * @param string $text   Teks label placeholder.
+ * @return string Data URI SVG yang bisa dipakai langsung di atribut src.
+ */
+function cc_placeholder_svg( $width = 600, $height = 400, $bg = 'e2e8f0', $color = '94a3b8', $text = 'Placeholder' ) {
+    $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' . $width . '" height="' . $height . '" viewBox="0 0 ' . $width . ' ' . $height . '">'
+         . '<rect width="100%" height="100%" fill="#' . $bg . '"/>'
+         . '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" '
+         . 'font-family="system-ui,sans-serif" font-size="18" fill="#' . $color . '">' . esc_html( $text ) . '</text>'
+         . '</svg>';
+
+    return 'data:image/svg+xml;charset=UTF-8,' . rawurlencode( $svg );
+}
+
 
 /**
  * --------------------------------------------------------------------------

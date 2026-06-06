@@ -17,7 +17,7 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
             <?php if ( has_post_thumbnail() ) : ?>
                 <?php the_post_thumbnail( 'large', array( 'alt' => get_the_title() ) ); ?>
             <?php else : ?>
-                <img src="https://via.placeholder.com/800x600/6366f1/ffffff?text=Featured+Article" alt="<?php the_title_attribute(); ?>">
+                <img src="<?php echo cc_placeholder_svg( 800, 600, '6366f1', 'ffffff', 'Featured Article' ); ?>" alt="<?php the_title_attribute(); ?>">
             <?php endif; ?>
         </div>
         <div class="featured-content">
@@ -39,7 +39,7 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
             <?php if ( has_post_thumbnail() ) : ?>
                 <?php the_post_thumbnail( 'medium', array( 'alt' => get_the_title() ) ); ?>
             <?php else : ?>
-                <img src="https://via.placeholder.com/600x400/eaeced/9ca3af?text=No+Image" alt="<?php the_title_attribute(); ?>">
+                <img src="<?php echo cc_placeholder_svg( 600, 400, 'eaeced', '9ca3af', 'No Image' ); ?>" alt="<?php the_title_attribute(); ?>">
             <?php endif; ?>
             
             <span class="blog-category-label"><?php echo $cat_name; ?></span>

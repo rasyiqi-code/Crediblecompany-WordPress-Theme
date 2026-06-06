@@ -7,7 +7,7 @@
  */
 
 $about_desc  = cc_get( 'about_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi, eget elementum ligula tempor sit amet.' );
-$about_image = cc_img( 'about_image', 'https://via.placeholder.com/600x400.png/e2e8f0/64748b?text=Lorem+Ipsum' );
+$about_image = cc_img( 'about_image', cc_placeholder_svg( 600, 400, 'e2e8f0', '64748b', 'About Image' ) );
 ?>
 
 <section class="statistics">
