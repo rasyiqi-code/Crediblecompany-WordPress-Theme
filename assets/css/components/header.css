@@ -194,3 +194,112 @@
         transform: translateY(0);
     }
 }
+
+/* ==========================================================================
+   Gaya Tampilan Header Kustom
+   ========================================================================== */
+
+/* 1. Gaya Terpusat (Centered Logo & Stacked Menu) */
+@media (min-width: 769px) {
+    .header-style-centered .container {
+        flex-direction: column;
+        height: auto;
+        padding-top: 1rem;
+        padding-bottom: 0.75rem;
+        gap: 0.75rem;
+        position: relative;
+    }
+
+    .header-style-centered .site-logo {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .header-style-centered .desktop-nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 0.25rem;
+    }
+
+    .header-style-centered .desktop-nav ul {
+        justify-content: center;
+        gap: 2.5rem;
+    }
+
+    .header-style-centered .header-icons {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-style-centered .container {
+        position: relative;
+        justify-content: center;
+        height: 50px;
+    }
+
+    .header-style-centered .site-logo {
+        margin: 0 auto;
+    }
+
+    .header-style-centered .header-icons {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .header-style-centered .menu-toggle {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+    }
+}
+
+/* 2. Gaya Glassmorphism Floating */
+@media (min-width: 769px) {
+    .header-style-glass {
+        margin: 1.25rem auto 0 auto;
+        width: calc(100% - 2.5rem);
+        max-width: 1200px;
+        border-radius: 99px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        transition: all 0.3s ease;
+    }
+
+    .header-style-glass .container {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-style-glass {
+        margin: 0.75rem auto 0 auto;
+        width: calc(100% - 1.5rem);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+    }
+
+    .header-style-glass .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .header-style-glass .desktop-nav {
+        border-radius: 0 0 20px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-top: none;
+    }
+}
