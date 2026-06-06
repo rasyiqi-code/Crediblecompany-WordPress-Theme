@@ -20,10 +20,10 @@
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: 900;
+    font-size: var(--cc-hero-title-size);
+    font-weight: var(--cc-hero-title-weight);
     line-height: 1.15;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--cc-hero-title-margin-bottom);
     color: var(--brand-dark);
 }
 
@@ -46,7 +46,7 @@
 }
 
 .hero-desc {
-    font-size: 1.125rem;
+    font-size: var(--cc-hero-desc-size);
     line-height: 1.6;
     color: var(--gray-500);
     margin-bottom: 2.5rem;

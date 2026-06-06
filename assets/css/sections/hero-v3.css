@@ -6,7 +6,7 @@
 
 .hero-v3-section {
     background-color: var(--brand-white);
-    padding: 6rem 0 0;
+    padding: var(--cc-hero-padding-top) 0 0;
     position: relative;
     overflow: hidden;
 }
@@ -92,10 +92,10 @@
 }
 
 .hero-v3-title {
-    font-size: 4.5rem;
-    font-weight: 900;
+    font-size: calc(var(--cc-hero-title-size) + 1rem);
+    font-weight: var(--cc-hero-title-weight);
     line-height: 1.1;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--cc-hero-title-margin-bottom);
     color: #0f172a;
     letter-spacing: -2px;
 }
@@ -108,7 +108,7 @@
 }
 
 .hero-v3-desc {
-    font-size: 1.25rem;
+    font-size: calc(var(--cc-hero-desc-size) + 0.125rem);
     line-height: 1.65;
     color: var(--gray-500);
     max-width: 650px;
@@ -142,8 +142,8 @@
     max-width: 950px;
     height: 480px;
     background-color: #00df89; /* Warna hijau neon khas Jasper */
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
+    border-top-left-radius: var(--cc-hero-canvas-radius);
+    border-top-right-radius: var(--cc-hero-canvas-radius);
     overflow: hidden;
     clip-path: polygon(
         0% 0%, 
@@ -203,7 +203,7 @@
 .floating-card-v3 {
     position: absolute;
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: var(--cc-hero-card-radius);
     padding: 1rem 1.25rem;
     box-shadow: 
         0 10px 30px rgba(0, 0, 0, 0.08), 
