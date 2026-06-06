@@ -42,9 +42,24 @@ add_action( 'customize_register', function( $wp_customize ) {
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_mitra_payment', array(
-        'label'       => __( 'Mitra Pembayaran/Pengiriman (pisahkan koma)', 'crediblecompany' ),
+        'label'       => __( 'Fallback Teks Mitra (pisahkan koma)', 'crediblecompany' ),
+        'description' => __( 'Teks yang tampil jika gambar logo di bawah ini kosong.', 'crediblecompany' ),
         'section'     => 'cc_mitra_section',
         'type'    => 'text',
     ) );
 
+    // Daftar 8 slot logo Mitra Pembayaran / Pengiriman
+    for ( $i = 1; $i <= 8; $i++ ) {
+        $wp_customize->add_setting( "cc_mitra_payment_logo_{$i}", array(
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, "cc_mitra_payment_logo_{$i}", array(
+            'label'       => sprintf( __( 'Logo Pembayaran/Pengiriman %d', 'crediblecompany' ), $i ),
+            'description' => __( 'Upload logo (disarankan tinggi 30px-40px, latar transparan).', 'crediblecompany' ),
+            'section'     => 'cc_mitra_section',
+        ) ) );
+    }
+
 } );
+

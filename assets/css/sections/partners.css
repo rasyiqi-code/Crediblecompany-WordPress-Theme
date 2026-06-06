@@ -142,3 +142,20 @@
     color: var(--brand-dark);
     opacity: 1;
 }
+
+/* --- Logo Pembayaran & Pengiriman Gambar --- */
+.partners-logos .partner-logo-img {
+    max-height: 35px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: var(--transition);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.partners-logos .partner-logo-img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}

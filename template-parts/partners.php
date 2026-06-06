@@ -26,7 +26,16 @@ $proses_tagline = cc_get(
     'Lorem Ipsum → Dolor Sit → Consectetur → Adipiscing → Proin Sodales'
 );
 
-// Mitra Pembayaran & Pengiriman (dari Customizer, pisahkan koma)
+// Mitra Pembayaran & Pengiriman (dari 8 slot logo Customizer)
+$payment_logos = array();
+for ( $i = 1; $i <= 8; $i++ ) {
+    $logo_url = cc_get( "mitra_payment_logo_{$i}", '' );
+    if ( ! empty( $logo_url ) ) {
+        $payment_logos[] = $logo_url;
+    }
+}
+
+// Mitra Pembayaran & Pengiriman (dari Customizer, pisahkan koma - sebagai fallback teks)
 $mitra_bayar_raw = cc_get( 'mitra_payment', 'Lorem, Ipsum, Dolor, Sit, Amet, Consectetur' );
 $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_raw ) ) );
 ?>
@@ -70,9 +79,16 @@ $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_r
         <p class="partners-label">Pembayaran dan Pengiriman Didukung oleh Mitra Tepercaya Kami</p>
         <?php $scroll_class = cc_get( 'mobile_scroll_partners', true ) ? 'has-horizontal-scroll' : ''; ?>
         <div class="partners-logos <?php echo esc_attr( $scroll_class ); ?>">
-            <?php foreach ( $mitra_bayar as $partner ) : ?>
-                <span><?php echo esc_html( $partner ); ?></span>
-            <?php endforeach; ?>
+            <?php if ( ! empty( $payment_logos ) ) : ?>
+                <?php foreach ( $payment_logos as $index => $logo ) : ?>
+                    <img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( "Mitra Pembayaran/Pengiriman - Logo " . ($index + 1) ); ?>" class="partner-logo-img">
+                <?php endforeach; ?>
+            <?php else : ?>
+                <?php foreach ( $mitra_bayar as $partner ) : ?>
+                    <span><?php echo esc_html( $partner ); ?></span>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>
+
