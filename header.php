@@ -27,13 +27,21 @@
     $border_color        = cc_get( 'header_border_color', 'rgba(255, 255, 255, 0.15)' );
     ?>
     <style id="cc-header-customizer-inline-css">
-        .site-header, 
-        .desktop-nav {
+        .site-header {
             <?php if ( $header_style === 'glass' ) : ?>
             background-color: <?php echo esc_attr( cc_hex_to_rgba( $header_bg, $glass_opacity ) ); ?> !important;
             <?php else : ?>
             background-color: <?php echo esc_attr( $header_bg ); ?> !important;
             <?php endif; ?>
+        }
+        @media (max-width: 768px) {
+            .desktop-nav {
+                <?php if ( $header_style === 'glass' ) : ?>
+                background-color: <?php echo esc_attr( cc_hex_to_rgba( $header_bg, $glass_opacity ) ); ?> !important;
+                <?php else : ?>
+                background-color: <?php echo esc_attr( $header_bg ); ?> !important;
+                <?php endif; ?>
+            }
         }
         .site-header {
             <?php if ( $border_enable ) : ?>
