@@ -149,40 +149,61 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_hero_section',
     ) ) );
 
+    // --- DAFTAR PILIHAN EMOJI / IKON MELAYANG (CURATED LIST) ---
+    $emoji_choices = array(
+        '📚' => '📚 Buku (Edukasi)',
+        '🚀' => '🚀 Roket (Startup / Launch)',
+        '💡' => '💡 Ide (Kreatif / Inspirasi)',
+        '📈' => '📈 Grafik Naik (Growth / Bisnis)',
+        '✨' => '✨ Kilauan (Modern / Premium)',
+        '🎓' => '🎓 Toga (Akademik)',
+        '🎯' => '🎯 Target (Goal / Fokus)',
+        '⚡' => '⚡ Petir (Kecepatan / Energi)',
+        '💻' => '💻 Laptop (Teknologi / Coding)',
+        '🔥' => '🔥 Api (Populer / Trending)',
+        '💬' => '💬 Chat (Komunikasi)',
+        '🔴' => '🔴 Bulatan Merah (Status / Live)',
+        '🟢' => '🟢 Bulatan Hijau (Aktif / Sukses)',
+        '🔵' => '🔵 Bulatan Biru (Informasi)',
+    );
+
     // Ornamen Melayang 1
     $wp_customize->add_setting( 'cc_hero_ornament_1', array(
-        'default'           => '📚', // Default buku
+        'default'           => '📚',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_hero_ornament_1', array(
-        'label'       => __( 'Ornamen Melayang 1 (Emoji/Teks)', 'crediblecompany' ),
-        'description' => __( 'Tampil di kiri atas gambar hero. Gunakan emoji (misal: 📚, 🚀, 💡).', 'crediblecompany' ),
+        'label'       => __( 'Ornamen Melayang 1 (Ikon)', 'crediblecompany' ),
+        'description' => __( 'Pilih ikon yang melayang di area visual Hero.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'select',
+        'choices'     => $emoji_choices,
     ) );
  
     // Ornamen Melayang 2
     $wp_customize->add_setting( 'cc_hero_ornament_2', array(
-        'default'           => '🎓', // Default Toga
+        'default'           => '🎓',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_hero_ornament_2', array(
-        'label'       => __( 'Ornamen Melayang 2 (Emoji/Teks)', 'crediblecompany' ),
-        'description' => __( 'Tampil di kanan bawah gambar hero.', 'crediblecompany' ),
+        'label'       => __( 'Ornamen Melayang 2 (Ikon)', 'crediblecompany' ),
+        'description' => __( 'Pilih ikon melayang kedua untuk variasi visual.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'select',
+        'choices'     => $emoji_choices,
     ) );
-
+ 
     // Ornamen Melayang 3 (Aksen Tambahan V2)
     $wp_customize->add_setting( 'cc_hero_ornament_3', array(
         'default'           => '✨',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_hero_ornament_3', array(
-        'label'       => __( 'Ornamen Melayang 3 (Emoji/Teks)', 'crediblecompany' ),
-        'description' => __( 'Tampil di kanan atas layout Centered (V2).', 'crediblecompany' ),
+        'label'       => __( 'Ornamen Melayang 3 (Ikon V2)', 'crediblecompany' ),
+        'description' => __( 'Pilih ikon melayang tambahan khusus layout Centered (V2).', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'select',
+        'choices'     => $emoji_choices,
     ) );
 
     // --- PENGATURAN SPESIFIK LAYOUT CENTRED (V2) ---
@@ -214,7 +235,8 @@ add_action( 'customize_register', function( $wp_customize ) {
     $wp_customize->add_control( 'cc_hero_v3_card_left_icon', array(
         'label'       => __( 'Emoji Kartu Melayang Kiri V3', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'select',
+        'choices'     => $emoji_choices,
     ) );
 
     $wp_customize->add_setting( 'cc_hero_v3_card_left_text', array(
@@ -289,41 +311,76 @@ add_action( 'customize_register', function( $wp_customize ) {
     $wp_customize->add_setting( 'cc_hero_shape_purple_color', array( 'default' => '#8B5CF6', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_hero_shape_purple_color', array( 'label' => 'Warna Background Shape 4', 'section' => 'cc_hero_section' ) ) );
 
-    // --- PENGATURAN SPACING & TATA LETAK ---
-    $wp_customize->add_setting( 'cc_hero_padding_top', array( 'default' => '6rem', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_padding_top', array(
-        'label'       => __( 'Padding Atas Hero', 'crediblecompany' ),
-        'description' => __( 'Jarak ruang atas section Hero (contoh: 6rem, 100px).', 'crediblecompany' ),
+    // --- PENGATURAN SPACING & TATA LETAK (USER FRIENDLY SLIDERS) ---
+    $wp_customize->add_setting( 'cc_hero_padding_top_px', array(
+        'default'           => 96,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_padding_top_px', array(
+        'label'       => __( 'Padding Atas Hero (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Geser slider untuk menentukan ruang kosong atas section Hero.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 20,
+            'max'  => 250,
+            'step' => 2,
+        ),
     ) );
 
-    $wp_customize->add_setting( 'cc_hero_padding_bottom', array( 'default' => '4rem', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_padding_bottom', array(
-        'label'       => __( 'Padding Bawah Hero', 'crediblecompany' ),
-        'description' => __( 'Jarak ruang bawah section Hero (contoh: 4rem, 80px).', 'crediblecompany' ),
+    $wp_customize->add_setting( 'cc_hero_padding_bottom_px', array(
+        'default'           => 64,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_padding_bottom_px', array(
+        'label'       => __( 'Padding Bawah Hero (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Geser slider untuk menentukan ruang kosong bawah section Hero.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 200,
+            'step' => 2,
+        ),
     ) );
 
-    $wp_customize->add_setting( 'cc_hero_title_margin_bottom', array( 'default' => '1.5rem', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_title_margin_bottom', array(
-        'label'       => __( 'Margin Bawah Judul', 'crediblecompany' ),
-        'description' => __( 'Jarak dari judul ke deskripsi di bawahnya (contoh: 1.5rem, 20px).', 'crediblecompany' ),
+    $wp_customize->add_setting( 'cc_hero_title_margin_bottom_px', array(
+        'default'           => 24,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_title_margin_bottom_px', array(
+        'label'       => __( 'Margin Bawah Judul (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Sesuaikan jarak dari judul ke deskripsi.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 5,
+            'max'  => 100,
+            'step' => 1,
+        ),
     ) );
 
-    // --- PENGATURAN TIPOGRAFI (FONT) ---
-    $wp_customize->add_setting( 'cc_hero_title_size', array( 'default' => '3.5rem', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_title_size', array(
-        'label'       => __( 'Ukuran Font Judul Hero', 'crediblecompany' ),
-        'description' => __( 'Ukuran teks untuk judul utama Hero (contoh: 3.5rem, 48px).', 'crediblecompany' ),
+    // --- PENGATURAN TIPOGRAFI (USER FRIENDLY SLIDERS) ---
+    $wp_customize->add_setting( 'cc_hero_title_size_px', array(
+        'default'           => 56,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_title_size_px', array(
+        'label'       => __( 'Ukuran Font Judul (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Geser untuk mengatur ukuran font judul utama.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 24,
+            'max'  => 100,
+            'step' => 1,
+        ),
     ) );
 
-    $wp_customize->add_setting( 'cc_hero_title_weight', array( 'default' => '900', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'cc_hero_title_weight', array(
+        'default'           => '900',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
     $wp_customize->add_control( 'cc_hero_title_weight', array(
         'label'   => __( 'Ketebalan Font Judul Hero', 'crediblecompany' ),
         'section' => 'cc_hero_section',
@@ -337,29 +394,53 @@ add_action( 'customize_register', function( $wp_customize ) {
         )
     ) );
 
-    $wp_customize->add_setting( 'cc_hero_desc_size', array( 'default' => '1.125rem', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_desc_size', array(
-        'label'       => __( 'Ukuran Font Deskripsi Hero', 'crediblecompany' ),
-        'description' => __( 'Ukuran teks untuk deskripsi di bawah judul (contoh: 1.125rem, 18px).', 'crediblecompany' ),
+    $wp_customize->add_setting( 'cc_hero_desc_size_px', array(
+        'default'           => 18,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_desc_size_px', array(
+        'label'       => __( 'Ukuran Font Deskripsi (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Geser untuk mengatur ukuran teks deskripsi.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 12,
+            'max'  => 28,
+            'step' => 1,
+        ),
     ) );
 
-    // --- PENGATURAN KELENGKUNGAN SUDUT (ROUND) ---
-    $wp_customize->add_setting( 'cc_hero_card_radius', array( 'default' => '16px', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_card_radius', array(
-        'label'       => __( 'Kelengkungan Kartu Melayang', 'crediblecompany' ),
-        'description' => __( 'Radius sudut untuk kartu-kartu melayang di Hero (contoh: 16px, 8px, 0px).', 'crediblecompany' ),
+    // --- PENGATURAN KELENGKUNGAN SUDUT (USER FRIENDLY SLIDERS) ---
+    $wp_customize->add_setting( 'cc_hero_card_radius_px', array(
+        'default'           => 16,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_card_radius_px', array(
+        'label'       => __( 'Kelengkungan Kartu Melayang (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Radius kebulatan sudut untuk kartu melayang (0px = tajam).', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 40,
+            'step' => 1,
+        ),
     ) );
 
-    $wp_customize->add_setting( 'cc_hero_canvas_radius', array( 'default' => '24px', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cc_hero_canvas_radius', array(
-        'label'       => __( 'Kelengkungan Canvas Grafis V3', 'crediblecompany' ),
-        'description' => __( 'Radius sudut atas untuk grid canvas hijau pada layout Jasper (contoh: 24px, 12px, 0px).', 'crediblecompany' ),
+    $wp_customize->add_setting( 'cc_hero_canvas_radius_px', array(
+        'default'           => 24,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_hero_canvas_radius_px', array(
+        'label'       => __( 'Kelengkungan Canvas Grafis V3 (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Radius sudut atas untuk canvas visual grid Jasper.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
-        'type'        => 'text',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 60,
+            'step' => 1,
+        ),
     ) );
 
 } );
@@ -369,25 +450,25 @@ add_action( 'customize_register', function( $wp_customize ) {
  */
 add_action( 'wp_head', 'cc_hero_dynamic_css_variables', 100 );
 function cc_hero_dynamic_css_variables() {
-    $padding_top    = cc_get( 'hero_padding_top', '6rem' );
-    $padding_bottom = cc_get( 'hero_padding_bottom', '4rem' );
-    $title_size     = cc_get( 'hero_title_size', '3.5rem' );
+    $padding_top    = cc_get( 'hero_padding_top_px', 96 );
+    $padding_bottom = cc_get( 'hero_padding_bottom_px', 64 );
+    $title_size     = cc_get( 'hero_title_size_px', 56 );
     $title_weight   = cc_get( 'hero_title_weight', '900' );
-    $title_margin   = cc_get( 'hero_title_margin_bottom', '1.5rem' );
-    $desc_size      = cc_get( 'hero_desc_size', '1.125rem' );
-    $card_radius    = cc_get( 'hero_card_radius', '16px' );
-    $canvas_radius  = cc_get( 'hero_canvas_radius', '24px' );
+    $title_margin   = cc_get( 'hero_title_margin_bottom_px', 24 );
+    $desc_size      = cc_get( 'hero_desc_size_px', 18 );
+    $card_radius    = cc_get( 'hero_card_radius_px', 16 );
+    $canvas_radius  = cc_get( 'hero_canvas_radius_px', 24 );
     ?>
     <style type="text/css" id="cc-hero-dynamic-variables">
         :root {
-            --cc-hero-padding-top: <?php echo esc_attr( $padding_top ); ?>;
-            --cc-hero-padding-bottom: <?php echo esc_attr( $padding_bottom ); ?>;
-            --cc-hero-title-size: <?php echo esc_attr( $title_size ); ?>;
+            --cc-hero-padding-top: <?php echo esc_attr( $padding_top ) . 'px'; ?>;
+            --cc-hero-padding-bottom: <?php echo esc_attr( $padding_bottom ) . 'px'; ?>;
+            --cc-hero-title-size: <?php echo esc_attr( $title_size ) . 'px'; ?>;
             --cc-hero-title-weight: <?php echo esc_attr( $title_weight ); ?>;
-            --cc-hero-title-margin-bottom: <?php echo esc_attr( $title_margin ); ?>;
-            --cc-hero-desc-size: <?php echo esc_attr( $desc_size ); ?>;
-            --cc-hero-card-radius: <?php echo esc_attr( $card_radius ); ?>;
-            --cc-hero-canvas-radius: <?php echo esc_attr( $canvas_radius ); ?>;
+            --cc-hero-title-margin-bottom: <?php echo esc_attr( $title_margin ) . 'px'; ?>;
+            --cc-hero-desc-size: <?php echo esc_attr( $desc_size ) . 'px'; ?>;
+            --cc-hero-card-radius: <?php echo esc_attr( $card_radius ) . 'px'; ?>;
+            --cc-hero-canvas-radius: <?php echo esc_attr( $canvas_radius ) . 'px'; ?>;
         }
     </style>
     <?php
