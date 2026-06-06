@@ -18,7 +18,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     text-align: center;
-    margin-bottom: 3rem;
 }
 
 .stat-item h2 {
@@ -33,11 +32,19 @@
     font-weight: 500;
 }
 
+/* --------------------------------------------------------------------------
+ * 1b. About Section
+ * ---------------------------------------------------------------------- */
+.about-section {
+    padding: 4rem 0;
+    background: var(--cc-about-bg-color, var(--brand-white));
+}
+
 .about-block {
     display: flex;
     align-items: center;
     gap: 2rem;
-    background: var(--gray-100);
+    background: var(--cc-about-block-bg-color, var(--gray-100));
     padding: 2rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
@@ -51,7 +58,7 @@
 }
 
 .about-block p {
-    color: var(--gray-700);
+    color: var(--cc-about-text-color, var(--gray-700));
     line-height: 1.8;
 }
 

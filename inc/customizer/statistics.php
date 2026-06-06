@@ -73,25 +73,5 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) ) );
 
 
-    // About Deskripsi
-    $wp_customize->add_setting( 'cc_about_desc', array(
-        'default'           => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi, eget elementum ligula tempor sit amet.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ) );
-    $wp_customize->add_control( 'cc_about_desc', array(
-        'label'   => __( 'Paragraf Tentang Kami', 'crediblecompany' ),
-        'section' => 'cc_stats_section',
-        'type'    => 'textarea',
-    ) );
-
-    // Gambar About / Kantor
-    $wp_customize->add_setting( 'cc_about_image', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-    ) );
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cc_about_image', array(
-        'label'   => __( 'Gambar Kantor / About', 'crediblecompany' ),
-        'section' => 'cc_stats_section',
-    ) ) );
-
 } );
+

@@ -23,6 +23,7 @@ get_header(); ?>
         get_template_part( 'template-parts/hero' );
     }
     get_template_part( 'template-parts/statistics' );
+    get_template_part( 'template-parts/about' );
     get_template_part( 'template-parts/features' );
     get_template_part( 'template-parts/pricing' );
     get_template_part( 'template-parts/testimonials' );

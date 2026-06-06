@@ -26,6 +26,7 @@ $_cc_customizer_dir = get_template_directory() . '/inc/customizer/';
 require_once $_cc_customizer_dir . 'header.php';
 require_once $_cc_customizer_dir . 'hero.php';
 require_once $_cc_customizer_dir . 'statistics.php';
+require_once $_cc_customizer_dir . 'about.php';
 require_once $_cc_customizer_dir . 'features.php';
 require_once $_cc_customizer_dir . 'cta.php';
 require_once $_cc_customizer_dir . 'social.php';

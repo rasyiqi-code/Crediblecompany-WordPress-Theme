@@ -17,6 +17,11 @@ function cc_sections_dynamic_css_variables() {
     $stat_num   = cc_get( 'stat_number_color', '#F59E0B' );
     $stat_label = cc_get( 'stat_label_color', '#1e293b' );
 
+    // About
+    $about_bg       = cc_get( 'about_bg_color', '#ffffff' );
+    $about_block_bg = cc_get( 'about_block_bg_color', '#f1f5f9' );
+    $about_txt      = cc_get( 'about_text_color', '#334155' );
+
     // 2. Features
     $feat_bg   = cc_get( 'features_bg_color', '#f8fafc' );
     $feat_tit  = cc_get( 'features_title_color', '#0f172a' );
@@ -58,6 +63,11 @@ function cc_sections_dynamic_css_variables() {
             --cc-stat-bg-color: <?php echo esc_attr( $stat_bg ); ?>;
             --cc-stat-number-color: <?php echo esc_attr( $stat_num ); ?>;
             --cc-stat-label-color: <?php echo esc_attr( $stat_label ); ?>;
+
+            /* === ABOUT === */
+            --cc-about-bg-color: <?php echo esc_attr( $about_bg ); ?>;
+            --cc-about-block-bg-color: <?php echo esc_attr( $about_block_bg ); ?>;
+            --cc-about-text-color: <?php echo esc_attr( $about_txt ); ?>;
 
             /* === FEATURES === */
             --cc-features-bg-color: <?php echo esc_attr( $feat_bg ); ?>;
