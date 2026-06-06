@@ -23,36 +23,59 @@ function cc_get_login_slug() {
 }
 
 /**
- * Handle pengalihan dari slug kustom ke wp-login.php dengan kunci rahasia.
+ * Buat nonce login yang disimpan sebagai transient (12 jam).
+ * Setiap akses ke URL /masuk menghasilkan token unik yang tidak bisa ditebak.
+ *
+ * @return string Token nonce acak.
+ */
+function cc_create_login_token() {
+    $token = wp_generate_password( 32, false );
+    set_transient( 'cc_login_token_' . $token, 1, 12 * HOUR_IN_SECONDS );
+    return $token;
+}
+
+/**
+ * Handle pengalihan dari slug kustom ke wp-login.php dengan token nonce dinamis.
  */
 add_action( 'init', 'cc_handle_custom_login_redirect' );
 function cc_handle_custom_login_redirect() {
-    $login_slug = cc_get_login_slug();
-    $request_uri = untrailingslashit( $_SERVER['REQUEST_URI'] );
-    
-    // Jika user mengakses /masuk, arahkan ke wp-login.php dengan token khusus
+    $login_slug  = cc_get_login_slug();
+    $request_uri = untrailingslashit( strtok( $_SERVER['REQUEST_URI'], '?' ) );
+
+    // Jika user mengakses /masuk, buat token dinamis lalu arahkan ke wp-login.php
     if ( $request_uri === '/' . $login_slug ) {
-        wp_safe_redirect( site_url( 'wp-login.php?allow_access=true' ) );
+        $token = cc_create_login_token();
+        wp_safe_redirect( site_url( 'wp-login.php?cc_token=' . rawurlencode( $token ) ) );
         exit;
     }
 }
 
 /**
- * Blokir akses langsung ke wp-login.php jika tidak membawa token atau bukan proses POST.
+ * Blokir akses langsung ke wp-login.php jika tidak membawa token valid atau bukan proses POST.
  */
 add_action( 'login_init', 'cc_protect_login_page' );
 function cc_protect_login_page() {
-    // Abaikan jika sedang proses login (POST) atau registrasi/lostpassword yang valid
+    // Abaikan jika sedang proses POST (submit form login)
     if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         return;
     }
 
-    $allow_access = isset( $_GET['allow_access'] ) && $_GET['allow_access'] === 'true';
-    $is_action    = isset( $_GET['action'] ) && in_array( $_GET['action'], array( 'logout', 'lostpassword', 'rp', 'resetpass', 'confirm_admin_email' ) );
-    $is_state     = isset( $_GET['loggedout'] ) || isset( $_GET['checkemail'] ) || isset( $_GET['registration'] );
+    // Cek token dinamis — ambil dari transient, hapus setelah dipakai (one-time use)
+    $submitted_token = isset( $_GET['cc_token'] ) ? sanitize_text_field( $_GET['cc_token'] ) : '';
+    $token_valid     = false;
+    if ( ! empty( $submitted_token ) ) {
+        $transient_key = 'cc_login_token_' . $submitted_token;
+        if ( get_transient( $transient_key ) ) {
+            delete_transient( $transient_key ); // Hapus setelah verifikasi (single-use)
+            $token_valid = true;
+        }
+    }
 
-    // Jika mencoba akses langsung tanpa token, lempar ke 404
-    if ( ! $allow_access && ! $is_action && ! $is_state ) {
+    $is_action = isset( $_GET['action'] ) && in_array( $_GET['action'], array( 'logout', 'lostpassword', 'rp', 'resetpass', 'confirm_admin_email' ), true );
+    $is_state  = isset( $_GET['loggedout'] ) || isset( $_GET['checkemail'] ) || isset( $_GET['registration'] );
+
+    // Jika mencoba akses langsung tanpa token valid, lempar ke 404
+    if ( ! $token_valid && ! $is_action && ! $is_state ) {
         global $wp_query;
         $wp_query->set_404();
         status_header( 404 );
@@ -128,7 +151,8 @@ add_filter( 'login_headertext', function() { return get_bloginfo( 'name' ); } );
 // 2. Admin Footer Branding
 add_filter( 'admin_footer_text', 'cc_custom_admin_footer' );
 function cc_custom_admin_footer() {
-    echo '<span id="footer-thankyou">Dashboard Kelola &bull; <strong>' . get_bloginfo( 'name' ) . '</strong></span>';
+    // Gunakan esc_html() untuk mencegah XSS jika nama situs mengandung karakter HTML
+    echo '<span id="footer-thankyou">Dashboard Kelola &bull; <strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong></span>';
 }
 add_filter( 'update_footer', '__return_empty_string', 11 );
 

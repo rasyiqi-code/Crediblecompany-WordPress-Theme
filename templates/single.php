@@ -146,18 +146,9 @@ cc_set_post_views( get_the_ID() );
                     <div class="testi-feed-container">
                         <div class="testi-related-grid">
                             <?php
-                            $related_args_desktop = array(
-                                'post_type'      => 'post',
-                                'posts_per_page' => 4,
-                                'post__not_in'   => array( get_the_ID() ),
-                                'orderby'        => 'rand'
-                            );
-                            
-                            if ( ! empty( $categories ) ) {
-                                $related_args_desktop['category__in'] = array( $categories[0]->term_id );
-                            }
-
-                            $related_query_desktop = new WP_Query( $related_args_desktop );
+                            // Gunakan helper untuk menghindari ORDER BY RAND() MySQL
+                            $related_cat_ids     = ! empty( $categories ) ? array( $categories[0]->term_id ) : array();
+                            $related_query_desktop = cc_get_related_posts( get_the_ID(), $related_cat_ids, 4 );
 
                             if ( $related_query_desktop->have_posts() ) :
                                 while ( $related_query_desktop->have_posts() ) : $related_query_desktop->the_post();
@@ -201,24 +192,15 @@ cc_set_post_views( get_the_ID() );
                 <h3 style="visibility: hidden;">Menu</h3>
                 <button class="close-drawer" id="closeDrawer">&times;</button>
             </div>
-            <?php if ( wp_is_mobile() ) : ?>
+                    <?php if ( wp_is_mobile() ) : ?>
                 <div class="sidebar-widget widget-recent-posts">
                     <h3 class="section-title-premium">Artikel Terkait</h3>
                     <div class="recent-posts-list">
                         <?php
-                        $related_args_mobile = array(
-                            'post_type'      => 'post',
-                            'posts_per_page' => 5,
-                            'post__not_in'   => array( get_the_ID() ),
-                            'post_status'    => 'publish',
-                            'orderby'        => 'rand'
-                        );
-                        
-                        if ( ! empty( $categories ) ) {
-                            $related_args_mobile['category__in'] = array( $categories[0]->term_id );
-                        }
+                        // Gunakan helper yang sama — DRY, tidak duplikasi query
+                        $related_cat_ids    = ! empty( $categories ) ? array( $categories[0]->term_id ) : array();
+                        $related_query_mobile = cc_get_related_posts( get_the_ID(), $related_cat_ids, 5 );
 
-                        $related_query_mobile = new WP_Query( $related_args_mobile );
                         if ( $related_query_mobile->have_posts() ) :
                             while ( $related_query_mobile->have_posts() ) : $related_query_mobile->the_post();
                                 ?>

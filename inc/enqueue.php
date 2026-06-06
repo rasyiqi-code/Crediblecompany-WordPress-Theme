@@ -119,6 +119,10 @@ add_action( 'wp_enqueue_scripts', function () {
             $theme_version,
             true
         );
+        // Sediakan ajaxurl agar JS bisa fetch nonce segar sebelum submit
+        wp_localize_script( 'cc-submit-testimoni', 'ccAjax', array(
+            'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        ) );
     }
 
     // Load More (arsip blog & testimoni)

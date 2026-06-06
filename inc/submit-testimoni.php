@@ -14,6 +14,19 @@ add_action( 'admin_post_nopriv_submit_testimoni_action', 'cc_handle_submit_testi
 add_action( 'admin_post_submit_testimoni_action', 'cc_handle_submit_testimoni' );
 
 /**
+ * AJAX Endpoint: Memberikan nonce segar untuk form testimoni.
+ * Dipanggil oleh JS sebelum submit agar kompatibel dengan halaman yang di-cache.
+ * Nonce tidak ada di markup statis — hanya diambil saat user hendak submit.
+ */
+add_action( 'wp_ajax_nopriv_cc_get_testimoni_nonce', 'cc_ajax_get_testimoni_nonce' );
+add_action( 'wp_ajax_cc_get_testimoni_nonce', 'cc_ajax_get_testimoni_nonce' );
+function cc_ajax_get_testimoni_nonce() {
+    wp_send_json_success( array(
+        'nonce' => wp_create_nonce( 'cc_submit_testimoni' ),
+    ) );
+}
+
+/**
  * Handle form submission untuk testimoni publik.
  */
 function cc_handle_submit_testimoni() {
@@ -22,8 +35,10 @@ function cc_handle_submit_testimoni() {
         wp_die( 'Aktivitas mencurigakan terdeteksi (Spam).', 'Akses Ditolak', array( 'response' => 403 ) );
     }
 
-    // Nonce validation dihilangkan untuk form publik agar tidak bentrok dengan plugin caching (Litespeed/Cloudflare)
-    // yang menyebabkan "Akses tidak sah!" (CSRF protection kurang relevan untuk public form seperti ini).
+    // 2. Validasi CSRF Nonce (dikirim JS sebelum submit untuk kompatibilitas cache)
+    if ( ! isset( $_POST['_cc_nonce'] ) || ! wp_verify_nonce( $_POST['_cc_nonce'], 'cc_submit_testimoni' ) ) {
+        wp_die( 'Sesi keamanan tidak valid atau kedaluwarsa. Silakan refresh halaman dan coba lagi.', 'Akses Ditolak', array( 'response' => 403 ) );
+    }
 
     $name    = sanitize_text_field( $_POST['client_name'] );
     $title   = sanitize_text_field( $_POST['client_title'] );

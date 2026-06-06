@@ -3,14 +3,11 @@
  * Template Name: Submit Testimoni
  *
  * Laman Front-End Form Entry Testimonial.
+ * Nonce CSRF diambil secara dinamis via AJAX sebelum form disubmit
+ * sehingga halaman ini boleh di-cache oleh plugin caching.
  * 
  * @package CredibleCompany
  */
-
-// Cegah plugin caching untuk menyimpan halaman ini agar nonce tidak kedaluwarsa
-if ( ! defined( 'DONOTCACHEPAGE' ) ) {
-    define( 'DONOTCACHEPAGE', true );
-}
 
 get_header(); ?>
 
@@ -76,7 +73,8 @@ get_header(); ?>
             <div class="form-actual-side">
                 <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST" class="cc-submit-form" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="submit_testimoni_action">
-                    <!-- Nonce dihilangkan karena isu agresif caching di production -->
+                    <!-- Nonce CSRF diisi oleh JS sebelum submit (kompatibel dengan cache plugin) -->
+                    <input type="hidden" name="_cc_nonce" id="cc_form_nonce" value="">
                     
                     <!-- Honeypot Field untuk memblokir spam bots secara pasif -->
                     <div style="display: none; @media (max-width: 0px) { display: none; }">

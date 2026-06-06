@@ -97,7 +97,6 @@ add_action( 'widgets_init', function () {
 } );
 
 /* --------------------------------------------------------------------------
-/* --------------------------------------------------------------------------
  * 4. Fungsi Penerima Form "Submit Testimoni" (Front-End -> Pending CPT)
  *    Pecah ke berkas modular: inc/submit-testimoni.php
  * ---------------------------------------------------------------------- */

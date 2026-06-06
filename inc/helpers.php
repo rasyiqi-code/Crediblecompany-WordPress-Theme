@@ -89,3 +89,54 @@ if ( ! function_exists( 'cc_hex_to_rgba' ) ) {
         return "rgba({$r}, {$g}, {$b}, {$alpha})";
     }
 }
+
+/**
+ * Ambil daftar post terkait berdasarkan kategori, menghindari ORDER BY RAND() MySQL
+ * yang sangat lambat pada tabel besar.
+ *
+ * Strategi: ambil N*3 post terbaru dari kategori yang sama, lalu acak di PHP.
+ * Hasilnya tidak deterministik per request tapi tidak membebani DB.
+ *
+ * @param int   $current_id    ID post yang sedang dibuka (dikecualikan dari hasil).
+ * @param array $category_ids  Array ID kategori untuk filter terkait.
+ * @param int   $limit         Jumlah post yang dikembalikan.
+ * @return WP_Query
+ */
+if ( ! function_exists( 'cc_get_related_posts' ) ) {
+    function cc_get_related_posts( $current_id, $category_ids = array(), $limit = 5 ) {
+        // Ambil pool lebih besar untuk diacak di PHP (menghindari ORDER BY RAND di SQL)
+        $pool_size = max( $limit * 3, 15 );
+
+        $args = array(
+            'post_type'      => 'post',
+            'posts_per_page' => $pool_size,
+            'post__not_in'   => array( $current_id ),
+            'post_status'    => 'publish',
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'fields'         => 'ids',
+        );
+
+        if ( ! empty( $category_ids ) ) {
+            $args['category__in'] = $category_ids;
+        }
+
+        $query = new WP_Query( $args );
+        $ids   = $query->posts;
+
+        // Acak di PHP, ambil sejumlah $limit
+        if ( count( $ids ) > $limit ) {
+            shuffle( $ids );
+            $ids = array_slice( $ids, 0, $limit );
+        }
+
+        // Query ulang dengan ID yang sudah diacak agar template part bisa pakai the_post()
+        return new WP_Query( array(
+            'post_type'      => 'post',
+            'post__in'       => $ids,
+            'orderby'        => 'post__in',
+            'posts_per_page' => $limit,
+            'post_status'    => 'publish',
+        ) );
+    }
+}

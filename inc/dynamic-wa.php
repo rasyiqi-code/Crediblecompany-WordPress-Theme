@@ -137,19 +137,21 @@ function cc_dynamic_wa_url( $original_url ) {
  * @return string Teks yang sudah difilter
  */
 function cc_dynamic_text( $text ) {
+    // Daftar template tag yang akan diganti
+    $placeholders = array( '{Nama Marketing}', '{nama marketing}', ' {Nama Marketing}', ' {nama marketing}' );
+
     if ( ! isset( $_COOKIE[ CC_MARKETER_COOKIE ] ) || empty( $_COOKIE[ CC_MARKETER_COOKIE ] ) ) {
         $fallback = get_theme_mod( 'cc_marketing_fallback_name', 'Admin' );
-        // Hapus template tag jika sedang tidak ada marketing (biar gak muncul string {Nama Marketing} mentah ke end-user)
-        return str_replace( array( '{Nama Marketing}', '{nama marketing}', ' {Nama Marketing}', ' {nama marketing}' ), $fallback, $text );
+        return str_replace( $placeholders, $fallback, $text );
     }
 
-    $marketing_id = intval( $_COOKIE[ CC_MARKETER_COOKIE ] );
+    $marketing_id   = intval( $_COOKIE[ CC_MARKETER_COOKIE ] );
     $marketing_name = get_the_title( $marketing_id );
 
     if ( empty( $marketing_name ) ) {
         $fallback = get_theme_mod( 'cc_marketing_fallback_name', 'Admin' );
-        return str_replace( array( '{Nama Marketing}', '{nama marketing}', ' {Nama Marketing}', ' {nama marketing}' ), $fallback, $text );
+        return str_replace( $placeholders, $fallback, $text );
     }
 
-    return str_replace( array( '{Nama Marketing}', '{nama marketing}' ), $marketing_name, $text );
+    return str_replace( $placeholders, $marketing_name, $text );
 }
