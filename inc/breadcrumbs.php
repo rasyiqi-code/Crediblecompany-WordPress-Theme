@@ -32,12 +32,12 @@ function cc_breadcrumbs() {
         if ( is_single() ) {
             // Item 3: Current Post
             echo '<li aria-current="page" style="display: flex; align-items: center; color: var(--text-dark); flex: 1; min-width: 0;">';
-            echo '<span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">' . get_the_title() . '</span>';
+            echo '<span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">' . esc_html( get_the_title() ) . '</span>';
             echo '</li>';
         }
     } elseif ( is_page() ) {
         echo '<li aria-current="page" style="display: flex; align-items: center; color: var(--text-dark);">';
-        echo '<span>' . get_the_title() . '</span>';
+        echo '<span>' . esc_html( get_the_title() ) . '</span>';
         echo '</li>';
     } 
 

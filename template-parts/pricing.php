@@ -52,7 +52,6 @@ $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox=
                             <?php if ( $badge ) : ?>
                                 <span class="price-card-badge"><?php echo esc_html( $badge ); ?></span>
                             <?php endif; ?>
-                            <p class="price-card-label">Lorem Ipsum</p>
                             <h3 class="price-card-name"><?php the_title(); ?></h3>
                         </div>
 

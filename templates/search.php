@@ -17,9 +17,9 @@ get_header(); ?>
         <div class="app-page-title" style="font-size: 1.1rem; font-weight: 600; text-align: center; color: var(--text-dark); margin: 0;">
             <?php 
             /* translators: %s: query pencarian */
-            printf( esc_html__( 'Hasil Pencarian: %s', 'cc' ), '<span>' . get_search_query() . '</span>' ); 
+            printf( esc_html__( 'Hasil Pencarian: %s', 'cc' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); 
             ?>
-        </h1>
+        </div>
     </div>
 
     <!-- Menambahkan form pencarian di atas hasil, in case user want to search again -->
@@ -66,11 +66,11 @@ get_header(); ?>
                     <?php elseif ( get_post_type() === 'testimoni' ) : ?>
                         <!-- Tampilan untuk Testimoni -->
                         <?php 
-                        $client_name = get_post_meta( get_the_ID(), '_cc_testimoni_client_name', true );
-                        $rating = get_post_meta( get_the_ID(), '_cc_testimoni_rating', true );
+                        $client_name = get_post_meta( get_the_ID(), '_customer_name', true );
+                        $rating      = get_post_meta( get_the_ID(), '_customer_rating', true );
                         
-                        // Set fallback agar variable tidak kosong jika meta belum ada
-                        if ( empty( $client_name ) ) $client_name = 'Klien Anonim';
+                        // Fallback jika meta kosong
+                        if ( empty( $client_name ) ) $client_name = get_the_title();
                         if ( empty( $rating ) ) $rating = '5';
                         ?>
                         <div class="card-content" style="padding-left: 1rem;">

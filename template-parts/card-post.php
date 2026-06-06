@@ -22,9 +22,9 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
         </div>
         <div class="featured-content">
             <div class="card-meta" style="margin-bottom: 12px;">
-                <span class="meta-date" style="font-weight: 600;"><?php echo get_the_date('d M Y'); ?></span>
+                <span class="meta-date" style="font-weight: 600;"><?php echo esc_html( get_the_date('d M Y') ); ?></span>
                 <span class="meta-separator">•</span>
-                <span class="meta-author" style="font-weight: 600;"><?php echo get_the_author(); ?></span>
+                <span class="meta-author" style="font-weight: 600;"><?php echo esc_html( get_the_author() ); ?></span>
                 <span class="meta-separator">•</span>
                 <span class="meta-category" style="color: #3b82f6; font-weight: 700; text-transform: capitalize;"><?php echo $cat_name; ?></span>
             </div>
@@ -48,9 +48,9 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
         <div class="blog-card-body">
             <h3><?php the_title(); ?></h3>
             <div class="card-meta" style="margin-top: 10px;">
-                <span class="meta-date"><?php echo get_the_date('d M Y'); ?></span>
+                <span class="meta-date"><?php echo esc_html( get_the_date('d M Y') ); ?></span>
                 <span class="meta-separator">•</span>
-                <span class="meta-author"><?php echo get_the_author(); ?></span>
+                <span class="meta-author"><?php echo esc_html( get_the_author() ); ?></span>
             </div>
         </div>
     </a>
@@ -73,9 +73,9 @@ $cat_name = ! empty( $categories ) ? esc_html( $categories[0]->name ) : 'Berita'
         <div class="card-content">
             <h2 class="card-title"><?php the_title(); ?></h2>
             <div class="card-meta">
-                <span class="meta-date"><?php echo get_the_date('d M Y'); ?></span>
+                <span class="meta-date"><?php echo esc_html( get_the_date('d M Y') ); ?></span>
                 <span class="meta-separator">•</span>
-                <span class="meta-author"><?php echo get_the_author(); ?></span>
+                <span class="meta-author"><?php echo esc_html( get_the_author() ); ?></span>
                 <span class="meta-separator">•</span>
                 <span class="meta-category"><?php echo $cat_name; ?></span>
             </div>
