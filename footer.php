@@ -76,7 +76,7 @@
                 <?php $footer_address = cc_get( 'footer_address' ); ?>
                 <?php if ( ! empty( $footer_address ) ) : ?>
                     <p class="footer-address-text">
-                        <?php echo esc_html( $footer_address ); ?>
+                        <?php echo nl2br( esc_html( $footer_address ) ); ?>
                     </p>
                 <?php endif; ?>
             </div>
