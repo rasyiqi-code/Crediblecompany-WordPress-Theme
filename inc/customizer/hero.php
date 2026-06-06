@@ -26,9 +26,33 @@ add_action( 'customize_register', function( $wp_customize ) {
         'choices'     => array(
             'default' => 'Default — Teks kiri, gambar kanan dengan shapes',
             'v2'      => 'Centered — Teks tengah, gradient latar, tanpa gambar',
-            'v3'      => 'Split Glass — Teks kanan, card glassmorphism kiri',
+            'v3'      => 'Jasper — Centered, promo badge, & grid grafis melayang',
         ),
         'priority'    => 1, // Paling atas
+    ) );
+
+    // --- PROMO BADGE HERO (KHUSUS LAYOUT JASPER V3) ---
+    $wp_customize->add_setting( 'cc_hero_promo_text', array(
+        'default'           => 'New! Introducing the new Jasper: Canvas, Agents, and a bold rebrand.',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_hero_promo_text', array(
+        'label'       => __( 'Teks Promo Badge Hero', 'crediblecompany' ),
+        'description' => __( 'Teks pengumuman di atas judul hero (hanya aktif pada layout Jasper).', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'text',
+        'priority'    => 2,
+    ) );
+
+    $wp_customize->add_setting( 'cc_hero_promo_url', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'cc_hero_promo_url', array(
+        'label'       => __( 'URL Promo Badge Hero', 'crediblecompany' ),
+        'section'     => 'cc_hero_section',
+        'type'        => 'url',
+        'priority'    => 3,
     ) );
 
     // Judul Hero
