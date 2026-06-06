@@ -9,43 +9,36 @@
 
 $hero_title      = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
 $hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
-$hero_image      = cc_img( 'hero_image', cc_placeholder_svg( 500, 400, 'c01314', 'ffffff', 'Hero Image' ) );
-$hero_ornament_1 = cc_get( 'hero_ornament_1', '💡' );
-$hero_ornament_2 = cc_get( 'hero_ornament_2', '📈' );
+$hero_image      = cc_img( 'hero_v3_image', cc_placeholder_svg( 500, 400, 'c01314', 'ffffff', 'Hero Image' ) );
+$hero_ornament_1 = cc_get( 'hero_v3_ornament_1', '💡' );
+$hero_ornament_2 = cc_get( 'hero_v3_ornament_2', '📈' );
 
-// Teks promo / pengumuman
-$promo_text      = cc_get( 'hero_promo_text', 'New! Introducing the new Jasper: Canvas, Agents, and a bold rebrand.' );
-$promo_url       = cc_get( 'hero_promo_url', '#' );
-$promo_tag       = cc_get( 'hero_promo_tag', 'New!' );
+// Teks promo / pengumuman V3
+$promo_text      = cc_get( 'hero_v3_promo_text', 'New! Introducing the new Jasper: Canvas, Agents, and a bold rebrand.' );
+$promo_url       = cc_get( 'hero_v3_promo_url', '#' );
+$promo_tag       = cc_get( 'hero_v3_promo_tag', 'New!' );
 
-// Pengaturan Kartu Melayang & Kredibilitas
+// Pengaturan Kartu Melayang & Kredibilitas V3
 $card_left_icon  = cc_get( 'hero_v3_card_left_icon', '🔴' );
 $card_left_text  = cc_get( 'hero_v3_card_left_text', 'Buat 6.000 email super-personal dalam hitungan menit' );
 $card_right_num  = cc_get( 'hero_v3_card_right_num', '11x' );
 $card_right_text = cc_get( 'hero_v3_card_right_text', 'rasio klik-tayang' );
 $partners_title  = cc_get( 'hero_v3_partners_title', 'Dipercaya oleh tim pemasaran kelas dunia' );
 
-// Tombol CTA
-$btn1_enable     = cc_get( 'hero_btn1_enable', true );
-$btn1_text       = cc_get( 'hero_btn1_text', 'Start Trial' );
-$btn1_url        = cc_get( 'hero_btn1_url', '#daftar' );
-$btn1_bg_color   = cc_get( 'hero_btn1_bg_color', '#1d4ed8' );
-$btn1_text_color = cc_get( 'hero_btn1_text_color', '#ffffff' );
+// Tombol CTA V3
+$btn1_enable     = cc_get( 'hero_v3_btn1_enable', true );
+$btn1_text       = cc_get( 'hero_v3_btn1_text', 'Start Trial' );
+$btn1_url        = cc_get( 'hero_v3_btn1_url', '#daftar' );
+$btn1_bg_color   = cc_get( 'hero_v3_btn1_bg_color', 'transparent' );
+$btn1_text_color = cc_get( 'hero_v3_btn1_text_color', '#0f172a' );
 
-$btn2_enable     = cc_get( 'hero_btn2_enable', true );
-$btn2_text       = cc_get( 'hero_btn2_text', 'How It Works' );
-$btn2_url        = cc_get( 'hero_btn2_url', '#how-it-works' );
-$btn2_bg_color   = cc_get( 'hero_btn2_bg_color', 'transparent' );
-$btn2_text_color = cc_get( 'hero_btn2_text_color', '#1d4ed8' );
+$btn2_enable     = cc_get( 'hero_v3_btn2_enable', true );
+$btn2_text       = cc_get( 'hero_v3_btn2_text', 'How It Works' );
+$btn2_url        = cc_get( 'hero_v3_btn2_url', '#how-it-works' );
+$btn2_bg_color   = cc_get( 'hero_v3_btn2_bg_color', '#ff4f38' );
+$btn2_text_color = cc_get( 'hero_v3_btn2_text_color', '#ffffff' );
 
-$btn_shape       = cc_get( 'hero_btn_shape', '50px' );
-
-// Warna bentuk latar & aksen
-$color_main      = cc_get( 'hero_shape_main_color', '#ea580c' );
-$color_yellow    = cc_get( 'hero_shape_yellow_color', '#EAB308' );
-$color_blue      = cc_get( 'hero_shape_blue_color', '#3B82F6' );
-$color_red       = cc_get( 'hero_shape_red_color', '#EF4444' );
-$color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
+$btn_shape       = cc_get( 'hero_v3_btn_shape', '50px' );
 ?>
 
 <section class="hero-section hero-v3-section section-divider-bottom" id="hero">
@@ -83,7 +76,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                 <?php if ( $btn1_enable ) : ?>
                     <a href="<?php echo esc_url( $btn1_url ); ?>" 
                        class="button button-outline hero-btn-v3" 
-                       style="border-color: #0f172a; color: #0f172a; border-radius: <?php echo esc_attr( $btn_shape ); ?>;">
+                       style="background-color: <?php echo esc_attr( $btn1_bg_color ); ?>; border-color: <?php echo esc_attr( $btn1_text_color ); ?>; color: <?php echo esc_attr( $btn1_text_color ); ?>; border-radius: <?php echo esc_attr( $btn_shape ); ?>;">
                         <?php echo esc_html( $btn1_text ); ?>
                     </a>
                 <?php endif; ?>
@@ -91,7 +84,7 @@ $color_purple    = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
                 <?php if ( $btn2_enable ) : ?>
                     <a href="<?php echo esc_url( $btn2_url ); ?>" 
                        class="button button-primary hero-btn-v3" 
-                       style="background-color: #ff4f38; border-color: #ff4f38; color: #ffffff; border-radius: <?php echo esc_attr( $btn_shape ); ?>;">
+                       style="background-color: <?php echo esc_attr( $btn2_bg_color ); ?>; border-color: <?php echo esc_attr( $btn2_bg_color ); ?>; color: <?php echo esc_attr( $btn2_text_color ); ?>; border-radius: <?php echo esc_attr( $btn_shape ); ?>;">
                         <?php echo esc_html( $btn2_text ); ?>
                     </a>
                 <?php endif; ?>

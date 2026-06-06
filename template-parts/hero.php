@@ -1,39 +1,39 @@
 <?php
 /**
  * Template Part: Hero Section.
- * Data diambil dari Customizer (cc_hero_*).
+ * Data diambil dari Customizer (cc_hero_v1_*).
  *
  * @package CredibleCompany
  */
 
-$hero_title = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
+$hero_title      = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
 $hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
-$hero_image      = cc_img( 'hero_image', cc_placeholder_svg( 500, 400, 'c01314', 'ffffff', 'Hero Image' ) );
-$hero_ornament_1 = cc_get( 'hero_ornament_1', '📚' );
-$hero_ornament_2 = cc_get( 'hero_ornament_2', '🎓' );
+$hero_image      = cc_img( 'hero_v1_image', cc_placeholder_svg( 500, 400, 'c01314', 'ffffff', 'Hero Image' ) );
+$hero_ornament_1 = cc_get( 'hero_v1_ornament_1', '📚' );
+$hero_ornament_2 = cc_get( 'hero_v1_ornament_2', '🎓' );
 
-// Tombol CTA
-$btn1_enable     = cc_get( 'hero_btn1_enable', true );
-$btn1_text       = cc_get( 'hero_btn1_text', 'Start Trial' );
-$btn1_url        = cc_get( 'hero_btn1_url', '#daftar' );
-$btn1_bg_color   = cc_get( 'hero_btn1_bg_color', '#1d4ed8' );
-$btn1_text_color = cc_get( 'hero_btn1_text_color', '#ffffff' );
+// Tombol CTA khusus V1
+$btn1_enable     = cc_get( 'hero_v1_btn1_enable', true );
+$btn1_text       = cc_get( 'hero_v1_btn1_text', 'Start Trial' );
+$btn1_url        = cc_get( 'hero_v1_btn1_url', '#daftar' );
+$btn1_bg_color   = cc_get( 'hero_v1_btn1_bg_color', '#1d4ed8' );
+$btn1_text_color = cc_get( 'hero_v1_btn1_text_color', '#ffffff' );
 
-$btn2_enable     = cc_get( 'hero_btn2_enable', true );
-$btn2_text       = cc_get( 'hero_btn2_text', 'How It Works' );
-$btn2_url        = cc_get( 'hero_btn2_url', '#how-it-works' );
-$btn2_bg_color   = cc_get( 'hero_btn2_bg_color', 'transparent' );
-$btn2_text_color = cc_get( 'hero_btn2_text_color', '#1d4ed8' );
+$btn2_enable     = cc_get( 'hero_v1_btn2_enable', true );
+$btn2_text       = cc_get( 'hero_v1_btn2_text', 'How It Works' );
+$btn2_url        = cc_get( 'hero_v1_btn2_url', '#how-it-works' );
+$btn2_bg_color   = cc_get( 'hero_v1_btn2_bg_color', 'transparent' );
+$btn2_text_color = cc_get( 'hero_v1_btn2_text_color', '#1d4ed8' );
 
-$btn_shape       = cc_get( 'hero_btn_shape', '50px' );
+$btn_shape       = cc_get( 'hero_v1_btn_shape', '50px' );
 
-// Warna bentuk latar
-$bg_shape_image = cc_img( 'hero_shape_bg_image', '' );
-$color_main   = cc_get( 'hero_shape_main_color', '#ea580c' );
-$color_yellow = cc_get( 'hero_shape_yellow_color', '#EAB308' );
-$color_blue   = cc_get( 'hero_shape_blue_color', '#3B82F6' );
-$color_red    = cc_get( 'hero_shape_red_color', '#EF4444' );
-$color_purple = cc_get( 'hero_shape_purple_color', '#8B5CF6' );
+// Warna bentuk latar khusus V1
+$bg_shape_image = cc_img( 'hero_v1_shape_bg_image', '' );
+$color_main     = cc_get( 'hero_v1_shape_main_color', '#ea580c' );
+$color_yellow   = cc_get( 'hero_v1_shape_yellow_color', '#EAB308' );
+$color_blue     = cc_get( 'hero_v1_shape_blue_color', '#3B82F6' );
+$color_red      = cc_get( 'hero_v1_shape_red_color', '#EF4444' );
+$color_purple   = cc_get( 'hero_v1_shape_purple_color', '#8B5CF6' );
 ?>
 
 <section class="hero-section section-divider-bottom" id="hero">

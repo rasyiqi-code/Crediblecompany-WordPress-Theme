@@ -112,7 +112,7 @@
     line-height: 1.65;
     color: var(--gray-500);
     max-width: 650px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto var(--cc-hero-v3-desc-margin-bottom);
 }
 
 .hero-v3-buttons {
@@ -141,7 +141,7 @@
     width: 100%;
     max-width: 950px;
     height: 480px;
-    background-color: #00df89; /* Warna hijau neon khas Jasper */
+    background-color: var(--cc-hero-v3-canvas-bg); /* Warna hijau neon khas Jasper */
     border-top-left-radius: var(--cc-hero-canvas-radius);
     border-top-right-radius: var(--cc-hero-canvas-radius);
     overflow: hidden;
@@ -239,7 +239,7 @@
 .card-v3-right {
     top: 25%;
     right: 10%;
-    background-color: #0b1c3f; /* Deep blue/navy */
+    background-color: var(--cc-hero-v3-card-right-bg); /* Deep blue/navy */
     color: #ffffff;
     min-width: 160px;
     padding: 1.25rem;
@@ -269,7 +269,7 @@
     left: 5%;
     width: 140px;
     height: 140px;
-    background-color: #f472b6;
+    background-color: var(--cc-hero-v3-triangle-color);
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     transform: rotate(-15deg);
     z-index: 1;
@@ -290,7 +290,7 @@
 .shape-v3-circle-column .circle-item {
     width: 65px;
     height: 65px;
-    background-color: #047857;
+    background-color: var(--cc-hero-v3-circle-color);
     border-radius: 50%;
 }
 
@@ -308,7 +308,7 @@
 .shape-v3-blue-bars .bar-item {
     width: 8px;
     height: 45px;
-    background-color: #3b82f6;
+    background-color: var(--cc-hero-v3-blue-bars-color);
     border-radius: 4px;
 }
 
@@ -319,7 +319,7 @@
     left: 55%;
     width: 90px;
     height: 90px;
-    background-color: #047857;
+    background-color: var(--cc-hero-v3-circle-color);
     border-radius: 50%;
     z-index: 3;
 }

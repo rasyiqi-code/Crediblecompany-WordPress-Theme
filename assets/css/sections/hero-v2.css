@@ -83,7 +83,7 @@
     font-size: var(--cc-hero-v2-desc-size);
     line-height: 1.65;
     color: var(--gray-500);
-    margin-bottom: 3rem;
+    margin-bottom: var(--cc-hero-v2-desc-margin-bottom);
     max-width: 720px;
 }
 
