@@ -22,22 +22,24 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
 // 2. Load Modular Sections (Setiap file memiliki add_action mandiri)
 // Note: Pastikan file-file ini didaftarkan di luar block action panel utama
-require_once get_template_directory() . '/inc/customizer/header.php';
-require_once get_template_directory() . '/inc/customizer/hero.php';
-require_once get_template_directory() . '/inc/customizer/statistics.php';
-require_once get_template_directory() . '/inc/customizer/features.php';
-require_once get_template_directory() . '/inc/customizer/cta.php';
-require_once get_template_directory() . '/inc/customizer/social.php';
-require_once get_template_directory() . '/inc/customizer/pricing.php';
-require_once get_template_directory() . '/inc/customizer/mitra.php';
-require_once get_template_directory() . '/inc/customizer/testimonials.php';
-require_once get_template_directory() . '/inc/customizer/books.php';
-require_once get_template_directory() . '/inc/customizer/faq.php';
-require_once get_template_directory() . '/inc/customizer/blog.php';
-require_once get_template_directory() . '/inc/customizer/marketing.php';
-require_once get_template_directory() . '/inc/customizer/footer.php';
-require_once get_template_directory() . '/inc/customizer/seo.php';
-require_once get_template_directory() . '/inc/customizer/mobile-layout.php';
+$_cc_customizer_dir = get_template_directory() . '/inc/customizer/';
+require_once $_cc_customizer_dir . 'header.php';
+require_once $_cc_customizer_dir . 'hero.php';
+require_once $_cc_customizer_dir . 'statistics.php';
+require_once $_cc_customizer_dir . 'features.php';
+require_once $_cc_customizer_dir . 'cta.php';
+require_once $_cc_customizer_dir . 'social.php';
+require_once $_cc_customizer_dir . 'pricing.php';
+require_once $_cc_customizer_dir . 'mitra.php';
+require_once $_cc_customizer_dir . 'testimonials.php';
+require_once $_cc_customizer_dir . 'books.php';
+require_once $_cc_customizer_dir . 'faq.php';
+require_once $_cc_customizer_dir . 'blog.php';
+require_once $_cc_customizer_dir . 'marketing.php';
+require_once $_cc_customizer_dir . 'footer.php';
+require_once $_cc_customizer_dir . 'seo.php';
+require_once $_cc_customizer_dir . 'mobile-layout.php';
+unset( $_cc_customizer_dir );
 
 /**
  * Sanitasi checkbox (Global)

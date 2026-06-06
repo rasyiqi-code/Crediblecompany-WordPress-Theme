@@ -15,7 +15,12 @@
 /* --------------------------------------------------------------------------
  * 1. Register Custom Post Type Marketing
  * ---------------------------------------------------------------------- */
-add_action( 'init', function () {
+add_action( 'init', 'cc_register_cpt_marketing' );
+
+/**
+ * Register Custom Post Type: marketing.
+ */
+function cc_register_cpt_marketing() {
     $labels = array(
         'name'               => __( 'Marketing', 'crediblecompany' ),
         'singular_name'      => __( 'Marketing', 'crediblecompany' ),
@@ -32,32 +37,46 @@ add_action( 'init', function () {
     );
 
     register_post_type( 'marketing', array(
-        'labels'       => $labels,
-        'public'       => false,
-        'show_ui'      => true,
-        'show_in_menu' => true,
-        'menu_icon'    => 'dashicons-businessman',
-        'menu_position'=> 26,
-        'supports'     => array( 'title' ),
-        'has_archive'  => false,
-        'rewrite'      => false,
+        'labels'        => $labels,
+        'public'        => false,
+        'show_ui'       => true,
+        'show_in_menu'  => true,
+        'menu_icon'     => 'dashicons-businessman',
+        'menu_position' => 26,
+        'supports'      => array( 'title' ),
+        'has_archive'   => false,
+        'rewrite'       => false,
     ) );
-} );
+}
 
 /* --------------------------------------------------------------------------
  * 1.5. Custom Placeholder 'Add title'
  * ---------------------------------------------------------------------- */
-add_filter( 'enter_title_here', function( $title, $post ) {
+add_filter( 'enter_title_here', 'cc_marketing_title_placeholder', 10, 2 );
+
+/**
+ * Ganti placeholder 'Add title' di editor Marketing.
+ *
+ * @param string  $title Teks placeholder default.
+ * @param WP_Post $post  Post object.
+ * @return string
+ */
+function cc_marketing_title_placeholder( $title, $post ) {
     if ( 'marketing' === $post->post_type ) {
         return __( 'Nama Marketing: Thanos', 'crediblecompany' );
     }
     return $title;
-}, 10, 2 );
+}
 
 /* --------------------------------------------------------------------------
  * 2. Meta Box — Detail Kontak
  * ---------------------------------------------------------------------- */
-add_action( 'add_meta_boxes', function () {
+add_action( 'add_meta_boxes', 'cc_marketing_add_meta_boxes' );
+
+/**
+ * Daftarkan meta box untuk CPT marketing.
+ */
+function cc_marketing_add_meta_boxes() {
     add_meta_box(
         'cc_marketing_detail',
         __( 'Info Kontak Marketing', 'crediblecompany' ),
@@ -66,7 +85,7 @@ add_action( 'add_meta_boxes', function () {
         'normal',
         'high'
     );
-} );
+}
 
 /**
  * Render isi meta box field kontak marketing
@@ -127,7 +146,14 @@ function cc_render_marketing_meta_box( $post ) {
 /* --------------------------------------------------------------------------
  * 3. Simpan Meta Data
  * ---------------------------------------------------------------------- */
-add_action( 'save_post_marketing', function ( $post_id ) {
+add_action( 'save_post_marketing', 'cc_marketing_save_meta', 10, 1 );
+
+/**
+ * Simpan meta data marketing saat post disave.
+ *
+ * @param int $post_id ID post.
+ */
+function cc_marketing_save_meta( $post_id ) {
     if ( ! isset( $_POST['cc_marketing_nonce'] ) || ! wp_verify_nonce( $_POST['cc_marketing_nonce'], 'cc_marketing_save' ) ) {
         return;
     }
@@ -147,20 +173,36 @@ add_action( 'save_post_marketing', function ( $post_id ) {
     if ( isset( $_POST['cc_wa_text'] ) ) {
         update_post_meta( $post_id, '_cc_wa_text', sanitize_textarea_field( $_POST['cc_wa_text'] ) );
     }
-} );
+}
 
 /* --------------------------------------------------------------------------
  * 4. Custom Columns Admin
  * ---------------------------------------------------------------------- */
-add_filter( 'manage_marketing_posts_columns', function ( $columns ) {
+add_filter( 'manage_marketing_posts_columns', 'cc_marketing_posts_columns' );
+
+/**
+ * Tambahkan kolom kustom di daftar post marketing.
+ *
+ * @param array $columns Kolom default.
+ * @return array
+ */
+function cc_marketing_posts_columns( $columns ) {
     unset( $columns['date'] );
     $columns['cc_wa_number'] = __( 'Nomor WhatsApp', 'crediblecompany' );
     $columns['cc_ref_url']   = __( 'URL Referral', 'crediblecompany' );
     $columns['date']         = __( 'Tanggal', 'crediblecompany' );
     return $columns;
-} );
+}
 
-add_action( 'manage_marketing_posts_custom_column', function ( $column, $post_id ) {
+add_action( 'manage_marketing_posts_custom_column', 'cc_marketing_custom_column', 10, 2 );
+
+/**
+ * Isi konten kolom kustom marketing.
+ *
+ * @param string $column  Nama kolom.
+ * @param int    $post_id ID post.
+ */
+function cc_marketing_custom_column( $column, $post_id ) {
     switch ( $column ) {
         case 'cc_wa_number':
             $ph = get_post_meta( $post_id, '_cc_wa_number', true );
@@ -168,9 +210,9 @@ add_action( 'manage_marketing_posts_custom_column', function ( $column, $post_id
             break;
         case 'cc_ref_url':
             $post_obj = get_post( $post_id );
-            $url = get_site_url() . '/?ref=' . $post_obj->post_name;
+            $url      = get_site_url() . '/?ref=' . $post_obj->post_name;
             echo '<code>?ref=' . esc_html( $post_obj->post_name ) . '</code><br>';
             echo '<a href="' . esc_url( $url ) . '" target="_blank" style="font-size:11px;">Test Link ↗</a>';
             break;
     }
-}, 10, 2 );
+}

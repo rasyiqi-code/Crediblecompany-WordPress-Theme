@@ -6,25 +6,42 @@
  * @package CredibleCompany
  */
 
-// Sembunyikan Admin Bar
+// Sembunyikan Admin Bar di frontend
 add_filter( 'show_admin_bar', '__return_false' );
 
 /* --------------------------------------------------------------------------
- * 1. Muat modul-modul pendukung dari folder inc/
+ * 1. Loader — Muat semua modul dari folder inc/
+ *    Urutan penting: helpers & CPT sebelum modul yang bergantung padanya.
  * ---------------------------------------------------------------------- */
-require_once get_template_directory() . '/inc/enqueue.php';
-require_once get_template_directory() . '/inc/post-views.php';
-require_once get_template_directory() . '/inc/ajax-loadmore.php';
-require_once get_template_directory() . '/inc/helpers.php';
-require_once get_template_directory() . '/inc/customizer.php';
-require_once get_template_directory() . '/inc/cpts/cpt-paket-jasa.php';
-require_once get_template_directory() . '/inc/cpts/cpt-testimoni.php';
-require_once get_template_directory() . '/inc/cpts/cpt-marketing.php';
-require_once get_template_directory() . '/inc/custom-comments.php';
-require_once get_template_directory() . '/inc/toc-generator.php';
-require_once get_template_directory() . '/inc/dynamic-wa.php';
-require_once get_template_directory() . '/inc/optimizers/performance-optimizer.php';
-require_once get_template_directory() . '/inc/optimizers/security-optimizer.php';
+$_cc_inc = get_template_directory() . '/inc/';
+
+// Utilitas & asset
+require_once $_cc_inc . 'helpers.php';
+require_once $_cc_inc . 'enqueue.php';
+require_once $_cc_inc . 'breadcrumbs.php';
+
+// Custom Post Types
+require_once $_cc_inc . 'cpts/cpt-testimoni.php';
+require_once $_cc_inc . 'cpts/cpt-paket-jasa.php';
+require_once $_cc_inc . 'cpts/cpt-marketing.php';
+
+// Fitur konten
+require_once $_cc_inc . 'post-views.php';
+require_once $_cc_inc . 'toc-generator.php';
+require_once $_cc_inc . 'custom-comments.php';
+require_once $_cc_inc . 'dynamic-wa.php';
+require_once $_cc_inc . 'submit-testimoni.php';
+require_once $_cc_inc . 'ajax-loadmore.php';
+
+// Customizer (semua panel & settings)
+require_once $_cc_inc . 'customizer/loader.php';
+
+// Optimizers (SEO, Keamanan, Performa) — urutan: performance dulu, SEO terakhir
+require_once $_cc_inc . 'optimizers/performance-optimizer.php';
+require_once $_cc_inc . 'optimizers/security-optimizer.php';
+require_once $_cc_inc . 'optimizers/seo-optimizer.php';
+
+unset( $_cc_inc ); // Bersihkan variabel temporary
 
 /* --------------------------------------------------------------------------
  * 2. Setup Tema
@@ -97,10 +114,8 @@ add_action( 'widgets_init', function () {
 } );
 
 /* --------------------------------------------------------------------------
- * 4. Fungsi Penerima Form "Submit Testimoni" (Front-End -> Pending CPT)
- *    Pecah ke berkas modular: inc/submit-testimoni.php
+ * 4. Query Modifications
  * ---------------------------------------------------------------------- */
-require_once get_template_directory() . '/inc/submit-testimoni.php';
 
 /**
  * Atur jumlah post per halaman untuk arsip testimoni.
@@ -111,61 +126,61 @@ add_action( 'pre_get_posts', function ( $query ) {
     }
 } );
 
-require_once get_template_directory() . '/inc/breadcrumbs.php';
-require_once get_template_directory() . '/inc/optimizers/seo-optimizer.php';
-
 /* --------------------------------------------------------------------------
- * 5. Routing Dinamis Template Opsional
+ * 5. Routing Dinamis Template
+ *    Override WordPress default template hierarchy menggunakan filter.
+ *    Semua template full-page berada di folder /templates/.
  * ---------------------------------------------------------------------- */
-add_filter( 'template_include', function ( $template ) {
-    $templates_dir = get_template_directory() . '/templates/';
+add_filter( 'template_include', 'cc_resolve_template' );
 
-    // 1. Halaman 404
-    if ( is_404() && file_exists( $templates_dir . '404.php' ) ) {
-        return $templates_dir . '404.php';
+/**
+ * Resolve template dari folder /templates/ berdasarkan kondisi halaman.
+ *
+ * @param string $template Path template default dari WordPress.
+ * @return string Path template yang akan digunakan.
+ */
+function cc_resolve_template( $template ) {
+    $dir = get_template_directory() . '/templates/';
+
+    $map = array(
+        'is_404'                  => '404.php',
+        'is_search'               => 'search.php',
+        'is_front_page'           => 'front-page.php',
+        'is_home'                 => 'home.php',
+        'is_page'                 => 'page.php',
+    );
+
+    // Cek kondisi sederhana (tidak bergantung post type)
+    foreach ( $map as $condition => $file ) {
+        if ( call_user_func( $condition ) && file_exists( $dir . $file ) ) {
+            return $dir . $file;
+        }
     }
 
-    // 2. Halaman Pencarian
-    if ( is_search() && file_exists( $templates_dir . 'search.php' ) ) {
-        return $templates_dir . 'search.php';
-    }
-
-    // 3. Halaman Depan Utama (Front Page)
-    if ( is_front_page() && file_exists( $templates_dir . 'front-page.php' ) ) {
-        return $templates_dir . 'front-page.php';
-    }
-
-    // 4. Halaman Blog Index (Home)
-    if ( is_home() && file_exists( $templates_dir . 'home.php' ) ) {
-        return $templates_dir . 'home.php';
-    }
-
-    // 5. Halaman Single Post / Custom Post Type tunggal
+    // Single post/CPT — coba single-{post_type}.php dulu, fallback ke single.php
     if ( is_single() ) {
-        $post_type = get_post_type();
-        if ( $post_type && file_exists( $templates_dir . "single-{$post_type}.php" ) ) {
-            return $templates_dir . "single-{$post_type}.php";
+        $post_type     = get_post_type();
+        $specific_file = "single-{$post_type}.php";
+        if ( $post_type && file_exists( $dir . $specific_file ) ) {
+            return $dir . $specific_file;
         }
-        if ( file_exists( $templates_dir . 'single.php' ) ) {
-            return $templates_dir . 'single.php';
+        if ( file_exists( $dir . 'single.php' ) ) {
+            return $dir . 'single.php';
         }
     }
 
-    // 6. Halaman Statis (Page)
-    if ( is_page() && file_exists( $templates_dir . 'page.php' ) ) {
-        return $templates_dir . 'page.php';
-    }
-
-    // 7. Halaman Arsip / Kategori / CPT Archive
+    // Archive/Kategori/CPT Archive — coba archive-{post_type}.php dulu
     if ( is_archive() ) {
-        $post_type = get_post_type();
-        if ( $post_type && is_post_type_archive( $post_type ) && file_exists( $templates_dir . "archive-{$post_type}.php" ) ) {
-            return $templates_dir . "archive-{$post_type}.php";
+        $post_type     = get_post_type();
+        $specific_file = "archive-{$post_type}.php";
+        if ( $post_type && is_post_type_archive( $post_type ) && file_exists( $dir . $specific_file ) ) {
+            return $dir . $specific_file;
         }
-        if ( file_exists( $templates_dir . 'archive.php' ) ) {
-            return $templates_dir . 'archive.php';
+        if ( file_exists( $dir . 'archive.php' ) ) {
+            return $dir . 'archive.php';
         }
     }
 
     return $template;
-} );
+}
+
