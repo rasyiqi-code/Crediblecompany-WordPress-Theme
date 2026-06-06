@@ -144,7 +144,7 @@ add_action( 'customize_register', function( $wp_customize ) {
         'default'           => '',
         'sanitize_callback' => 'esc_url_raw',
     ) );
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cc_hero_image', array(
+    $wp_customize->add_control( new \WP_Customize_Image_Control( $wp_customize, 'cc_hero_image', array(
         'label'   => __( 'Gambar Hero', 'crediblecompany' ),
         'section' => 'cc_hero_section',
     ) ) );
@@ -285,7 +285,7 @@ add_action( 'customize_register', function( $wp_customize ) {
         'default'           => '',
         'sanitize_callback' => 'esc_url_raw',
     ) );
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cc_hero_shape_bg_image', array(
+    $wp_customize->add_control( new \WP_Customize_Image_Control( $wp_customize, 'cc_hero_shape_bg_image', array(
         'label'       => __( 'Gambar Latar Shape Utama (SVG/PNG/WEBP)', 'crediblecompany' ),
         'description' => __( 'Upload gambar latar abstrak jika tidak ingin lingkaran polos. Kosongkan untuk pakai warna solid.', 'crediblecompany' ),
         'section'     => 'cc_hero_section',
