@@ -83,31 +83,7 @@ $color_purple   = cc_get( 'hero_v2_shape_purple_color', '#8B5CF6' );
             <?php endif; ?>
         </div>
 
-        <!-- Statistik Center -->
-        <div class="hero-v2-stats">
-            <?php
-            $num_color   = cc_get( 'stat_number_color', '#F59E0B' );
-            $label_color = cc_get( 'stat_label_color', '#64748b' );
-            
-            for ( $i = 1; $i <= 3; $i++ ) :
-                $number = cc_get( "stat_number_{$i}", '' );
-                $label  = cc_get( "stat_label_{$i}", '' );
-                if ( empty( $number ) && empty( $label ) ) {
-                    $defaults = [ 
-                        1 => ['1,200+', 'Lorem Ipsum'], 
-                        2 => ['85,000+', 'Dolor Sit'], 
-                        3 => ['4,500+', 'Consectetur'] 
-                    ];
-                    $number = $defaults[$i][0];
-                    $label = $defaults[$i][1];
-                }
-            ?>
-                <div class="hero-v2-stat-item">
-                    <h3 class="stat-number" style="color: <?php echo esc_attr( $num_color ); ?>;"><?php echo esc_html( $number ); ?></h3>
-                    <p class="stat-label" style="color: <?php echo esc_attr( $label_color ); ?>;"><?php echo esc_html( $label ); ?></p>
-                </div>
-            <?php endfor; ?>
-        </div>
+
     </div>
 
     <!-- Bentuk Ornamen Melayang Kiri & Kanan -->
