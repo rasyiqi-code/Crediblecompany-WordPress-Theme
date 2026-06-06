@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Judul Utama (Mengapa Memilih Kami?)
     $wp_customize->add_setting( 'cc_features_main_title', array(
-        'default'           => __( 'Mengapa Memilih Kami?', 'crediblecompany' ),
+        'default'           => __( 'Lorem Ipsum Dolor', 'crediblecompany' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_features_main_title', array(
@@ -25,12 +25,12 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $feat_defaults = array(
-        array( 'Profesional', 'Ditangani langsung oleh tim ahli yang berkompeten di bidang penerbitan.' ),
-        array( 'Harga Murah', 'Biaya terjangkau dengan kualitas maksimal. Ada berbagai diskon menarik.' ),
-        array( 'Cepat', 'Proses cetak dan pengerjaan tepat waktu sesuai dengan target.' ),
-        array( 'Free Ongkir', 'Gratis ongkir untuk pengiriman ke beberapa wilayah tertentu.' ),
-        array( 'Proses Bergaransi', 'Garansi cetak ulang tanpa tambahan biaya bila terjadi cacat produk.' ),
-        array( 'Distribusi Luas', 'Buku kamu akan disebarkan ke berbagai channel marketplace nasional.' ),
+        array( 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'Dolor Sit Amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'Consectetur', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'Adipiscing Elit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'Proin Sodales', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'Imperdiet Diam', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
     );
 
     for ( $i = 1; $i <= 6; $i++ ) {

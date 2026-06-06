@@ -18,16 +18,16 @@ for ( $i = 1; $i <= 6; $i++ ) {
 }
 
 // Fallback teks jika belum ada 1 pun logo diupload
-$mitra_resmi_fallback = array( 'Kemendikbudristek RI', 'Google Play Books', 'IKAPI', 'Perpusnas RI' );
+$mitra_resmi_fallback = array( 'Mitra 1', 'Mitra 2', 'Mitra 3', 'Mitra 4' );
 
 // Tagline proses kerja (dari Customizer)
 $proses_tagline = cc_get(
     'mitra_proses_tagline',
-    'Kirim Naskah → DP → Proses → Revisi → Naik Cetak → Dikirim ke Penulis (Hanya 21 Hari Kerja)'
+    'Lorem Ipsum → Dolor Sit → Consectetur → Adipiscing → Proin Sodales'
 );
 
 // Mitra Pembayaran & Pengiriman (dari Customizer, pisahkan koma)
-$mitra_bayar_raw = cc_get( 'mitra_payment', 'BCA, MANDIRI, SHOPEEPAY, JNE, J&T, SICEPAT' );
+$mitra_bayar_raw = cc_get( 'mitra_payment', 'Lorem, Ipsum, Dolor, Sit, Amet, Consectetur' );
 $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_raw ) ) );
 ?>
 

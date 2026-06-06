@@ -23,12 +23,12 @@ $icons = array(
 
         <?php
         $feat_defaults = array(
-            array( 'Profesional', 'Ditangani langsung oleh tim ahli yang berkompeten di bidang penerbitan.' ),
-            array( 'Harga Murah', 'Biaya terjangkau dengan kualitas maksimal. Ada berbagai diskon menarik.' ),
-            array( 'Cepat', 'Proses cetak dan pengerjaan tepat waktu sesuai dengan target.' ),
-            array( 'Free Ongkir', 'Gratis ongkir untuk pengiriman ke beberapa wilayah tertentu.' ),
-            array( 'Proses Bergaransi', 'Garansi cetak ulang tanpa tambahan biaya bila terjadi cacat produk.' ),
-            array( 'Distribusi Luas', 'Buku kamu akan disebarkan ke berbagai channel marketplace nasional.' ),
+            array( 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+            array( 'Dolor Sit Amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+            array( 'Consectetur', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+            array( 'Adipiscing Elit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+            array( 'Proin Sodales', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+            array( 'Imperdiet Diam', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
         );
 
         $scroll_class = cc_get( 'mobile_scroll_features', true ) ? 'has-horizontal-scroll' : ''; 

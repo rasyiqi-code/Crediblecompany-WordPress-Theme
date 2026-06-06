@@ -15,9 +15,9 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Angka & label (3 pasang)
     $stats_defaults = array(
-        array( '3,000+', 'Judul Buku' ),
-        array( '200,000+', 'Eksemplar Cetak' ),
-        array( '2,500+', 'Penulis Puas' ),
+        array( '1,200+', 'Lorem Ipsum' ),
+        array( '85,000+', 'Dolor Sit' ),
+        array( '4,500+', 'Consectetur' ),
     );
 
     for ( $i = 1; $i <= 3; $i++ ) {

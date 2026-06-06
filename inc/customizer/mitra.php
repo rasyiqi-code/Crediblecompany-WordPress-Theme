@@ -14,7 +14,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_mitra_proses_tagline', array(
-        'default'           => 'Kirim Naskah → DP → Proses → Revisi → Naik Cetak → Dikirim ke Penulis (Hanya 21 Hari Kerja)',
+        'default'           => 'Lorem Ipsum → Dolor Sit → Consectetur → Adipiscing → Proin Sodales',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_mitra_proses_tagline', array(
@@ -38,7 +38,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Daftar Mitra Pembayaran / Pengiriman (dipisahkan koma)
     $wp_customize->add_setting( 'cc_mitra_payment', array(
-        'default'           => 'BCA, MANDIRI, SHOPEEPAY, JNE, J&T, SICEPAT',
+        'default'           => 'Lorem, Ipsum, Dolor, Sit, Amet, Consectetur',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_mitra_payment', array(
