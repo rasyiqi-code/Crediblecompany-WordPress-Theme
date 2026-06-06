@@ -20,9 +20,6 @@
     ?>
     <style id="cc-header-customizer-inline-css">
         .site-header, 
-        .site-header .container,
-        .site-header .site-logo,
-        .site-header .header-icons,
         .desktop-nav {
             <?php if ( $header_style === 'glass' ) : ?>
             background-color: <?php echo esc_attr( cc_hex_to_rgba( $header_bg, 0.85 ) ); ?> !important;
