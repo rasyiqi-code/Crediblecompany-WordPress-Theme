@@ -232,3 +232,25 @@ function cc_auto_page_cache_start() {
         return $buffer;
     });
 }
+
+/**
+ * Bersihkan semua file cache halaman (.html) jika ada perubahan di Customizer atau konten baru.
+ */
+function cc_clear_all_page_cache() {
+    $cache_dir = WP_CONTENT_DIR . '/cache/cc-cache/';
+    if ( is_dir( $cache_dir ) ) {
+        $files = glob( $cache_dir . '*.html' );
+        if ( is_array( $files ) ) {
+            foreach ( $files as $file ) {
+                if ( is_file( $file ) ) {
+                    unlink( $file );
+                }
+            }
+        }
+    }
+}
+add_action( 'customize_save_after', 'cc_clear_all_page_cache' );
+add_action( 'save_post', 'cc_clear_all_page_cache' );
+add_action( 'activated_plugin', 'cc_clear_all_page_cache' );
+add_action( 'deactivated_plugin', 'cc_clear_all_page_cache' );
+add_action( 'switch_theme', 'cc_clear_all_page_cache' );

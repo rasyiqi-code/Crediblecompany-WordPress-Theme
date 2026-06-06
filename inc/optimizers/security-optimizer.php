@@ -55,6 +55,12 @@ function cc_handle_custom_login_redirect() {
  */
 add_action( 'login_init', 'cc_protect_login_page' );
 function cc_protect_login_page() {
+    // Izinkan akses jika user sudah login atau request berasal dari sistem Customizer (session check)
+    $is_customize = isset( $_GET['customize-login'] ) || isset( $_GET['interim-login'] );
+    if ( is_user_logged_in() || $is_customize ) {
+        return;
+    }
+
     // Abaikan jika sedang proses POST (submit form login)
     if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         return;

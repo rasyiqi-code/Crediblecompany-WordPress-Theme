@@ -8,6 +8,9 @@
 
 get_header(); ?>
 
+<!-- TEMPLATE: templates/front-page.php -->
+<!-- HERO VARIANT: <?php echo esc_html( cc_get( 'hero_variant', 'default' ) ); ?> -->
+
 <div class="app-landing-wrapper">
     <?php
     // Panggil setiap section secara berurutan dan modular

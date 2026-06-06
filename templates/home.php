@@ -7,7 +7,11 @@
  */
 
 get_header(); 
+?>
 
+<!-- TEMPLATE: templates/home.php -->
+
+<?php
 // Customizer Settings
 $hero_title    = get_theme_mod( 'cc_blog_title', __( 'Blog', 'crediblecompany' ) );
 $hero_subtitle = get_theme_mod( 'cc_blog_subtitle', __( 'Temukan wawasan dan cerita menarik terbaru dari kami.', 'crediblecompany' ) );
