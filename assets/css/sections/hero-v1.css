@@ -145,7 +145,7 @@ img.hero-bg-image {
 
 .hero-main-img {
     position: absolute;
-    bottom: -10%;
+    bottom: 2%;
     left: 50%;
     transform: translateX(-50%);
     width: 85%;
