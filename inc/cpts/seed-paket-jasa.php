@@ -9,59 +9,63 @@
 
 add_action( 'after_switch_theme', 'cc_seed_paket_jasa' );
 
+// Jalankan otomatis sekali jika data Lorem Ipsum belum di-seed di database aktif
+if ( ! get_option( 'cc_paket_jasa_lorem_seeded' ) ) {
+    add_action( 'init', 'cc_seed_paket_jasa' );
+}
+
 /**
- * Seed paket jasa default saat tema diaktifkan.
- * Hanya berjalan sekali (dicek via option 'cc_paket_jasa_seeded').
+ * Seed paket jasa default dengan data Lorem Ipsum yang general.
+ * Menghapus data lama bertema KBM agar tidak terjadi duplikasi.
  */
 function cc_seed_paket_jasa() {
-    if ( get_option( 'cc_paket_jasa_seeded' ) ) {
+    if ( get_option( 'cc_paket_jasa_lorem_seeded' ) ) {
         return;
+    }
+
+    // Hapus postingan CPT paket_jasa lama agar bersih
+    $old_packages = get_posts( array(
+        'post_type'   => 'paket_jasa',
+        'numberposts' => -1,
+        'post_status' => 'any',
+    ) );
+    foreach ( $old_packages as $post ) {
+        wp_delete_post( $post->ID, true );
     }
 
     $seed_packages = array(
         array(
-            'title'     => 'Majapahit',
-            'badge'     => 'Best Promo',
-            'price'     => 'Rp. 2.250.000',
-            'eksemplar' => '50 Eksemplar',
-            'ukuran'    => 'A5/Unesco',
-            'catatan'   => 'Layanan ini berlaku untuk 150 Halaman. Jika lebih, dikenai tarif tambahan.',
-            'btn_text'  => 'Ambil Promo',
-            'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n2 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi 3 Kali\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 2 Eksemplar\n1 Merchandise Eksklusif",
+            'title'     => 'Basic',
+            'badge'     => 'Promo',
+            'price'     => '$19 / bln',
+            'eksemplar' => 'Lorem Ipsum',
+            'ukuran'    => 'Dolor Sit',
+            'catatan'   => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'btn_text'  => 'Start Now',
+            'btn_url'   => '#',
+            'features'  => "Lorem Ipsum\nDolor Sit Amet\nConsectetur\nAdipiscing Elit\nProin Sodales\nImperdiet Diam\nMauris Egestas",
         ),
         array(
-            'title'     => 'Nusantara',
-            'badge'     => 'Populer',
-            'price'     => 'Rp. 3.500.000',
-            'eksemplar' => '100 Eksemplar',
-            'ukuran'    => 'A5/Unesco',
-            'catatan'   => 'Layanan ini berlaku untuk 200 Halaman. Jika lebih, dikenai tarif tambahan.',
-            'btn_text'  => 'Ambil Promo',
-            'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n3 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi 5 Kali\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 5 Eksemplar\n1 Merchandise Eksklusif",
+            'title'     => 'Standard',
+            'badge'     => 'Popular',
+            'price'     => '$49 / bln',
+            'eksemplar' => 'Lorem Ipsum',
+            'ukuran'    => 'Dolor Sit',
+            'catatan'   => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'btn_text'  => 'Start Now',
+            'btn_url'   => '#',
+            'features'  => "Lorem Ipsum\nDolor Sit Amet\nConsectetur\nAdipiscing Elit\nProin Sodales\nImperdiet Diam\nMauris Egestas\nElementum Nibh\nVolutpat Neque",
         ),
         array(
-            'title'     => 'Sriwijaya',
-            'badge'     => 'Premium',
-            'price'     => 'Rp. 5.000.000',
-            'eksemplar' => '150 Eksemplar',
-            'ukuran'    => 'A5/Unesco',
-            'catatan'   => 'Layanan ini berlaku untuk 250 Halaman. Jika lebih, dikenai tarif tambahan.',
-            'btn_text'  => 'Ambil Promo',
-            'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n4 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi Unlimited\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 10 Eksemplar\n2 Merchandise Eksklusif\nVideo Promo 30 Detik",
-        ),
-        array(
-            'title'     => 'Mataram',
-            'badge'     => 'Eksklusif',
-            'price'     => 'Rp. 8.000.000',
-            'eksemplar' => '250 Eksemplar',
-            'ukuran'    => 'A5/Unesco',
-            'catatan'   => 'Layanan ini berlaku untuk 300 Halaman. Jika lebih, dikenai tarif tambahan.',
-            'btn_text'  => 'Ambil Promo',
-            'btn_url'   => 'https://wa.me/6281234567890',
-            'features'  => "Layout\n5 Pilihan Cover\nMock Up Promosi\nWrapping/Pembungkus Buku\nLem Buku Sangat Kuat\nLaminasi Doff & Glossy\nISBN/QRSBN Perpusnas/QRCBN\nSerah Simpan Ke Perpusnas RI\nBebas Revisi Unlimited\nLembar Pemisah Halaman\nKeanggotaan IKAPI\nDi Upload di Repository OMP\nTerindeks di Google Scholar\nTerindeks di Google Playbook\nSertifikat Penulis\nPasang Logo\nRoyalty 25% Penjualan\nFile Ebook\nGratis 100% Ongkir ke Seluruh Indonesia\nTambahan 20 Eksemplar\n3 Merchandise Eksklusif\nVideo Promo 60 Detik\nBanner Promosi Digital",
+            'title'     => 'Premium',
+            'badge'     => 'Best Value',
+            'price'     => '$99 / bln',
+            'eksemplar' => 'Lorem Ipsum',
+            'ukuran'    => 'Dolor Sit',
+            'catatan'   => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'btn_text'  => 'Start Now',
+            'btn_url'   => '#',
+            'features'  => "Lorem Ipsum\nDolor Sit Amet\nConsectetur\nAdipiscing Elit\nProin Sodales\nImperdiet Diam\nMauris Egestas\nElementum Nibh\nVolutpat Neque\nVestibulum Ante\nIpsum Primis",
         ),
     );
 
@@ -85,5 +89,5 @@ function cc_seed_paket_jasa() {
         }
     }
 
-    update_option( 'cc_paket_jasa_seeded', true );
+    update_option( 'cc_paket_jasa_lorem_seeded', true );
 }
