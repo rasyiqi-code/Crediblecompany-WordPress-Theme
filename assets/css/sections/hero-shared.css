@@ -1,0 +1,78 @@
+/* ==========================================================================
+ * Bagian Hero: Shared/Global Styles
+ * Variabel, animasi melayang global, transisi button global, dan divider section.
+ *
+ * @package CredibleCompany
+ * ========================================================================== */
+
+.hero-section {
+    background-color: var(--brand-white);
+    color: var(--brand-dark);
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animasi Melayang Global */
+@keyframes morphSlow {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes morphFast {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) rotate(-10deg) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+.morph-slow {
+    animation: morphSlow 6s ease-in-out infinite;
+}
+
+.morph-fast {
+    animation: morphFast 4s ease-in-out infinite;
+}
+
+/* Pembatas Section (Section Divider) */
+.section-divider-top,
+.section-divider-bottom {
+    position: relative;
+}
+
+.section-divider-top::before,
+.section-divider-bottom::after {
+    content: '';
+    position: absolute;
+    left: -5%;
+    width: auto;
+    height: 30px;
+    background: var(--brand-white);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.section-divider-top::before {
+    top: -15px;
+}
+
+.section-divider-bottom::after {
+    bottom: -15px;
+}
+
+.section-divider-top--red::before,
+.section-divider-bottom--red::after {
+    background: var(--brand-red);
+}
