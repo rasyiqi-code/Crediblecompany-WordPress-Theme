@@ -116,5 +116,57 @@ require_once get_template_directory() . '/inc/breadcrumbs.php';
 require_once get_template_directory() . '/inc/optimizers/seo-optimizer.php';
 
 /* --------------------------------------------------------------------------
- * 2. Setup Tema
+ * 5. Routing Dinamis Template Opsional
  * ---------------------------------------------------------------------- */
+add_filter( 'template_include', function ( $template ) {
+    $templates_dir = get_template_directory() . '/templates/';
+
+    // 1. Halaman 404
+    if ( is_404() && file_exists( $templates_dir . '404.php' ) ) {
+        return $templates_dir . '404.php';
+    }
+
+    // 2. Halaman Pencarian
+    if ( is_search() && file_exists( $templates_dir . 'search.php' ) ) {
+        return $templates_dir . 'search.php';
+    }
+
+    // 3. Halaman Depan Utama (Front Page)
+    if ( is_front_page() && file_exists( $templates_dir . 'front-page.php' ) ) {
+        return $templates_dir . 'front-page.php';
+    }
+
+    // 4. Halaman Blog Index (Home)
+    if ( is_home() && file_exists( $templates_dir . 'home.php' ) ) {
+        return $templates_dir . 'home.php';
+    }
+
+    // 5. Halaman Single Post / Custom Post Type tunggal
+    if ( is_single() ) {
+        $post_type = get_post_type();
+        if ( $post_type && file_exists( $templates_dir . "single-{$post_type}.php" ) ) {
+            return $templates_dir . "single-{$post_type}.php";
+        }
+        if ( file_exists( $templates_dir . 'single.php' ) ) {
+            return $templates_dir . 'single.php';
+        }
+    }
+
+    // 6. Halaman Statis (Page)
+    if ( is_page() && file_exists( $templates_dir . 'page.php' ) ) {
+        return $templates_dir . 'page.php';
+    }
+
+    // 7. Halaman Arsip / Kategori / CPT Archive
+    if ( is_archive() ) {
+        $post_type = get_post_type();
+        if ( $post_type && is_post_type_archive( $post_type ) && file_exists( $templates_dir . "archive-{$post_type}.php" ) ) {
+            return $templates_dir . "archive-{$post_type}.php";
+        }
+        if ( file_exists( $templates_dir . 'archive.php' ) ) {
+            return $templates_dir . 'archive.php';
+        }
+    }
+
+    return $template;
+} );
