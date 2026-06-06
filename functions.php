@@ -103,6 +103,11 @@ add_action( 'admin_post_nopriv_submit_testimoni_action', 'cc_handle_submit_testi
 add_action( 'admin_post_submit_testimoni_action', 'cc_handle_submit_testimoni' );
 
 function cc_handle_submit_testimoni() {
+    // 1. Proteksi Spam Honeypot
+    if ( ! empty( $_POST['cc_hp_email'] ) ) {
+        wp_die( 'Aktivitas mencurigakan terdeteksi (Spam).', 'Akses Ditolak', array( 'response' => 403 ) );
+    }
+
     // Nonce validation dihilangkan untuk form publik agar tidak bentrok dengan plugin caching (Litespeed/Cloudflare)
     // yang menyebabkan "Akses tidak sah!" (CSRF protection kurang relevan untuk public form seperti ini).
 
@@ -145,9 +150,19 @@ function cc_handle_submit_testimoni() {
         'png'  => 'image/png',
         'webp' => 'image/webp',
     );
+    
+    // Periksa ekstensi nama file
     $file_info = wp_check_filetype( basename( $_FILES['client_photo']['name'] ), $allowed_mimes );
     if ( empty( $file_info['ext'] ) || empty( $file_info['type'] ) ) {
         wp_die( 'Hanya format gambar JPG, PNG, dan WEBP yang diperbolehkan.', 'Error Upload', array( 'response' => 400 ) );
+    }
+
+    // Periksa tipe MIME fisik file temp untuk mencegah pemalsuan ekstensi (bypass file jahat)
+    if ( function_exists( 'mime_content_type' ) ) {
+        $real_mime = mime_content_type( $_FILES['client_photo']['tmp_name'] );
+        if ( ! in_array( $real_mime, $allowed_mimes, true ) ) {
+            wp_die( 'Isi file tidak cocok dengan format gambar yang diperbolehkan.', 'Error Upload', array( 'response' => 400 ) );
+        }
     }
 
     // Buat Postingan Testimoni "Menunggu Peninjauan" (Pending)

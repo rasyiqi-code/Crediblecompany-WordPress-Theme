@@ -78,6 +78,12 @@ get_header(); ?>
                     <input type="hidden" name="action" value="submit_testimoni_action">
                     <!-- Nonce dihilangkan karena isu agresif caching di production -->
                     
+                    <!-- Honeypot Field untuk memblokir spam bots secara pasif -->
+                    <div style="display: none; @media (max-width: 0px) { display: none; }">
+                        <label for="cc_hp_email">Confirm Email</label>
+                        <input type="text" id="cc_hp_email" name="cc_hp_email" value="" tabindex="-1" autocomplete="off">
+                    </div>
+                    
                     <div class="form-group-app">
                         <label for="client_name">Nama Lengkap <span class="req">*</span></label>
                         <input type="text" id="client_name" name="client_name" class="form-control" required placeholder="Cth: Budi Santoso">

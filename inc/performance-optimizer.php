@@ -198,13 +198,23 @@ function cc_auto_page_cache_start() {
         return;
     }
 
-    $cache_dir  = WP_CONTENT_DIR . '/cache/cc-cache/';
-    $cache_key  = md5( $_SERVER['REQUEST_URI'] );
+    $cache_dir       = WP_CONTENT_DIR . '/cache/cc-cache/';
+    $marketer_cookie = defined( 'CC_MARKETER_COOKIE' ) ? CC_MARKETER_COOKIE : 'cc_marketer_ref';
+    $marketer_id     = isset( $_COOKIE[ $marketer_cookie ] ) ? intval( $_COOKIE[ $marketer_cookie ] ) : 0;
+    
+    // Cache key dikombinasikan dengan ID marketer aktif agar tidak terjadi salah saji (cache poisoning)
+    $cache_key  = md5( $_SERVER['REQUEST_URI'] . '_' . $marketer_id );
     $cache_file = $cache_dir . $cache_key . '.html';
 
     // Buat folder jika belum ada
     if ( ! is_dir( $cache_dir ) ) {
         wp_mkdir_p( $cache_dir );
+    }
+
+    // Buat file index.php kosong untuk mencegah listing direktori jika belum ada
+    $index_file = $cache_dir . 'index.php';
+    if ( ! file_exists( $index_file ) ) {
+        file_put_contents( $index_file, "<?php\n// Silence is golden.\n" );
     }
 
     // Jika file cache ada dan masih segar (< 24 jam), sajikan langsung
