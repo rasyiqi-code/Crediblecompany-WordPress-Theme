@@ -10,7 +10,7 @@
  * ---------------------------------------------------------------------- */
 .statistics {
     padding: 4rem 0;
-    background: var(--brand-white);
+    background: var(--cc-stat-bg-color, var(--brand-white));
 }
 
 .stats-grid {
@@ -24,12 +24,12 @@
 .stat-item h2 {
     font-size: 2.5rem;
     font-weight: 900;
-    color: var(--brand-red);
+    color: var(--cc-stat-number-color, var(--brand-red));
     margin-bottom: 0.25rem;
 }
 
 .stat-item p {
-    color: var(--gray-500);
+    color: var(--cc-stat-label-color, var(--gray-500));
     font-weight: 500;
 }
 
@@ -59,8 +59,8 @@
  * 2. Features Section (Mengapa Memilih Kami)
  * ---------------------------------------------------------------------- */
 .features {
-    background-color: var(--brand-red);
-    color: var(--brand-white);
+    background-color: var(--cc-features-bg-color, var(--brand-red));
+    color: var(--cc-features-desc-color, var(--brand-white));
     padding: 4rem 0;
     position: relative;
     overflow: hidden;
@@ -71,6 +71,7 @@
     font-weight: 700;
     margin-bottom: 3rem;
     text-align: center;
+    color: var(--cc-features-title-color, var(--brand-white));
 }
 
 .features-grid {
@@ -97,7 +98,7 @@
 .feature-icon svg {
     width: 28px;
     height: 28px;
-    stroke: var(--brand-white);
+    stroke: var(--cc-features-title-color, var(--brand-white));
     fill: none;
     stroke-width: 2;
     stroke-linecap: round;
@@ -108,6 +109,7 @@
     font-size: 1.125rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    color: var(--cc-features-title-color, var(--brand-white));
 }
 
 .feature-item p {
@@ -115,4 +117,5 @@
     font-weight: 400;
     max-width: 280px;
     margin: 0 auto;
+    color: var(--cc-features-desc-color, var(--brand-white));
 }

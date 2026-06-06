@@ -7,8 +7,8 @@
  * ========================================================================== */
 
 .testimonials {
-    background-color: var(--brand-red);
-    color: var(--brand-white);
+    background-color: var(--cc-testimonials-bg-color, var(--brand-red));
+    color: var(--cc-testimonials-text-color, var(--brand-white));
     padding: 4rem 0;
     text-align: center;
 }
@@ -17,7 +17,9 @@
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 3rem;
+    color: var(--cc-testimonials-text-color, var(--brand-white));
 }
+
 
 .testimonials-grid {
     display: grid;

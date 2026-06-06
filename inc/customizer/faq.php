@@ -127,4 +127,33 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section'     => 'cc_faq_section',
     ) ) );
 
+    // Pengaturan Warna Section FAQ
+    $wp_customize->add_setting( 'cc_faq_bg_color', array(
+        'default'           => '#c01314',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_faq_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section', 'crediblecompany' ),
+        'section' => 'cc_faq_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_faq_question_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_faq_question_color', array(
+        'label'   => __( 'Warna Font Pertanyaan', 'crediblecompany' ),
+        'section' => 'cc_faq_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_faq_answer_color', array(
+        'default'           => '#f3f4f6',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_faq_answer_color', array(
+        'label'   => __( 'Warna Font Jawaban', 'crediblecompany' ),
+        'section' => 'cc_faq_section',
+    ) ) );
+
 } );
+

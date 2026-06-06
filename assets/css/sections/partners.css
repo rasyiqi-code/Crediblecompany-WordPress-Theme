@@ -9,7 +9,7 @@
  * 1. Mitra Resmi / Sertifikasi
  * ---------------------------------------------------------------------- */
 .mitra-resmi {
-    background-color: var(--brand-white);
+    background-color: var(--cc-mitra-bg-color, var(--brand-white));
     padding: 3rem 0;
     position: relative;
     overflow: hidden;
@@ -103,7 +103,7 @@
  * ---------------------------------------------------------------------- */
 .partners {
     padding: 2rem 0;
-    background: var(--brand-white);
+    background: var(--cc-mitra-partners-bg-color, var(--brand-white));
     border-top: 1px solid var(--gray-200);
     border-bottom: 1px solid var(--gray-200);
 }

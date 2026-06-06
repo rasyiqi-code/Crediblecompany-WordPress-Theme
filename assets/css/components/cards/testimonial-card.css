@@ -9,8 +9,8 @@
  * 1. Base Card & Hover
  * -------------------------------------------------------------------------- */
 .testimonial-card {
-    background: var(--brand-white);
-    color: var(--brand-dark);
+    background: var(--cc-testimonials-card-bg-color, var(--brand-white));
+    color: var(--cc-testimonials-text-color, var(--brand-dark));
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -79,7 +79,7 @@
 .testimonial-info h4 {
     font-weight: 700;
     font-size: 0.9375rem;
-    color: var(--brand-red);
+    color: var(--cc-testimonials-text-color, var(--brand-red));
     margin: 0 0 0.125rem 0;
     white-space: nowrap;
     overflow: hidden;
@@ -140,8 +140,8 @@
  * 4. Kutipan (Bagian Bawah Merah — Bipartite Design)
  * -------------------------------------------------------------------------- */
 .testimonial-card blockquote {
-    background: var(--brand-red);
-    color: var(--brand-white);
+    background: var(--cc-testimonials-text-color, var(--brand-red));
+    color: var(--cc-testimonials-card-bg-color, var(--brand-white));
     font-size: 0.875rem;
     font-style: italic;
     line-height: 1.6;

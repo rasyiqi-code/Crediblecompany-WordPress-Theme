@@ -39,6 +39,7 @@ require_once $_cc_customizer_dir . 'marketing.php';
 require_once $_cc_customizer_dir . 'footer.php';
 require_once $_cc_customizer_dir . 'seo.php';
 require_once $_cc_customizer_dir . 'mobile-layout.php';
+require_once $_cc_customizer_dir . 'sections-dynamic-css.php';
 unset( $_cc_customizer_dir );
 
 /**

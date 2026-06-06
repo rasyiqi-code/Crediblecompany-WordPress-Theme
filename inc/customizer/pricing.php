@@ -67,6 +67,34 @@ add_action( 'customize_register', function( $wp_customize ) {
         ),
     ) );
 
+    // Pengaturan Warna Section Pricing
+    $wp_customize->add_setting( 'cc_pricing_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_pricing_text_color', array(
+        'default'           => '#0f172a',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_text_color', array(
+        'label'   => __( 'Warna Font Judul/Sub', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_pricing_card_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Card', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
 } );
 
 /**
@@ -74,12 +102,19 @@ add_action( 'customize_register', function( $wp_customize ) {
  */
 add_action( 'wp_head', function() {
     $margin_bottom = cc_get( 'pricing_header_margin_bottom', 48 );
+    $bg_color      = cc_get( 'pricing_bg_color', '#ffffff' );
+    $text_color    = cc_get( 'pricing_text_color', '#0f172a' );
+    $card_bg       = cc_get( 'pricing_card_bg_color', '#ffffff' );
     ?>
     <style type="text/css" id="cc-pricing-dynamic-css">
         :root {
             --cc-pricing-header-margin-bottom: <?php echo esc_attr( $margin_bottom ) . 'px'; ?>;
+            --cc-pricing-bg-color: <?php echo esc_attr( $bg_color ); ?>;
+            --cc-pricing-text-color: <?php echo esc_attr( $text_color ); ?>;
+            --cc-pricing-card-bg-color: <?php echo esc_attr( $card_bg ); ?>;
         }
     </style>
     <?php
 }, 100 );
+
 

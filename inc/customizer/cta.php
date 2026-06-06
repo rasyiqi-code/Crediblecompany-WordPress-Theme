@@ -73,4 +73,26 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'    => 'url',
     ) );
 
+    // Pengaturan Warna Section CTA
+    $wp_customize->add_setting( 'cc_cta_custom_bg_color', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_cta_custom_bg_color', array(
+        'label'       => __( 'Warna Latar Belakang Kustom', 'crediblecompany' ),
+        'description' => __( 'Kosongkan jika ingin menggunakan warna bawaan dari Layout CTA terpilih.', 'crediblecompany' ),
+        'section'     => 'cc_cta_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_cta_custom_text_color', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_cta_custom_text_color', array(
+        'label'       => __( 'Warna Font Kustom', 'crediblecompany' ),
+        'description' => __( 'Kosongkan jika ingin menggunakan warna bawaan dari Layout CTA terpilih.', 'crediblecompany' ),
+        'section'     => 'cc_cta_section',
+    ) ) );
+
 } );
+

@@ -9,7 +9,7 @@
  * 1. FAQ Section
  * ---------------------------------------------------------------------- */
 .faq {
-    background-color: var(--brand-red);
+    background-color: var(--cc-faq-bg-color, var(--brand-red));
     padding: 4rem 0;
 }
 
@@ -27,7 +27,7 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 0;
-    color: var(--brand-white);
+    color: var(--cc-faq-question-color, var(--brand-white));
     font-size: 0.9375rem;
     font-weight: 500;
     cursor: pointer;
@@ -46,7 +46,7 @@
     flex-shrink: 0;
     width: 20px;
     height: 20px;
-    stroke: var(--brand-white);
+    stroke: var(--cc-faq-question-color, var(--brand-white));
     fill: none;
     transition: var(--transition);
 }
@@ -65,7 +65,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--cc-faq-answer-color, rgba(255, 255, 255, 0.85));
     font-size: 0.875rem;
     line-height: 1.7;
 }
@@ -81,21 +81,30 @@
 .cta {
     padding: 4rem 0;
     transition: var(--transition);
+    background-color: var(--cc-cta-custom-bg-color, var(--cc-cta-bg));
+}
+
+.cta h2 {
+    color: var(--cc-cta-custom-text-color, var(--cc-cta-text));
+}
+
+.cta p {
+    color: var(--cc-cta-custom-text-color, var(--cc-cta-desc-color));
 }
 
 /* --- Varian Centered (Default) --- */
 .cta-layout-centered {
-    background: var(--brand-white);
+    --cc-cta-bg: var(--brand-white);
+    --cc-cta-text: var(--brand-red);
+    --cc-cta-desc-color: var(--gray-600);
     text-align: center;
 }
 .cta-layout-centered h2 {
     font-size: 2.25rem;
     font-weight: 800;
-    color: var(--brand-red);
     margin-bottom: 0.75rem;
 }
 .cta-layout-centered p {
-    color: var(--gray-600);
     font-weight: 500;
     margin-bottom: 2rem;
     font-size: 1.125rem;
@@ -103,7 +112,9 @@
 
 /* --- Varian Split (Kiri-Kanan) --- */
 .cta-layout-split {
-    background: var(--brand-white);
+    --cc-cta-bg: var(--brand-white);
+    --cc-cta-text: var(--brand-red);
+    --cc-cta-desc-color: var(--gray-600);
 }
 .cta-layout-split .cta-split-wrapper {
     display: flex;
@@ -115,11 +126,9 @@
 .cta-layout-split h2 {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--brand-red);
     margin-bottom: 0.5rem;
 }
 .cta-layout-split p {
-    color: var(--gray-600);
     font-weight: 500;
     font-size: 1.0625rem;
     margin: 0;
@@ -127,7 +136,9 @@
 
 /* --- Varian Dark Banner (Tengah, Latar Gelap) --- */
 .cta-layout-dark-banner {
-    background: var(--brand-dark);
+    --cc-cta-bg: var(--brand-dark);
+    --cc-cta-text: var(--brand-white);
+    --cc-cta-desc-color: var(--gray-300);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -135,11 +146,9 @@
 .cta-layout-dark-banner h2 {
     font-size: 2.25rem;
     font-weight: 800;
-    color: var(--brand-white);
     margin-bottom: 0.75rem;
 }
 .cta-layout-dark-banner p {
-    color: var(--gray-300);
     font-weight: 400;
     margin-bottom: 2rem;
     font-size: 1.125rem;
@@ -157,7 +166,9 @@
 
 /* --- Varian Red Banner (Split, Latar Merah) --- */
 .cta-layout-red-banner {
-    background: var(--brand-red);
+    --cc-cta-bg: var(--brand-red);
+    --cc-cta-text: var(--brand-white);
+    --cc-cta-desc-color: rgba(255, 255, 255, 0.9);
 }
 .cta-layout-red-banner .cta-split-wrapper {
     display: flex;
@@ -169,11 +180,9 @@
 .cta-layout-red-banner h2 {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--brand-white);
     margin-bottom: 0.5rem;
 }
 .cta-layout-red-banner p {
-    color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
     font-size: 1.0625rem;
     margin: 0;

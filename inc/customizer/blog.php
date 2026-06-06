@@ -67,4 +67,24 @@ add_action( 'customize_register', function ( $wp_customize ) {
         'type'     => 'textarea',
     ) );
 
+    // Pengaturan Warna Section Blog Homepage
+    $wp_customize->add_setting( 'cc_blog_section_bg_color', array(
+        'default'           => '#f8fafc',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_blog_section_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section (Homepage)', 'crediblecompany' ),
+        'section' => 'cc_blog_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_blog_section_title_color', array(
+        'default'           => '#0f172a',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_blog_section_title_color', array(
+        'label'   => __( 'Warna Font Judul Section (Homepage)', 'crediblecompany' ),
+        'section' => 'cc_blog_section',
+    ) ) );
+
 } );
+

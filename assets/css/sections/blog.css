@@ -11,15 +11,16 @@
  * ---------------------------------------------------------------------- */
 .blog-section {
     padding: 4rem 0;
-    background: var(--brand-white);
+    background: var(--cc-blog-section-bg-color, var(--brand-white));
 }
 
 .blog-section h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--brand-dark);
+    color: var(--cc-blog-section-title-color, var(--brand-dark));
     margin-bottom: 3rem;
 }
+
 
 .blog-grid {
     display: grid;

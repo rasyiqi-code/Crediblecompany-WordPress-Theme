@@ -61,5 +61,25 @@ add_action( 'customize_register', function( $wp_customize ) {
         ) ) );
     }
 
+    // Pengaturan Warna Section Mitra & Partners
+    $wp_customize->add_setting( 'cc_mitra_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_mitra_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section Mitra Resmi', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_mitra_partners_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_mitra_partners_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section Pembayaran/Pengiriman', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+    ) ) );
+
 } );
+
 

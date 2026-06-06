@@ -36,4 +36,24 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'    => 'text',
     ) );
 
+    // Pengaturan Warna Section Footer
+    $wp_customize->add_setting( 'cc_footer_bg_color', array(
+        'default'           => '#0b1c3f',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_footer_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Footer', 'crediblecompany' ),
+        'section' => 'cc_footer_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_footer_text_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_footer_text_color', array(
+        'label'   => __( 'Warna Font Teks Footer', 'crediblecompany' ),
+        'section' => 'cc_footer_section',
+    ) ) );
+
 } );
+

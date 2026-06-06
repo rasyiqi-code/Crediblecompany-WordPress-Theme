@@ -52,4 +52,33 @@ add_action( 'customize_register', function( $wp_customize ) {
         ),
     ) );
 
+    // Pengaturan Warna Section Testimoni
+    $wp_customize->add_setting( 'cc_testimonials_bg_color', array(
+        'default'           => '#f8fafc',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_testimonials_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section', 'crediblecompany' ),
+        'section' => 'cc_testimonials_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_testimonials_card_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_testimonials_card_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Card', 'crediblecompany' ),
+        'section' => 'cc_testimonials_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_testimonials_text_color', array(
+        'default'           => '#0f172a',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_testimonials_text_color', array(
+        'label'   => __( 'Warna Font Teks/Nama', 'crediblecompany' ),
+        'section' => 'cc_testimonials_section',
+    ) ) );
+
 } );
+

@@ -63,6 +63,16 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_stats_section',
     ) ) );
 
+    $wp_customize->add_setting( 'cc_stat_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_stat_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section', 'crediblecompany' ),
+        'section' => 'cc_stats_section',
+    ) ) );
+
+
     // About Deskripsi
     $wp_customize->add_setting( 'cc_about_desc', array(
         'default'           => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi, eget elementum ligula tempor sit amet.',

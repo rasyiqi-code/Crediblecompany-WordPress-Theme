@@ -7,13 +7,13 @@
 
 .pricing {
     padding: 4rem 0;
-    background: var(--brand-white);
+    background: var(--cc-pricing-bg-color, var(--brand-white));
 }
 
 .pricing h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--brand-dark);
+    color: var(--cc-pricing-text-color, var(--brand-dark));
     margin-bottom: 0.5rem;
 }
 
@@ -22,7 +22,8 @@
 }
 
 .pricing-header p {
-    color: var(--gray-500);
+    color: var(--cc-pricing-text-color, var(--gray-500));
+    opacity: 0.85;
     margin-bottom: 0;
 }
 
@@ -56,6 +57,7 @@
 
 /* --- Card Container --- */
 .price-card {
+    background: var(--cc-pricing-card-bg-color, var(--brand-white));
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     overflow: visible;

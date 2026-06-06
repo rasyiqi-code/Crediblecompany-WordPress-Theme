@@ -52,4 +52,24 @@ add_action( 'customize_register', function( $wp_customize ) {
         ),
     ) );
 
+    // Pengaturan Warna Section Books
+    $wp_customize->add_setting( 'cc_books_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_books_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Section', 'crediblecompany' ),
+        'section' => 'cc_books_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_books_title_color', array(
+        'default'           => '#0f172a',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_books_title_color', array(
+        'label'   => __( 'Warna Font Judul/Teks', 'crediblecompany' ),
+        'section' => 'cc_books_section',
+    ) ) );
+
 } );
+
