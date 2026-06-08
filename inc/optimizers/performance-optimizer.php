@@ -254,3 +254,96 @@ add_action( 'save_post', 'cc_clear_all_page_cache' );
 add_action( 'activated_plugin', 'cc_clear_all_page_cache' );
 add_action( 'deactivated_plugin', 'cc_clear_all_page_cache' );
 add_action( 'switch_theme', 'cc_clear_all_page_cache' );
+
+/* --------------------------------------------------------------------------
+ * 7. Media Storage Optimization (Mencegah Boros Disk Space)
+ *    Hanya simpan gambar asli, matikan semua resize dan hapus ukuran tambahan.
+ * ---------------------------------------------------------------------- */
+
+// 1. Menonaktifkan ukuran gambar bawaan WordPress
+add_filter( 'intermediate_image_sizes_advanced', 'cc_disable_image_sizes' );
+function cc_disable_image_sizes( $sizes ) {
+    unset( $sizes['thumbnail'] );
+    unset( $sizes['medium'] );
+    unset( $sizes['large'] );
+    unset( $sizes['medium_large'] );
+    unset( $sizes['1536x1536'] );
+    unset( $sizes['2048x2048'] );
+    return $sizes;
+}
+
+// 2. Menonaktifkan threshold penskalaan gambar besar agar tidak ada versi -scaled
+add_filter( 'big_image_size_threshold', '__return_false' );
+
+// 3. Menonaktifkan ukuran gambar post-thumbnail bawaan tema/plugin
+add_action( 'init', 'cc_disable_other_image_sizes' );
+function cc_disable_other_image_sizes() {
+    remove_image_size( 'post-thumbnail' );
+}
+
+// 4. Menonaktifkan semua ukuran gambar kustom tambahan dari tema/plugin lain
+add_action( 'init', 'cc_disable_custom_image_sizes', 999 );
+function cc_disable_custom_image_sizes() {
+    global $_wp_additional_image_sizes;
+    if ( isset( $_wp_additional_image_sizes ) && is_array( $_wp_additional_image_sizes ) ) {
+        foreach ( $_wp_additional_image_sizes as $size => $details ) {
+            remove_image_size( $size );
+        }
+    }
+}
+
+// 5. Override downsize: Selalu arahkan panggilan ukuran kustom ke gambar asli
+add_filter( 'image_downsize', 'cc_disable_image_downsize', 10, 3 );
+function cc_disable_image_downsize( $downsize, $id, $size ) {
+    if ( 'full' === $size ) {
+        return false;
+    }
+    
+    $img_url = wp_get_attachment_url( $id );
+    $meta    = wp_get_attachment_metadata( $id );
+    
+    if ( ! $img_url ) {
+        return false;
+    }
+    
+    $width  = isset( $meta['width'] ) ? $meta['width'] : 0;
+    $height = isset( $meta['height'] ) ? $meta['height'] : 0;
+    
+    // Kembalikan URL gambar asli
+    return array( $img_url, $width, $height, false );
+}
+
+// 6. Hapus secara fisik file gambar tambahan hasil resize jika terlanjur di-generate saat upload
+add_filter( 'wp_generate_attachment_metadata', 'cc_delete_additional_image_sizes' );
+function cc_delete_additional_image_sizes( $metadata ) {
+    if ( empty( $metadata['file'] ) ) {
+        return $metadata;
+    }
+
+    $upload_dir = wp_upload_dir();
+    $base_dir   = $upload_dir['basedir'];
+    $file_path  = $base_dir . '/' . $metadata['file'];
+
+    $path_info = pathinfo( $file_path );
+    $directory = $path_info['dirname'];
+    $filename  = $path_info['filename'];
+
+    // Cari file sejenis di folder uploads
+    $all_files = glob( $directory . '/*' );
+    if ( is_array( $all_files ) ) {
+        foreach ( $all_files as $file ) {
+            // Hapus file yang mengandung nama file asli tetapi bukan file aslinya sendiri
+            if ( strpos( $file, $filename ) !== false && $file !== $file_path ) {
+                @unlink( $file );
+            }
+        }
+    }
+
+    // Bersihkan metadata sizes agar WordPress tidak merujuk ke file yang sudah dihapus
+    if ( isset( $metadata['sizes'] ) ) {
+        $metadata['sizes'] = array();
+    }
+
+    return $metadata;
+}
+
