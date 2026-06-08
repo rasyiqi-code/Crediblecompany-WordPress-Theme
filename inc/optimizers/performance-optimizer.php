@@ -444,5 +444,48 @@ if ( ! wp_next_scheduled( 'cc_cleanup_unused_attachments_cron' ) ) {
     wp_schedule_event( time(), 'daily', 'cc_cleanup_unused_attachments_cron' );
 }
 
+// 9. Konversi Gambar Otomatis ke Format WebP saat Unggah (Auto Compress to WebP)
+add_filter( 'wp_handle_upload', 'cc_auto_convert_upload_to_webp' );
+function cc_auto_convert_upload_to_webp( $upload ) {
+    // Hanya proses gambar format JPEG dan PNG
+    $allowed_mimes = array( 'image/jpeg', 'image/png' );
+    if ( ! in_array( $upload['type'], $allowed_mimes, true ) ) {
+        return $upload;
+    }
+
+    $file_path = $upload['file'];
+
+    // Gunakan WordPress Image Editor API untuk konversi gambar
+    $editor = wp_get_image_editor( $file_path );
+    if ( ! is_wp_error( $editor ) ) {
+        $path_info = pathinfo( $file_path );
+        $directory = $path_info['dirname'];
+        $filename  = $path_info['filename'];
+
+        // Dapatkan nama file unik untuk file .webp
+        $webp_filename = wp_unique_filename( $directory, $filename . '.webp' );
+        $new_file_path = $directory . '/' . $webp_filename;
+
+        // Set kualitas kompresi (82 adalah sweet spot untuk ukuran file vs kualitas visual WebP)
+        $editor->set_quality( 82 );
+
+        // Simpan file baru dengan format image/webp
+        $saved = $editor->save( $new_file_path, 'image/webp' );
+
+        if ( ! is_wp_error( $saved ) ) {
+            // Hapus file JPG/PNG asli dari disk agar menghemat disk space
+            @unlink( $file_path );
+
+            // Perbarui array metadata upload agar WordPress meregistrasikan file WebP yang baru dibuat
+            $upload['file'] = $new_file_path;
+            $upload['url']  = str_replace( $path_info['basename'], $webp_filename, $upload['url'] );
+            $upload['type'] = 'image/webp';
+        }
+    }
+
+    return $upload;
+}
+
+
 
 
