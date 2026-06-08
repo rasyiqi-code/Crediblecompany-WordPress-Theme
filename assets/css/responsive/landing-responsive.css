@@ -161,6 +161,7 @@
         min-width: 95px; /* Lebar minimum diperkecil agar pas 3 kolom sebaris */
         padding: 14px 6px !important; /* Rapatkan padding agar angka dan teks muat di dalam box */
         margin-bottom: 0 !important; /* Hilangkan margin bawah bawaan landing mobile */
+        border: none !important; /* Menghapus border tipis di mobile */
     }
     .stats-grid .stat-item h2 {
         font-size: 1.35rem !important; /* Ukuran angka diperkecil di mobile agar tidak patah */
