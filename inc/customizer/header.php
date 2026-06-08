@@ -70,6 +70,39 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_header_section',
     ) ) );
 
+    // Warna Latar Belakang Header Mobile (Opsional)
+    $wp_customize->add_setting( 'cc_header_mobile_bg_color', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_header_mobile_bg_color', array(
+        'label'       => __( 'Warna Latar Belakang Header Mobile (Opsional)', 'crediblecompany' ),
+        'description' => __( 'Kosongkan untuk mengikuti warna header utama/desktop.', 'crediblecompany' ),
+        'section'     => 'cc_header_section',
+    ) ) );
+
+    // Warna Teks / Ikon Header Mobile (Opsional)
+    $wp_customize->add_setting( 'cc_header_mobile_text_color', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_header_mobile_text_color', array(
+        'label'       => __( 'Warna Teks & Ikon Header Mobile (Opsional)', 'crediblecompany' ),
+        'description' => __( 'Kosongkan untuk mengikuti warna header utama/desktop.', 'crediblecompany' ),
+        'section'     => 'cc_header_section',
+    ) ) );
+
+    // Warna Teks Hover Header Mobile (Opsional)
+    $wp_customize->add_setting( 'cc_header_mobile_text_hover_color', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_header_mobile_text_hover_color', array(
+        'label'       => __( 'Warna Teks Hover Header Mobile (Opsional)', 'crediblecompany' ),
+        'description' => __( 'Kosongkan untuk mengikuti warna header utama/desktop.', 'crediblecompany' ),
+        'section'     => 'cc_header_section',
+    ) ) );
+
     // Lebar Maksimal Logo
     $wp_customize->add_setting( 'cc_header_logo_width', array(
         'default'           => 150,

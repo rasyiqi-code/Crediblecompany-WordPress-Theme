@@ -32,6 +32,11 @@
     $glass_blur          = cc_get( 'header_glass_blur', 12 );
     $border_enable       = cc_get( 'header_border_enable', false );
     $border_color        = cc_get( 'header_border_color', 'rgba(255, 255, 255, 0.15)' );
+
+    // Kustomisasi Header Mobile (Opsional)
+    $mobile_bg           = cc_get( 'header_mobile_bg_color', '' );
+    $mobile_text         = cc_get( 'header_mobile_text_color', '' );
+    $mobile_hover        = cc_get( 'header_mobile_text_hover_color', '' );
     ?>
     <style id="cc-header-customizer-inline-css">
         .site-header {
@@ -42,11 +47,16 @@
             <?php endif; ?>
         }
         @media (max-width: 768px) {
+            .site-header {
+                <?php if ( ! empty( $mobile_bg ) ) : ?>
+                background-color: <?php echo esc_attr( $header_style === 'glass' ? cc_hex_to_rgba( $mobile_bg, $glass_opacity ) : $mobile_bg ); ?> !important;
+                <?php endif; ?>
+            }
             .desktop-nav {
-                <?php if ( $header_style === 'glass' ) : ?>
-                background-color: <?php echo esc_attr( cc_hex_to_rgba( $header_bg, $glass_opacity ) ); ?> !important;
+                <?php if ( ! empty( $mobile_bg ) ) : ?>
+                background-color: <?php echo esc_attr( $header_style === 'glass' ? cc_hex_to_rgba( $mobile_bg, $glass_opacity ) : $mobile_bg ); ?> !important;
                 <?php else : ?>
-                background-color: <?php echo esc_attr( $header_bg ); ?> !important;
+                background-color: <?php echo esc_attr( $header_style === 'glass' ? cc_hex_to_rgba( $header_bg, $glass_opacity ) : $header_bg ); ?> !important;
                 <?php endif; ?>
             }
         }
@@ -137,6 +147,69 @@
         }
         .desktop-nav a:hover::after {
             background: <?php echo esc_attr( $text_hover ); ?> !important;
+        }
+
+        /* Aturan Overrides untuk Kustomisasi Header Mobile */
+        @media (max-width: 768px) {
+            <?php if ( ! empty( $mobile_text ) ) : ?>
+            .site-header,
+            .site-logo a,
+            .desktop-nav a,
+            .header-icons a,
+            .header-icons button,
+            .menu-toggle {
+                color: <?php echo esc_attr( $mobile_text ); ?> !important;
+            }
+            .header-icons svg {
+                stroke: <?php echo esc_attr( $mobile_text ); ?> !important;
+            }
+            .desktop-nav a::after {
+                background: <?php echo esc_attr( $mobile_text ); ?> !important;
+            }
+            <?php endif; ?>
+
+            <?php if ( ! empty( $mobile_hover ) ) : ?>
+            .desktop-nav a:hover,
+            .header-icons a:hover,
+            .header-icons button:hover,
+            .menu-toggle:hover {
+                color: <?php echo esc_attr( $mobile_hover ); ?> !important;
+            }
+            .header-icons a:hover svg,
+            .header-icons button:hover svg {
+                stroke: <?php echo esc_attr( $mobile_hover ); ?> !important;
+            }
+            .desktop-nav a:hover::after {
+                background: <?php echo esc_attr( $mobile_hover ); ?> !important;
+            }
+            <?php endif; ?>
+
+            /* Override Khusus mode Glassmorphism Mobile */
+            <?php if ( $header_style === 'glass' ) : ?>
+                .header-style-glass .site-logo a {
+                    color: <?php echo esc_attr( ! empty( $mobile_hover ) ? $mobile_hover : $text_hover ); ?> !important;
+                }
+                .header-style-glass .desktop-nav a {
+                    color: <?php echo esc_attr( ! empty( $mobile_text ) ? $mobile_text : $header_text ); ?> !important;
+                }
+                .header-style-glass .desktop-nav a:hover {
+                    color: <?php echo esc_attr( ! empty( $mobile_hover ) ? $mobile_hover : $text_hover ); ?> !important;
+                }
+                .header-style-glass .header-icons a,
+                .header-style-glass .header-icons button {
+                    background-color: <?php echo esc_attr( ! empty( $mobile_hover ) ? $mobile_hover : $text_hover ); ?> !important;
+                    color: <?php echo esc_attr( ! empty( $mobile_bg ) ? $mobile_bg : $header_bg ); ?> !important;
+                    box-shadow: 0 4px 12px <?php echo esc_attr( cc_hex_to_rgba( ! empty( $mobile_hover ) ? $mobile_hover : $text_hover, 0.25 ) ); ?> !important;
+                }
+                .header-style-glass .header-icons svg {
+                    stroke: <?php echo esc_attr( ! empty( $mobile_bg ) ? $mobile_bg : $header_bg ); ?> !important;
+                }
+                .header-style-glass .header-icons a:hover,
+                .header-style-glass .header-icons button:hover {
+                    background-color: <?php echo esc_attr( ! empty( $mobile_text ) ? $mobile_text : $header_text ); ?> !important;
+                    color: <?php echo esc_attr( ! empty( $mobile_bg ) ? $mobile_bg : $header_bg ); ?> !important;
+                }
+            <?php endif; ?>
         }
 
         <?php if ( $header_sticky ) : ?>
