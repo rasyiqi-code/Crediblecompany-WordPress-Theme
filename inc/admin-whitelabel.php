@@ -103,6 +103,8 @@ function cc_add_custom_support_dashboard_widgets() {
 function cc_kbm_support_widget_display() {
     $wa_num   = get_theme_mod( 'cc_kbm_support_wa', '6281357517526' );
     $web_url  = get_theme_mod( 'cc_kbm_support_web', 'https://penerbitkbm.com/' );
+    $default_desc = 'Dapatkan layanan bantuan penuh untuk penerbitan buku Anda mulai dari proses penyuntingan naskah, desain cover, pengurusan ISBN, pencetakan, hingga strategi pemasaran dan distribusi buku secara luas. Tim KBM Support kami siap mendampingi perjalanan kepenulisan Anda melalui {link}.';
+    $raw_desc = get_theme_mod( 'cc_kbm_support_desc', $default_desc );
     
     // Dapatkan nama host untuk tampilan teks link yang rapi
     $web_host = parse_url( $web_url, PHP_URL_HOST );
@@ -110,12 +112,30 @@ function cc_kbm_support_widget_display() {
         $web_host = str_replace( array( 'http://', 'https://' ), '', $web_url );
     }
 
+    // Buat tag HTML hyperlink untuk website
+    $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_host ) . '</a>';
+    
+    // Ganti placeholder {link} dengan tag hyperlink nyata secara aman
+    $processed_desc = str_replace( '{link}', $web_link, esc_html( $raw_desc ) );
+    // Karena esc_html menyaring semua tag, namun kita ingin mengizinkan tag <a> yang aman hasil replacement kita:
+    // Kita lakukan replacement setelah esc_html agar tag <a> kustom kita tetap aman dan dirender dengan benar.
+    $safe_desc = str_replace( '&lt;a href=&quot;' . esc_attr( $web_url ) . '&quot; target=&quot;_blank&quot; style=&quot;color: #c01314; text-decoration: underline; font-weight: 600;&quot;&gt;' . esc_html( $web_host ) . '&lt;/a&gt;', $web_link, esc_html( $raw_desc ) );
+    // Alternatif yang jauh lebih bersih: kita esc_html teks mentah deskripsi sebelum replace, atau gunakan wp_kses untuk filter
+    $allowed_tags = array(
+        'a' => array(
+            'href'   => array(),
+            'target' => array(),
+            'style'  => array(),
+        ),
+    );
+    $processed_desc_kses = wp_kses( str_replace( '{link}', $web_link, $raw_desc ), $allowed_tags );
+
     // Bersihkan nomor WhatsApp dari karakter non-digit untuk link wa.me
     $wa_clean = preg_replace( '/[^0-9]/', '', $wa_num );
     ?>
     <div class="cc-dashboard-widget-content">
         <p style="margin-bottom: 15px; color: #475569; font-size: 13px; line-height: 1.6;">
-            Dapatkan bantuan layanan penerbitan buku, pemasaran, dan dukungan operasional langsung dari tim KBM Support kami di <a href="<?php echo esc_url( $web_url ); ?>" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;"><?php echo esc_html( $web_host ); ?></a>.
+            <?php echo $processed_desc_kses; ?>
         </p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
             <a href="https://wa.me/<?php echo esc_attr( $wa_clean ); ?>" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
@@ -131,6 +151,8 @@ function cc_kbm_support_widget_display() {
 function cc_developer_support_widget_display() {
     $wa_num   = get_theme_mod( 'cc_developer_support_wa', '6285183131249' );
     $web_url  = get_theme_mod( 'cc_developer_support_web', 'https://crediblemark.com/' );
+    $default_desc = 'Tim developer kami siap membantu menangani kendal teknis pada website Anda, seperti optimalisasi performa, perbaikan bug/error, pembaruan keamanan sistem, pemeliharaan server, hingga pengembangan fitur kustom baru sesuai kebutuhan bisnis Anda. Hubungi kami melalui {link}.';
+    $raw_desc = get_theme_mod( 'cc_developer_support_desc', $default_desc );
 
     // Dapatkan nama host untuk tampilan teks link yang rapi
     $web_host = parse_url( $web_url, PHP_URL_HOST );
@@ -138,12 +160,25 @@ function cc_developer_support_widget_display() {
         $web_host = str_replace( array( 'http://', 'https://' ), '', $web_url );
     }
 
+    // Buat tag HTML hyperlink untuk website
+    $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_host ) . '</a>';
+    
+    // Ganti placeholder {link} dengan tag hyperlink nyata secara aman menggunakan wp_kses
+    $allowed_tags = array(
+        'a' => array(
+            'href'   => array(),
+            'target' => array(),
+            'style'  => array(),
+        ),
+    );
+    $processed_desc_kses = wp_kses( str_replace( '{link}', $web_link, $raw_desc ), $allowed_tags );
+
     // Bersihkan nomor WhatsApp dari karakter non-digit untuk link wa.me
     $wa_clean = preg_replace( '/[^0-9]/', '', $wa_num );
     ?>
     <div class="cc-dashboard-widget-content">
         <p style="margin-bottom: 15px; color: #475569; font-size: 13px; line-height: 1.6;">
-            Butuh bantuan teknis, perbaikan bug, atau penambahan fitur kustom pada website? Hubungi tim Developer kami langsung dari <a href="<?php echo esc_url( $web_url ); ?>" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;"><?php echo esc_html( $web_host ); ?></a>.
+            <?php echo $processed_desc_kses; ?>
         </p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
             <a href="https://wa.me/<?php echo esc_attr( $wa_clean ); ?>" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">

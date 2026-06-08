@@ -73,6 +73,19 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'        => 'url',
     ) );
 
+    // 5b. Setting & Control: Deskripsi KBM Support
+    $wp_customize->add_setting( 'cc_kbm_support_desc', array(
+        'default'           => 'Dapatkan layanan bantuan penuh untuk penerbitan buku Anda mulai dari proses penyuntingan naskah, desain cover, pengurusan ISBN, pencetakan, hingga strategi pemasaran dan distribusi buku secara luas. Tim KBM Support kami siap mendampingi perjalanan kepenulisan Anda melalui {link}.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ) );
+
+    $wp_customize->add_control( 'cc_kbm_support_desc', array(
+        'label'       => __( 'Deskripsi KBM Support', 'crediblecompany' ),
+        'description' => __( 'Tuliskan deskripsi lengkap. Gunakan penanda {link} di dalam teks untuk meletakkan hyperlink website.', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'textarea',
+    ) );
+
     // 6. Setting & Control: WhatsApp Developer Support
     $wp_customize->add_setting( 'cc_developer_support_wa', array(
         'default'           => '6285183131249',
@@ -97,6 +110,19 @@ add_action( 'customize_register', function( $wp_customize ) {
         'description' => __( 'Masukkan URL website resmi Developer Support', 'crediblecompany' ),
         'section'     => 'cc_admin_theme_section',
         'type'        => 'url',
+    ) );
+
+    // 7b. Setting & Control: Deskripsi Developer Support
+    $wp_customize->add_setting( 'cc_developer_support_desc', array(
+        'default'           => 'Tim developer kami siap membantu menangani kendal teknis pada website Anda, seperti optimalisasi performa, perbaikan bug/error, pembaruan keamanan sistem, pemeliharaan server, hingga pengembangan fitur kustom baru sesuai kebutuhan bisnis Anda. Hubungi kami melalui {link}.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ) );
+
+    $wp_customize->add_control( 'cc_developer_support_desc', array(
+        'label'       => __( 'Deskripsi Developer Support', 'crediblecompany' ),
+        'description' => __( 'Tuliskan deskripsi lengkap. Gunakan penanda {link} di dalam teks untuk meletakkan hyperlink website.', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'textarea',
     ) );
 
 } );
