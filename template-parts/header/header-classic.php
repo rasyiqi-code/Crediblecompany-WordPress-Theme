@@ -18,8 +18,7 @@
         <!-- Tombol Aksi Kanan (Cari & Profil Akun) -->
         <?php get_template_part( 'template-parts/header/actions' ); ?>
 
-        <!-- Overlay Dropdown Form Pencarian -->
-        <?php get_template_part( 'template-parts/header/search-overlay' ); ?>
+
 
         <!-- Hamburger menu toggle -->
         <button class="menu-toggle" aria-expanded="false" aria-label="Menu">&#9776;</button>

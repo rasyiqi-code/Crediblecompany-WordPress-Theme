@@ -21,7 +21,6 @@
         <!-- Tombol Aksi Kanan (Cari & Profil Akun, absolute kanan via CSS) -->
         <?php get_template_part( 'template-parts/header/actions' ); ?>
 
-        <!-- Overlay Dropdown Form Pencarian -->
-        <?php get_template_part( 'template-parts/header/search-overlay' ); ?>
+
     </div>
 </header>

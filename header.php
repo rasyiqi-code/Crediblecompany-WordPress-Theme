@@ -36,4 +36,7 @@
     ); 
     ?>
 
+    <!-- Overlay Pencarian Layar Penuh (Ditempatkan di luar elemen header agar tidak terpengaruh CSS backdrop-filter parent) -->
+    <?php get_template_part( 'template-parts/header/search-overlay' ); ?>
+
     <main id="main" class="main-content">
