@@ -17,9 +17,13 @@ $faq_json = cc_get( 'faq_repeater_data', '' );
 // Decode data JSON ke dalam array PHP
 $faqs = json_decode( $faq_json, true );
 
-// Pastikan faqs bernilai array (termasuk kalau kosong)
-if ( ! is_array( $faqs ) ) {
-    $faqs = array();
+// Pastikan faqs bernilai array dan berikan fallback default jika kosong agar FAQ langsung muncul di homepage
+if ( ! is_array( $faqs ) || empty( $faqs ) ) {
+    $faqs = array(
+        array( 'q' => 'Lorem ipsum dolor sit amet?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'q' => 'Consectetur adipiscing elit?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'q' => 'Proin sodales imperdiet diam?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+    );
 }
 ?>
 
