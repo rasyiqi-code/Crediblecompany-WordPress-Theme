@@ -226,9 +226,20 @@ function cc_support_widgets_custom_css() {
         #cc_developer_support_widget .handle-actions {
             display: none !important;
         }
+        
+        /* Nonaktifkan interaksi klik pada header agar script collapse WordPress tidak terpicu sama sekali */
+        #cc_kbm_support_widget .postbox-header,
+        #cc_developer_support_widget .postbox-header,
         #cc_kbm_support_widget .hndle,
         #cc_developer_support_widget .hndle {
+            pointer-events: none !important;
             cursor: default !important;
+        }
+
+        /* Paksa konten widget tetap tampil secara visual meskipun status closed aktif di database/JS */
+        #cc_kbm_support_widget.closed .inside,
+        #cc_developer_support_widget.closed .inside {
+            display: block !important;
         }
     </style>';
 }
