@@ -253,8 +253,16 @@
     }
 
     /* Mitra Resmi */
+    .mitra-resmi {
+        padding: var(--cc-mitra-resmi-padding-mobile, 2rem) 0 !important;
+    }
+
     .mitra-resmi-logos {
         animation-duration: 12s;
+    }
+
+    .partners {
+        padding: var(--cc-mitra-partners-padding-mobile, 1.5rem) 0 !important;
     }
 
     /* Books */

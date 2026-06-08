@@ -80,6 +80,109 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_mitra_section',
     ) ) );
 
+    // Teks Label Mitra Pembayaran/Pengiriman
+    $wp_customize->add_setting( 'cc_mitra_payment_label', array(
+        'default'           => 'Pembayaran dan Pengiriman Didukung oleh Mitra Tepercaya Kami',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_payment_label', array(
+        'label'   => __( 'Label Mitra Pembayaran & Pengiriman', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'text',
+    ) );
+
+    // Opsi Logo Grayscale
+    $wp_customize->add_setting( 'cc_mitra_payment_grayscale', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_payment_grayscale', array(
+        'label'   => __( 'Aktifkan Efek Hitam-Putih (Grayscale) Logo', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'checkbox',
+    ) );
+
+    // Kecepatan Scroll Marquee (Detik)
+    $wp_customize->add_setting( 'cc_mitra_marquee_speed', array(
+        'default'           => 20,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_marquee_speed', array(
+        'label'       => __( 'Kecepatan Scroll Logo Mitra Resmi (Detik)', 'crediblecompany' ),
+        'description' => __( 'Mengatur waktu durasi (dalam detik) satu putaran animasi scroll logo. Semakin kecil nilainya, semakin cepat putarannya.', 'crediblecompany' ),
+        'section'     => 'cc_mitra_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 5, 'max' => 60, 'step' => 1 ),
+    ) );
+
+    // Warna Teks Tagline Proses
+    $wp_customize->add_setting( 'cc_mitra_proses_tagline_color', array(
+        'default'           => '#c01314',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_mitra_proses_tagline_color', array(
+        'label'   => __( 'Warna Teks Tagline Proses', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+    ) ) );
+
+    // Warna Teks Label Mitra Pembayaran
+    $wp_customize->add_setting( 'cc_mitra_payment_label_color', array(
+        'default'           => '#64748b',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_mitra_payment_label_color', array(
+        'label'   => __( 'Warna Teks Label Mitra Pembayaran', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+    ) ) );
+
+    // Padding Vertikal Mitra Resmi - Desktop
+    $wp_customize->add_setting( 'cc_mitra_resmi_padding_desktop', array(
+        'default'           => 48,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_resmi_padding_desktop', array(
+        'label'   => __( 'Desktop: Tinggi Spasi Seksi Mitra Resmi (px)', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'range',
+        'input_attrs' => array( 'min' => 10, 'max' => 120, 'step' => 2 ),
+    ) );
+
+    // Padding Vertikal Mitra Resmi - Mobile
+    $wp_customize->add_setting( 'cc_mitra_resmi_padding_mobile', array(
+        'default'           => 32,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_resmi_padding_mobile', array(
+        'label'   => __( 'Mobile: Tinggi Spasi Seksi Mitra Resmi (px)', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'range',
+        'input_attrs' => array( 'min' => 5, 'max' => 80, 'step' => 2 ),
+    ) );
+
+    // Padding Vertikal Mitra Pembayaran - Desktop
+    $wp_customize->add_setting( 'cc_mitra_partners_padding_desktop', array(
+        'default'           => 32,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_partners_padding_desktop', array(
+        'label'   => __( 'Desktop: Tinggi Spasi Seksi Pembayaran (px)', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'range',
+        'input_attrs' => array( 'min' => 10, 'max' => 100, 'step' => 2 ),
+    ) );
+
+    // Padding Vertikal Mitra Pembayaran - Mobile
+    $wp_customize->add_setting( 'cc_mitra_partners_padding_mobile', array(
+        'default'           => 24,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_partners_padding_mobile', array(
+        'label'   => __( 'Mobile: Tinggi Spasi Seksi Pembayaran (px)', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'range',
+        'input_attrs' => array( 'min' => 5, 'max' => 80, 'step' => 2 ),
+    ) );
+
 } );
 
 

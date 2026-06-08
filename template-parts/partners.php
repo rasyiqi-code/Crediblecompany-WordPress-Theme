@@ -76,7 +76,7 @@ $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_r
 <!-- ===== Mitra Pembayaran & Pengiriman ===== -->
 <section class="partners">
     <div class="container">
-        <p class="partners-label">Pembayaran dan Pengiriman Didukung oleh Mitra Tepercaya Kami</p>
+        <p class="partners-label"><?php echo esc_html( cc_get( 'mitra_payment_label', 'Pembayaran dan Pengiriman Didukung oleh Mitra Tepercaya Kami' ) ); ?></p>
         <?php $scroll_class = cc_get( 'mobile_scroll_partners', true ) ? 'has-horizontal-scroll' : ''; ?>
         <div class="partners-logos <?php echo esc_attr( $scroll_class ); ?>">
             <?php if ( ! empty( $payment_logos ) ) : ?>

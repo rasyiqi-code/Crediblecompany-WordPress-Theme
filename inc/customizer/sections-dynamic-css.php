@@ -41,8 +41,16 @@ function cc_sections_dynamic_css_variables() {
     $test_txt  = cc_get( 'testimonials_text_color', '#0f172a' );
 
     // 4. Mitra & Partners
-    $mitra_bg    = cc_get( 'mitra_bg_color', '#ffffff' );
-    $partners_bg = cc_get( 'mitra_partners_bg_color', '#ffffff' );
+    $mitra_bg        = cc_get( 'mitra_bg_color', '#ffffff' );
+    $partners_bg     = cc_get( 'mitra_partners_bg_color', '#ffffff' );
+    $mitra_grayscale = cc_get( 'mitra_payment_grayscale', true ) ? 'grayscale(100%)' : 'none';
+    $mitra_speed     = cc_get( 'mitra_marquee_speed', 20 );
+    $proses_tag_col  = cc_get( 'mitra_proses_tagline_color', '#c01314' );
+    $partners_tag_col = cc_get( 'mitra_payment_label_color', '#64748b' );
+    $mitra_pad_dt    = cc_get( 'mitra_resmi_padding_desktop', 48 );
+    $mitra_pad_mob   = cc_get( 'mitra_resmi_padding_mobile', 32 );
+    $partners_pad_dt = cc_get( 'mitra_partners_padding_desktop', 32 );
+    $partners_pad_mob = cc_get( 'mitra_partners_padding_mobile', 24 );
 
     // 5. Books
     $books_bg  = cc_get( 'books_bg_color', '#ffffff' );
@@ -102,6 +110,14 @@ function cc_sections_dynamic_css_variables() {
             /* === MITRA & PARTNERS === */
             --cc-mitra-bg-color: <?php echo esc_attr( $mitra_bg ); ?>;
             --cc-mitra-partners-bg-color: <?php echo esc_attr( $partners_bg ); ?>;
+            --cc-mitra-payment-grayscale: <?php echo esc_attr( $mitra_grayscale ); ?>;
+            --cc-mitra-marquee-speed: <?php echo esc_attr( $mitra_speed ) . 's'; ?>;
+            --cc-mitra-proses-tagline-color: <?php echo esc_attr( $proses_tag_col ); ?>;
+            --cc-mitra-payment-label-color: <?php echo esc_attr( $partners_tag_col ); ?>;
+            --cc-mitra-resmi-padding-desktop: <?php echo esc_attr( $mitra_pad_dt ) . 'px'; ?>;
+            --cc-mitra-resmi-padding-mobile: <?php echo esc_attr( $mitra_pad_mob ) . 'px'; ?>;
+            --cc-mitra-partners-padding-desktop: <?php echo esc_attr( $partners_pad_dt ) . 'px'; ?>;
+            --cc-mitra-partners-padding-mobile: <?php echo esc_attr( $partners_pad_mob ) . 'px'; ?>;
 
             /* === BOOKS === */
             --cc-books-bg-color: <?php echo esc_attr( $books_bg ); ?>;
