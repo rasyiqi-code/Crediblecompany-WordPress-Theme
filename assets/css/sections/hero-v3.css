@@ -5,7 +5,7 @@
  * ========================================================================== */
 
 .hero-v3-section {
-    background-color: var(--brand-white);
+    background-color: var(--cc-hero-v3-bg-color, var(--brand-white));
     padding: var(--cc-hero-v3-padding-top, 5.5rem) 0 var(--cc-hero-v3-padding-bottom, 6.5rem); /* Menggunakan padding dinamis dari Customizer */
     position: relative;
     overflow: hidden;
@@ -14,7 +14,7 @@
 .hero-v3-container {
     display: grid;
     grid-template-columns: 1.15fr 1.25fr;
-    gap: 3.5rem; /* Mengurangi jarak horizontal antar kolom agar tidak terlalu renggang */
+    gap: var(--cc-hero-v3-grid-gap, 3.5rem); /* Mengurangi jarak horizontal antar kolom agar tidak terlalu renggang */
     align-items: center; /* Membuat sisi teks rata tengah secara vertikal (center atas bawah) terhadap grid foto */
     position: relative;
     z-index: 5;
@@ -120,9 +120,9 @@
     font-size: 6rem;
     font-weight: 900;
     line-height: 0.92;
-    color: #000000;
+    color: var(--cc-hero-v3-title-color, #000000);
     letter-spacing: -0.04em;
-    margin: 0 0 2rem 0; /* Merapatkan jarak bawah judul raksasa */
+    margin: 0 0 var(--cc-hero-v3-title-margin-bottom, 2rem) 0; /* Merapatkan jarak bawah judul raksasa */
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -144,15 +144,15 @@
     font-size: 1.5rem; /* Ukuran headline disesuaikan agar kokoh pada layout 1 kolom */
     font-weight: 700;
     line-height: 1.4;
-    color: #000000;
-    margin: 0 0 1rem 0; /* Jarak lebih rapat ke paragraf */
+    color: var(--cc-hero-v3-headline-color, #000000);
+    margin: 0 0 var(--cc-hero-v3-headline-margin-bottom, 1rem) 0; /* Jarak lebih rapat ke paragraf */
     text-align: left;
 }
 
 .hero-v3-paragraph {
     font-size: 0.925rem;
     line-height: 1.7;
-    color: var(--gray-600);
+    color: var(--cc-hero-v3-desc-color, var(--gray-600));
     margin: 0 0 1.5rem 0; /* Jarak lebih rapat ke tombol aksi */
     text-align: left;
 }
@@ -167,40 +167,41 @@
 
 .hero-btn-v3-explore {
     display: inline-block;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--cc-hero-v3-btn-bg, #000000);
+    color: var(--cc-hero-v3-btn-text, #ffffff);
     font-size: 0.85rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     padding: 1.15rem 2.5rem;
     text-decoration: none;
-    border: 2px solid #000000;
+    border: 2px solid var(--cc-hero-v3-btn-bg, #000000);
     border-radius: 0px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: center;
 }
 
 .hero-btn-v3-explore:hover {
-    background-color: transparent;
-    color: #000000;
+    background-color: var(--cc-hero-v3-btn-hover-bg, transparent);
+    color: var(--cc-hero-v3-btn-hover-text, #000000);
+    border-color: var(--cc-hero-v3-btn-hover-bg, var(--cc-hero-v3-btn-bg, #000000));
     transform: translateY(-2px);
 }
 
 .hero-btn-v3-readmore {
     font-size: 0.925rem;
     font-weight: 800;
-    color: #000000;
+    color: var(--cc-hero-v3-link-color, #000000);
     text-decoration: none;
-    border-bottom: 3px solid #000000; /* Garis bawah tebal */
+    border-bottom: 3px solid var(--cc-hero-v3-link-color, #000000); /* Garis bawah tebal */
     padding-bottom: 2px;
     transition: all 0.3s ease;
     display: inline-block;
 }
 
 .hero-btn-v3-readmore:hover {
-    color: var(--brand-red);
-    border-color: var(--brand-red);
+    color: var(--cc-hero-v3-link-hover-color, var(--brand-red));
+    border-color: var(--cc-hero-v3-link-hover-color, var(--brand-red));
 }
 
 /* --------------------------------------------------------------------------

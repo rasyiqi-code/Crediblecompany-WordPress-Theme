@@ -135,3 +135,114 @@ $wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_
     'section'         => 'cc_hero_section',
     'active_callback' => $v3_active_callback,
 ) ) );
+
+// --- PENGATURAN WARNA DETAIL HERO V3 ---
+$wp_customize->add_setting( 'cc_hero_v3_bg_color', array( 'default' => '#ffffff', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_bg_color', array(
+    'label'           => 'V3: Warna Latar Belakang Hero',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_title_color', array( 'default' => '#000000', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_title_color', array(
+    'label'           => 'V3: Warna Teks Judul Utama',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_headline_color', array( 'default' => '#000000', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_headline_color', array(
+    'label'           => 'V3: Warna Teks Headline',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_desc_color', array( 'default' => '#475569', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_desc_color', array(
+    'label'           => 'V3: Warna Teks Deskripsi',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+// --- PENGATURAN WARNA TOMBOL EXPLORE V3 ---
+$wp_customize->add_setting( 'cc_hero_v3_btn_bg_color', array( 'default' => '#000000', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn_bg_color', array(
+    'label'           => 'V3: Warna Latar Tombol Explore',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_btn_text_color', array( 'default' => '#ffffff', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn_text_color', array(
+    'label'           => 'V3: Warna Teks Tombol Explore',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_btn_hover_bg_color', array( 'default' => 'transparent', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn_hover_bg_color', array(
+    'label'           => 'V3: Warna Hover Latar Tombol Explore',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_btn_hover_text_color', array( 'default' => '#000000', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn_hover_text_color', array(
+    'label'           => 'V3: Warna Hover Teks Tombol Explore',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+// --- PENGATURAN WARNA LINK READ MORE V3 ---
+$wp_customize->add_setting( 'cc_hero_v3_link_color', array( 'default' => '#000000', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_link_color', array(
+    'label'           => 'V3: Warna Link Read More',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+$wp_customize->add_setting( 'cc_hero_v3_link_hover_color', array( 'default' => '#f37021', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_link_hover_color', array(
+    'label'           => 'V3: Warna Hover Link Read More',
+    'section'         => 'cc_hero_section',
+    'active_callback' => $v3_active_callback,
+) ) );
+
+// --- PENGATURAN DETAIL SPASI/JARAK V3 ---
+$wp_customize->add_setting( 'cc_hero_v3_grid_gap_px', array(
+    'default'           => 56,
+    'sanitize_callback' => 'absint',
+) );
+$wp_customize->add_control( 'cc_hero_v3_grid_gap_px', array(
+    'label'           => __( 'V3: Jarak Antar Kolom (Grid Gap px)', 'crediblecompany' ),
+    'section'         => 'cc_hero_section',
+    'type'            => 'range',
+    'input_attrs'     => array( 'min' => 16, 'max' => 100, 'step' => 2 ),
+    'active_callback' => $v3_active_callback,
+) );
+
+$wp_customize->add_setting( 'cc_hero_v3_title_margin_bottom_px', array(
+    'default'           => 32,
+    'sanitize_callback' => 'absint',
+) );
+$wp_customize->add_control( 'cc_hero_v3_title_margin_bottom_px', array(
+    'label'           => __( 'V3: Jarak Bawah Judul Raksasa (px)', 'crediblecompany' ),
+    'section'         => 'cc_hero_section',
+    'type'            => 'range',
+    'input_attrs'     => array( 'min' => 8, 'max' => 80, 'step' => 2 ),
+    'active_callback' => $v3_active_callback,
+) );
+
+$wp_customize->add_setting( 'cc_hero_v3_headline_margin_bottom_px', array(
+    'default'           => 16,
+    'sanitize_callback' => 'absint',
+) );
+$wp_customize->add_control( 'cc_hero_v3_headline_margin_bottom_px', array(
+    'label'           => __( 'V3: Jarak Bawah Headline (px)', 'crediblecompany' ),
+    'section'         => 'cc_hero_section',
+    'type'            => 'range',
+    'input_attrs'     => array( 'min' => 4, 'max' => 48, 'step' => 2 ),
+    'active_callback' => $v3_active_callback,
+) );
+

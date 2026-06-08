@@ -63,6 +63,22 @@ function cc_hero_dynamic_css_variables() {
     $v3_pad_top      = cc_get( 'hero_v3_padding_top_px', 96 );
     $v3_pad_bottom   = cc_get( 'hero_v3_padding_bottom_px', 144 );
     $v3_accent_color = cc_get( 'hero_v3_accent_color', '#f37021' );
+    $v3_bg_color     = cc_get( 'hero_v3_bg_color', '#ffffff' );
+    $v3_title_color  = cc_get( 'hero_v3_title_color', '#000000' );
+    $v3_headline_col = cc_get( 'hero_v3_headline_color', '#000000' );
+    $v3_desc_color   = cc_get( 'hero_v3_desc_color', '#475569' );
+
+    $v3_btn_bg       = cc_get( 'hero_v3_btn_bg_color', '#000000' );
+    $v3_btn_txt      = cc_get( 'hero_v3_btn_text_color', '#ffffff' );
+    $v3_btn_hbg      = cc_get( 'hero_v3_btn_hover_bg_color', 'transparent' );
+    $v3_btn_htxt     = cc_get( 'hero_v3_btn_hover_text_color', '#000000' );
+
+    $v3_link_color   = cc_get( 'hero_v3_link_color', '#000000' );
+    $v3_link_hcolor  = cc_get( 'hero_v3_link_hover_color', '#f37021' );
+
+    $v3_grid_gap     = cc_get( 'hero_v3_grid_gap_px', 56 );
+    $v3_title_marg   = cc_get( 'hero_v3_title_margin_bottom_px', 32 );
+    $v3_headline_marg = cc_get( 'hero_v3_headline_margin_bottom_px', 16 );
 
     // --- GLOBAL ---
     $title_weight  = cc_get( 'hero_title_weight', '900' );
@@ -120,6 +136,22 @@ function cc_hero_dynamic_css_variables() {
             --cc-hero-v3-padding-top: <?php echo esc_attr( $v3_pad_top ) . 'px'; ?>;
             --cc-hero-v3-padding-bottom: <?php echo esc_attr( $v3_pad_bottom ) . 'px'; ?>;
             --cc-hero-v3-accent-color: <?php echo esc_attr( $v3_accent_color ); ?>;
+            --cc-hero-v3-bg-color: <?php echo esc_attr( $v3_bg_color ); ?>;
+            --cc-hero-v3-title-color: <?php echo esc_attr( $v3_title_color ); ?>;
+            --cc-hero-v3-headline-color: <?php echo esc_attr( $v3_headline_col ); ?>;
+            --cc-hero-v3-desc-color: <?php echo esc_attr( $v3_desc_color ); ?>;
+
+            --cc-hero-v3-btn-bg: <?php echo esc_attr( $v3_btn_bg ); ?>;
+            --cc-hero-v3-btn-text: <?php echo esc_attr( $v3_btn_txt ); ?>;
+            --cc-hero-v3-btn-hover-bg: <?php echo esc_attr( $v3_btn_hbg ); ?>;
+            --cc-hero-v3-btn-hover-text: <?php echo esc_attr( $v3_btn_htxt ); ?>;
+
+            --cc-hero-v3-link-color: <?php echo esc_attr( $v3_link_color ); ?>;
+            --cc-hero-v3-link-hover-color: <?php echo esc_attr( $v3_link_hcolor ); ?>;
+
+            --cc-hero-v3-grid-gap: <?php echo esc_attr( $v3_grid_gap ) . 'px'; ?>;
+            --cc-hero-v3-title-margin-bottom: <?php echo esc_attr( $v3_title_marg ) . 'px'; ?>;
+            --cc-hero-v3-headline-margin-bottom: <?php echo esc_attr( $v3_headline_marg ) . 'px'; ?>;
 
             /* === GLOBAL === */
             --cc-hero-title-weight: <?php echo esc_attr( $title_weight ); ?>;
