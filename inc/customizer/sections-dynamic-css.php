@@ -30,10 +30,18 @@ function cc_sections_dynamic_css_variables() {
     $about_padding_mobile  = cc_get( 'about_padding_mobile', 40 );
 
     // 2. Features
-    $feat_bg    = cc_get( 'features_bg_color', '#f8fafc' );
-    $feat_tit   = cc_get( 'features_title_color', '#0f172a' );
-    $feat_desc  = cc_get( 'features_desc_color', '#475569' );
-    $feat_count = cc_get( 'features_count', 3 );
+    $feat_bg       = cc_get( 'features_bg_color', '#f8fafc' );
+    $feat_tit      = cc_get( 'features_title_color', '#0f172a' );
+    $feat_desc     = cc_get( 'features_desc_color', '#475569' );
+    $feat_count    = cc_get( 'features_count', 3 );
+    $feat_item_bg  = cc_get( 'features_item_bg_color', 'transparent' );
+    $feat_item_pad = ( $feat_item_bg !== 'transparent' && ! empty( $feat_item_bg ) ) ? '24px' : '0px';
+    $feat_icon_bg  = cc_get( 'features_icon_bg_color', '#dc2626' );
+    $feat_icon_col = cc_get( 'features_icon_color', '#ffffff' );
+    $feat_pad_dt   = cc_get( 'features_padding_desktop', 64 );
+    $feat_pad_mob  = cc_get( 'features_padding_mobile', 40 );
+    $feat_gap_dt   = cc_get( 'features_gap_desktop', 32 );
+    $feat_gap_mob  = cc_get( 'features_gap_mobile', 20 );
 
     // 3. Testimonials
     $test_bg   = cc_get( 'testimonials_bg_color', '#f8fafc' );
@@ -101,6 +109,14 @@ function cc_sections_dynamic_css_variables() {
             --cc-features-title-color: <?php echo esc_attr( $feat_tit ); ?>;
             --cc-features-desc-color: <?php echo esc_attr( $feat_desc ); ?>;
             --cc-features-count: <?php echo esc_attr( $feat_count ); ?>;
+            --cc-features-item-bg-color: <?php echo esc_attr( $feat_item_bg ); ?>;
+            --cc-features-item-padding: <?php echo esc_attr( $feat_item_pad ); ?>;
+            --cc-features-icon-bg-color: <?php echo esc_attr( $feat_icon_bg ); ?>;
+            --cc-features-icon-color: <?php echo esc_attr( $feat_icon_col ); ?>;
+            --cc-features-padding-desktop: <?php echo esc_attr( $feat_pad_dt ) . 'px'; ?>;
+            --cc-features-padding-mobile: <?php echo esc_attr( $feat_pad_mob ) . 'px'; ?>;
+            --cc-features-gap-desktop: <?php echo esc_attr( $feat_gap_dt ) . 'px'; ?>;
+            --cc-features-gap-mobile: <?php echo esc_attr( $feat_gap_mob ) . 'px'; ?>;
 
             /* === TESTIMONIALS === */
             --cc-testimonials-bg-color: <?php echo esc_attr( $test_bg ); ?>;

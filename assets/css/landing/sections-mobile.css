@@ -168,17 +168,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #dc2626;
+        background: var(--cc-features-icon-bg-color, #dc2626);
         border-radius: 16px;
-        color: #ffffff;
+        color: var(--cc-features-icon-color, #ffffff);
         font-size: 1.5rem;
         box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
     }
 
     .app-landing-wrapper .feature-item .feature-icon i,
     .app-landing-wrapper .feature-item .feature-icon svg {
-        color: #ffffff !important;
-        fill: #ffffff !important;
+        color: var(--cc-features-icon-color, #ffffff) !important;
+        stroke: var(--cc-features-icon-color, #ffffff) !important;
+        fill: none !important;
+    }
+
+    .app-landing-wrapper .feature-item {
+        background: var(--cc-features-item-bg-color, var(--brand-white)) !important;
     }
 
     .app-landing-wrapper .feature-item h3 {

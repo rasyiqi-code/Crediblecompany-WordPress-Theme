@@ -69,7 +69,7 @@
 .features {
     background-color: var(--cc-features-bg-color, var(--brand-red));
     color: var(--cc-features-desc-color, var(--brand-white));
-    padding: 4rem 0;
+    padding: var(--cc-features-padding-desktop, 4rem) 0;
     position: relative;
     overflow: hidden;
 }
@@ -99,17 +99,21 @@
 .features-grid {
     display: grid;
     grid-template-columns: repeat(var(--cc-features-count, 3), 1fr);
-    gap: 2.5rem;
+    gap: var(--cc-features-gap-desktop, 2.5rem);
 }
 
 .feature-item {
     text-align: center;
+    background: var(--cc-features-item-bg-color, transparent);
+    padding: var(--cc-features-item-padding, 0);
+    border-radius: 12px;
+    box-sizing: border-box;
 }
 
 .feature-icon {
     width: 56px;
     height: 56px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--cc-features-icon-bg-color, rgba(255, 255, 255, 0.1));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -120,7 +124,7 @@
 .feature-icon svg {
     width: 28px;
     height: 28px;
-    stroke: var(--cc-features-title-color, var(--brand-white));
+    stroke: var(--cc-features-icon-color, var(--cc-features-title-color, var(--brand-white)));
     fill: none;
     stroke-width: 2;
     stroke-linecap: round;

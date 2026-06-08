@@ -147,5 +147,78 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_features_section',
     ) ) );
 
+    // Kustomisasi Warna Detail Item Fitur (Card & Ikon)
+    $wp_customize->add_setting( 'cc_features_item_bg_color', array(
+        'default'           => 'transparent',
+        'sanitize_callback' => 'sanitize_text_field', // menggunakan sanitize_text_field karena 'transparent' bukan hex
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_features_item_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Item Fitur', 'crediblecompany' ),
+        'section' => 'cc_features_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_features_icon_bg_color', array(
+        'default'           => '#dc2626',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_features_icon_bg_color', array(
+        'label'   => __( 'Warna Latar Belakang Ikon Fitur', 'crediblecompany' ),
+        'section' => 'cc_features_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_features_icon_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_features_icon_color', array(
+        'label'   => __( 'Warna Ikon Fitur', 'crediblecompany' ),
+        'section' => 'cc_features_section',
+    ) ) );
+
+    // Kustomisasi Spasi & Geometri (Slider)
+    $wp_customize->add_setting( 'cc_features_padding_desktop', array(
+        'default'           => 64,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_features_padding_desktop', array(
+        'label'       => __( 'Padding Vertikal Seksi (Desktop px)', 'crediblecompany' ),
+        'section'     => 'cc_features_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 0, 'max' => 200, 'step' => 2 ),
+    ) );
+
+    $wp_customize->add_setting( 'cc_features_padding_mobile', array(
+        'default'           => 40,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_features_padding_mobile', array(
+        'label'       => __( 'Padding Vertikal Seksi (Mobile px)', 'crediblecompany' ),
+        'section'     => 'cc_features_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 0, 'max' => 150, 'step' => 2 ),
+    ) );
+
+    $wp_customize->add_setting( 'cc_features_gap_desktop', array(
+        'default'           => 32,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_features_gap_desktop', array(
+        'label'       => __( 'Jarak Antar Item/Gap Grid (Desktop px)', 'crediblecompany' ),
+        'section'     => 'cc_features_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 0, 'max' => 100, 'step' => 2 ),
+    ) );
+
+    $wp_customize->add_setting( 'cc_features_gap_mobile', array(
+        'default'           => 20,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_features_gap_mobile', array(
+        'label'       => __( 'Jarak Antar Item/Gap Grid (Mobile px)', 'crediblecompany' ),
+        'section'     => 'cc_features_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 0, 'max' => 80, 'step' => 2 ),
+    ) );
+
 } );
 

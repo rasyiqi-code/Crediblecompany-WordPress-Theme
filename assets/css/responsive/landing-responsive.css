@@ -223,8 +223,13 @@
     }
 
     /* Features */
+    .features {
+        padding: var(--cc-features-padding-mobile, 2.5rem) 0 !important;
+    }
+
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--cc-features-gap-mobile, 1.25rem) !important;
     }
 
     /* Pricing */
@@ -301,6 +306,7 @@
 
     .features-grid {
         grid-template-columns: 1fr;
+        gap: var(--cc-features-gap-mobile, 1.25rem) !important;
     }
 
     .stat-item h2 {
