@@ -14,7 +14,7 @@
     .site-header {
         position: relative !important;
         top: 0;
-        background-color: var(--brand-red);
+        background-color: var(--cc-header-mobile-bg, var(--brand-red)) !important;
         z-index: 2000;
         border: none;
         margin: 0 !important;
@@ -40,7 +40,7 @@
         flex-wrap: wrap;
         align-items: center;
         align-content: flex-start;
-        background-color: var(--brand-red);
+        background-color: var(--cc-header-mobile-bg, var(--brand-red)) !important;
     }
 
     /* Baris Logo & Icons (Row 1) */
@@ -50,7 +50,7 @@
         padding: 0 16px;
         display: flex;
         align-items: center;
-        background-color: var(--brand-red);
+        background-color: var(--cc-header-mobile-bg, var(--brand-red)) !important;
         box-sizing: border-box;
         margin: 0 !important;
     }
@@ -69,6 +69,9 @@
     .site-logo {
         flex-shrink: 0;
     }
+    .site-logo a {
+        color: var(--cc-header-mobile-text, #ffffff) !important;
+    }
 
     /* ----------------------------------------------------------------------
      * 2. Header Icons
@@ -81,8 +84,9 @@
         height: 100%;
     }
 
-    .header-icons button {
-        color: #ffffff !important;
+    .header-icons button,
+    .header-icons a {
+        color: var(--cc-header-mobile-text, #ffffff) !important;
         background: transparent !important;
         border: none;
         padding: 0;
@@ -96,7 +100,7 @@
     .header-icons svg {
         width: 20px;
         height: 20px;
-        stroke: #ffffff;
+        stroke: var(--cc-header-mobile-text, #ffffff) !important;
     }
 
     /* ----------------------------------------------------------------------
@@ -163,8 +167,8 @@
     .primary-nav a:active,
     .primary-nav a:hover,
     .primary-nav li.current-menu-item a {
-        background: var(--brand-red) !important;
-        color: #ffffff !important;
+        background: var(--cc-header-mobile-text-hover, var(--brand-red)) !important;
+        color: var(--cc-header-mobile-text, #ffffff) !important;
         box-shadow: 0 4px 8px rgba(220, 38, 38, 0.2);
     }
 
@@ -176,10 +180,10 @@
      * 4. Glassmorphism Mobile Override
      * ---------------------------------------------------------------------- */
     .site-header.header-style-glass {
-        background-color: rgba(255, 255, 255, 0.45) !important;
+        background-color: var(--cc-header-mobile-glass-bg, rgba(255, 255, 255, 0.45)) !important;
         backdrop-filter: blur(16px) saturate(180%) !important;
         -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border: var(--cc-header-border, 1px solid rgba(255, 255, 255, 0.25)) !important;
         margin: 0.75rem auto 0 auto !important;
         width: calc(100% - 1.5rem) !important;
         border-radius: 20px !important;
@@ -243,19 +247,19 @@
     .site-header.header-style-glass .site-logo a,
     .site-header.header-style-glass .header-icons button,
     .site-header.header-style-glass .header-icons a {
-        color: #1e293b !important;
+        color: var(--cc-header-mobile-text, #1e293b) !important;
     }
 
     .site-header.header-style-glass .header-icons svg {
-        stroke: #1e293b !important;
+        stroke: var(--cc-header-mobile-text, #1e293b) !important;
     }
 
     /* Primary Nav (Horizontal Scroll) Glassmorphism */
     .primary-nav.header-style-glass {
-        background: rgba(255, 255, 255, 0.45) !important;
+        background: var(--cc-header-mobile-glass-bg, rgba(255, 255, 255, 0.45)) !important;
         backdrop-filter: blur(16px) saturate(180%) !important;
         -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border: var(--cc-header-border, 1px solid rgba(255, 255, 255, 0.25)) !important;
         border-top: none !important;
         margin: 0 auto 0 auto !important;
         width: calc(100% - 1.5rem) !important;
@@ -266,16 +270,16 @@
 
     .primary-nav.header-style-glass a {
         background: rgba(255, 255, 255, 0.5) !important;
-        color: #475569 !important;
+        color: var(--cc-header-mobile-text, #475569) !important;
         border: 1px solid rgba(255, 255, 255, 0.25) !important;
     }
 
     .primary-nav.header-style-glass a:active,
     .primary-nav.header-style-glass a:hover,
     .primary-nav.header-style-glass li.current-menu-item a {
-        background: var(--brand-blue, #1d4ed8) !important;
+        background: var(--cc-header-mobile-text-hover, var(--brand-blue, #1d4ed8)) !important;
         color: #ffffff !important;
-        border-color: var(--brand-blue, #1d4ed8) !important;
+        border-color: var(--cc-header-mobile-text-hover, var(--brand-blue, #1d4ed8)) !important;
         box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25) !important;
     }
 }
