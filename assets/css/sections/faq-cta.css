@@ -92,11 +92,30 @@
     color: var(--cc-cta-custom-text-color, var(--cc-cta-desc-color));
 }
 
+/* --- CTA Button Custom & Default Styling --- */
+.cta .btn {
+    background-color: var(--cc-cta-btn-bg, var(--cc-cta-btn-default-bg, var(--brand-red))) !important;
+    border-color: var(--cc-cta-btn-bg, var(--cc-cta-btn-default-bg, var(--brand-red))) !important;
+    color: var(--cc-cta-btn-text, var(--cc-cta-btn-default-text, var(--brand-white))) !important;
+    transition: var(--transition);
+}
+
+.cta .btn:hover,
+.cta .btn:focus {
+    background-color: var(--cc-cta-btn-hover-bg, var(--cc-cta-btn-default-hover-bg, var(--brand-red-dark))) !important;
+    border-color: var(--cc-cta-btn-hover-bg, var(--cc-cta-btn-default-hover-bg, var(--brand-red-dark))) !important;
+    color: var(--cc-cta-btn-hover-text, var(--cc-cta-btn-default-hover-text, var(--brand-white))) !important;
+}
+
 /* --- Varian Centered (Default) --- */
 .cta-layout-centered {
     --cc-cta-bg: var(--brand-white);
     --cc-cta-text: var(--brand-red);
     --cc-cta-desc-color: var(--gray-600);
+    --cc-cta-btn-default-bg: var(--brand-red);
+    --cc-cta-btn-default-text: var(--brand-white);
+    --cc-cta-btn-default-hover-bg: var(--brand-red-dark);
+    --cc-cta-btn-default-hover-text: var(--brand-white);
     text-align: center;
 }
 .cta-layout-centered h2 {
@@ -115,6 +134,10 @@
     --cc-cta-bg: var(--brand-white);
     --cc-cta-text: var(--brand-red);
     --cc-cta-desc-color: var(--gray-600);
+    --cc-cta-btn-default-bg: var(--brand-red);
+    --cc-cta-btn-default-text: var(--brand-white);
+    --cc-cta-btn-default-hover-bg: var(--brand-red-dark);
+    --cc-cta-btn-default-hover-text: var(--brand-white);
 }
 .cta-layout-split .cta-split-wrapper {
     display: flex;
@@ -139,6 +162,10 @@
     --cc-cta-bg: var(--brand-dark);
     --cc-cta-text: var(--brand-white);
     --cc-cta-desc-color: var(--gray-300);
+    --cc-cta-btn-default-bg: var(--brand-white);
+    --cc-cta-btn-default-text: var(--brand-dark);
+    --cc-cta-btn-default-hover-bg: var(--brand-red);
+    --cc-cta-btn-default-hover-text: var(--brand-white);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -153,22 +180,16 @@
     margin-bottom: 2rem;
     font-size: 1.125rem;
 }
-.cta-layout-dark-banner .btn {
-    background: var(--brand-white);
-    color: var(--brand-dark);
-    border-color: var(--brand-white);
-}
-.cta-layout-dark-banner .btn:hover {
-    background: var(--brand-red);
-    color: var(--brand-white);
-    border-color: var(--brand-red);
-}
 
 /* --- Varian Red Banner (Split, Latar Merah) --- */
 .cta-layout-red-banner {
     --cc-cta-bg: var(--brand-red);
     --cc-cta-text: var(--brand-white);
     --cc-cta-desc-color: rgba(255, 255, 255, 0.9);
+    --cc-cta-btn-default-bg: var(--brand-white);
+    --cc-cta-btn-default-text: var(--brand-red);
+    --cc-cta-btn-default-hover-bg: var(--brand-dark);
+    --cc-cta-btn-default-hover-text: var(--brand-white);
 }
 .cta-layout-red-banner .cta-split-wrapper {
     display: flex;
@@ -186,16 +207,6 @@
     font-weight: 400;
     font-size: 1.0625rem;
     margin: 0;
-}
-.cta-layout-red-banner .btn {
-    background: var(--brand-white);
-    color: var(--brand-red);
-    border-color: var(--brand-white);
-}
-.cta-layout-red-banner .btn:hover {
-    background: var(--brand-dark);
-    color: var(--brand-white);
-    border-color: var(--brand-dark);
 }
 
 /* --- Responsive untuk Split & Red Banner --- */

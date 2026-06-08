@@ -94,5 +94,49 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section'     => 'cc_cta_section',
     ) ) );
 
+    // Warna Latar Tombol CTA
+    $wp_customize->add_setting( 'cc_cta_btn_bg', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_cta_btn_bg', array(
+        'label'       => __( 'Warna Latar Tombol CTA', 'crediblecompany' ),
+        'description' => __( 'Kosongkan jika ingin menggunakan warna bawaan dari Layout CTA terpilih.', 'crediblecompany' ),
+        'section'     => 'cc_cta_section',
+    ) ) );
+
+    // Warna Teks Tombol CTA
+    $wp_customize->add_setting( 'cc_cta_btn_text', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_cta_btn_text', array(
+        'label'       => __( 'Warna Teks Tombol CTA', 'crediblecompany' ),
+        'description' => __( 'Kosongkan jika ingin menggunakan warna bawaan dari Layout CTA terpilih.', 'crediblecompany' ),
+        'section'     => 'cc_cta_section',
+    ) ) );
+
+    // Warna Hover Latar Tombol CTA
+    $wp_customize->add_setting( 'cc_cta_btn_hover_bg', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_cta_btn_hover_bg', array(
+        'label'       => __( 'Warna Hover Latar Tombol CTA', 'crediblecompany' ),
+        'description' => __( 'Kosongkan jika ingin menggunakan warna bawaan dari Layout CTA terpilih.', 'crediblecompany' ),
+        'section'     => 'cc_cta_section',
+    ) ) );
+
+    // Warna Hover Teks Tombol CTA
+    $wp_customize->add_setting( 'cc_cta_btn_hover_text', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_cta_btn_hover_text', array(
+        'label'       => __( 'Warna Hover Teks Tombol CTA', 'crediblecompany' ),
+        'description' => __( 'Kosongkan jika ingin menggunakan warna bawaan dari Layout CTA terpilih.', 'crediblecompany' ),
+        'section'     => 'cc_cta_section',
+    ) ) );
+
 } );
 

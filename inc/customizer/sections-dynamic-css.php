@@ -60,6 +60,10 @@ function cc_sections_dynamic_css_variables() {
     // 8. CTA
     $cta_custom_bg   = cc_get( 'cta_custom_bg_color', '' );
     $cta_custom_text = cc_get( 'cta_custom_text_color', '' );
+    $cta_btn_bg      = cc_get( 'cta_btn_bg', '' );
+    $cta_btn_text    = cc_get( 'cta_btn_text', '' );
+    $cta_btn_hbg     = cc_get( 'cta_btn_hover_bg', '' );
+    $cta_btn_htxt    = cc_get( 'cta_btn_hover_text', '' );
 
     // 9. Footer
     $foot_bg  = cc_get( 'footer_bg_color', '#0b1c3f' );
@@ -118,6 +122,18 @@ function cc_sections_dynamic_css_variables() {
             <?php endif; ?>
             <?php if ( ! empty( $cta_custom_text ) ) : ?>
             --cc-cta-custom-text-color: <?php echo esc_attr( $cta_custom_text ); ?>;
+            <?php endif; ?>
+            <?php if ( ! empty( $cta_btn_bg ) ) : ?>
+            --cc-cta-btn-bg: <?php echo esc_attr( $cta_btn_bg ); ?>;
+            <?php endif; ?>
+            <?php if ( ! empty( $cta_btn_text ) ) : ?>
+            --cc-cta-btn-text: <?php echo esc_attr( $cta_btn_text ); ?>;
+            <?php endif; ?>
+            <?php if ( ! empty( $cta_btn_hbg ) ) : ?>
+            --cc-cta-btn-hover-bg: <?php echo esc_attr( $cta_btn_hbg ); ?>;
+            <?php endif; ?>
+            <?php if ( ! empty( $cta_btn_htxt ) ) : ?>
+            --cc-cta-btn-hover-text: <?php echo esc_attr( $cta_btn_htxt ); ?>;
             <?php endif; ?>
 
             /* === FOOTER === */
