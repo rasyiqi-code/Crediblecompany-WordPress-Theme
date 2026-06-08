@@ -390,18 +390,48 @@ add_action( 'admin_head', function() {
             color: <?php echo esc_attr( $dark_bg ); ?> !important;
         }
         /* Ikon menu default: putih */
-        #adminmenu div.wp-menu-image::before {
+        #adminmenu .wp-menu-image:before {
             color: #ffffff !important;
         }
 
         /* Ikon menu saat aktif (current), sub-menu aktif (wp-has-current-submenu), atau dihover */
-        #adminmenu li.current div.wp-menu-image::before,
-        #adminmenu li.wp-has-current-submenu div.wp-menu-image::before,
-        #adminmenu li.menu-top:hover div.wp-menu-image::before,
-        #adminmenu li.opensub > a.menu-top div.wp-menu-image::before,
-        #adminmenu li > a.menu-top:focus div.wp-menu-image::before {
+        #adminmenu li.current .wp-menu-image:before,
+        #adminmenu li.wp-has-current-submenu .wp-menu-image:before,
+        #adminmenu li.wp-menu-open .wp-menu-image:before,
+        #adminmenu li.menu-top:hover .wp-menu-image:before,
+        #adminmenu li.opensub > a.menu-top .wp-menu-image:before,
+        #adminmenu li > a.menu-top:focus .wp-menu-image:before,
+        #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu .wp-menu-image:before,
+        #adminmenu li.current a.menu-top .wp-menu-image:before {
             color: <?php echo esc_attr( $dark_bg ); ?> !important;
+            background-color: currentColor !important; /* Menangani ikon yang menggunakan SVG mask */
         }
+
+        /* Menangani ikon gambar kustom atau SVG inline dari plugin agar tetap kontras (gelap) saat menu aktif/hover */
+        #adminmenu li.current .wp-menu-image img,
+        #adminmenu li.wp-has-current-submenu .wp-menu-image img,
+        #adminmenu li.wp-menu-open .wp-menu-image img,
+        #adminmenu li.menu-top:hover .wp-menu-image img,
+        #adminmenu li.opensub > a.menu-top .wp-menu-image img,
+        #adminmenu li > a.menu-top:focus .wp-menu-image img {
+            filter: brightness(0) !important;
+        }
+
+        #adminmenu li.current .wp-menu-image svg,
+        #adminmenu li.wp-has-current-submenu .wp-menu-image svg,
+        #adminmenu li.wp-menu-open .wp-menu-image svg,
+        #adminmenu li.menu-top:hover .wp-menu-image svg,
+        #adminmenu li.opensub > a.menu-top .wp-menu-image svg,
+        #adminmenu li > a.menu-top:focus .wp-menu-image svg,
+        #adminmenu li.current .wp-menu-image svg path,
+        #adminmenu li.wp-has-current-submenu .wp-menu-image svg path,
+        #adminmenu li.wp-menu-open .wp-menu-image svg path,
+        #adminmenu li.menu-top:hover .wp-menu-image svg path,
+        #adminmenu li.opensub > a.menu-top .wp-menu-image svg path,
+        #adminmenu li > a.menu-top:focus .wp-menu-image svg path {
+            fill: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
 
 
         /* General links */
