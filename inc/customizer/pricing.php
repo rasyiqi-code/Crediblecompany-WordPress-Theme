@@ -175,6 +175,32 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_pricing_section',
     ) ) );
 
+    // 8a. [Desktop] Spasi Padding Atas/Bawah Section (Tinggi Section)
+    $wp_customize->add_setting( 'cc_pricing_padding_desktop', array(
+        'default'           => 64,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_pricing_padding_desktop', array(
+        'label'       => __( 'Desktop: Tinggi Spasi Section (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Mengatur padding vertikal atas dan bawah seksi Paket Jasa di layar desktop.', 'crediblecompany' ),
+        'section'     => 'cc_pricing_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 20, 'max' => 150, 'step' => 2 ),
+    ) );
+
+    // 8b. [Mobile] Spasi Padding Atas/Bawah Section (Tinggi Section)
+    $wp_customize->add_setting( 'cc_pricing_padding_mobile', array(
+        'default'           => 40,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_pricing_padding_mobile', array(
+        'label'       => __( 'Mobile: Tinggi Spasi Section (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Mengatur padding vertikal atas dan bawah seksi Paket Jasa di layar mobile.', 'crediblecompany' ),
+        'section'     => 'cc_pricing_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 10, 'max' => 120, 'step' => 2 ),
+    ) );
+
 } );
 
 /**
@@ -194,6 +220,9 @@ add_action( 'wp_head', function() {
     $card_feat     = cc_get( 'pricing_card_feat_title_color', '#c01314' );
     $card_bdg_bg   = cc_get( 'pricing_card_badge_bg', '#ffffff' );
     $card_bdg_txt  = cc_get( 'pricing_card_badge_text', '#c01314' );
+
+    $pad_desktop   = cc_get( 'pricing_padding_desktop', 64 );
+    $pad_mobile    = cc_get( 'pricing_padding_mobile', 40 );
     ?>
     <style type="text/css" id="cc-pricing-dynamic-css">
         :root {
@@ -210,6 +239,9 @@ add_action( 'wp_head', function() {
             --cc-pricing-card-feat-title-color: <?php echo esc_attr( $card_feat ); ?>;
             --cc-pricing-card-badge-bg: <?php echo esc_attr( $card_bdg_bg ); ?>;
             --cc-pricing-card-badge-text: <?php echo esc_attr( $card_bdg_txt ); ?>;
+
+            --cc-pricing-padding-desktop: <?php echo esc_attr( $pad_desktop ) . 'px'; ?>;
+            --cc-pricing-padding-mobile: <?php echo esc_attr( $pad_mobile ) . 'px'; ?>;
         }
     </style>
     <?php

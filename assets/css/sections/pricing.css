@@ -6,7 +6,7 @@
  * ========================================================================== */
 
 .pricing {
-    padding: 4rem 0;
+    padding: var(--cc-pricing-padding-desktop, 4rem) 0;
     background: var(--cc-pricing-bg-color, var(--brand-white));
 }
 
