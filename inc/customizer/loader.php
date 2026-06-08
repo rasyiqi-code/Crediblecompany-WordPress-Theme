@@ -79,3 +79,139 @@ if ( ! function_exists( 'cc_sanitize_faq_json' ) ) {
         return json_encode( $clean_data );
     }
 }
+
+/**
+ * Generator Registrasi Kontrol Customizer Header untuk DRY (Global)
+ */
+if ( ! function_exists( 'cc_register_header_settings' ) ) {
+    function cc_register_header_settings( $wp_customize, $prefix, $label_prefix, $active_callback ) {
+        // Warna Latar Belakang Header
+        $wp_customize->add_setting( "cc_header_{$prefix}_bg_color", array(
+            'default'           => '#c01314',
+            'sanitize_callback' => 'sanitize_hex_color',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "cc_header_{$prefix}_bg_color", array(
+            'label'           => sprintf( __( '%s: Warna Latar Belakang Header', 'crediblecompany' ), $label_prefix ),
+            'section'         => 'cc_header_section',
+            'active_callback' => $active_callback,
+        ) ) );
+
+        // Warna Teks / Ikon Header
+        $wp_customize->add_setting( "cc_header_{$prefix}_text_color", array(
+            'default'           => '#ffffff',
+            'sanitize_callback' => 'sanitize_hex_color',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "cc_header_{$prefix}_text_color", array(
+            'label'           => sprintf( __( '%s: Warna Teks & Ikon Header', 'crediblecompany' ), $label_prefix ),
+            'section'         => 'cc_header_section',
+            'active_callback' => $active_callback,
+        ) ) );
+
+        // Warna Teks Hover Header
+        $wp_customize->add_setting( "cc_header_{$prefix}_text_hover_color", array(
+            'default'           => '#ffcccc',
+            'sanitize_callback' => 'sanitize_hex_color',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "cc_header_{$prefix}_text_hover_color", array(
+            'label'           => sprintf( __( '%s: Warna Teks & Ikon saat Hover', 'crediblecompany' ), $label_prefix ),
+            'section'         => 'cc_header_section',
+            'active_callback' => $active_callback,
+        ) ) );
+
+        // Warna Latar Belakang Header Mobile (Opsional)
+        $wp_customize->add_setting( "cc_header_{$prefix}_mobile_bg_color", array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_hex_color',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "cc_header_{$prefix}_mobile_bg_color", array(
+            'label'           => sprintf( __( '%s: Warna Latar Belakang Header Mobile (Opsional)', 'crediblecompany' ), $label_prefix ),
+            'description'     => __( 'Kosongkan untuk mengikuti warna header utama.', 'crediblecompany' ),
+            'section'         => 'cc_header_section',
+            'active_callback' => $active_callback,
+        ) ) );
+
+        // Warna Teks / Ikon Header Mobile (Opsional)
+        $wp_customize->add_setting( "cc_header_{$prefix}_mobile_text_color", array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_hex_color',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "cc_header_{$prefix}_mobile_text_color", array(
+            'label'           => sprintf( __( '%s: Warna Teks & Ikon Header Mobile (Opsional)', 'crediblecompany' ), $label_prefix ),
+            'description'     => __( 'Kosongkan untuk mengikuti warna header utama.', 'crediblecompany' ),
+            'section'         => 'cc_header_section',
+            'active_callback' => $active_callback,
+        ) ) );
+
+        // Warna Teks Hover Header Mobile (Opsional)
+        $wp_customize->add_setting( "cc_header_{$prefix}_mobile_text_hover_color", array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_hex_color',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "cc_header_{$prefix}_mobile_text_hover_color", array(
+            'label'           => sprintf( __( '%s: Warna Teks Hover Header Mobile (Opsional)', 'crediblecompany' ), $label_prefix ),
+            'description'     => __( 'Kosongkan untuk mengikuti warna header utama.', 'crediblecompany' ),
+            'section'         => 'cc_header_section',
+            'active_callback' => $active_callback,
+        ) ) );
+
+        // Padding Vertikal Header (Tinggi Navbar)
+        $wp_customize->add_setting( "cc_header_{$prefix}_padding", array(
+            'default'           => 12,
+            'sanitize_callback' => 'absint',
+        ) );
+        $wp_customize->add_control( "cc_header_{$prefix}_padding", array(
+            'label'           => sprintf( __( '%s: Padding Vertikal Header (px)', 'crediblecompany' ), $label_prefix ),
+            'section'         => 'cc_header_section',
+            'type'            => 'range',
+            'input_attrs'     => array(
+                'min'  => 5,
+                'max'  => 50,
+                'step' => 1,
+            ),
+            'active_callback' => $active_callback,
+        ) );
+
+        // Ukuran Font Menu Navigasi
+        $wp_customize->add_setting( "cc_header_{$prefix}_menu_font_size", array(
+            'default'           => 14,
+            'sanitize_callback' => 'absint',
+        ) );
+        $wp_customize->add_control( "cc_header_{$prefix}_menu_font_size", array(
+            'label'           => sprintf( __( '%s: Ukuran Font Menu Navigasi (px)', 'crediblecompany' ), $label_prefix ),
+            'section'         => 'cc_header_section',
+            'type'            => 'range',
+            'input_attrs'     => array(
+                'min'  => 12,
+                'max'  => 24,
+                'step' => 1,
+            ),
+            'active_callback' => $active_callback,
+        ) );
+
+        // Toggle Border Bawah
+        $wp_customize->add_setting( "cc_header_{$prefix}_border_enable", array(
+            'default'           => false,
+            'sanitize_callback' => 'cc_sanitize_checkbox',
+        ) );
+        $wp_customize->add_control( "cc_header_{$prefix}_border_enable", array(
+            'label'           => sprintf( __( '%s: Aktifkan Border Bawah Header', 'crediblecompany' ), $label_prefix ),
+            'section'         => 'cc_header_section',
+            'type'            => 'checkbox',
+            'active_callback' => $active_callback,
+        ) );
+
+        // Warna Border Bawah
+        $wp_customize->add_setting( "cc_header_{$prefix}_border_color", array(
+            'default'           => 'rgba(255, 255, 255, 0.15)',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( "cc_header_{$prefix}_border_color", array(
+            'label'           => sprintf( __( '%s: Warna Border Bawah', 'crediblecompany' ), $label_prefix ),
+            'description'     => __( 'Mendukung Hex atau RGBA.', 'crediblecompany' ),
+            'section'         => 'cc_header_section',
+            'type'            => 'text',
+            'active_callback' => $active_callback,
+        ) );
+    }
+}
+
