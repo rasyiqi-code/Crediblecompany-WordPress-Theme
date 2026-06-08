@@ -86,17 +86,28 @@ function cc_remove_dashboard_widgets() {
 
 // Mendaftarkan widget dashboard kustom baru (KBM Support & Developer Support)
 function cc_add_custom_support_dashboard_widgets() {
+    global $wp_meta_boxes;
+
+    // Registrasi KBM Support (diletakkan di kolom kiri secara default)
     wp_add_dashboard_widget(
         'cc_kbm_support_widget',
         __( 'KBM Support', 'crediblecompany' ),
         'cc_kbm_support_widget_display'
     );
 
+    // Registrasi Developer Support
     wp_add_dashboard_widget(
         'cc_developer_support_widget',
         __( 'Developer Support', 'crediblecompany' ),
         'cc_developer_support_widget_display'
     );
+
+    // Pindahkan Developer Support ke kolom kanan ('side') secara default
+    if ( isset( $wp_meta_boxes['dashboard']['normal']['core']['cc_developer_support_widget'] ) ) {
+        $widget = $wp_meta_boxes['dashboard']['normal']['core']['cc_developer_support_widget'];
+        unset( $wp_meta_boxes['dashboard']['normal']['core']['cc_developer_support_widget'] );
+        $wp_meta_boxes['dashboard']['side']['core']['cc_developer_support_widget'] = $widget;
+    }
 }
 
 // Merender konten widget KBM Support
@@ -206,6 +217,18 @@ function cc_support_widgets_custom_css() {
         }
         .cc-support-btn.site-btn:hover {
             background: #1e293b !important;
+        }
+
+        /* Mencegah widget KBM Support dan Developer Support agar tidak bisa diciutkan (collapse) */
+        #cc_kbm_support_widget .handlediv,
+        #cc_kbm_support_widget .handle-actions,
+        #cc_developer_support_widget .handlediv,
+        #cc_developer_support_widget .handle-actions {
+            display: none !important;
+        }
+        #cc_kbm_support_widget .hndle,
+        #cc_developer_support_widget .hndle {
+            cursor: default !important;
         }
     </style>';
 }
