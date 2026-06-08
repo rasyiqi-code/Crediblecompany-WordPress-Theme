@@ -283,16 +283,68 @@ add_action( 'admin_head', function() {
             background: #f5f5f5db !important;
         }
 
-        /* Styling untuk admin bar */
-        #wpadminbar {
-            min-height: auto !important;
-            line-height: auto !important;
-            align-items: center !important;
-            background-color: <?php echo esc_attr( $primary_color ); ?> !important;
+        /* Styling untuk admin bar secara konsisten */
+        #wpadminbar,
+        #wpadminbar .ab-top-menu,
+        #wpadminbar .ab-top-menu > li,
+        #wpadminbar .ab-top-menu > li > .ab-item,
+        #wpadminbar .ab-top-secondary,
+        #wpadminbar .ab-top-secondary > li,
+        #wpadminbar .ab-top-secondary > li > .ab-item,
+        #wpadminbar .quicklinks,
+        #wpadminbar .quicklinks > ul > li > a {
+            background-color: <?php echo esc_attr( $dark_bg ); ?> !important;
+            color: #ffffff !important;
         }
+
         #wpadminbar .ab-item {
             font-weight: 700 !important;
+            color: #ffffff !important;
         }
+
+        /* Ikon dashicons di admin bar */
+        #wpadminbar .ab-icon,
+        #wpadminbar .ab-icon::before,
+        #wpadminbar .ab-item::before,
+        #wpadminbar #wp-admin-bar-my-account .user-name {
+            color: #ffffff !important;
+        }
+
+        /* Menjaga avatar agar tidak ter-override background-nya */
+        #wpadminbar .avatar {
+            background: transparent !important;
+        }
+
+        /* Hover state untuk item di admin bar */
+        #wpadminbar .ab-top-menu > li:hover > .ab-item,
+        #wpadminbar .ab-top-menu > li.hover > .ab-item,
+        #wpadminbar .ab-top-secondary > li:hover > .ab-item,
+        #wpadminbar .ab-top-secondary > li.hover > .ab-item,
+        #wpadminbar .quicklinks > ul > li:hover > a {
+            background-color: <?php echo esc_attr( $primary_color ); ?> !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
+        #wpadminbar .ab-top-menu > li:hover .ab-icon::before,
+        #wpadminbar .ab-top-menu > li:hover .ab-item::before,
+        #wpadminbar .ab-top-secondary > li:hover .ab-icon::before,
+        #wpadminbar .ab-top-secondary > li:hover .ab-item::before {
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
+        /* Submenu dropdown di admin bar */
+        #wpadminbar .menupop .ab-sub-wrapper,
+        #wpadminbar .menupop .ab-sub-wrapper * {
+            background-color: <?php echo esc_attr( $submenu_bg ); ?> !important;
+            color: #ffffff !important;
+        }
+
+        #wpadminbar .menupop .ab-sub-wrapper a:hover,
+        #wpadminbar .menupop .ab-sub-wrapper a:hover * {
+            background-color: <?php echo esc_attr( $primary_color ); ?> !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
 
         /* Admin menu colors */
         html #adminmenu,
