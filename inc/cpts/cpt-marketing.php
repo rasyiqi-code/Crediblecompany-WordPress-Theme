@@ -21,6 +21,11 @@ add_action( 'init', 'cc_register_cpt_marketing' );
  * Register Custom Post Type: marketing.
  */
 function cc_register_cpt_marketing() {
+    // Jika fitur marketing dinonaktifkan di Customizer, jangan daftarkan CPT
+    if ( ! get_theme_mod( 'cc_marketing_enable', true ) ) {
+        return;
+    }
+
     $labels = array(
         'name'               => __( 'Marketing', 'crediblecompany' ),
         'singular_name'      => __( 'Marketing', 'crediblecompany' ),
