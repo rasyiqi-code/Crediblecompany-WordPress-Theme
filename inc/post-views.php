@@ -68,17 +68,33 @@ function cc_auto_track_post_views() {
 }
 
 /**
- * Mendapatkan total tayangan seluruh situs (akumulasi semua postingan).
- * Menggunakan CAST ke UNSIGNED agar SUM benar pada nilai yang disimpan sebagai string.
+ * Mendapatkan total tayangan seluruh situs secara global.
+ * Menggunakan opsi cc_total_site_views di wp_options agar akumulasinya mencakup seluruh page load,
+ * bukan hanya kunjungan pada single post/artikel.
  *
  * @return int Total views.
  */
 function cc_get_total_site_views() {
-    global $wpdb;
-    $total = $wpdb->get_var( $wpdb->prepare(
-        "SELECT SUM(CAST(meta_value AS UNSIGNED)) FROM $wpdb->postmeta WHERE meta_key = %s",
-        'cc_post_views'
-    ) );
+    $total = get_option( 'cc_total_site_views' );
+    
+    if ( false === $total ) {
+        // Jika opsi belum ada, lakukan inisialisasi dinamis pertama kali
+        global $wpdb;
+        $postmeta_total = $wpdb->get_var( $wpdb->prepare(
+            "SELECT SUM(CAST(meta_value AS UNSIGNED)) FROM $wpdb->postmeta WHERE meta_key = %s",
+            'cc_post_views'
+        ) );
+        $postmeta_total = intval( $postmeta_total );
+        
+        $views_today = cc_get_views_today();
+        
+        // Nilai awal adalah mana yang lebih besar antara akumulasi post views atau views hari ini
+        $initial_total = max( $postmeta_total, $views_today );
+        
+        add_option( 'cc_total_site_views', $initial_total, '', 'no' );
+        return $initial_total;
+    }
+    
     return intval( $total );
 }
 
@@ -94,8 +110,8 @@ function cc_get_views_today() {
 }
 
 /**
- * Mencatat kunjungan global per page load.
- * Guard: abaikan admin, AJAX, dan (opsional) pengguna login.
+ * Mencatat kunjungan global per page load ke statistik harian dan total views.
+ * Guard: abaikan admin dan request AJAX.
  */
 function cc_track_daily_views() {
     // Abaikan semua request non-frontend
@@ -109,8 +125,22 @@ function cc_track_daily_views() {
 
     $today       = wp_date( 'Y-m-d' );
     $option_name = 'cc_views_today_' . $today;
-    $count       = intval( get_option( $option_name, 0 ) );
+    
+    // 1. Tambah kunjungan hari ini
+    $count = intval( get_option( $option_name, 0 ) );
     update_option( $option_name, $count + 1, false ); // false = tidak autoload
+
+    // 2. Tambah total kunjungan situs secara global (menggunakan SQL Update agar atomic)
+    $total = get_option( 'cc_total_site_views' );
+    if ( false === $total ) {
+        cc_get_total_site_views(); // Inisialisasi jika opsi belum ada di database
+    }
+    
+    global $wpdb;
+    $wpdb->query( "UPDATE $wpdb->options SET option_value = CAST(option_value AS UNSIGNED) + 1 WHERE option_name = 'cc_total_site_views'" );
+    
+    // Bersihkan cache opsi agar pemanggilan get_option selanjutnya mendapatkan data terbaru
+    wp_cache_delete( 'cc_total_site_views', 'options' );
 }
 add_action( 'template_redirect', 'cc_track_daily_views' );
 
