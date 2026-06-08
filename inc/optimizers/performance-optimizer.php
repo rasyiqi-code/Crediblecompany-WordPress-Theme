@@ -407,4 +407,42 @@ function cc_check_if_attachment_used_elsewhere( $attachment_id, $post_id ) {
     return $count_thumbnail > 0 || $count_content > 0;
 }
 
+// 8. Pembersihan Harian Gambar/Lampiran Tak Terpakai (Cron Job)
+add_action( 'cc_cleanup_unused_attachments_cron', 'cc_cleanup_unused_attachments' );
+function cc_cleanup_unused_attachments() {
+    global $wpdb;
+
+    // Ambil list ID attachment yang tidak terikat ke pos aktif mana pun,
+    // tidak diset sebagai featured image, dan tidak muncul di post_content manapun.
+    $query = "
+        SELECT p.ID
+        FROM {$wpdb->posts} p
+        LEFT JOIN {$wpdb->postmeta} pm ON pm.meta_value = p.ID AND pm.meta_key = '_thumbnail_id'
+        LEFT JOIN {$wpdb->posts} pp ON pp.post_content LIKE CONCAT('%', p.guid, '%')
+        WHERE p.post_type = 'attachment'
+        AND (p.post_parent = 0 OR p.post_parent NOT IN (SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' OR post_status = 'draft' OR post_status = 'pending' OR post_status = 'private' OR post_status = 'future'))
+        AND pm.post_id IS NULL
+        AND pp.ID IS NULL
+    ";
+
+    $attachments = $wpdb->get_results( $query );
+
+    if ( ! empty( $attachments ) && is_array( $attachments ) ) {
+        foreach ( $attachments as $attachment ) {
+            $attachment_id = $attachment->ID;
+            
+            // Hapus lampiran beserta file fisiknya di disk secara permanen
+            if ( false === wp_delete_attachment( $attachment_id, true ) ) {
+                error_log( 'Gagal menghapus lampiran tak terpakai otomatis dengan ID: ' . $attachment_id );
+            }
+        }
+    }
+}
+
+// Daftarkan event Cron harian untuk pembersihan
+if ( ! wp_next_scheduled( 'cc_cleanup_unused_attachments_cron' ) ) {
+    wp_schedule_event( time(), 'daily', 'cc_cleanup_unused_attachments_cron' );
+}
+
+
 
