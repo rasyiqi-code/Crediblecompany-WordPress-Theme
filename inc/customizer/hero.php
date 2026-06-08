@@ -81,11 +81,11 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // --- LOAD MODULAR HERO SETTINGS PER VARIANT ---
     // Menggunakan __DIR__ untuk merujuk ke direktori yang sama
-    require_once __DIR__ . '/hero-v1.php';
-    require_once __DIR__ . '/hero-v2.php';
-    require_once __DIR__ . '/hero-v3.php';
+    require_once __DIR__ . '/hero/v1.php';
+    require_once __DIR__ . '/hero/v2.php';
+    require_once __DIR__ . '/hero/v3.php';
 
 } );
 
 // --- LOAD CALLBACK CSS DINAMIS ---
-require_once __DIR__ . '/hero-dynamic-css.php';
+require_once __DIR__ . '/hero/dynamic-css.php';

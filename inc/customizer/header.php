@@ -92,8 +92,8 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     // Muat konfigurasi modular untuk tipe-tipe header secara dinamis
-    require_once __DIR__ . '/header-classic.php';
-    require_once __DIR__ . '/header-centered.php';
-    require_once __DIR__ . '/header-glass.php';
+    require_once __DIR__ . '/header/classic.php';
+    require_once __DIR__ . '/header/centered.php';
+    require_once __DIR__ . '/header/glass.php';
 
 } );
