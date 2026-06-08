@@ -225,7 +225,7 @@
 
 @media (max-width: 768px) {
     .hero-v3-section {
-        padding: 4rem 0 5rem;
+        padding: calc(var(--cc-hero-v3-padding-top, 5.5rem) * 0.6) 0 calc(var(--cc-hero-v3-padding-bottom, 6.5rem) * 0.6);
     }
 
     .hero-v3-container {
