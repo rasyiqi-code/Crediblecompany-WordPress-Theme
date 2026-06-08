@@ -45,9 +45,10 @@ $icon_defaults = array(
         );
 
         $scroll_class = cc_get( 'mobile_scroll_features', true ) ? 'has-horizontal-scroll' : ''; 
+        $features_count = intval( cc_get( 'features_count', 3 ) );
         ?>
         <div class="features-grid <?php echo esc_attr( $scroll_class ); ?>">
-            <?php for ( $i = 1; $i <= 6; $i++ ) :
+            <?php for ( $i = 1; $i <= $features_count; $i++ ) :
                 $idx   = $i - 1;
                 $title = cc_get( "feat_title_{$i}", $feat_defaults[ $idx ][0] );
                 $desc  = cc_get( "feat_desc_{$i}", $feat_defaults[ $idx ][1] );

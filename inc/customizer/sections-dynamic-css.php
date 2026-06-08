@@ -30,9 +30,10 @@ function cc_sections_dynamic_css_variables() {
     $about_padding_mobile  = cc_get( 'about_padding_mobile', 40 );
 
     // 2. Features
-    $feat_bg   = cc_get( 'features_bg_color', '#f8fafc' );
-    $feat_tit  = cc_get( 'features_title_color', '#0f172a' );
-    $feat_desc = cc_get( 'features_desc_color', '#475569' );
+    $feat_bg    = cc_get( 'features_bg_color', '#f8fafc' );
+    $feat_tit   = cc_get( 'features_title_color', '#0f172a' );
+    $feat_desc  = cc_get( 'features_desc_color', '#475569' );
+    $feat_count = cc_get( 'features_count', 3 );
 
     // 3. Testimonials
     $test_bg   = cc_get( 'testimonials_bg_color', '#f8fafc' );
@@ -87,6 +88,7 @@ function cc_sections_dynamic_css_variables() {
             --cc-features-bg-color: <?php echo esc_attr( $feat_bg ); ?>;
             --cc-features-title-color: <?php echo esc_attr( $feat_tit ); ?>;
             --cc-features-desc-color: <?php echo esc_attr( $feat_desc ); ?>;
+            --cc-features-count: <?php echo esc_attr( $feat_count ); ?>;
 
             /* === TESTIMONIALS === */
             --cc-testimonials-bg-color: <?php echo esc_attr( $test_bg ); ?>;
