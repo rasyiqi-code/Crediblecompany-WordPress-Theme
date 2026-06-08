@@ -89,19 +89,19 @@
     top: 32%; /* Sejajar dengan baris kedua dari grid mosaic */
     width: 44px;
     height: 44px;
-    background-color: #ffd200; /* Warna kuning emas solid */
+    background-color: #f37021; /* Warna oranye khas logo PPNS */
     z-index: 10;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Sel 9: Baris 3 Kolom 1 - Kuning Solid Penuh */
+/* Sel 9: Baris 3 Kolom 1 - Oranye Solid Penuh */
 .hero-v3-mosaic-grid .cell-9 {
-    background-color: #ffd200;
+    background-color: #f37021;
 }
 
-/* Sel 16: Kanan Bawah - Kuning Solid Penuh */
+/* Sel 16: Kanan Bawah - Oranye Solid Penuh */
 .hero-v3-mosaic-grid .cell-16 {
-    background-color: #ffd200;
+    background-color: #f37021;
 }
 
 
