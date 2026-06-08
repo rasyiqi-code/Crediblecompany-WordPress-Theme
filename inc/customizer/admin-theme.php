@@ -47,8 +47,33 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'        => 'checkbox',
     ) );
 
+    // 2c. Setting & Control: Warna Utama Admin (Aksen/Tombol)
+    $wp_customize->add_setting( 'cc_admin_primary_color', array(
+        'default'           => '#c01314',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_admin_primary_color', array(
+        'label'       => __( 'Warna Utama Admin (Aksen/Tombol)', 'crediblecompany' ),
+        'description' => __( 'Warna untuk tombol utama, menu aktif, dan aksen di dashboard admin.', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+    ) ) );
+
+    // 2d. Setting & Control: Warna Latar Sidebar & Bar Admin
+    $wp_customize->add_setting( 'cc_admin_dark_color', array(
+        'default'           => '#0b1c3f',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_admin_dark_color', array(
+        'label'       => __( 'Warna Latar Sidebar & Bar Admin', 'crediblecompany' ),
+        'description' => __( 'Warna dasar untuk sidebar menu kiri dan top bar admin.', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+    ) ) );
+
 
     // 3. Setting: Aktifkan Fitur Komentar Situs
+
     $wp_customize->add_setting( 'cc_enable_comments', array(
         'default'           => true,
         'sanitize_callback' => 'cc_sanitize_checkbox',

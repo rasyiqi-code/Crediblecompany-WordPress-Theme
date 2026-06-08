@@ -24,6 +24,12 @@ if ( ! function_exists( 'cc_get_admin_primary_color' ) ) {
      * @return string Kode warna Hex.
      */
     function cc_get_admin_primary_color() {
+        // Cek jika pengguna mengatur warna aksen admin kustom secara khusus
+        $custom_admin_primary = get_theme_mod( 'cc_admin_primary_color' );
+        if ( ! empty( $custom_admin_primary ) ) {
+            return $custom_admin_primary;
+        }
+
         $header_style = get_theme_mod( 'cc_header_style', 'classic' );
         $primary      = '#c01314'; // Fallback default (merah brand)
 
@@ -52,9 +58,16 @@ if ( ! function_exists( 'cc_get_admin_dark_color' ) ) {
      * @return string Kode warna Hex.
      */
     function cc_get_admin_dark_color() {
+        // Cek jika pengguna mengatur warna latar admin kustom secara khusus
+        $custom_admin_dark = get_theme_mod( 'cc_admin_dark_color' );
+        if ( ! empty( $custom_admin_dark ) ) {
+            return $custom_admin_dark;
+        }
+
         return get_theme_mod( 'cc_footer_bg_color', '#0b1c3f' );
     }
 }
+
 
 if ( ! function_exists( 'cc_admin_color_darken' ) ) {
     /**
