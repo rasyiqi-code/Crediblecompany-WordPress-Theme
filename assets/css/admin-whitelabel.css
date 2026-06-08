@@ -59,10 +59,22 @@
     display: none !important;
 }
 
-/* Sembunyikan area footer admin sepenuhnya */
+/* Styling area footer admin kustom agar menyatu secara premium */
 #wpfooter {
-    display: none !important;
+    color: #64748b !important;
+    border-top: 1px solid rgba(226, 232, 240, 0.8) !important;
+    background: rgba(248, 250, 252, 0.8) !important;
+    padding: 15px 20px !important;
+    font-size: 12px !important;
 }
+#wpfooter a {
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+#wpfooter a:hover {
+    text-decoration: underline !important;
+}
+
 
 /* Sembunyikan menu bar Flying Press untuk user non-super admin (Site Admin) */
 .cc-non-super-admin #wp-admin-bar-flying-press {
