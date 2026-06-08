@@ -258,3 +258,46 @@ function cc_hide_personal_options_and_elementor_for_site_admins() {
     </script>
     <?php
 }
+
+// 6. Pengalihan Halaman Admin untuk CPT yang Dinonaktifkan (Pencegah Error "Invalid Post Type")
+add_action( 'admin_init', 'cc_redirect_disabled_cpt_admin_pages' );
+function cc_redirect_disabled_cpt_admin_pages() {
+    global $pagenow;
+    
+    // Pastikan kita sedang berada di halaman edit pos admin (edit.php, post-new.php, post.php)
+    if ( ! in_array( $pagenow, array( 'edit.php', 'post-new.php', 'post.php' ), true ) ) {
+        return;
+    }
+
+    $cpt_to_check = '';
+
+    // Ambil post type dari parameter URL GET
+    if ( isset( $_GET['post_type'] ) ) {
+        $cpt_to_check = sanitize_key( $_GET['post_type'] );
+    } elseif ( isset( $_GET['post'] ) ) {
+        $post_id      = intval( $_GET['post'] );
+        $cpt_to_check = get_post_type( $post_id );
+    }
+
+    if ( empty( $cpt_to_check ) ) {
+        return;
+    }
+
+    $should_redirect = false;
+
+    // 1. Cek CPT Testimoni
+    if ( 'testimoni' === $cpt_to_check && ! get_theme_mod( 'cc_testimonials_enable', true ) ) {
+        $should_redirect = true;
+    }
+
+    // 2. Cek CPT Marketing
+    if ( 'marketing' === $cpt_to_check && ! get_theme_mod( 'cc_marketing_enable', true ) ) {
+        $should_redirect = true;
+    }
+
+    if ( $should_redirect ) {
+        wp_safe_redirect( admin_url( 'index.php' ) );
+        exit;
+    }
+}
+
