@@ -65,14 +65,16 @@ add_action( 'admin_init', 'cc_redirect_disabled_cpt_admin_pages' );
  * Bagian 1: Logika Pembersihan Dashboard & Widget
  * ---------------------------------------------------------------------- */
 
-// Menghapus widget dashboard bawaan WordPress yang tidak relevan (Berita & Draft Cepat)
+// Menghapus widget dashboard bawaan WordPress yang tidak relevan (Berita, Draft Cepat, & Aktivitas)
 function cc_remove_dashboard_widgets() {
     $widgets_to_remove = array(
         'dashboard_quick_press', // Draft Cepat
         'dashboard_primary',     // Berita & Acara WordPress
+        'dashboard_activity',    // Aktivitas
     );
     foreach ( $widgets_to_remove as $widget ) {
-        remove_meta_box( $widget, 'dashboard', 'side' );
+        $context = in_array( $widget, array( 'dashboard_quick_press', 'dashboard_primary' ), true ) ? 'side' : 'normal';
+        remove_meta_box( $widget, 'dashboard', $context );
     }
 }
 
