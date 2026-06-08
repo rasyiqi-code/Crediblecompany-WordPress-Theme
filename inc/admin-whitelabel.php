@@ -52,6 +52,9 @@ if ( ! get_theme_mod( 'cc_enable_comments', true ) ) {
 
     // Menyembunyikan menu bar komentar secara backend
     add_action( 'admin_bar_menu', 'cc_remove_comments_admin_bar_node', 999 );
+
+    // Menyembunyikan elemen komentar di dashboard utama (Sekilas & Aktivitas)
+    add_action( 'admin_head', 'cc_hide_comments_dashboard_elements' );
 }
 
 // 3. Pengalihan Halaman Admin untuk CPT yang Dinonaktifkan (Selalu Aktif)
@@ -138,6 +141,21 @@ function cc_remove_comments_support() {
 // Menyembunyikan menu bar komentar dari Admin Bar secara backend
 function cc_remove_comments_admin_bar_node( $wp_admin_bar ) {
     $wp_admin_bar->remove_node( 'comments' );
+}
+
+// Menyembunyikan elemen komentar di widget dashboard (Sekilas & Aktivitas) via CSS
+function cc_hide_comments_dashboard_elements() {
+    echo '<style>
+        /* Sembunyikan jumlah komentar di widget Sekilas (At a Glance) */
+        #dashboard_right_now .comment-count,
+        #dashboard_right_now .comment-mod-count {
+            display: none !important;
+        }
+        /* Sembunyikan komentar terbaru di widget Aktivitas */
+        #latest-comments {
+            display: none !important;
+        }
+    </style>';
 }
 
 
