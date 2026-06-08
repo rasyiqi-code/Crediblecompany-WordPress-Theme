@@ -13,8 +13,22 @@
  * @param mixed  $default Nilai default jika belum diatur.
  * @return mixed
  */
+/**
+ * Konversi URL HTTP menjadi HTTPS secara dinamis jika koneksi aman (SSL) aktif.
+ *
+ * @param mixed $value Nilai string URL yang akan dikonversi.
+ * @return mixed
+ */
+function cc_maybe_ssl_url( $value ) {
+    if ( is_ssl() && is_string( $value ) && ! empty( $value ) ) {
+        return str_replace( 'http://', 'https://', $value );
+    }
+    return $value;
+}
+
 function cc_get( $key, $default = '' ) {
-    return get_theme_mod( 'cc_' . $key, $default );
+    $value = get_theme_mod( 'cc_' . $key, $default );
+    return cc_maybe_ssl_url( $value );
 }
 
 /**
@@ -40,10 +54,10 @@ function cc_img( $key, $default = '' ) {
     $value = get_theme_mod( 'cc_' . $key, '' );
 
     if ( $value ) {
-        return esc_url( $value ); // URL nyata: aman di-escape
+        return esc_url( cc_maybe_ssl_url( $value ) ); // URL nyata: aman di-escape
     }
 
-    return $default; // Fallback (data URI, empty string) dikembalikan apa adanya
+    return cc_maybe_ssl_url( $default ); // Fallback (data URI, empty string) dikembalikan apa adanya
 }
 
 /**
