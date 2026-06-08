@@ -104,8 +104,9 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright">
-                    &copy; <?php echo date( 'Y' ); ?> <?php cc_e( 'footer_copyright', 'Credible Company.' ); ?> All Rights Reserved.
+                    &copy; <?php echo date( 'Y' ); ?> <?php cc_e( 'footer_copyright', 'Credible Company.' ); ?> All Rights Reserved. | Created by <a href="https://crediblemark.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Rasyiqi - Crediblemark.com</a>
                 </div>
+
             </div>
         </div>
     </footer>
