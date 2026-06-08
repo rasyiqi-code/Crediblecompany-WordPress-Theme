@@ -101,13 +101,24 @@ function cc_add_custom_support_dashboard_widgets() {
 
 // Merender konten widget KBM Support
 function cc_kbm_support_widget_display() {
+    $wa_num   = get_theme_mod( 'cc_kbm_support_wa', '6281357517526' );
+    $web_url  = get_theme_mod( 'cc_kbm_support_web', 'https://penerbitkbm.com/' );
+    
+    // Dapatkan nama host untuk tampilan teks link yang rapi
+    $web_host = parse_url( $web_url, PHP_URL_HOST );
+    if ( empty( $web_host ) ) {
+        $web_host = str_replace( array( 'http://', 'https://' ), '', $web_url );
+    }
+
+    // Bersihkan nomor WhatsApp dari karakter non-digit untuk link wa.me
+    $wa_clean = preg_replace( '/[^0-9]/', '', $wa_num );
     ?>
     <div class="cc-dashboard-widget-content">
         <p style="margin-bottom: 15px; color: #475569; font-size: 13px; line-height: 1.6;">
-            Dapatkan bantuan layanan penerbitan buku, pemasaran, dan dukungan operasional langsung dari tim KBM Support kami di <a href="https://penerbitkbm.com/" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">penerbitkbm.com</a>.
+            Dapatkan bantuan layanan penerbitan buku, pemasaran, dan dukungan operasional langsung dari tim KBM Support kami di <a href="<?php echo esc_url( $web_url ); ?>" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;"><?php echo esc_html( $web_host ); ?></a>.
         </p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
-            <a href="https://wa.me/6281357517526" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
+            <a href="https://wa.me/<?php echo esc_attr( $wa_clean ); ?>" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-top: 1px;"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.333 4.982L2 22l5.233-1.371a9.948 9.948 0 004.773 1.21h.005c5.505 0 9.989-4.478 9.99-9.984A9.998 9.998 0 0012.012 2zm5.727 14.153c-.246.696-1.233 1.277-1.696 1.325-.463.048-.962.062-1.602-.144a7.373 7.373 0 01-3.217-1.89 7.42 7.42 0 01-1.89-3.217 3.513 3.513 0 01-.144-1.602c.048-.463.629-1.45 1.325-1.696.177-.063.35-.12.493-.12.143 0 .229.006.335.012a1.867 1.867 0 01.442.06c.148.042.316.14.417.375.14.331.479 1.168.52 1.25.042.083.07.18.013.298-.057.118-.086.19-.172.29-.086.1-.182.222-.26.3-.086.086-.176.18-.076.353a4.996 4.996 0 001.21 1.48c.465.412.92.68 1.092.766.172.086.27.071.37-.043.1-.115.43-.502.545-.674.115-.172.229-.144.387-.086.158.058 1.004.474 1.176.56.172.086.287.13.33.202.043.072.043.416-.203 1.112z"/></svg>
                 WhatsApp KBM Support
             </a>
@@ -118,13 +129,24 @@ function cc_kbm_support_widget_display() {
 
 // Merender konten widget Developer Support
 function cc_developer_support_widget_display() {
+    $wa_num   = get_theme_mod( 'cc_developer_support_wa', '6285183131249' );
+    $web_url  = get_theme_mod( 'cc_developer_support_web', 'https://crediblemark.com/' );
+
+    // Dapatkan nama host untuk tampilan teks link yang rapi
+    $web_host = parse_url( $web_url, PHP_URL_HOST );
+    if ( empty( $web_host ) ) {
+        $web_host = str_replace( array( 'http://', 'https://' ), '', $web_url );
+    }
+
+    // Bersihkan nomor WhatsApp dari karakter non-digit untuk link wa.me
+    $wa_clean = preg_replace( '/[^0-9]/', '', $wa_num );
     ?>
     <div class="cc-dashboard-widget-content">
         <p style="margin-bottom: 15px; color: #475569; font-size: 13px; line-height: 1.6;">
-            Butuh bantuan teknis, perbaikan bug, atau penambahan fitur kustom pada website? Hubungi tim Developer kami langsung dari <a href="https://crediblemark.com/" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">crediblemark.com</a>.
+            Butuh bantuan teknis, perbaikan bug, atau penambahan fitur kustom pada website? Hubungi tim Developer kami langsung dari <a href="<?php echo esc_url( $web_url ); ?>" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;"><?php echo esc_html( $web_host ); ?></a>.
         </p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
-            <a href="https://wa.me/6285183131249" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
+            <a href="https://wa.me/<?php echo esc_attr( $wa_clean ); ?>" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-top: 1px;"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.333 4.982L2 22l5.233-1.371a9.948 9.948 0 004.773 1.21h.005c5.505 0 9.989-4.478 9.99-9.984A9.998 9.998 0 0012.012 2zm5.727 14.153c-.246.696-1.233 1.277-1.696 1.325-.463.048-.962.062-1.602-.144a7.373 7.373 0 01-3.217-1.89 7.42 7.42 0 01-1.89-3.217 3.513 3.513 0 01-.144-1.602c.048-.463.629-1.45 1.325-1.696.177-.063.35-.12.493-.12.143 0 .229.006.335.012a1.867 1.867 0 01.442.06c.148.042.316.14.417.375.14.331.479 1.168.52 1.25.042.083.07.18.013.298-.057.118-.086.19-.172.29-.086.1-.182.222-.26.3-.086.086-.176.18-.076.353a4.996 4.996 0 001.21 1.48c.465.412.92.68 1.092.766.172.086.27.071.37-.043.1-.115.43-.502.545-.674.115-.172.229-.144.387-.086.158.058 1.004.474 1.176.56.172.086.287.13.33.202.043.072.043.416-.203 1.112z"/></svg>
                 WhatsApp Developer
             </a>

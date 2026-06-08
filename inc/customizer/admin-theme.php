@@ -47,4 +47,56 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'        => 'checkbox',
     ) );
 
+    // 4. Setting & Control: WhatsApp KBM Support
+    $wp_customize->add_setting( 'cc_kbm_support_wa', array(
+        'default'           => '6281357517526',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'cc_kbm_support_wa', array(
+        'label'       => __( 'WhatsApp KBM Support', 'crediblecompany' ),
+        'description' => __( 'Format angka saja tanpa spasi/karakter spesial (contoh: 6281357517526)', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'text',
+    ) );
+
+    // 5. Setting & Control: Website KBM Support
+    $wp_customize->add_setting( 'cc_kbm_support_web', array(
+        'default'           => 'https://penerbitkbm.com/',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( 'cc_kbm_support_web', array(
+        'label'       => __( 'Website KBM Support', 'crediblecompany' ),
+        'description' => __( 'Masukkan URL website resmi KBM Support', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'url',
+    ) );
+
+    // 6. Setting & Control: WhatsApp Developer Support
+    $wp_customize->add_setting( 'cc_developer_support_wa', array(
+        'default'           => '6285183131249',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'cc_developer_support_wa', array(
+        'label'       => __( 'WhatsApp Developer Support', 'crediblecompany' ),
+        'description' => __( 'Format angka saja tanpa spasi/karakter spesial (contoh: 6285183131249)', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'text',
+    ) );
+
+    // 7. Setting & Control: Website Developer Support
+    $wp_customize->add_setting( 'cc_developer_support_web', array(
+        'default'           => 'https://crediblemark.com/',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( 'cc_developer_support_web', array(
+        'label'       => __( 'Website Developer Support', 'crediblecompany' ),
+        'description' => __( 'Masukkan URL website resmi Developer Support', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'url',
+    ) );
+
 } );
