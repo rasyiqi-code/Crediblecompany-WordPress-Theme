@@ -19,6 +19,9 @@ for ( $i = 1; $i <= 6; $i++ ) {
 
 // Fallback teks jika belum ada 1 pun logo diupload
 $mitra_resmi_raw      = cc_get( 'mitra_names', 'Mitra 1, Mitra 2, Mitra 3, Mitra 4' );
+if ( empty( $mitra_resmi_raw ) ) {
+    $mitra_resmi_raw = 'Mitra 1, Mitra 2, Mitra 3, Mitra 4';
+}
 $mitra_resmi_fallback = array_filter( array_map( 'trim', explode( ',', $mitra_resmi_raw ) ) );
 
 // Tagline proses kerja (dari Customizer)
@@ -38,6 +41,9 @@ for ( $i = 1; $i <= 8; $i++ ) {
 
 // Mitra Pembayaran & Pengiriman (dari Customizer, pisahkan koma - sebagai fallback teks)
 $mitra_bayar_raw = cc_get( 'mitra_payment', 'Lorem, Ipsum, Dolor, Sit, Amet, Consectetur' );
+if ( empty( $mitra_bayar_raw ) ) {
+    $mitra_bayar_raw = 'Lorem, Ipsum, Dolor, Sit, Amet, Consectetur';
+}
 $mitra_bayar     = array_filter( array_map( 'trim', explode( ',', $mitra_bayar_raw ) ) );
 ?>
 

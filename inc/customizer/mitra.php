@@ -54,10 +54,10 @@ add_action( 'customize_register', function( $wp_customize ) {
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_mitra_payment', array(
-        'label'       => __( 'Fallback Teks Mitra (pisahkan koma)', 'crediblecompany' ),
-        'description' => __( 'Teks yang tampil jika gambar logo di bawah ini kosong.', 'crediblecompany' ),
+        'label'       => __( 'Fallback Teks Mitra Pembayaran & Pengiriman (pisahkan koma)', 'crediblecompany' ),
+        'description' => __( 'Teks yang tampil jika gambar logo pembayaran di bawah ini kosong.', 'crediblecompany' ),
         'section'     => 'cc_mitra_section',
-        'type'    => 'text',
+        'type'        => 'text',
     ) );
 
     // Daftar 8 slot logo Mitra Pembayaran / Pengiriman
@@ -110,6 +110,17 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
     $wp_customize->add_control( 'cc_mitra_payment_grayscale', array(
         'label'   => __( 'Aktifkan Efek Hitam-Putih (Grayscale) Logo', 'crediblecompany' ),
+        'section' => 'cc_mitra_section',
+        'type'    => 'checkbox',
+    ) );
+
+    // Opsi Horizontal Scroll Mobile (Pembayaran)
+    $wp_customize->add_setting( 'cc_mobile_scroll_partners', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+    $wp_customize->add_control( 'cc_mobile_scroll_partners', array(
+        'label'   => __( 'Aktifkan Horizontal Scroll di Mobile (Pembayaran)', 'crediblecompany' ),
         'section' => 'cc_mitra_section',
         'type'    => 'checkbox',
     ) );
