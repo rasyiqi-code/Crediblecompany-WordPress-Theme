@@ -1,0 +1,111 @@
+/**
+ * Stylesheet Whitelabel Admin WordPress.
+ * Memisahkan CSS kustom dari kode PHP agar tetap modular dan clean.
+ * Komentar menggunakan bahasa Indonesia.
+ */
+
+/* ==========================================================================
+   1. Kustomisasi Widget Support & Dashboard
+   ========================================================================== */
+
+/* Styling tombol support kustom */
+.cc-support-btn {
+    transition: all 0.2s ease-in-out !important;
+}
+
+.cc-support-btn:hover {
+    opacity: 0.95 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.cc-support-btn.wa-btn:hover {
+    background: #1ebe57 !important;
+}
+
+.cc-support-btn.site-btn:hover {
+    background: #1e293b !important;
+}
+
+/* Mencegah widget KBM Support dan Developer Support agar tidak bisa diciutkan (collapse) */
+#cc_kbm_support_widget .handlediv,
+#cc_kbm_support_widget .handle-actions,
+#cc_developer_support_widget .handlediv,
+#cc_developer_support_widget .handle-actions {
+    display: none !important;
+}
+
+/* Nonaktifkan interaksi klik pada header agar script collapse WordPress tidak terpicu sama sekali */
+#cc_kbm_support_widget .postbox-header,
+#cc_developer_support_widget .postbox-header,
+#cc_kbm_support_widget .hndle,
+#cc_developer_support_widget .hndle {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+/* Paksa konten widget tetap tampil secara visual meskipun status closed aktif di database/JS */
+#cc_kbm_support_widget.closed .inside,
+#cc_developer_support_widget.closed .inside {
+    display: block !important;
+}
+
+/* ==========================================================================
+   2. Pembersihan Dashboard & Layout Umum
+   ========================================================================== */
+
+/* Sembunyikan Screen Options dan Help tab di atas kanan halaman admin */
+#screen-meta-links {
+    display: none !important;
+}
+
+/* Sembunyikan area footer admin sepenuhnya */
+#wpfooter {
+    display: none !important;
+}
+
+/* Sembunyikan menu bar Flying Press untuk user non-super admin (Site Admin) */
+.cc-non-super-admin #wp-admin-bar-flying-press {
+    display: none !important;
+}
+
+/* ==========================================================================
+   3. Pembersihan Komentar Dinamis di Dashboard
+   ========================================================================== */
+
+/* Sembunyikan jumlah komentar di widget Sekilas (At a Glance) */
+.cc-comments-disabled #dashboard_right_now .comment-count,
+.cc-comments-disabled #dashboard_right_now .comment-mod-count {
+    display: none !important;
+}
+
+/* Sembunyikan komentar terbaru di widget Aktivitas */
+.cc-comments-disabled #latest-comments {
+    display: none !important;
+}
+
+/* ==========================================================================
+   4. Penyederhanaan Halaman Profil & Opsi Pengguna
+   ========================================================================== */
+
+/* Sembunyikan opsi personal untuk Site Admin non-super admin */
+.cc-site-admin-non-super.profile-php tr.user-admin-color-wrap,
+.cc-site-admin-non-super.profile-php tr.user-syntax-highlighting-wrap,
+.cc-site-admin-non-super.profile-php tr.user-comment-shortcuts-wrap,
+.cc-site-admin-non-super.profile-php tr.show-admin-bar.user-admin-bar-front-wrap,
+.cc-site-admin-non-super.profile-php tr.user-language-wrap,
+.cc-site-admin-non-super.user-edit-php tr.user-admin-color-wrap,
+.cc-site-admin-non-super.user-edit-php tr.user-syntax-highlighting-wrap,
+.cc-site-admin-non-super.user-edit-php tr.user-comment-shortcuts-wrap,
+.cc-site-admin-non-super.user-edit-php tr.show-admin-bar.user-admin-bar-front-wrap,
+.cc-site-admin-non-super.user-edit-php tr.user-language-wrap {
+    display: none !important;
+}
+
+/* Sembunyikan input Elementor di Halaman Profil */
+.cc-site-admin-non-super.profile-php tr:has(#elementor_enable_ai),
+.cc-site-admin-non-super.profile-php tr:has(#elementor_pro_enable_notes_notifications),
+.cc-site-admin-non-super.user-edit-php tr:has(#elementor_enable_ai),
+.cc-site-admin-non-super.user-edit-php tr:has(#elementor_pro_enable_notes_notifications) {
+    display: none !important;
+}

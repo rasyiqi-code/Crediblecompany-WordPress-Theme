@@ -14,7 +14,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* --------------------------------------------------------------------------
- * Inisialisasi Fitur Bersyarat
+ * Inisialisasi Fitur Eksternal & Aset
+ * ---------------------------------------------------------------------- */
+
+// Memuat berkas CSS whitelabel eksternal
+add_action( 'admin_enqueue_scripts', 'cc_enqueue_admin_whitelabel_assets' );
+function cc_enqueue_admin_whitelabel_assets() {
+    wp_enqueue_style( 'cc-admin-whitelabel', get_template_directory_uri() . '/assets/css/admin-whitelabel.css', array(), '1.0.0' );
+}
+
+// Menambahkan class kustom pada admin body untuk mendukung styling CSS eksternal secara kondisional
+add_filter( 'admin_body_class', 'cc_admin_whitelabel_body_classes' );
+function cc_admin_whitelabel_body_classes( $classes ) {
+    // 1. Class jika user bukan super admin (untuk Flying Press, dll)
+    if ( ! current_user_can( 'manage_network' ) ) {
+        $classes .= ' cc-non-super-admin';
+    }
+    
+    // 2. Class jika user site admin non-super admin (untuk Halaman Profil, dll)
+    if ( ! is_super_admin() && current_user_can( 'administrator' ) ) {
+        $classes .= ' cc-site-admin-non-super';
+    }
+
+    // 3. Class jika komentar global dinonaktifkan
+    if ( ! get_theme_mod( 'cc_enable_comments', true ) ) {
+        $classes .= ' cc-comments-disabled';
+    }
+
+    return $classes;
+}
+
+
+/* --------------------------------------------------------------------------
+ * Inisialisasi Fitur Bersyarat (Hooks)
  * ---------------------------------------------------------------------- */
 
 // 1. Jika Kustomisasi Tema Admin Aktif
@@ -24,25 +56,18 @@ if ( get_theme_mod( 'cc_enable_admin_theme', false ) ) {
 
     // Pendaftaran Widget Kustom Support
     add_action( 'wp_dashboard_setup', 'cc_add_custom_support_dashboard_widgets', 20 );
-    add_action( 'admin_head', 'cc_support_widgets_custom_css' );
 
     // Pembersihan Admin Bar
     add_action( 'admin_bar_menu', 'cc_remove_wp_logo', 999 );
     add_action( 'wp_before_admin_bar_render', 'cc_remove_admin_bar_item' );
     add_action( 'admin_footer', 'cc_hide_admin_bar_items' );
     add_action( 'wp_footer', 'cc_hide_admin_bar_items' );
-    add_action( 'admin_head', 'cc_hide_menu_for_non_super_admins' );
 
-    // Kustomisasi Meta & Footer
-    add_action( 'admin_head', 'cc_remove_screen_options_help' );
-    add_action( 'admin_head', 'cc_remove_footer_admin' );
+    // Kustomisasi Meta
     add_filter( 'admin_title', 'cc_change_admin_title', 10, 2 );
 
     // Profil Pengguna
     add_action( 'admin_head', 'cc_hide_personal_options_and_elementor_for_site_admins' );
-
-    // Menyembunyikan elemen komentar di dashboard utama (Sekilas & Aktivitas) secara permanen
-    add_action( 'admin_head', 'cc_hide_comments_dashboard_elements' );
 }
 
 // 2. Jika Fitur Komentar Global Dinonaktifkan
@@ -126,12 +151,7 @@ function cc_kbm_support_widget_display() {
     // Buat tag HTML hyperlink untuk website
     $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_host ) . '</a>';
     
-    // Ganti placeholder {link} dengan tag hyperlink nyata secara aman
-    $processed_desc = str_replace( '{link}', $web_link, esc_html( $raw_desc ) );
-    // Karena esc_html menyaring semua tag, namun kita ingin mengizinkan tag <a> yang aman hasil replacement kita:
-    // Kita lakukan replacement setelah esc_html agar tag <a> kustom kita tetap aman dan dirender dengan benar.
-    $safe_desc = str_replace( '&lt;a href=&quot;' . esc_attr( $web_url ) . '&quot; target=&quot;_blank&quot; style=&quot;color: #c01314; text-decoration: underline; font-weight: 600;&quot;&gt;' . esc_html( $web_host ) . '&lt;/a&gt;', $web_link, esc_html( $raw_desc ) );
-    // Alternatif yang jauh lebih bersih: kita esc_html teks mentah deskripsi sebelum replace, atau gunakan wp_kses untuk filter
+    // Ganti placeholder {link} dengan tag hyperlink nyata secara aman menggunakan wp_kses
     $allowed_tags = array(
         'a' => array(
             'href'   => array(),
@@ -201,49 +221,6 @@ function cc_developer_support_widget_display() {
     <?php
 }
 
-// Menambahkan CSS kustom untuk tombol support di admin head
-function cc_support_widgets_custom_css() {
-    echo '<style>
-        .cc-support-btn {
-            transition: all 0.2s ease-in-out !important;
-        }
-        .cc-support-btn:hover {
-            opacity: 0.95 !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
-        }
-        .cc-support-btn.wa-btn:hover {
-            background: #1ebe57 !important;
-        }
-        .cc-support-btn.site-btn:hover {
-            background: #1e293b !important;
-        }
-
-        /* Mencegah widget KBM Support dan Developer Support agar tidak bisa diciutkan (collapse) */
-        #cc_kbm_support_widget .handlediv,
-        #cc_kbm_support_widget .handle-actions,
-        #cc_developer_support_widget .handlediv,
-        #cc_developer_support_widget .handle-actions {
-            display: none !important;
-        }
-        
-        /* Nonaktifkan interaksi klik pada header agar script collapse WordPress tidak terpicu sama sekali */
-        #cc_kbm_support_widget .postbox-header,
-        #cc_developer_support_widget .postbox-header,
-        #cc_kbm_support_widget .hndle,
-        #cc_developer_support_widget .hndle {
-            pointer-events: none !important;
-            cursor: default !important;
-        }
-
-        /* Paksa konten widget tetap tampil secara visual meskipun status closed aktif di database/JS */
-        #cc_kbm_support_widget.closed .inside,
-        #cc_developer_support_widget.closed .inside {
-            display: block !important;
-        }
-    </style>';
-}
-
 
 /* --------------------------------------------------------------------------
  * Bagian 2: Logika Pembersihan Admin Bar (Top Bar)
@@ -272,13 +249,6 @@ function cc_hide_admin_bar_items() {
         });
     </script>
     ';
-}
-
-// Menyembunyikan menu bar Flying Press untuk user non-super admin
-function cc_hide_menu_for_non_super_admins() {
-    if ( ! current_user_can( 'manage_network' ) ) {
-        echo '<style>#wp-admin-bar-flying-press { display: none !important; }</style>';
-    }
 }
 
 
@@ -311,35 +281,10 @@ function cc_remove_comments_admin_bar_node( $wp_admin_bar ) {
     $wp_admin_bar->remove_node( 'comments' );
 }
 
-// Menyembunyikan elemen komentar di widget dashboard (Sekilas & Aktivitas) via CSS
-function cc_hide_comments_dashboard_elements() {
-    echo '<style>
-        /* Sembunyikan jumlah komentar di widget Sekilas (At a Glance) */
-        #dashboard_right_now .comment-count,
-        #dashboard_right_now .comment-mod-count {
-            display: none !important;
-        }
-        /* Sembunyikan komentar terbaru di widget Aktivitas */
-        #latest-comments {
-            display: none !important;
-        }
-    </style>';
-}
-
 
 /* --------------------------------------------------------------------------
  * Bagian 4: Kustomisasi Meta & Footer Admin
  * ---------------------------------------------------------------------- */
-
-// Menyembunyikan Screen Options dan Help tab di atas kanan halaman admin
-function cc_remove_screen_options_help() {
-    echo '<style>#screen-meta-links { display: none !important; }</style>';
-}
-
-// Menyembunyikan area footer admin sepenuhnya via CSS
-function cc_remove_footer_admin() {
-    echo '<style>#wpfooter { display: none !important; }</style>';
-}
 
 // Mengubah title halaman admin agar berakhiran Nama Situs
 function cc_change_admin_title( $admin_title, $title ) {
@@ -370,30 +315,6 @@ function cc_hide_personal_options_and_elementor_for_site_admins() {
     }
 
     ?>
-    <style>
-        /* --- BAGIAN 1: Sembunyikan Isi 'Opsi Personal' via CSS --- */
-        /* Kita gunakan class bawaan WordPress agar lebih cepat dan tidak berkedip */
-        
-        /* Warna Admin */
-        tr.user-admin-color-wrap,
-        /* Syntax Highlighting */
-        tr.user-syntax-highlighting-wrap,
-        /* Keyboard Shortcuts */
-        tr.user-comment-shortcuts-wrap,
-        /* Admin Bar (Toolbar) */
-        tr.show-admin-bar.user-admin-bar-front-wrap,
-        /* Bahasa */
-        tr.user-language-wrap {
-            display: none !important;
-        }
-
-        /* Sembunyikan baris input Elementor jika memiliki ID spesifik */
-        tr:has(#elementor_enable_ai),
-        tr:has(#elementor_pro_enable_notes_notifications) {
-            display: none !important;
-        }
-    </style>
-
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             
