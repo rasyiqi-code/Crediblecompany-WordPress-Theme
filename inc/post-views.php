@@ -75,10 +75,12 @@ function cc_auto_track_post_views() {
  * @return int Total views.
  */
 function cc_get_total_site_views() {
-    $total = get_option( 'cc_total_site_views' );
+    $total       = get_option( 'cc_total_site_views' );
+    $views_today = cc_get_views_today();
     
-    if ( false === $total ) {
-        // Jika opsi belum ada, lakukan inisialisasi dinamis pertama kali
+    // Jika opsi belum ada (false), bernilai 0, atau lebih kecil dari views hari ini,
+    // maka kita harus melakukan inisialisasi atau koreksi agar data konsisten.
+    if ( false === $total || intval( $total ) < $views_today ) {
         global $wpdb;
         $postmeta_total = $wpdb->get_var( $wpdb->prepare(
             "SELECT SUM(CAST(meta_value AS UNSIGNED)) FROM $wpdb->postmeta WHERE meta_key = %s",
@@ -86,13 +88,11 @@ function cc_get_total_site_views() {
         ) );
         $postmeta_total = intval( $postmeta_total );
         
-        $views_today = cc_get_views_today();
+        // Nilai baru adalah mana yang terbesar antara akumulasi postmeta atau views hari ini
+        $new_total = max( $postmeta_total, $views_today );
         
-        // Nilai awal adalah mana yang lebih besar antara akumulasi post views atau views hari ini
-        $initial_total = max( $postmeta_total, $views_today );
-        
-        add_option( 'cc_total_site_views', $initial_total, '', 'no' );
-        return $initial_total;
+        update_option( 'cc_total_site_views', $new_total );
+        return $new_total;
     }
     
     return intval( $total );
@@ -130,17 +130,16 @@ function cc_track_daily_views() {
     $count = intval( get_option( $option_name, 0 ) );
     update_option( $option_name, $count + 1, false ); // false = tidak autoload
 
-    // 2. Tambah total kunjungan situs secara global (menggunakan SQL Update agar atomic)
-    $total = get_option( 'cc_total_site_views' );
-    if ( false === $total ) {
-        cc_get_total_site_views(); // Inisialisasi jika opsi belum ada di database
+    // 2. Tambah total kunjungan situs secara global (menggunakan API standar agar kompatibel dengan object caching)
+    $total       = intval( get_option( 'cc_total_site_views', 0 ) );
+    $views_today = cc_get_views_today();
+    
+    // Pastikan total minimal setara dengan views_today
+    if ( $total < $views_today ) {
+        $total = $views_today;
     }
     
-    global $wpdb;
-    $wpdb->query( "UPDATE $wpdb->options SET option_value = CAST(option_value AS UNSIGNED) + 1 WHERE option_name = 'cc_total_site_views'" );
-    
-    // Bersihkan cache opsi agar pemanggilan get_option selanjutnya mendapatkan data terbaru
-    wp_cache_delete( 'cc_total_site_views', 'options' );
+    update_option( 'cc_total_site_views', $total + 1 );
 }
 add_action( 'template_redirect', 'cc_track_daily_views' );
 
