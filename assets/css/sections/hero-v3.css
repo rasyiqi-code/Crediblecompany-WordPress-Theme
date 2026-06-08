@@ -1,20 +1,21 @@
 /* ==========================================================================
- * Bagian Hero: Varian 3 (Gaya Minimalis Modern & Editorial)
+ * Bagian Hero: Varian 3 (Gaya Split Grid & Editorial Figma)
  *
  * @package CredibleCompany
  * ========================================================================== */
 
 .hero-v3-section {
     background-color: var(--brand-white);
-    padding: 8rem 0 9rem; /* Memberikan ruang udara (whitespace) yang luas agar terkesan mewah */
+    padding: 7rem 0 8rem;
     position: relative;
     overflow: hidden;
 }
 
 .hero-v3-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1.15fr 1.25fr;
+    gap: 5rem;
+    align-items: flex-start;
     position: relative;
     z-index: 5;
     width: 100%;
@@ -23,193 +24,280 @@
     padding: 0 2rem;
 }
 
-/* 1. Navigasi Mini di Bagian Atas Hero */
-.hero-v3-mini-nav {
-    margin-bottom: 3.5rem;
+/* --------------------------------------------------------------------------
+ * 1. SISI KIRI: MOSAIC GRID & SCROLL DOWN
+ * ---------------------------------------------------------------------- */
+.hero-v3-left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
 }
 
-.hero-v3-mini-nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.hero-v3-mini-nav-link {
-    font-size: 0.825rem;
-    font-weight: 700;
-    color: var(--gray-500);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.15em; /* Spasi antar huruf lebar untuk gaya minimalis modern */
+.hero-v3-mosaic-container {
     position: relative;
-    padding: 0.25rem 0;
-    transition: color 0.3s ease;
-}
-
-.hero-v3-mini-nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 1px;
-    background-color: var(--brand-red);
-    transition: width 0.3s ease, left 0.3s ease;
-}
-
-.hero-v3-mini-nav-link:hover {
-    color: var(--brand-dark);
-}
-
-.hero-v3-mini-nav-link:hover::after {
     width: 100%;
+    aspect-ratio: 1 / 1; /* Menjamin bentuk bujur sangkar sempurna */
+    background-color: #f3f4f6;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.hero-v3-mosaic-bg {
+    position: absolute;
+    top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
 
-/* 2. Konten Teks Terpusat (Centered Content) */
-.hero-v3-text-content {
-    text-align: center;
-    max-width: 920px;
-    margin: 0 auto;
+.hero-v3-mosaic-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    z-index: 2;
 }
 
-.hero-v3-title {
-    font-size: 4rem; /* Judul yang megah dan berani */
-    font-weight: 800;
-    line-height: 1.15;
-    color: var(--brand-dark);
-    letter-spacing: -0.03em; /* Karakteristik tipografi modern */
-    margin-bottom: 2rem;
-    text-transform: none;
+.hero-v3-grid-cell {
+    border: 1px solid #ffffff; /* Garis grid putih tipis */
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
 }
 
-.hero-v3-title .highlight-text-v3 {
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--brand-red); /* Memberikan aksen warna brand pada kata terakhir */
+/* Sel 1: Kiri Atas - Putih Solid */
+.hero-v3-mosaic-grid .cell-1 {
+    background-color: #ffffff;
 }
 
-.hero-v3-desc {
-    font-size: 1.15rem;
-    line-height: 1.75;
-    color: var(--gray-600);
-    max-width: 720px;
-    margin: 0 auto 3rem;
-}
-
-/* 3. Tombol Aksi */
-.hero-v3-buttons {
+/* Sel 5: Baris 2 Kolom 1 - Kotak Kuning Kecil di Tengah Sel */
+.hero-v3-mosaic-grid .cell-5 {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 1.25rem;
+    justify-content: center;
+    background-color: transparent;
+}
+.hero-v3-mosaic-grid .cell-5::before {
+    content: "";
+    width: 50px;
+    height: 50px;
+    max-width: 60%;
+    max-height: 60%;
+    background-color: #ffd200; /* Warna kuning emas solid */
+    display: block;
 }
 
-.hero-btn-v3 {
-    padding: 1rem 2.25rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    display: inline-flex;
+/* Sel 9: Baris 3 Kolom 1 - Kuning Solid Penuh */
+.hero-v3-mosaic-grid .cell-9 {
+    background-color: #ffd200;
+}
+
+/* Sel 16: Kanan Bawah - Kuning Solid Penuh */
+.hero-v3-mosaic-grid .cell-16 {
+    background-color: #ffd200;
+}
+
+/* Tombol Scroll Down Offset */
+.hero-v3-scroll-down {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-top: 3.5rem;
+}
+
+.scroll-down-box-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    border: 4px solid #000000; /* Kotak hitam kosong */
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.scroll-down-box {
+    position: absolute;
+    top: 12px;
+    left: -12px;
+    width: 90px;
+    height: 90px;
+    background-color: #ffd200; /* Kotak kuning solid bergeser */
+    display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid transparent;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
     cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Tombol Primer (Explore Collection) */
-.hero-btn-v3-primary {
-    background-color: var(--brand-red);
-    color: var(--brand-white);
+.scroll-down-box:hover {
+    transform: translate(4px, -4px);
+}
+
+.scroll-arrow {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #000000;
+    line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. SISI KANAN: TITEL RAKSASA & DETAIL KOLOM
+ * ---------------------------------------------------------------------- */
+.hero-v3-right-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Judul Kategori Raksasa */
+.hero-v3-main-title {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 0.92;
+    color: #000000;
+    letter-spacing: -0.04em;
+    margin: 0 0 4.5rem 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.title-line-1, .title-line-2 {
+    display: block;
+}
+
+/* Sub-Layout Detail 2 Kolom */
+.hero-v3-details-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3.5rem;
+}
+
+/* Kolom Kiri: Headline & Tombol Explore */
+.hero-v3-col-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-v3-headline {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: #000000;
+    margin: 0 0 2.5rem 0;
+    text-align: left;
+}
+
+.hero-btn-v3-explore {
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 1.15rem 2.5rem;
+    text-decoration: none;
+    border: 2px solid #000000;
+    border-radius: 0px; /* Desain kotak tegas sesuai Figma */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+}
+
+.hero-btn-v3-explore:hover {
+    background-color: transparent;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+/* Kolom Kanan: Deskripsi & Read More */
+.hero-v3-col-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-v3-paragraph {
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin: 0 0 2rem 0;
+    text-align: left;
+}
+
+.hero-btn-v3-readmore {
+    font-size: 0.925rem;
+    font-weight: 800;
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 3px solid #000000; /* Garis bawah tebal */
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.hero-btn-v3-readmore:hover {
+    color: var(--brand-red);
     border-color: var(--brand-red);
 }
 
-.hero-btn-v3-primary:hover {
-    background-color: var(--brand-red-dark);
-    border-color: var(--brand-red-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(192, 19, 20, 0.15);
-}
-
-/* Tombol Outline (Read More) */
-.hero-btn-v3-outline {
-    background-color: transparent;
-    color: var(--brand-dark);
-    border-color: var(--brand-dark);
-}
-
-.hero-btn-v3-outline:hover {
-    background-color: var(--brand-dark);
-    color: var(--brand-white);
-    border-color: var(--brand-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(31, 41, 55, 0.1);
-}
-
-/* --- Media Queries Responsif --- */
+/* --------------------------------------------------------------------------
+ * 3. RESPONSIVITAS MEDIA QUERIES
+ * ---------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-    .hero-v3-section {
-        padding: 6rem 0 7rem;
+    .hero-v3-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
     }
 
-    .hero-v3-title {
-        font-size: 3.25rem;
+    .hero-v3-left-side {
+        max-width: 550px;
+        margin: 0 auto;
+    }
+
+    .hero-v3-main-title {
+        font-size: 5rem;
+        margin-bottom: 3rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero-v3-section {
-        padding: 5rem 0 6rem;
+        padding: 4rem 0 5rem;
     }
 
     .hero-v3-container {
         padding: 0 1.5rem;
+        gap: 3rem;
     }
 
-    .hero-v3-mini-nav {
+    .hero-v3-main-title {
+        font-size: 3.75rem;
         margin-bottom: 2.5rem;
     }
 
-    .hero-v3-mini-nav-list {
-        gap: 1.25rem;
+    .hero-v3-details-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
 
-    .hero-v3-mini-nav-link {
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
+    .hero-v3-headline {
+        font-size: 1.2rem;
+        margin-bottom: 1.75rem;
     }
 
-    .hero-v3-title {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero-v3-desc {
-        font-size: 1.05rem;
-        margin-bottom: 2.25rem;
-        line-height: 1.65;
-    }
-
-    .hero-v3-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-        gap: 0.75rem;
-    }
-
-    .hero-btn-v3 {
-        width: 100%;
-        padding: 0.875rem 1.5rem;
+    .hero-v3-scroll-down {
+        display: none; /* Menyembunyikan tombol scroll down dekoratif di layar kecil */
     }
 }
+
 
