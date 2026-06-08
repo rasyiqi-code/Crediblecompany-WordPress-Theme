@@ -192,7 +192,7 @@
     }
 
     .about-block p {
-        padding: 0 1rem !important; /* Menjaga teks agar tetap memiliki padding kiri-kanan seperti layout section lainnya */
+        padding: 0 var(--cc-about-text-padding-lr, 1rem) !important; /* Menjaga teks agar tetap memiliki padding kiri-kanan sesuai setelan Customizer */
     }
 
     /* Features */

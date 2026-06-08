@@ -72,4 +72,17 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_about_section',
     ) ) );
 
+    // 6. Padding Horizontal Teks (Kanan/Kiri)
+    $wp_customize->add_setting( 'cc_about_text_padding_lr', array(
+        'default'           => 16,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_about_text_padding_lr', array(
+        'label'       => __( 'Spasi Padding Kanan/Kiri Teks (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Mengatur padding horizontal teks About agar presisi, terutama di tampilan mobile.', 'crediblecompany' ),
+        'section'     => 'cc_about_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 0, 'max' => 80, 'step' => 2 ),
+    ) );
+
 } );
