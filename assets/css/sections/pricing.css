@@ -31,7 +31,7 @@
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: var(--cc-pricing-card-gap-desktop, 1.5rem);
     text-align: left;
 }
 

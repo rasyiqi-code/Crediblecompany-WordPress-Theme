@@ -221,6 +221,7 @@
     .pricing-grid,
     .pricing-grid[class*="grid-cols-"] {
         grid-template-columns: 1fr;
+        gap: var(--cc-pricing-card-gap-mobile, 1rem) !important;
     }
 
     /* Pricing card: fasilitas jadi 1 kolom di mobile */

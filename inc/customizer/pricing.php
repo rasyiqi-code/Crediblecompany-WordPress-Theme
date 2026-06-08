@@ -84,6 +84,40 @@ add_action( 'customize_register', function( $wp_customize ) {
         ),
     ) );
 
+    // Jarak antar kartu (Gap) - Desktop
+    $wp_customize->add_setting( 'cc_pricing_card_gap_desktop', array(
+        'default'           => 24,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_pricing_card_gap_desktop', array(
+        'label'       => __( 'Desktop: Jarak Antar Card (px)', 'crediblecompany' ),
+        'description' => __( 'Mengatur jarak spasi (gap) antar kartu paket jasa di layar desktop.', 'crediblecompany' ),
+        'section'     => 'cc_pricing_section',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 8,
+            'max'  => 64,
+            'step' => 2,
+        ),
+    ) );
+
+    // Jarak antar kartu (Gap) - Mobile
+    $wp_customize->add_setting( 'cc_pricing_card_gap_mobile', array(
+        'default'           => 16,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_pricing_card_gap_mobile', array(
+        'label'       => __( 'Mobile: Jarak Antar Card (px)', 'crediblecompany' ),
+        'description' => __( 'Mengatur jarak spasi (gap) antar kartu paket jasa di layar mobile.', 'crediblecompany' ),
+        'section'     => 'cc_pricing_section',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 4,
+            'max'  => 48,
+            'step' => 2,
+        ),
+    ) );
+
     // Pengaturan Warna Section Pricing
     $wp_customize->add_setting( 'cc_pricing_bg_color', array(
         'default'           => '#ffffff',
@@ -241,6 +275,9 @@ add_action( 'wp_head', function() {
 
     $pad_desktop   = cc_get( 'pricing_padding_desktop', 64 );
     $pad_mobile    = cc_get( 'pricing_padding_mobile', 40 );
+
+    $card_gap_desktop = cc_get( 'pricing_card_gap_desktop', 24 );
+    $card_gap_mobile  = cc_get( 'pricing_card_gap_mobile', 16 );
     ?>
     <style type="text/css" id="cc-pricing-dynamic-css">
         :root {
@@ -261,6 +298,9 @@ add_action( 'wp_head', function() {
 
             --cc-pricing-padding-desktop: <?php echo esc_attr( $pad_desktop ) . 'px'; ?>;
             --cc-pricing-padding-mobile: <?php echo esc_attr( $pad_mobile ) . 'px'; ?>;
+
+            --cc-pricing-card-gap-desktop: <?php echo esc_attr( $card_gap_desktop ) . 'px'; ?>;
+            --cc-pricing-card-gap-mobile: <?php echo esc_attr( $card_gap_mobile ) . 'px'; ?>;
         }
     </style>
     <?php
