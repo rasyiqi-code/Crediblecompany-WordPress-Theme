@@ -34,6 +34,20 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'        => 'checkbox',
     ) );
 
+    // 2b. Setting: Aktifkan URL Login Kustom (/masuk)
+    $wp_customize->add_setting( 'cc_enable_custom_login', array(
+        'default'           => false,
+        'sanitize_callback' => 'cc_sanitize_checkbox',
+    ) );
+
+    $wp_customize->add_control( 'cc_enable_custom_login', array(
+        'label'       => __( 'Aktifkan URL Login Kustom (/masuk)', 'crediblecompany' ),
+        'description' => __( 'Jika diaktifkan, halaman login WordPress hanya dapat diakses melalui URL /masuk. Akses langsung ke wp-login.php tanpa token keamanan akan diblokir.', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'checkbox',
+    ) );
+
+
     // 3. Setting: Aktifkan Fitur Komentar Situs
     $wp_customize->add_setting( 'cc_enable_comments', array(
         'default'           => true,

@@ -39,6 +39,11 @@ function cc_create_login_token() {
  */
 add_action( 'init', 'cc_handle_custom_login_redirect' );
 function cc_handle_custom_login_redirect() {
+    // Jalankan hanya jika fitur URL login kustom diaktifkan
+    if ( ! get_theme_mod( 'cc_enable_custom_login', false ) ) {
+        return;
+    }
+
     $login_slug  = cc_get_login_slug();
     $request_uri = untrailingslashit( strtok( $_SERVER['REQUEST_URI'], '?' ) );
 
@@ -55,11 +60,17 @@ function cc_handle_custom_login_redirect() {
  */
 add_action( 'login_init', 'cc_protect_login_page' );
 function cc_protect_login_page() {
+    // Jalankan hanya jika fitur URL login kustom diaktifkan
+    if ( ! get_theme_mod( 'cc_enable_custom_login', false ) ) {
+        return;
+    }
+
     // Izinkan akses jika user sudah login atau request berasal dari sistem Customizer (session check)
     $is_customize = isset( $_GET['customize-login'] ) || isset( $_GET['interim-login'] );
     if ( is_user_logged_in() || $is_customize ) {
         return;
     }
+
 
     // Abaikan jika sedang proses POST (submit form login)
     if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
