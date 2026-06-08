@@ -36,6 +36,9 @@ if ( get_theme_mod( 'cc_enable_admin_theme', false ) ) {
 
     // Profil Pengguna
     add_action( 'admin_head', 'cc_hide_personal_options_and_elementor_for_site_admins' );
+
+    // Menyembunyikan elemen komentar di dashboard utama (Sekilas & Aktivitas) secara permanen
+    add_action( 'admin_head', 'cc_hide_comments_dashboard_elements' );
 }
 
 // 2. Jika Fitur Komentar Global Dinonaktifkan
@@ -52,9 +55,6 @@ if ( ! get_theme_mod( 'cc_enable_comments', true ) ) {
 
     // Menyembunyikan menu bar komentar secara backend
     add_action( 'admin_bar_menu', 'cc_remove_comments_admin_bar_node', 999 );
-
-    // Menyembunyikan elemen komentar di dashboard utama (Sekilas & Aktivitas)
-    add_action( 'admin_head', 'cc_hide_comments_dashboard_elements' );
 }
 
 // 3. Pengalihan Halaman Admin untuk CPT yang Dinonaktifkan (Selalu Aktif)
