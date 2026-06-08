@@ -251,132 +251,261 @@ add_action( 'admin_head', function() {
     $submenu_bg    = cc_admin_color_darken( $dark_bg, 15 );
     ?>
     <style type="text/css">
-        /* Latar Belakang Utama Sidebar Menu Admin */
-        #adminmenuback,
-        #adminmenuwrap,
-        #adminmenu {
+        /* Reset box-shadow untuk elemen admin */
+        #wpadminbar,
+        html #adminmenuback,
+        html #adminmenuwrap {
+            box-shadow: 0 0px 0px rgba(56, 56, 58, 0) !important;
+        }
+
+        /* Background dan styling untuk body */
+        html body {
+            background: #f5f5f5db !important;
+        }
+
+        /* Styling untuk admin bar */
+        #wpadminbar {
+            min-height: auto !important;
+            line-height: auto !important;
+            align-items: center !important;
+            background-color: <?php echo esc_attr( $primary_color ); ?> !important;
+        }
+        #wpadminbar .ab-item {
+            font-weight: 700 !important;
+        }
+
+        /* Admin menu colors */
+        html #adminmenu,
+        html #adminmenuback,
+        html #adminmenuwrap {
+            background-color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+        #adminmenu .wp-submenu,
+        #adminmenu .wp-has-current-submenu .wp-submenu,
+        #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+        .folded #adminmenu a.wp-has-current-submenu:focus+.wp-submenu,
+        .no-js li.wp-has-current-submenu:hover .wp-submenu {
+            background-color: <?php echo esc_attr( $dark_bg ); ?> !important;
+            color: #ffffff !important;
+        }
+
+        /* Menu colors on hover and active states */
+        #adminmenu li.current a.menu-top,
+        #adminmenu li.menu-top:hover,
+        #adminmenu li.opensub>a.menu-top,
+        #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+        #adminmenu li>a.menu-top:focus,
+        .folded #adminmenu li.current.menu-top,
+        .folded #adminmenu li.wp-has-current-submenu {
+            background: <?php echo esc_attr( $primary_color ); ?> !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
+        /* Submenu links */
+        #adminmenu .wp-submenu a {
+            color: #ffffff !important;
+        }
+        #adminmenu .wp-submenu a:focus,
+        #adminmenu .wp-submenu a:hover {
+            color: <?php echo esc_attr( $primary_color ); ?> !important;
+        }
+
+        /* Admin menu links */
+        #adminmenu a {
+            color: #ffffff !important;
+        }
+        #adminmenu a:hover {
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+        #adminmenu div.wp-menu-image::before {
+            color: #ffffff !important;
+        }
+
+        /* General links */
+        a {
+            color: <?php echo esc_attr( $dark_bg ); ?>;
+        }
+        a:hover {
+            color: <?php echo esc_attr( $primary_color ); ?> !important;
+        }
+        body #adminmenu a:hover {
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
+        /* Search box styling */
+        .search-box {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+            margin-bottom: 20px !important;
+        }
+        #post-search-input {
+            flex: auto !important;
+            border: 1px solid #ccc !important;
+            border-radius: 10px !important;
+            font-size: 16px !important;
+            background-color: #ffffff !important;
+            text-align: center !important;
+            padding: 5px !important;
+            box-shadow: inset 4px 4px 8px #d9d9d9, inset -4px -4px 8px #ffffff !important;
+        }
+        #search-submit {
+            padding: 10px !important;
+            border: none !important;
+            background-color: #f0f0f0 !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff !important;
+        }
+        #search-submit:hover {
+            background-color: #e0e0e0 !important;
+            box-shadow: none !important;
+        }
+
+        /* Submenu and list styling */
+        ul.subsubsub {
+            display: flex !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+        }
+        ul.subsubsub li {
+            flex-shrink: 0 !important;
+        }
+        .subsubsub {
+            list-style: none !important;
+            margin: 5px 0 !important;
+            padding: 0 !important;
+            font-size: 13px !important;
+            float: none !important;
+            font-weight: 600 !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+        @media (min-width: 768px) {
+            ul.subsubsub {
+                justify-content: center !important;
+            }
+        }
+
+        /* Grid mode styling */
+        .mode-grid .attachments-browser .media-toolbar-primary {
+            display: flex !important;
+            align-items: center !important;
+            column-gap: .5rem !important;
+        }
+
+        /* Form styling */
+        #your-profile {
+            background-color: #f0f0f0 !important;
+            padding: 20px !important;
+            border-radius: 15px !important;
+            box-shadow: 8px 8px 16px #d0d0d0, -8px -8px 16px #ffffff !important;
+        }
+        #your-profile input[type="text"],
+        #your-profile input[type="email"],
+        #your-profile input[type="url"],
+        #your-profile input[type="password"],
+        #your-profile select,
+        #your-profile textarea {
+            background-color: #f0f0f0 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 10px !important;
+            margin-bottom: 10px !important;
+            box-shadow: inset 4px 4px 8px #d0d0d0, inset -4px -4px 8px #ffffff !important;
+        }
+        #your-profile button {
+            background-color: #f0f0f0 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 10px 20px !important;
+            margin-bottom: 10px !important;
+            box-shadow: 4px 4px 8px #d0d0d0, -4px -4px 8px #ffffff !important;
+        }
+        #your-profile input[type="checkbox"] {
+            width: 20px !important;
+            height: 20px !important;
+            margin-right: 10px !important;
+        }
+        #your-profile label {
+            display: inline-block !important;
+            margin-bottom: 10px !important;
+        }
+        #your-profile a {
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+            text-decoration: none !important;
+        }
+        #your-profile a:hover {
+            text-decoration: underline !important;
+        }
+
+        /* Postbox and widget styling */
+        .postbox .hndle,
+        .stuffbox .hndle {
+            background-color: #ffffff !important;
+        }
+        .rb-meta-wrapper {
+            border-top: 5px solid <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+        .rb-tab-title.is-active {
+            background-color: <?php echo esc_attr( $primary_color ); ?> !important;
+        }
+        .rb-group-trigger,
+        .rb-button {
             background-color: <?php echo esc_attr( $dark_bg ); ?> !important;
         }
 
-        /* Styling Item Menu Utama */
-        #adminmenu a {
-            color: rgba(255, 255, 255, 0.75) !important;
-            transition: all 0.15s ease-in-out;
+        /* Google dashboard widget */
+        #google_dashboard_widget .googlesitekit-wp-dashboard-stats * {
+            box-sizing: border-box !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
         }
 
-        #adminmenu div.wp-menu-image:before {
-            color: rgba(255, 255, 255, 0.6) !important;
-            transition: all 0.15s ease-in-out;
+        /* Editor styling */
+        .editor-styles-wrapper .editor-block-list__layout a,
+        .block-editor-rich-text__editable a {
+            font-weight: 700 !important;
+            font-style: normal !important;
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
         }
 
-        /* Hover State Menu Utama */
-        #adminmenu li.menu-top:hover,
-        #adminmenu li.opensub > a.menu-top,
-        #adminmenu li.menu-top:focus {
-            background-color: <?php echo esc_attr( $hover_bg ); ?> !important;
+        /* Hide specific profile sections */
+        tbody tr.user-rich-editing-wrap,
+        tbody tr.user-syntax-highlighting-wrap,
+        tbody tr.user-admin-color-wrap,
+        tbody tr.user-admin-color-wrap + tr,
+        tr.show-admin-bar.user-admin-bar-front-wrap {
+            display: none !important;
         }
 
-        #adminmenu li.menu-top:hover a,
-        #adminmenu li.menu-top:hover div.wp-menu-image:before {
-            color: #ffffff !important;
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .alignleft {
+                display: grid !important;
+                justify-content: center !important;
+                align-items: center !important;
+                width: -webkit-fill-available !important;
+            }
+            body:not(.plugins-php) .row-actions {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 0 !important;
+                color: transparent !important;
+            }
+            .wrap .add-new-h2,
+            .wrap .add-new-h2:active,
+            .wrap .page-title-action,
+            .wrap .page-title-action:active {
+                padding: 0px 5px !important;
+                font-size: 14px !important;
+                white-space: nowrap !important;
+            }
         }
-
-        /* Active State Menu Utama */
-        #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
-        #adminmenu li.current a.menu-top,
-        .folded #adminmenu li.wp-has-current-submenu,
-        #adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head {
-            background-color: <?php echo esc_attr( $primary_color ); ?> !important;
-            color: #ffffff !important;
-        }
-
-        #adminmenu li.wp-has-current-submenu div.wp-menu-image:before,
-        #adminmenu li.current div.wp-menu-image:before {
-            color: #ffffff !important;
-        }
-
-        /* Submenu Wrapper */
-        #adminmenu .wp-submenu,
-        #adminmenu .wp-has-current-submenu .wp-submenu {
-            background-color: <?php echo esc_attr( $submenu_bg ); ?> !important;
-        }
-
-        #adminmenu .wp-submenu a {
-            color: rgba(255, 255, 255, 0.65) !important;
-        }
-
-        #adminmenu .wp-submenu a:hover,
-        #adminmenu .wp-submenu a:focus {
-            color: #ffffff !important;
-        }
-
-        #adminmenu .wp-submenu li.current a {
-            color: <?php echo esc_attr( $primary_color ); ?> !important;
-            font-weight: 600 !important;
-        }
-
-        /* Indikator Garis Aktif di Sisi Kiri */
-        #adminmenu li.wp-has-current-submenu.wp-menu-open {
-            border-left: 4px solid <?php echo esc_attr( $active_border ); ?>;
-        }
-        #adminmenu li.menu-top {
-            border-left: 4px solid transparent;
-        }
-        #adminmenu li.menu-top:hover {
-            border-left-color: <?php echo esc_attr( $primary_color ); ?>;
-        }
-
-        /* Collapse Menu Toggle Button */
-        #collapse-button {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-        #collapse-button:hover {
-            color: #ffffff !important;
-            background: <?php echo esc_attr( $hover_bg ); ?> !important;
-        }
-
-        /* === ADMIN BAR (TOP BAR) STYLING === */
-        #wpadminbar {
-            background: <?php echo esc_attr( $dark_bg ); ?> !important;
-        }
-        #wpadminbar .ab-item,
-        #wpadminbar a.ab-item,
-        #wpadminbar .ab-empty-item {
-            color: rgba(255, 255, 255, 0.8) !important;
-        }
-        #wpadminbar a.ab-item:hover,
-        #wpadminbar .ab-item:hover {
-            background: <?php echo esc_attr( $primary_color ); ?> !important;
-            color: #ffffff !important;
-        }
-        #wpadminbar .ab-top-menu > li.hover > .ab-item,
-        #wpadminbar.nojq .quicklinks .ab-top-menu > li > a:focus,
-        #wpadminbar-nojs .ab-top-menu > li.hover > .ab-item {
-            background: <?php echo esc_attr( $primary_color ); ?> !important;
-            color: #ffffff !important;
-        }
-
-        /* Ganti warna badge pembaruan/notifikasi */
-        #adminmenu .update-plugins,
-        #adminmenu .pending-count,
-        #wpadminbar .ab-label,
-        #wpadminbar .ab-icon {
-            transition: all 0.15s ease-in-out;
-        }
-        
-        /* === CORE BUTTON PRIMARY OVERRIDES === */
-        .wp-core-ui .button-primary {
-            background: <?php echo esc_attr( $primary_color ); ?> !important;
-            border-color: <?php echo esc_attr( $primary_color ); ?> !important;
-            color: #ffffff !important;
-            text-shadow: none !important;
-            box-shadow: 0 1px 0 <?php echo esc_attr( cc_admin_color_darken( $primary_color, 10 ) ); ?> !important;
-        }
-        .wp-core-ui .button-primary:hover,
-        .wp-core-ui .button-primary:focus {
-            background: <?php echo esc_attr( cc_admin_color_darken( $primary_color, 10 ) ); ?> !important;
-            border-color: <?php echo esc_attr( cc_admin_color_darken( $primary_color, 15 ) ); ?> !important;
-            color: #ffffff !important;
+        @media screen and (max-width: 480px) {
+            .tablenav.bottom .displaying-num {
+                text-align: center !important;
+            }
         }
     </style>
     <?php
