@@ -145,8 +145,20 @@
 
     /* Stats */
     .stats-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         gap: 1.5rem;
+        padding-bottom: 0.75rem; /* Memberikan ruang udara di bawah agar aman dari overflow */
+        scrollbar-width: none; /* Menyembunyikan scrollbar bawaan di Firefox */
+    }
+    .stats-grid::-webkit-scrollbar {
+        display: none; /* Menyembunyikan scrollbar di Chrome/Safari/Edge */
+    }
+    .stats-grid .stat-item {
+        flex: 0 0 calc(33.333% - 1rem);
+        min-width: 140px; /* Lebar minimum agar label/angka tidak tumpang tindih */
     }
 
     .about-block {
