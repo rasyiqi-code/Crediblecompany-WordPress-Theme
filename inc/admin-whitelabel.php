@@ -186,8 +186,9 @@ function cc_developer_support_widget_display() {
     $wa_num   = get_theme_mod( 'cc_developer_support_wa', '6285183131249' );
     $web_url  = get_theme_mod( 'cc_developer_support_web', 'https://crediblemark.com/' );
     $web_text = get_theme_mod( 'cc_developer_support_web_text', 'crediblemark.com' );
-    $default_desc = 'Tim developer kami siap membantu menangani kendal teknis pada website Anda, seperti optimalisasi performa, perbaikan bug/error, pembaruan keamanan sistem, pemeliharaan server, hingga pengembangan fitur kustom baru sesuai kebutuhan bisnis Anda. Hubungi kami melalui {link}.';
+    $default_desc = 'Butuh bantuan teknis? Tim {link} (mitra resmi KBM) siap melayani tanya jawab bebas mengenai kendala teknis operasional pada website Anda secara gratis. Mohon diperhatikan bahwa layanan pemeliharaan berkala (IT Maintenance), pembaruan sistem, atau pengerjaan fitur kustom merupakan layanan terpisah di luar dukungan gratis ini.';
     $raw_desc = get_theme_mod( 'cc_developer_support_desc', $default_desc );
+
 
     // Gunakan fallback jika teks link kosong
     if ( empty( $web_text ) ) {

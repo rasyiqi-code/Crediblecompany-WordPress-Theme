@@ -140,9 +140,10 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // 7b. Setting & Control: Deskripsi Developer Support
     $wp_customize->add_setting( 'cc_developer_support_desc', array(
-        'default'           => 'Tim developer kami siap membantu menangani kendal teknis pada website Anda, seperti optimalisasi performa, perbaikan bug/error, pembaruan keamanan sistem, pemeliharaan server, hingga pengembangan fitur kustom baru sesuai kebutuhan bisnis Anda. Hubungi kami melalui {link}.',
+        'default'           => 'Butuh bantuan teknis? Tim {link} (mitra resmi KBM) siap melayani tanya jawab bebas mengenai kendala teknis operasional pada website Anda secara gratis. Mohon diperhatikan bahwa layanan pemeliharaan berkala (IT Maintenance), pembaruan sistem, atau pengerjaan fitur kustom merupakan layanan terpisah di luar dukungan gratis ini.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ) );
+
 
     $wp_customize->add_control( 'cc_developer_support_desc', array(
         'label'       => __( 'Deskripsi Developer Support', 'crediblecompany' ),
