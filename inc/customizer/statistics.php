@@ -143,5 +143,33 @@ add_action( 'customize_register', function( $wp_customize ) {
         'priority'        => 32,
     ) ) );
 
+    // Opsi Spasi & Jarak: Jarak antar Statistik (Gap)
+    $wp_customize->add_setting( 'cc_stat_gap', array(
+        'default'           => 32,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_stat_gap', array(
+        'label'           => __( 'Jarak Antar Statistik (Pixel)', 'crediblecompany' ),
+        'section'         => 'cc_stats_section',
+        'type'            => 'range',
+        'input_attrs'     => array( 'min' => 10, 'max' => 100, 'step' => 2 ),
+        'active_callback' => $style_active_callback,
+        'priority'        => 40,
+    ) );
+
+    // Opsi Spasi & Jarak: Padding Vertikal Section
+    $wp_customize->add_setting( 'cc_stat_padding', array(
+        'default'           => 64,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_stat_padding', array(
+        'label'           => __( 'Tinggi Spasi Atas/Bawah (Pixel)', 'crediblecompany' ),
+        'section'         => 'cc_stats_section',
+        'type'            => 'range',
+        'input_attrs'     => array( 'min' => 20, 'max' => 150, 'step' => 2 ),
+        'active_callback' => $style_active_callback,
+        'priority'        => 41,
+    ) );
+
 } );
 

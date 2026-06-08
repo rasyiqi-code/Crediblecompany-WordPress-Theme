@@ -16,6 +16,9 @@ function cc_sections_dynamic_css_variables() {
     $stat_bg    = cc_get( 'stat_bg_color', '#ffffff' );
     $stat_num   = cc_get( 'stat_number_color', '#F59E0B' );
     $stat_label = cc_get( 'stat_label_color', '#1e293b' );
+    $stat_gap   = cc_get( 'stat_gap', 32 );
+    $stat_pad   = cc_get( 'stat_padding', 64 );
+    $stat_count = cc_get( 'stats_count', 3 );
 
     // About
     $about_bg       = cc_get( 'about_bg_color', '#ffffff' );
@@ -63,6 +66,9 @@ function cc_sections_dynamic_css_variables() {
             --cc-stat-bg-color: <?php echo esc_attr( $stat_bg ); ?>;
             --cc-stat-number-color: <?php echo esc_attr( $stat_num ); ?>;
             --cc-stat-label-color: <?php echo esc_attr( $stat_label ); ?>;
+            --cc-stat-gap: <?php echo esc_attr( $stat_gap ) . 'px'; ?>;
+            --cc-stat-padding: <?php echo esc_attr( $stat_pad ) . 'px'; ?>;
+            --cc-stats-count: <?php echo esc_attr( $stat_count ); ?>;
 
             /* === ABOUT === */
             --cc-about-bg-color: <?php echo esc_attr( $about_bg ); ?>;

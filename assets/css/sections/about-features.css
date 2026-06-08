@@ -9,14 +9,14 @@
  * 1. Statistics & About Section
  * ---------------------------------------------------------------------- */
 .statistics {
-    padding: 4rem 0;
+    padding: var(--cc-stat-padding, 4rem) 0;
     background: var(--cc-stat-bg-color, var(--brand-white));
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(var(--cc-stats-count, 3), 1fr);
+    gap: var(--cc-stat-gap, 2rem);
     text-align: center;
 }
 
