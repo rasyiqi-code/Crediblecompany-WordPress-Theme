@@ -369,3 +369,59 @@ function cc_seo_title_parts( $title ) {
     return $title;
 }
 
+/**
+ * 10. Optimasi Metadata Gambar Unggulan (Featured Image) Otomatis
+ * Mengisi alt, title, caption, dan deskripsi gambar unggulan menggunakan judul pos + "(Ilustrasi)".
+ *
+ * @param int $post_id ID postingan.
+ */
+add_action( 'publish_post', 'cc_update_featured_image_meta', 10, 2 );
+function cc_update_featured_image_meta( $post_id ) {
+    // Menghapus aksi untuk mencegah loop tak terbatas
+    remove_action( 'publish_post', 'cc_update_featured_image_meta', 10 );
+
+    // Mendapatkan objek post
+    $post = get_post( $post_id );
+
+    // Cek jika post memiliki featured image
+    if ( has_post_thumbnail( $post_id ) ) {
+        $thumbnail_id = get_post_thumbnail_id( $post_id );
+        $post_title   = $post->post_title . ' (Ilustrasi)'; // Menambahkan "(Ilustrasi)" ke judul post
+
+        // Ambil metadata gambar dan simpan dalam variabel untuk menghindari pemanggilan berulang
+        $alt         = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true );
+        $caption     = wp_get_attachment_caption( $thumbnail_id );
+        $description = get_post_field( 'post_content', $thumbnail_id );
+
+        // Buat array untuk menyimpan data yang akan diperbarui
+        $update_data = array( 'ID' => $thumbnail_id );
+
+        // Jika metadata alt kosong, update dengan judul post yang ditambah "(Ilustrasi)"
+        if ( empty( $alt ) ) {
+            update_post_meta( $thumbnail_id, '_wp_attachment_image_alt', $post_title );
+        }
+
+        // Selalu perbarui judul meskipun tidak kosong
+        $update_data['post_title'] = $post_title;
+        
+        // Perbarui caption jika kosong
+        if ( empty( $caption ) ) {
+            $update_data['post_excerpt'] = $post_title;
+        }
+        
+        // Perbarui deskripsi jika kosong
+        if ( empty( $description ) ) {
+            $update_data['post_content'] = $post_title;
+        }
+
+        // Perbarui post attachment jika ada data yang perlu diperbarui
+        if ( count( $update_data ) > 1 ) {
+            wp_update_post( $update_data );
+        }
+    }
+
+    // Menambahkan aksi kembali
+    add_action( 'publish_post', 'cc_update_featured_image_meta', 10, 2 );
+}
+
+
