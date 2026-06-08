@@ -109,3 +109,51 @@
 .cc-site-admin-non-super.user-edit-php tr:has(#elementor_pro_enable_notes_notifications) {
     display: none !important;
 }
+
+/* ==========================================================================
+   5. Sidebar Menu Scroll Mandiri
+   ========================================================================== */
+
+/* Membuat sidebar fixed dan bisa di-scroll mandiri pada tampilan desktop */
+@media screen and (min-width: 783px) {
+    #adminmenuback,
+    #adminmenuwrap {
+        position: fixed !important;
+        top: 32px !important;
+        bottom: 0 !important;
+        height: calc(100vh - 32px) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        overscroll-behavior: contain !important; /* Mencegah scroll chaining ke halaman utama */
+    }
+
+    /* Kustomisasi scrollbar untuk menu sidebar agar lebih premium dan tipis */
+    #adminmenuwrap::-webkit-scrollbar {
+        width: 6px;
+    }
+    #adminmenuwrap::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    #adminmenuwrap::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border-radius: 10px !important;
+    }
+    #adminmenuwrap:hover::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.25) !important;
+    }
+}
+
+/* Penyesuaian di layar tablet/mobile ketika admin bar setinggi 46px */
+@media screen and (max-width: 782px) {
+    #adminmenuback,
+    #adminmenuwrap {
+        position: fixed !important;
+        top: 46px !important;
+        bottom: 0 !important;
+        height: calc(100vh - 46px) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        overscroll-behavior: contain !important;
+    }
+}
+
