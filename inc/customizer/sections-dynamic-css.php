@@ -93,20 +93,20 @@ function cc_sections_dynamic_css_variables() {
     // 9. Footer
     $foot_bg  = cc_get( 'footer_bg_color', '#0b1c3f' );
     $foot_txt = cc_get( 'footer_text_color', '#ffffff' );
-    $foot_logo_bg = cc_get( 'cc_footer_logo_bg', '#ffffff' );
-    $foot_middle_bg = cc_get( 'cc_footer_middle_bg', '#ffffff' );
-    $foot_middle_txt = cc_get( 'cc_footer_middle_text_color', '#000000' );
-    $foot_stats_bg = cc_get( 'cc_footer_stats_bg', '#ffffff' );
-    $foot_stats_txt = cc_get( 'cc_footer_stats_text_color', '#000000' );
+    $foot_logo_bg = cc_get( 'footer_logo_bg', '#ffffff' );
+    $foot_middle_bg = cc_get( 'footer_middle_bg', '#ffffff' );
+    $foot_middle_txt = cc_get( 'footer_middle_text_color', '#000000' );
+    $foot_stats_bg = cc_get( 'footer_stats_bg', '#ffffff' );
+    $foot_stats_txt = cc_get( 'footer_stats_text_color', '#000000' );
 
-    $foot_social_bg = cc_get( 'cc_footer_social_bg', '#ffffff' );
-    $foot_social_icon = cc_get( 'cc_footer_social_icon_color', '#000000' );
-    $foot_social_hover_bg = cc_get( 'cc_footer_social_hover_bg', '#d4af37' );
-    $foot_social_hover_icon = cc_get( 'cc_footer_social_hover_icon_color', '#000000' );
+    $foot_social_bg = cc_get( 'footer_social_bg', '#ffffff' );
+    $foot_social_icon = cc_get( 'footer_social_icon_color', '#000000' );
+    $foot_social_hover_bg = cc_get( 'footer_social_hover_bg', '#d4af37' );
+    $foot_social_hover_icon = cc_get( 'footer_social_hover_icon_color', '#000000' );
 
-    $foot_top_pad = cc_get( 'cc_footer_top_padding', 40 );
-    $foot_middle_pad = cc_get( 'cc_footer_middle_padding', 24 );
-    $foot_bottom_pad = cc_get( 'cc_footer_bottom_padding', 24 );
+    $foot_top_pad = cc_get( 'footer_top_padding', 40 );
+    $foot_middle_pad = cc_get( 'footer_middle_padding', 24 );
+    $foot_bottom_pad = cc_get( 'footer_bottom_padding', 24 );
     ?>
     <style type="text/css" id="cc-sections-dynamic-variables">
         :root {

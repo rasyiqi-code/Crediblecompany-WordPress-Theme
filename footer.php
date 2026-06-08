@@ -24,7 +24,7 @@
                 </div>
 
                 <!-- Eksplor (Social Media Version Lama) -->
-                <div class="footer-social <?php echo cc_get( 'cc_footer_social_brand_colors', true ) ? 'social-brand-mode' : 'social-custom-mode'; ?>">
+                <div class="footer-social <?php echo cc_get( 'footer_social_brand_colors', true ) ? 'social-brand-mode' : 'social-custom-mode'; ?>">
                     <span class="footer-social-label">Eksplor:</span>
                     <?php
                     $social_fb = cc_get( 'social_facebook', '#' );
