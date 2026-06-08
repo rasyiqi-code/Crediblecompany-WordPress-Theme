@@ -39,6 +39,9 @@ $btn2_url        = cc_get( 'hero_v3_btn2_url', '#explore' );
                 </div>
             </div>
             
+            <!-- Kotak kuning aksen melayang yang menjorok keluar di sisi kiri -->
+            <div class="hero-v3-accent-yellow"></div>
+            
             <!-- Tombol Scroll Down Offset di kiri bawah -->
             <div class="hero-v3-scroll-down">
                 <div class="scroll-down-box-bg"></div>

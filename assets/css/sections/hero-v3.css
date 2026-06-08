@@ -6,7 +6,7 @@
 
 .hero-v3-section {
     background-color: var(--brand-white);
-    padding: 7rem 0 8rem;
+    padding: 5.5rem 0 6.5rem; /* Padding dirapatkan agar lebih kompak di layar */
     position: relative;
     overflow: hidden;
 }
@@ -32,6 +32,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    position: relative; /* Menjadi patokan absolute bagi kotak kuning melayang */
 }
 
 .hero-v3-mosaic-container {
@@ -76,21 +77,21 @@
     background-color: #ffffff;
 }
 
-/* Sel 5: Baris 2 Kolom 1 - Kotak Kuning Kecil di Tengah Sel */
+/* Sel 5: Baris 2 Kolom 1 - Dibiarkan transparan karena kotak kuning berada di luarnya */
 .hero-v3-mosaic-grid .cell-5 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: transparent;
 }
-.hero-v3-mosaic-grid .cell-5::before {
-    content: "";
-    width: 50px;
-    height: 50px;
-    max-width: 60%;
-    max-height: 60%;
+
+/* Kotak Kuning Aksen Melayang di Luar Grid */
+.hero-v3-accent-yellow {
+    position: absolute;
+    left: -20px; /* Menjorok keluar ke kiri setengah bagian */
+    top: 32%; /* Sejajar dengan baris kedua dari grid mosaic */
+    width: 44px;
+    height: 44px;
     background-color: #ffd200; /* Warna kuning emas solid */
-    display: block;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* Sel 9: Baris 3 Kolom 1 - Kuning Solid Penuh */
