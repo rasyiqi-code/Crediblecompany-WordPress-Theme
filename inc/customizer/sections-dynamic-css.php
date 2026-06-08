@@ -25,6 +25,7 @@ function cc_sections_dynamic_css_variables() {
     $about_block_bg = cc_get( 'about_block_bg_color', '#f1f5f9' );
     $about_txt      = cc_get( 'about_text_color', '#334155' );
     $about_pad_lr   = cc_get( 'about_text_padding_lr', 16 );
+    $about_padding  = cc_get( 'about_padding', 64 );
 
     // 2. Features
     $feat_bg   = cc_get( 'features_bg_color', '#f8fafc' );
@@ -76,6 +77,7 @@ function cc_sections_dynamic_css_variables() {
             --cc-about-block-bg-color: <?php echo esc_attr( $about_block_bg ); ?>;
             --cc-about-text-color: <?php echo esc_attr( $about_txt ); ?>;
             --cc-about-text-padding-lr: <?php echo esc_attr( $about_pad_lr ) . 'px'; ?>;
+            --cc-about-padding: <?php echo esc_attr( $about_padding ) . 'px'; ?>;
 
             /* === FEATURES === */
             --cc-features-bg-color: <?php echo esc_attr( $feat_bg ); ?>;

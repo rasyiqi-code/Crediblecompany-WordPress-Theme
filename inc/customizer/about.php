@@ -85,4 +85,17 @@ add_action( 'customize_register', function( $wp_customize ) {
         'input_attrs' => array( 'min' => 0, 'max' => 80, 'step' => 2 ),
     ) );
 
+    // 7. Spasi Padding Atas/Bawah Section (Tinggi Section)
+    $wp_customize->add_setting( 'cc_about_padding', array(
+        'default'           => 64,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_about_padding', array(
+        'label'       => __( 'Tinggi Spasi Atas/Bawah (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Mengatur jarak spasi vertical (padding) atas dan bawah untuk About section.', 'crediblecompany' ),
+        'section'     => 'cc_about_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 20, 'max' => 150, 'step' => 2 ),
+    ) );
+
 } );

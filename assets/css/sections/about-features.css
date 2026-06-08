@@ -36,7 +36,7 @@
  * 1b. About Section
  * ---------------------------------------------------------------------- */
 .about-section {
-    padding: 4rem 0;
+    padding: var(--cc-about-padding, 4rem) 0;
     background: var(--cc-about-bg-color, var(--brand-white));
 }
 
