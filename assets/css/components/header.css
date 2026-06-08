@@ -522,7 +522,7 @@
         background-color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
         color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
     }
-    .desktop-nav:not(.header-style-glass) {
+    .site-header:not(.header-style-glass) .desktop-nav {
         background-color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
     }
     .site-header:not(.header-style-glass) .site-logo a,
