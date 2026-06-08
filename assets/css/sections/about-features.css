@@ -79,6 +79,20 @@
     margin-bottom: 3rem;
     text-align: center;
     color: var(--cc-features-title-color, var(--brand-white));
+    position: relative;
+    padding-bottom: 1.25rem; /* Ruang untuk garis pembatas di bawah judul */
+}
+
+.features h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Panjang garis horizontal */
+    height: 3px; /* Ketebalan garis horizontal */
+    background-color: currentColor; /* Menyesuaikan warna teks judul secara dinamis */
+    opacity: 0.2; /* Transparan tipis */
 }
 
 .features-grid {
