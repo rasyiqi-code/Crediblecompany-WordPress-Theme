@@ -144,6 +144,11 @@
     }
 
     /* Stats */
+    .statistics {
+        padding-top: 1.5rem !important;
+        padding-bottom: 0 !important;
+    }
+
     .stats-grid {
         display: flex;
         flex-wrap: nowrap;
@@ -196,7 +201,7 @@
     }
 
     .about-section {
-        padding: var(--cc-about-padding-mobile, 2.5rem) 0 !important; /* Mengatur tinggi spasi vertikal seksi About di mobile */
+        padding: 0 0 var(--cc-about-padding-mobile, 2.5rem) !important; /* Mengatur tinggi spasi vertikal seksi About di mobile (padding atas diset 0 agar gambar menempel ke atas) */
     }
 
     /* Features */
