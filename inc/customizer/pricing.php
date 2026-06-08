@@ -50,19 +50,36 @@ add_action( 'customize_register', function( $wp_customize ) {
         ),
     ) );
 
-    // Jarak antara judul/deskripsi section dengan card (margin-bottom)
-    $wp_customize->add_setting( 'cc_pricing_header_margin_bottom', array(
+    // Jarak antara judul/deskripsi section dengan card (margin-bottom) - Desktop
+    $wp_customize->add_setting( 'cc_pricing_header_margin_bottom_desktop', array(
         'default'           => 48,
         'sanitize_callback' => 'absint',
     ) );
-    $wp_customize->add_control( 'cc_pricing_header_margin_bottom', array(
-        'label'       => __( 'Jarak Antara Judul & Card (px)', 'crediblecompany' ),
-        'description' => __( 'Mengatur jarak (margin-bottom) antara judul/deskripsi dengan kartu paket jasa.', 'crediblecompany' ),
+    $wp_customize->add_control( 'cc_pricing_header_margin_bottom_desktop', array(
+        'label'       => __( 'Desktop: Jarak Antara Judul & Card (px)', 'crediblecompany' ),
+        'description' => __( 'Mengatur jarak (margin-bottom) antara judul/deskripsi dengan kartu paket jasa di layar desktop.', 'crediblecompany' ),
         'section'     => 'cc_pricing_section',
         'type'        => 'range',
         'input_attrs' => array(
             'min'  => 8,
             'max'  => 120,
+            'step' => 4,
+        ),
+    ) );
+
+    // Jarak antara judul/deskripsi section dengan card (margin-bottom) - Mobile
+    $wp_customize->add_setting( 'cc_pricing_header_margin_bottom_mobile', array(
+        'default'           => 24,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_pricing_header_margin_bottom_mobile', array(
+        'label'       => __( 'Mobile: Jarak Antara Judul & Card (px)', 'crediblecompany' ),
+        'description' => __( 'Mengatur jarak (margin-bottom) antara judul/deskripsi dengan kartu paket jasa di layar mobile.', 'crediblecompany' ),
+        'section'     => 'cc_pricing_section',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 4,
+            'max'  => 80,
             'step' => 4,
         ),
     ) );
@@ -207,10 +224,11 @@ add_action( 'customize_register', function( $wp_customize ) {
  * Suntikkan Variabel CSS Dinamis untuk Pricing Section ke Header.
  */
 add_action( 'wp_head', function() {
-    $margin_bottom = cc_get( 'pricing_header_margin_bottom', 48 );
-    $bg_color      = cc_get( 'pricing_bg_color', '#ffffff' );
-    $text_color    = cc_get( 'pricing_text_color', '#0f172a' );
-    $card_bg       = cc_get( 'pricing_card_bg_color', '#ffffff' );
+    $margin_bottom_desktop = cc_get( 'pricing_header_margin_bottom_desktop', 48 );
+    $margin_bottom_mobile  = cc_get( 'pricing_header_margin_bottom_mobile', 24 );
+    $bg_color              = cc_get( 'pricing_bg_color', '#ffffff' );
+    $text_color            = cc_get( 'pricing_text_color', '#0f172a' );
+    $card_bg               = cc_get( 'pricing_card_bg_color', '#ffffff' );
 
     $card_hdr_bg   = cc_get( 'pricing_card_header_bg', '#c01314' );
     $card_hdr_txt  = cc_get( 'pricing_card_header_text', '#ffffff' );
@@ -226,7 +244,8 @@ add_action( 'wp_head', function() {
     ?>
     <style type="text/css" id="cc-pricing-dynamic-css">
         :root {
-            --cc-pricing-header-margin-bottom: <?php echo esc_attr( $margin_bottom ) . 'px'; ?>;
+            --cc-pricing-header-margin-bottom-desktop: <?php echo esc_attr( $margin_bottom_desktop ) . 'px'; ?>;
+            --cc-pricing-header-margin-bottom-mobile: <?php echo esc_attr( $margin_bottom_mobile ) . 'px'; ?>;
             --cc-pricing-bg-color: <?php echo esc_attr( $bg_color ); ?>;
             --cc-pricing-text-color: <?php echo esc_attr( $text_color ); ?>;
             --cc-pricing-card-bg-color: <?php echo esc_attr( $card_bg ); ?>;

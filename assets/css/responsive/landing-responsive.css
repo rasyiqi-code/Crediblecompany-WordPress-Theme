@@ -214,6 +214,10 @@
         padding: var(--cc-pricing-padding-mobile, 2.5rem) 0 !important;
     }
 
+    .pricing-header {
+        margin-bottom: var(--cc-pricing-header-margin-bottom-mobile, 1.5rem) !important;
+    }
+
     .pricing-grid,
     .pricing-grid[class*="grid-cols-"] {
         grid-template-columns: 1fr;
