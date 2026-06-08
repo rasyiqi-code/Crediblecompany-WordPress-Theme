@@ -531,6 +531,9 @@
     .site-header:not(.header-style-glass) .menu-toggle {
         color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
     }
+    .site-header:not(.header-style-glass) .menu-toggle {
+        display: block !important;
+    }
     .site-header:not(.header-style-glass) .header-icons svg {
         stroke: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
     }

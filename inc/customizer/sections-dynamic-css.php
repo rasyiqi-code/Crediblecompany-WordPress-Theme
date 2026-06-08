@@ -109,26 +109,55 @@ function cc_sections_dynamic_css_variables() {
     $foot_bottom_pad = cc_get( 'footer_bottom_padding', 24 );
 
     // 10. Header
-    $hero_variant        = cc_get( 'hero_variant', 'default' );
-    $header_bg           = cc_get( 'header_bg_color', '#c01314' );
-    $header_text         = cc_get( 'header_text_color', '#ffffff' );
-    $header_sticky       = cc_get( 'header_sticky', true );
     $header_style        = cc_get( 'header_style', 'classic' );
-    if ( 'v3' === $hero_variant ) {
-        $header_style = 'glass';
-    }
-    $logo_width          = cc_get( 'header_logo_width', 150 );
-    $header_padding      = cc_get( 'header_padding', 12 );
-    $menu_font_size      = cc_get( 'header_menu_font_size', 14 );
-    $text_hover          = cc_get( 'header_text_hover_color', '#ffcccc' );
-    $glass_opacity       = cc_get( 'header_glass_opacity', 85 ) / 100;
-    $glass_blur          = cc_get( 'header_glass_blur', 12 );
-    $border_enable       = cc_get( 'header_border_enable', false );
-    $border_color        = cc_get( 'header_border_color', 'rgba(255, 255, 255, 0.15)' );
 
-    $mobile_bg           = cc_get( 'header_mobile_bg_color', '' );
-    $mobile_text         = cc_get( 'header_mobile_text_color', '' );
-    $mobile_hover        = cc_get( 'header_mobile_text_hover_color', '' );
+    // Memuat nilai berdasarkan gaya header yang dipilih
+    if ( 'classic' === $header_style ) {
+        $header_bg           = cc_get( 'header_classic_bg_color', '#c01314' );
+        $header_text         = cc_get( 'header_classic_text_color', '#ffffff' );
+        $text_hover          = cc_get( 'header_classic_text_hover_color', '#ffcccc' );
+        $header_padding      = cc_get( 'header_classic_padding', 12 );
+        $menu_font_size      = cc_get( 'header_classic_menu_font_size', 14 );
+        $border_enable       = cc_get( 'header_classic_border_enable', false );
+        $border_color        = cc_get( 'header_classic_border_color', 'rgba(255, 255, 255, 0.15)' );
+        $mobile_bg           = cc_get( 'header_classic_mobile_bg_color', '' );
+        $mobile_text         = cc_get( 'header_classic_mobile_text_color', '' );
+        $mobile_hover        = cc_get( 'header_classic_mobile_text_hover_color', '' );
+
+        $glass_opacity       = 85 / 100;
+        $glass_blur          = 12;
+    } elseif ( 'centered' === $header_style ) {
+        $header_bg           = cc_get( 'header_centered_bg_color', '#c01314' );
+        $header_text         = cc_get( 'header_centered_text_color', '#ffffff' );
+        $text_hover          = cc_get( 'header_centered_text_hover_color', '#ffcccc' );
+        $header_padding      = cc_get( 'header_centered_padding', 12 );
+        $menu_font_size      = cc_get( 'header_centered_menu_font_size', 14 );
+        $border_enable       = cc_get( 'header_centered_border_enable', false );
+        $border_color        = cc_get( 'header_centered_border_color', 'rgba(255, 255, 255, 0.15)' );
+        $mobile_bg           = cc_get( 'header_centered_mobile_bg_color', '' );
+        $mobile_text         = cc_get( 'header_centered_mobile_text_color', '' );
+        $mobile_hover        = cc_get( 'header_centered_mobile_text_hover_color', '' );
+
+        $glass_opacity       = 85 / 100;
+        $glass_blur          = 12;
+    } else { // glass
+        $header_bg           = cc_get( 'header_glass_bg_color', '#ffffff' );
+        $header_text         = cc_get( 'header_glass_text_color', '#ffffff' );
+        $text_hover          = cc_get( 'header_glass_text_hover_color', '#ffcccc' );
+        $header_padding      = 12; // Nilai default statis untuk glass
+        $menu_font_size      = 14; // Nilai default statis untuk glass
+        $border_enable       = cc_get( 'header_glass_border_enable', true );
+        $border_color        = cc_get( 'header_glass_border_color', 'rgba(255, 255, 255, 0.08)' );
+        $mobile_bg           = cc_get( 'header_glass_mobile_bg_color', '' );
+        $mobile_text         = cc_get( 'header_glass_mobile_text_color', '' );
+        $mobile_hover        = cc_get( 'header_glass_mobile_text_hover_color', '' );
+
+        $glass_opacity       = cc_get( 'header_glass_opacity', 85 ) / 100;
+        $glass_blur          = cc_get( 'header_glass_blur', 12 );
+    }
+
+    $header_sticky       = cc_get( 'header_sticky', true );
+    $logo_width          = cc_get( 'header_logo_width', 150 );
 
     // Hitung RGBA latar belakang Glassmorphism
     $glass_bg_color = cc_hex_to_rgba( $header_bg, $glass_opacity );
