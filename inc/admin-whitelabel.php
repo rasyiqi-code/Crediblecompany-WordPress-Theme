@@ -1,7 +1,8 @@
 <?php
 /**
  * Engine Whitelabel Dashboard Admin WordPress.
- * Fitur whitelabeling untuk menyembunyikan widget bawaan, opsi yang tidak perlu, dan menyederhanakan halaman profil.
+ * Fitur whitelabeling untuk menyembunyikan widget bawaan, opsi yang tidak perlu, menyederhanakan halaman profil,
+ * serta menonaktifkan fitur komentar secara global dan dinamis.
  * Komentar di kode menggunakan bahasa Indonesia.
  *
  * @package CredibleCompany
@@ -12,178 +13,159 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// Cek apakah fitur tema admin kustom aktif
-if ( ! get_theme_mod( 'cc_enable_admin_theme', false ) ) {
-    return;
-}
-
 /* --------------------------------------------------------------------------
- * 1. Pembersihan Dashboard & Widget
+ * Inisialisasi Fitur Bersyarat
  * ---------------------------------------------------------------------- */
 
-// Menghapus widget dashboard bawaan yang tidak diperlukan
-add_action( 'wp_dashboard_setup', 'cc_remove_dashboard_widgets' );
+// 1. Jika Kustomisasi Tema Admin Aktif
+if ( get_theme_mod( 'cc_enable_admin_theme', false ) ) {
+    // Pembersihan Dashboard
+    add_action( 'wp_dashboard_setup', 'cc_remove_dashboard_widgets' );
+
+    // Pembersihan Admin Bar
+    add_action( 'admin_bar_menu', 'cc_remove_wp_logo', 999 );
+    add_action( 'wp_before_admin_bar_render', 'cc_remove_admin_bar_item' );
+    add_action( 'admin_footer', 'cc_hide_admin_bar_items' );
+    add_action( 'wp_footer', 'cc_hide_admin_bar_items' );
+    add_action( 'admin_head', 'cc_hide_menu_for_non_super_admins' );
+
+    // Kustomisasi Meta & Footer
+    add_action( 'admin_head', 'cc_remove_screen_options_help' );
+    add_action( 'admin_head', 'cc_remove_footer_admin' );
+    add_filter( 'admin_title', 'cc_change_admin_title', 10, 2 );
+
+    // Profil Pengguna
+    add_action( 'admin_head', 'cc_hide_personal_options_and_elementor_for_site_admins' );
+}
+
+// 2. Jika Fitur Komentar Global Dinonaktifkan
+if ( ! get_theme_mod( 'cc_enable_comments', true ) ) {
+    // Navigasi & Kolom Komentar (Backend)
+    add_action( 'admin_menu', 'cc_remove_comments_menu' );
+    add_filter( 'manage_posts_columns', 'cc_remove_comments_columns' );
+    add_filter( 'manage_pages_columns', 'cc_remove_comments_columns' );
+    add_action( 'init', 'cc_remove_comments_support' );
+
+    // Menonaktifkan status open komentar di frontend & backend
+    add_filter( 'comments_open', '__return_false', 20, 2 );
+    add_filter( 'pings_open', '__return_false', 20, 2 );
+
+    // Menyembunyikan menu bar komentar secara backend
+    add_action( 'admin_bar_menu', 'cc_remove_comments_admin_bar_node', 999 );
+}
+
+// 3. Pengalihan Halaman Admin untuk CPT yang Dinonaktifkan (Selalu Aktif)
+add_action( 'admin_init', 'cc_redirect_disabled_cpt_admin_pages' );
+
+
+/* --------------------------------------------------------------------------
+ * Bagian 1: Logika Pembersihan Dashboard & Widget
+ * ---------------------------------------------------------------------- */
+
+// Menghapus widget dashboard bawaan WordPress yang tidak relevan (Berita & Draft Cepat)
 function cc_remove_dashboard_widgets() {
     $widgets_to_remove = array(
-        'e-dashboard-overview',
-        'dashboard_site_health',
-        'dashboard_right_now',
-        'dashboard_activity',
-        'google_dashboard_widget',
-        'dashboard_quick_press',
-        'dashboard_primary',
+        'dashboard_quick_press', // Draft Cepat
+        'dashboard_primary',     // Berita & Acara WordPress
     );
     foreach ( $widgets_to_remove as $widget ) {
-        remove_meta_box( $widget, 'dashboard', in_array( $widget, array( 'dashboard_quick_press', 'dashboard_primary' ), true ) ? 'side' : 'normal' );
+        remove_meta_box( $widget, 'dashboard', 'side' );
     }
 }
 
-// Mengatur layout dashboard menjadi 1 kolom secara paksa
-add_action( 'admin_init', 'cc_set_single_column_dashboard_layout' );
-function cc_set_single_column_dashboard_layout() {
-    add_filter( 'get_user_option_screen_layout_dashboard', function() {
-        return 1;
-    } );
-}
-
-// Menambahkan CSS kustom agar widget dashboard memenuhi lebar penuh (full width) hanya di halaman dashboard
-add_action( 'admin_head', 'cc_custom_dashboard_full_width_css' );
-function cc_custom_dashboard_full_width_css() {
-    echo '<style>
-        .index-php #dashboard-widgets .postbox-container {
-            width: 100% !important;
-        }
-        .index-php #dashboard-widgets-wrap {
-            display: flex;
-            flex-direction: column;
-        }
-        .index-php #postbox-container-1,
-        .index-php #postbox-container-2,
-        .index-php #postbox-container-3,
-        .index-php #postbox-container-4 {
-            width: 100% !important;
-        }
-    </style>';
-}
-
-// Menyembunyikan container postbox dashboard yang kosong setelah widget dihapus
-add_action( 'admin_head', 'cc_remove_empty_postbox_containers' );
-function cc_remove_empty_postbox_containers() {
-    ?>
-    <script>
-        jQuery(document).ready(function($) {
-            var containers = [
-                '#postbox-container-2 .meta-box-sortables',
-                '#postbox-container-3 .meta-box-sortables',
-                '#postbox-container-4 .meta-box-sortables'
-            ];
-            containers.forEach(function(container) {
-                if ($(container).children().length === 0) {
-                    $(container).closest('.postbox-container').hide();
-                }
-            });
-        });
-    </script>
-    <?php
-}
 
 /* --------------------------------------------------------------------------
- * 2. Pembersihan Admin Bar (Top Bar)
+ * Bagian 2: Logika Pembersihan Admin Bar (Top Bar)
  * ---------------------------------------------------------------------- */
 
 // Menghapus logo WordPress dari Admin Bar
-add_action( 'admin_bar_menu', 'cc_remove_wp_logo', 999 );
 function cc_remove_wp_logo( $wp_admin_bar ) {
     $wp_admin_bar->remove_menu( 'wp-logo' );
 }
 
 // Menghapus item "Baru" (New Content) dari Admin Bar
-add_action( 'wp_before_admin_bar_render', 'cc_remove_admin_bar_item' );
 function cc_remove_admin_bar_item() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_node( 'new-content' );
 }
 
-// Menyembunyikan item admin bar tertentu (My Sites dan Komentar)
-add_action( 'admin_footer', 'cc_hide_admin_bar_items' );
-add_action( 'wp_footer', 'cc_hide_admin_bar_items' );
+// Menyembunyikan item admin bar tertentu (My Sites) via JavaScript
 function cc_hide_admin_bar_items() {
     echo '
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var itemsToHide = ["wp-admin-bar-my-sites", "wp-admin-bar-comments"];
-            itemsToHide.forEach(function(item) {
-                var el = document.getElementById(item);
-                if (el) {
-                    el.style.display = "none";
-                }
-            });
+            var el = document.getElementById("wp-admin-bar-my-sites");
+            if (el) {
+                el.style.display = "none";
+            }
         });
     </script>
     ';
 }
 
 // Menyembunyikan menu bar Flying Press untuk user non-super admin
-add_action( 'admin_head', 'cc_hide_menu_for_non_super_admins' );
 function cc_hide_menu_for_non_super_admins() {
     if ( ! current_user_can( 'manage_network' ) ) {
         echo '<style>#wp-admin-bar-flying-press { display: none !important; }</style>';
     }
 }
 
+
 /* --------------------------------------------------------------------------
- * 3. Navigasi & Kolom Komentar (Pembersihan Komentar)
+ * Bagian 3: Logika Pembersihan Komentar Dinamis
  * ---------------------------------------------------------------------- */
 
 // Menghapus menu Komentar dari Sidebar Admin Menu
-add_action( 'admin_menu', 'cc_remove_comments_menu' );
 function cc_remove_comments_menu() {
     remove_menu_page( 'edit-comments.php' );
 }
 
 // Menghapus kolom Komentar dari daftar postingan dan halaman
-add_filter( 'manage_posts_columns', 'cc_remove_comments_columns' );
-add_filter( 'manage_pages_columns', 'cc_remove_comments_columns' );
 function cc_remove_comments_columns( $columns ) {
     unset( $columns['comments'] );
     return $columns;
 }
 
-// Menghapus dukungan komentar dan trackback dari tipe postingan 'post'
-add_action( 'init', 'cc_remove_discussion_panel' );
-function cc_remove_discussion_panel() {
+// Menghapus dukungan komentar dan trackback dari tipe postingan bawaan
+function cc_remove_comments_support() {
     remove_post_type_support( 'post', 'comments' );
     remove_post_type_support( 'post', 'trackbacks' );
+    remove_post_type_support( 'page', 'comments' );
+    remove_post_type_support( 'page', 'trackbacks' );
+    remove_post_type_support( 'attachment', 'comments' );
 }
 
+// Menyembunyikan menu bar komentar dari Admin Bar secara backend
+function cc_remove_comments_admin_bar_node( $wp_admin_bar ) {
+    $wp_admin_bar->remove_node( 'comments' );
+}
+
+
 /* --------------------------------------------------------------------------
- * 4. Kustomisasi Meta & Footer
+ * Bagian 4: Kustomisasi Meta & Footer Admin
  * ---------------------------------------------------------------------- */
 
 // Menyembunyikan Screen Options dan Help tab di atas kanan halaman admin
-add_action( 'admin_head', 'cc_remove_screen_options_help' );
 function cc_remove_screen_options_help() {
     echo '<style>#screen-meta-links { display: none !important; }</style>';
 }
 
 // Menyembunyikan area footer admin sepenuhnya via CSS
-add_action( 'admin_head', 'cc_remove_footer_admin' );
 function cc_remove_footer_admin() {
     echo '<style>#wpfooter { display: none !important; }</style>';
 }
 
 // Mengubah title halaman admin agar berakhiran Nama Situs
-add_filter( 'admin_title', 'cc_change_admin_title', 10, 2 );
 function cc_change_admin_title( $admin_title, $title ) {
     return get_bloginfo( 'name' ) . ' • ' . $title;
 }
 
+
 /* --------------------------------------------------------------------------
- * 5. Penyederhanaan Halaman Profil & Opsi Pengguna
+ * Bagian 5: Penyederhanaan Halaman Profil & Opsi Pengguna
  * ---------------------------------------------------------------------- */
 
 // Menyembunyikan Opsi Personal dan Opsi Elementor AI/Notes bagi administrator situs non-super admin
-add_action( 'admin_head', 'cc_hide_personal_options_and_elementor_for_site_admins' );
 function cc_hide_personal_options_and_elementor_for_site_admins() {
     // 1. IZIN: Hentikan jika user adalah Super Admin (Super Admin tetap bisa melihat semuanya)
     if ( is_super_admin() ) {
@@ -259,8 +241,12 @@ function cc_hide_personal_options_and_elementor_for_site_admins() {
     <?php
 }
 
-// 6. Pengalihan Halaman Admin untuk CPT yang Dinonaktifkan (Pencegah Error "Invalid Post Type")
-add_action( 'admin_init', 'cc_redirect_disabled_cpt_admin_pages' );
+
+/* --------------------------------------------------------------------------
+ * Bagian 6: Pengalihan Halaman Admin untuk CPT yang Dinonaktifkan
+ * ---------------------------------------------------------------------- */
+
+// Pengalihan CPT yang Dinonaktifkan (Pencegah Error "Invalid Post Type")
 function cc_redirect_disabled_cpt_admin_pages() {
     global $pagenow;
     
@@ -300,4 +286,3 @@ function cc_redirect_disabled_cpt_admin_pages() {
         exit;
     }
 }
-

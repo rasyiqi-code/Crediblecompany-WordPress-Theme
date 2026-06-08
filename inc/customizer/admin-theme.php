@@ -34,4 +34,17 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'        => 'checkbox',
     ) );
 
+    // 3. Setting: Aktifkan Fitur Komentar Situs
+    $wp_customize->add_setting( 'cc_enable_comments', array(
+        'default'           => true,
+        'sanitize_callback' => 'cc_sanitize_checkbox',
+    ) );
+
+    $wp_customize->add_control( 'cc_enable_comments', array(
+        'label'       => __( 'Aktifkan Fitur Komentar Global', 'crediblecompany' ),
+        'description' => __( 'Jika dinonaktifkan, seluruh fitur komentar di website (sidebar menu, kolom daftar pos, dan form komentar) akan disembunyikan secara otomatis.', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'checkbox',
+    ) );
+
 } );
