@@ -159,9 +159,12 @@
     .stats-grid .stat-item {
         flex: 0 0 calc(33.333% - 0.5rem);
         min-width: 95px; /* Lebar minimum diperkecil agar pas 3 kolom sebaris */
-        padding: 14px 6px !important; /* Rapatkan padding agar angka dan teks muat di dalam box */
+        background: transparent !important; /* Hilangkan container card putih */
+        box-shadow: none !important; /* Hilangkan bayangan card */
+        border: none !important; /* Hilangkan border card */
+        border-radius: 0 !important; /* Hilangkan kelengkungan border */
+        padding: 8px 0 !important; /* Rapatkan spasi atas-bawah saja tanpa padding samping */
         margin-bottom: 0 !important; /* Hilangkan margin bawah bawaan landing mobile */
-        border: none !important; /* Menghapus border tipis di mobile */
     }
     .stats-grid .stat-item h2 {
         font-size: 1.35rem !important; /* Ukuran angka diperkecil di mobile agar tidak patah */
