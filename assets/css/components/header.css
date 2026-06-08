@@ -1,50 +1,67 @@
 /* ==========================================================================
- * Header / Navbar Styles
- * Sticky header, navigasi utama, ikon, dan mobile toggle.
- *
- * @package CredibleCompany
- * ========================================================================== */
+   Header / Navbar Styles (Modular & DRY)
+   Menggunakan variabel CSS dinamis dari Customizer (:root).
+   ========================================================================== */
 
 .site-header {
-    background-color: var(--brand-red);
-    color: var(--brand-white);
-    position: relative;
-    top: 0;
-    z-index: 1000;
+    background-color: var(--cc-header-bg, var(--brand-red, #c01314));
+    color: var(--cc-header-text, var(--brand-white, #ffffff));
+    position: var(--cc-header-sticky, relative);
+    top: var(--cc-header-sticky-top, 0);
+    z-index: 1999;
+    border-bottom: var(--cc-header-border, none);
+    transition: background-color 0.2s, border-bottom 0.2s, top 0.2s;
+}
+
+/* Kompensasi WordPress Admin Bar */
+.admin-bar .site-header {
+    top: var(--cc-header-sticky-top-admin, 32px) !important;
+}
+
+@media screen and (max-width: 782px) {
+    .admin-bar .site-header {
+        top: var(--cc-header-sticky-top-mobile-admin, 46px) !important;
+    }
 }
 
 .site-header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: var(--cc-header-padding, 12px) !important;
+    padding-bottom: var(--cc-header-padding, 12px) !important;
+    height: auto !important;
     min-height: 50px;
-    height: auto;
 }
 
 .site-logo a {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--brand-white);
+    color: var(--cc-header-text, var(--brand-white, #ffffff));
     letter-spacing: -0.5px;
+    text-decoration: none;
 }
 
 .site-logo img {
-    height: 40px;
-    width: auto;
+    max-width: var(--cc-header-logo-width, 150px) !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block;
 }
 
-/* Navigasi Utama */
+/* Navigasi Utama (Horizontal Scroll Mobile) */
 .primary-nav ul {
     display: flex;
     gap: 2rem;
 }
 
 .primary-nav a {
-    color: var(--brand-white);
+    color: var(--cc-header-text, var(--brand-white, #ffffff));
     font-size: 0.875rem;
     font-weight: 500;
     padding: 0.5rem 0;
     position: relative;
+    text-decoration: none;
 }
 
 .primary-nav a::after {
@@ -54,8 +71,8 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--brand-white);
-    transition: var(--transition);
+    background: var(--cc-header-text, var(--brand-white, #ffffff));
+    transition: var(--transition, 0.2s);
 }
 
 .primary-nav a:hover::after {
@@ -63,8 +80,8 @@
 }
 
 /* --------------------------------------------------------------------------
- * Desktop Nav (inline di header, drawer di mobile)
- * -------------------------------------------------------------------------- */
+   Desktop Nav (inline di header, drawer di mobile)
+   -------------------------------------------------------------------------- */
 .desktop-nav ul {
     display: flex;
     gap: 2rem;
@@ -79,8 +96,8 @@
 }
 
 .desktop-nav a {
-    color: var(--brand-white);
-    font-size: 0.875rem;
+    color: var(--cc-header-text, var(--brand-white, #ffffff));
+    font-size: var(--cc-header-menu-font-size, 14px) !important;
     font-weight: 500;
     padding: 0.5rem 0;
     position: relative;
@@ -94,15 +111,20 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--brand-white);
-    transition: var(--transition);
+    background: var(--cc-header-text, var(--brand-white, #ffffff)) !important;
+    transition: var(--transition, 0.2s);
 }
 
 .desktop-nav a:hover::after {
     width: 100%;
+    background: var(--cc-header-text-hover, #ffcccc) !important;
 }
 
-/* Mobile: desktop-nav jadi drawer slide-down */
+.desktop-nav a:hover {
+    color: var(--cc-header-text-hover, #ffcccc) !important;
+}
+
+/* Mobile Layout: desktop-nav jadi drawer slide-down */
 @media (max-width: 768px) {
     .desktop-nav {
         display: none;
@@ -110,11 +132,11 @@
         top: 100%;
         left: 0;
         width: 100%;
-        background: var(--brand-red);
+        background-color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
         padding: 1rem 1.5rem;
         border-top: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        z-index: 999;
+        z-index: 1998;
     }
 
     .desktop-nav.active {
@@ -129,8 +151,9 @@
     .desktop-nav a {
         display: block;
         padding: 0.75rem 0;
-        font-size: 1rem;
+        font-size: 1rem !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
     }
 
     .desktop-nav li:last-child a {
@@ -156,17 +179,28 @@
     gap: 1rem;
 }
 
-.header-icons button {
+.header-icons button,
+.header-icons a {
     background: none;
     border: none;
-    color: var(--brand-white);
+    color: var(--cc-header-text, var(--brand-white, #ffffff)) !important;
     cursor: pointer;
     padding: 0.25rem;
-    transition: var(--transition);
+    transition: var(--transition, 0.2s);
 }
 
-.header-icons button:hover {
-    opacity: 0.7;
+.header-icons svg {
+    stroke: var(--cc-header-text, var(--brand-white, #ffffff)) !important;
+}
+
+.header-icons button:hover,
+.header-icons a:hover {
+    color: var(--cc-header-text-hover, #ffcccc) !important;
+}
+
+.header-icons button:hover svg,
+.header-icons a:hover svg {
+    stroke: var(--cc-header-text-hover, #ffcccc) !important;
 }
 
 /* Mobile Menu Toggle */
@@ -174,9 +208,14 @@
     display: none;
     background: none;
     border: none;
-    color: var(--brand-white);
+    color: var(--cc-header-text, var(--brand-white, #ffffff)) !important;
     cursor: pointer;
     font-size: 1.5rem;
+    transition: var(--transition, 0.2s);
+}
+
+.menu-toggle:hover {
+    color: var(--cc-header-text-hover, #ffcccc) !important;
 }
 
 /* Header Search Overlay Tweaks */
@@ -189,7 +228,6 @@
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -269,11 +307,17 @@
         width: calc(100% - 2.5rem) !important;
         max-width: 1100px !important;
         border-radius: 99px !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border: var(--cc-header-border, 1px solid rgba(255, 255, 255, 0.08)) !important;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        background-color: var(--cc-header-glass-bg) !important;
+        backdrop-filter: blur(var(--cc-header-glass-blur, 12px)) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(var(--cc-header-glass-blur, 12px)) saturate(180%) !important;
         transition: all 0.3s ease !important;
+        top: var(--cc-header-sticky-top, 1.25rem) !important;
+    }
+
+    .admin-bar .header-style-glass {
+        top: var(--cc-header-sticky-top-admin, calc(32px + 1.25rem)) !important;
     }
 
     .header-style-glass .container {
@@ -287,6 +331,7 @@
 
     .header-style-glass .site-logo a {
         font-weight: 900 !important;
+        color: var(--cc-header-text-hover, #ffcccc) !important;
     }
 
     .header-style-glass .desktop-nav a {
@@ -295,13 +340,13 @@
         font-weight: 700 !important;
         letter-spacing: 0.5px !important;
         padding: 0.5rem 0.75rem !important;
+        color: var(--cc-header-text, #ffffff) !important;
     }
 
     .header-style-glass .desktop-nav a:hover {
-        opacity: 0.9;
+        color: var(--cc-header-text-hover, #ffcccc) !important;
     }
 
-    /* Tombol Aksi Kanan Bulat Emas */
     .header-style-glass .header-icons {
         gap: 0.5rem !important;
     }
@@ -316,31 +361,46 @@
         justify-content: center !important;
         padding: 0 !important;
         border: none !important;
-        transition: all 0.3s ease !important;
+        background-color: var(--cc-header-text-hover, #ffcccc) !important;
+        color: var(--cc-header-bg, #c01314) !important;
+        box-shadow: 0 4px 12px rgba(255, 204, 204, 0.25) !important;
+    }
+
+    .header-style-glass .header-icons svg {
+        stroke: var(--cc-header-bg, #c01314) !important;
     }
 
     .header-style-glass .header-icons a:hover,
     .header-style-glass .header-icons button:hover {
         transform: scale(1.05) !important;
+        background-color: var(--cc-header-text, #ffffff) !important;
+        color: var(--cc-header-bg, #c01314) !important;
     }
 
-    .header-style-glass .header-icons svg {
-        width: 16px !important;
-        height: 16px !important;
+    .header-style-glass .header-icons a:hover svg,
+    .header-style-glass .header-icons button:hover svg {
+        stroke: var(--cc-header-bg, #c01314) !important;
     }
 }
 
 @media (max-width: 768px) {
+    /* Gaya Glassmorphism Mobile */
     .header-style-glass {
         margin: 0.75rem auto 0 auto !important;
         width: calc(100% - 1.5rem) !important;
-        border-radius: 99px !important; /* Melengkung penuh */
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 99px !important;
+        border: var(--cc-header-border, 1px solid rgba(255, 255, 255, 0.08)) !important;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        background-color: var(--cc-header-mobile-glass-bg) !important;
+        backdrop-filter: blur(var(--cc-header-glass-blur, 12px)) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(var(--cc-header-glass-blur, 12px)) saturate(180%) !important;
         position: relative !important;
         z-index: 2000 !important;
+        top: var(--cc-header-sticky-top-mobile, 0.75rem) !important;
+    }
+
+    .admin-bar .header-style-glass {
+        top: var(--cc-header-sticky-top-mobile-admin, calc(46px + 0.75rem)) !important;
     }
 
     .header-style-glass .container {
@@ -368,6 +428,7 @@
     .header-style-glass .site-logo a {
         font-size: 1.15rem !important;
         font-weight: 900 !important;
+        color: var(--cc-header-mobile-text-hover, var(--cc-header-text-hover)) !important;
     }
 
     .header-style-glass .site-logo img {
@@ -375,7 +436,6 @@
         width: auto !important;
     }
 
-    /* Paksa Desktop Nav Tampil Horizontal di Mobile */
     .header-style-glass .desktop-nav {
         display: block !important;
         position: static !important;
@@ -406,9 +466,13 @@
         letter-spacing: 0.5px !important;
         padding: 0.25rem 0.35rem !important;
         border-bottom: none !important;
+        color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
     }
 
-    /* Tombol Aksi Kanan Bulat Emas di Mobile */
+    .header-style-glass .desktop-nav a:hover {
+        color: var(--cc-header-mobile-text-hover, var(--cc-header-text-hover)) !important;
+    }
+
     .header-style-glass .header-icons {
         display: flex !important;
         background-color: transparent !important;
@@ -428,17 +492,87 @@
         justify-content: center !important;
         padding: 0 !important;
         border: none !important;
+        background-color: var(--cc-header-mobile-text-hover, var(--cc-header-text-hover)) !important;
+        color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
     }
 
     .header-style-glass .header-icons svg {
-        width: 14px !important;
-        height: 14px !important;
+        stroke: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
     }
 
-    /* Sembunyikan menu toggle dan primary nav scroll bar di mobile untuk Glassmorphism */
+    .header-style-glass .header-icons a:hover,
+    .header-style-glass .header-icons button:hover {
+        background-color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
+        color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
+    }
+
+    .header-style-glass .header-icons a:hover svg,
+    .header-style-glass .header-icons button:hover svg {
+        stroke: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
+    }
+
     .header-style-glass .menu-toggle,
     .site-header.header-style-glass ~ .primary-nav.header-style-glass,
     .primary-nav.header-style-glass {
         display: none !important;
+    }
+
+    /* Warna umum header mobile non-glass */
+    .site-header:not(.header-style-glass) {
+        background-color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
+        color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
+    }
+    .desktop-nav:not(.header-style-glass) {
+        background-color: var(--cc-header-mobile-bg, var(--cc-header-bg)) !important;
+    }
+    .site-header:not(.header-style-glass) .site-logo a,
+    .site-header:not(.header-style-glass) .header-icons a,
+    .site-header:not(.header-style-glass) .header-icons button,
+    .site-header:not(.header-style-glass) .menu-toggle {
+        color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
+    }
+    .site-header:not(.header-style-glass) .header-icons svg {
+        stroke: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
+    }
+    .site-header:not(.header-style-glass) .desktop-nav a::after {
+        background: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
+    }
+
+    /* Hover mobile non-glass */
+    .site-header:not(.header-style-glass) .desktop-nav a:hover,
+    .site-header:not(.header-style-glass) .header-icons a:hover,
+    .site-header:not(.header-style-glass) .header-icons button:hover,
+    .site-header:not(.header-style-glass) .menu-toggle:hover {
+        color: var(--cc-header-mobile-text-hover, var(--cc-header-text-hover)) !important;
+    }
+    .site-header:not(.header-style-glass) .header-icons a:hover svg,
+    .site-header:not(.header-style-glass) .header-icons button:hover svg {
+        stroke: var(--cc-header-mobile-text-hover, var(--cc-header-text-hover)) !important;
+    }
+    .site-header:not(.header-style-glass) .desktop-nav a:hover::after {
+        background: var(--cc-header-mobile-text-hover, var(--cc-header-text-hover)) !important;
+    }
+}
+
+/* Kompensasi menu horizontal mobile Klasik / Terpusat */
+@media (max-width: 1024px) {
+    .site-header:not(.header-style-glass) {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1999 !important;
+    }
+    .admin-bar .site-header:not(.header-style-glass) {
+        top: 32px !important;
+    }
+    @media screen and (max-width: 782px) {
+        .admin-bar .site-header:not(.header-style-glass) {
+            top: 46px !important;
+        }
+    }
+    .primary-nav {
+        position: relative !important;
+        top: auto !important;
+        z-index: 1000 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
     }
 }

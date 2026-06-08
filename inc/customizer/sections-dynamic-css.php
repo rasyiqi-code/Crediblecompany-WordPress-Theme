@@ -107,6 +107,35 @@ function cc_sections_dynamic_css_variables() {
     $foot_top_pad = cc_get( 'footer_top_padding', 40 );
     $foot_middle_pad = cc_get( 'footer_middle_padding', 24 );
     $foot_bottom_pad = cc_get( 'footer_bottom_padding', 24 );
+
+    // 10. Header
+    $hero_variant        = cc_get( 'hero_variant', 'default' );
+    $header_bg           = cc_get( 'header_bg_color', '#c01314' );
+    $header_text         = cc_get( 'header_text_color', '#ffffff' );
+    $header_sticky       = cc_get( 'header_sticky', true );
+    $header_style        = cc_get( 'header_style', 'classic' );
+    if ( 'v3' === $hero_variant ) {
+        $header_style = 'glass';
+    }
+    $logo_width          = cc_get( 'header_logo_width', 150 );
+    $header_padding      = cc_get( 'header_padding', 12 );
+    $menu_font_size      = cc_get( 'header_menu_font_size', 14 );
+    $text_hover          = cc_get( 'header_text_hover_color', '#ffcccc' );
+    $glass_opacity       = cc_get( 'header_glass_opacity', 85 ) / 100;
+    $glass_blur          = cc_get( 'header_glass_blur', 12 );
+    $border_enable       = cc_get( 'header_border_enable', false );
+    $border_color        = cc_get( 'header_border_color', 'rgba(255, 255, 255, 0.15)' );
+
+    $mobile_bg           = cc_get( 'header_mobile_bg_color', '' );
+    $mobile_text         = cc_get( 'header_mobile_text_color', '' );
+    $mobile_hover        = cc_get( 'header_mobile_text_hover_color', '' );
+
+    // Hitung RGBA latar belakang Glassmorphism
+    $glass_bg_color = cc_hex_to_rgba( $header_bg, $glass_opacity );
+    $mobile_glass_bg_color = ! empty( $mobile_bg ) ? cc_hex_to_rgba( $mobile_bg, $glass_opacity ) : $glass_bg_color;
+
+    // Hitung border style
+    $border_style = $border_enable ? '1px solid ' . $border_color : 'none';
     ?>
     <style type="text/css" id="cc-sections-dynamic-variables">
         :root {
@@ -217,6 +246,29 @@ function cc_sections_dynamic_css_variables() {
             --cc-footer-top-padding: <?php echo esc_attr( $foot_top_pad ) . 'px'; ?>;
             --cc-footer-middle-padding: <?php echo esc_attr( $foot_middle_pad ) . 'px'; ?>;
             --cc-footer-bottom-padding: <?php echo esc_attr( $foot_bottom_pad ) . 'px'; ?>;
+
+            /* === HEADER === */
+            --cc-header-style: <?php echo esc_attr( $header_style ); ?>;
+            --cc-header-bg: <?php echo esc_attr( $header_bg ); ?>;
+            --cc-header-text: <?php echo esc_attr( $header_text ); ?>;
+            --cc-header-text-hover: <?php echo esc_attr( $text_hover ); ?>;
+            --cc-header-logo-width: <?php echo esc_attr( $logo_width ) . 'px'; ?>;
+            --cc-header-padding: <?php echo esc_attr( $header_padding ) . 'px'; ?>;
+            --cc-header-menu-font-size: <?php echo esc_attr( $menu_font_size ) . 'px'; ?>;
+            --cc-header-glass-bg: <?php echo esc_attr( $glass_bg_color ); ?>;
+            --cc-header-glass-blur: <?php echo esc_attr( $glass_blur ) . 'px'; ?>;
+            --cc-header-border: <?php echo esc_attr( $border_style ); ?>;
+            --cc-header-sticky: <?php echo $header_sticky ? 'sticky' : 'relative'; ?>;
+            --cc-header-sticky-top: <?php echo $header_style === 'glass' ? '1.25rem' : '0'; ?>;
+            --cc-header-sticky-top-admin: <?php echo $header_style === 'glass' ? 'calc(32px + 1.25rem)' : '32px'; ?>;
+            --cc-header-sticky-top-mobile-admin: <?php echo $header_style === 'glass' ? 'calc(46px + 0.75rem)' : '46px'; ?>;
+            --cc-header-sticky-top-mobile: <?php echo $header_style === 'glass' ? '0.75rem' : '0'; ?>;
+
+            /* Mobile Overrides */
+            --cc-header-mobile-bg: <?php echo esc_attr( ! empty( $mobile_bg ) ? $mobile_bg : $header_bg ); ?>;
+            --cc-header-mobile-glass-bg: <?php echo esc_attr( $mobile_glass_bg_color ); ?>;
+            --cc-header-mobile-text: <?php echo esc_attr( ! empty( $mobile_text ) ? $mobile_text : $header_text ); ?>;
+            --cc-header-mobile-text-hover: <?php echo esc_attr( ! empty( $mobile_hover ) ? $mobile_hover : $text_hover ); ?>;
         }
     </style>
     <?php
