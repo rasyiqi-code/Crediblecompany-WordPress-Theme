@@ -60,7 +60,7 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'        => 'text',
     ) );
 
-    // 5. Setting & Control: Website KBM Support
+        // 5. Setting & Control: Website KBM Support
     $wp_customize->add_setting( 'cc_kbm_support_web', array(
         'default'           => 'https://penerbitkbm.com/',
         'sanitize_callback' => 'esc_url_raw',
@@ -71,6 +71,19 @@ add_action( 'customize_register', function( $wp_customize ) {
         'description' => __( 'Masukkan URL website resmi KBM Support', 'crediblecompany' ),
         'section'     => 'cc_admin_theme_section',
         'type'        => 'url',
+    ) );
+
+    // 5c. Setting & Control: Teks Link KBM Support
+    $wp_customize->add_setting( 'cc_kbm_support_web_text', array(
+        'default'           => 'penerbitkbm.com',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'cc_kbm_support_web_text', array(
+        'label'       => __( 'Teks Link KBM Support', 'crediblecompany' ),
+        'description' => __( 'Teks yang akan tampil sebagai hyperlink website (contoh: penerbitkbm.com)', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'text',
     ) );
 
     // 5b. Setting & Control: Deskripsi KBM Support
@@ -110,6 +123,19 @@ add_action( 'customize_register', function( $wp_customize ) {
         'description' => __( 'Masukkan URL website resmi Developer Support', 'crediblecompany' ),
         'section'     => 'cc_admin_theme_section',
         'type'        => 'url',
+    ) );
+
+    // 7c. Setting & Control: Teks Link Developer Support
+    $wp_customize->add_setting( 'cc_developer_support_web_text', array(
+        'default'           => 'crediblemark.com',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'cc_developer_support_web_text', array(
+        'label'       => __( 'Teks Link Developer Support', 'crediblecompany' ),
+        'description' => __( 'Teks yang akan tampil sebagai hyperlink website (contoh: crediblemark.com)', 'crediblecompany' ),
+        'section'     => 'cc_admin_theme_section',
+        'type'        => 'text',
     ) );
 
     // 7b. Setting & Control: Deskripsi Developer Support

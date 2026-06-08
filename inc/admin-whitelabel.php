@@ -139,17 +139,20 @@ function cc_add_custom_support_dashboard_widgets() {
 function cc_kbm_support_widget_display() {
     $wa_num   = get_theme_mod( 'cc_kbm_support_wa', '6281357517526' );
     $web_url  = get_theme_mod( 'cc_kbm_support_web', 'https://penerbitkbm.com/' );
+    $web_text = get_theme_mod( 'cc_kbm_support_web_text', 'penerbitkbm.com' );
     $default_desc = 'Dapatkan layanan bantuan penuh untuk penerbitan buku Anda mulai dari proses penyuntingan naskah, desain cover, pengurusan ISBN, pencetakan, hingga strategi pemasaran dan distribusi buku secara luas. Tim KBM Support kami siap mendampingi perjalanan kepenulisan Anda melalui {link}.';
     $raw_desc = get_theme_mod( 'cc_kbm_support_desc', $default_desc );
     
-    // Dapatkan nama host untuk tampilan teks link yang rapi
-    $web_host = parse_url( $web_url, PHP_URL_HOST );
-    if ( empty( $web_host ) ) {
-        $web_host = str_replace( array( 'http://', 'https://' ), '', $web_url );
+    // Gunakan fallback jika teks link kosong
+    if ( empty( $web_text ) ) {
+        $web_text = parse_url( $web_url, PHP_URL_HOST );
+        if ( empty( $web_text ) ) {
+            $web_text = str_replace( array( 'http://', 'https://' ), '', $web_url );
+        }
     }
 
     // Buat tag HTML hyperlink untuk website
-    $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_host ) . '</a>';
+    $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_text ) . '</a>';
     
     // Ganti placeholder {link} dengan tag hyperlink nyata secara aman menggunakan wp_kses
     $allowed_tags = array(
@@ -182,17 +185,20 @@ function cc_kbm_support_widget_display() {
 function cc_developer_support_widget_display() {
     $wa_num   = get_theme_mod( 'cc_developer_support_wa', '6285183131249' );
     $web_url  = get_theme_mod( 'cc_developer_support_web', 'https://crediblemark.com/' );
+    $web_text = get_theme_mod( 'cc_developer_support_web_text', 'crediblemark.com' );
     $default_desc = 'Tim developer kami siap membantu menangani kendal teknis pada website Anda, seperti optimalisasi performa, perbaikan bug/error, pembaruan keamanan sistem, pemeliharaan server, hingga pengembangan fitur kustom baru sesuai kebutuhan bisnis Anda. Hubungi kami melalui {link}.';
     $raw_desc = get_theme_mod( 'cc_developer_support_desc', $default_desc );
 
-    // Dapatkan nama host untuk tampilan teks link yang rapi
-    $web_host = parse_url( $web_url, PHP_URL_HOST );
-    if ( empty( $web_host ) ) {
-        $web_host = str_replace( array( 'http://', 'https://' ), '', $web_url );
+    // Gunakan fallback jika teks link kosong
+    if ( empty( $web_text ) ) {
+        $web_text = parse_url( $web_url, PHP_URL_HOST );
+        if ( empty( $web_text ) ) {
+            $web_text = str_replace( array( 'http://', 'https://' ), '', $web_url );
+        }
     }
 
     // Buat tag HTML hyperlink untuk website
-    $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_host ) . '</a>';
+    $web_link = '<a href="' . esc_url( $web_url ) . '" target="_blank" style="color: #c01314; text-decoration: underline; font-weight: 600;">' . esc_html( $web_text ) . '</a>';
     
     // Ganti placeholder {link} dengan tag hyperlink nyata secara aman menggunakan wp_kses
     $allowed_tags = array(
