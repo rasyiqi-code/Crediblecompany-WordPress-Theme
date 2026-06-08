@@ -47,6 +47,7 @@ if ( ! is_array( $faqs ) ) {
 
 <section class="faq" id="faq">
     <div class="container">
+        <h2 class="faq-title"><?php echo esc_html( cc_get( 'faq_title', 'Pertanyaan yang Sering Diajukan' ) ); ?></h2>
         <div class="faq-list">
             <?php foreach ( $faqs as $index => $faq ) : 
                 $faq_id = 'faq-answer-' . $index;

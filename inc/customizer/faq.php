@@ -116,6 +116,17 @@ add_action( 'customize_register', function( $wp_customize ) {
         array( 'q' => 'Proin sodales imperdiet diam?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
     ));
 
+    // Judul Seksi FAQ
+    $wp_customize->add_setting( 'cc_faq_title', array(
+        'default'           => __( 'Pertanyaan yang Sering Diajukan', 'crediblecompany' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_faq_title', array(
+        'label'   => __( 'Judul Seksi FAQ', 'crediblecompany' ),
+        'section' => 'cc_faq_section',
+        'type'    => 'text',
+    ) );
+
     $wp_customize->add_setting( 'cc_faq_repeater_data', array(
         'default'           => $faq_defaults_json,
         'sanitize_callback' => 'cc_sanitize_faq_json',
@@ -134,6 +145,15 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_faq_bg_color', array(
         'label'   => __( 'Warna Latar Belakang Section', 'crediblecompany' ),
+        'section' => 'cc_faq_section',
+    ) ) );
+
+    $wp_customize->add_setting( 'cc_faq_title_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_faq_title_color', array(
+        'label'   => __( 'Warna Font Judul Seksi', 'crediblecompany' ),
         'section' => 'cc_faq_section',
     ) ) );
 

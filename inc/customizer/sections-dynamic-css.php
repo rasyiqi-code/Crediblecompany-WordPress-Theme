@@ -77,9 +77,10 @@ function cc_sections_dynamic_css_variables() {
     $blog_tit = cc_get( 'blog_section_title_color', '#0f172a' );
 
     // 7. FAQ
-    $faq_bg   = cc_get( 'faq_bg_color', '#c01314' );
-    $faq_ques = cc_get( 'faq_question_color', '#ffffff' );
-    $faq_answ = cc_get( 'faq_answer_color', '#f3f4f6' );
+    $faq_bg      = cc_get( 'faq_bg_color', '#c01314' );
+    $faq_tit_col = cc_get( 'faq_title_color', '#ffffff' );
+    $faq_ques    = cc_get( 'faq_question_color', '#ffffff' );
+    $faq_answ    = cc_get( 'faq_answer_color', '#f3f4f6' );
 
     // 8. CTA
     $cta_custom_bg   = cc_get( 'cta_custom_bg_color', '' );
@@ -161,6 +162,7 @@ function cc_sections_dynamic_css_variables() {
 
             /* === FAQ === */
             --cc-faq-bg-color: <?php echo esc_attr( $faq_bg ); ?>;
+            --cc-faq-title-color: <?php echo esc_attr( $faq_tit_col ); ?>;
             --cc-faq-question-color: <?php echo esc_attr( $faq_ques ); ?>;
             --cc-faq-answer-color: <?php echo esc_attr( $faq_answ ); ?>;
 
