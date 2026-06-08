@@ -74,8 +74,8 @@
 
 /* --- Card Header — Nama Paket --- */
 .price-card-header {
-    background: var(--brand-red);
-    color: var(--brand-white);
+    background: var(--cc-pricing-card-header-bg, var(--brand-red));
+    color: var(--cc-pricing-card-header-text, var(--brand-white));
     padding: 1.5rem 1.25rem 1.25rem;
     text-align: center;
     position: relative;
@@ -86,8 +86,8 @@
     position: absolute;
     top: -12px;
     right: 12px;
-    background: var(--brand-white);
-    color: var(--brand-red);
+    background: var(--cc-pricing-card-badge-bg, var(--brand-white));
+    color: var(--cc-pricing-card-badge-text, var(--brand-red));
     font-size: 0.6875rem;
     font-weight: 700;
     padding: 0.3rem 0.75rem;
@@ -114,7 +114,7 @@
 
 /* --- Card Body — Harga, Eksemplar, Ukuran --- */
 .price-card-body {
-    background: var(--gray-100);
+    background: var(--cc-pricing-card-body-bg, var(--gray-100));
     padding: 1.25rem;
     text-align: center;
     border-bottom: 1px solid var(--gray-200);
@@ -123,20 +123,20 @@
 .price-current {
     font-size: 1.375rem;
     font-weight: 800;
-    color: var(--brand-red);
+    color: var(--cc-pricing-card-price-color, var(--brand-red));
     margin-bottom: 0.25rem;
 }
 
 .price-eksemplar {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--brand-dark);
+    color: var(--cc-pricing-card-spec-color, var(--brand-dark));
 }
 
 .price-ukuran {
     font-size: 0.9375rem;
     font-weight: 700;
-    color: var(--brand-dark);
+    color: var(--cc-pricing-card-spec-color, var(--brand-dark));
     margin-bottom: 0.5rem;
 }
 
@@ -157,7 +157,7 @@
 .price-card-features-title {
     font-size: 0.875rem;
     font-weight: 700;
-    color: var(--brand-red);
+    color: var(--cc-pricing-card-feat-title-color, var(--brand-red));
     margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
