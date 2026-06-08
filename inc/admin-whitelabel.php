@@ -46,21 +46,21 @@ function cc_set_single_column_dashboard_layout() {
     } );
 }
 
-// Menambahkan CSS kustom agar widget dashboard memenuhi lebar penuh (full width)
+// Menambahkan CSS kustom agar widget dashboard memenuhi lebar penuh (full width) hanya di halaman dashboard
 add_action( 'admin_head', 'cc_custom_dashboard_full_width_css' );
 function cc_custom_dashboard_full_width_css() {
     echo '<style>
-        #dashboard-widgets .postbox-container {
+        .index-php #dashboard-widgets .postbox-container {
             width: 100% !important;
         }
-        #dashboard-widgets-wrap {
+        .index-php #dashboard-widgets-wrap {
             display: flex;
             flex-direction: column;
         }
-        #postbox-container-1,
-        #postbox-container-2,
-        #postbox-container-3,
-        #postbox-container-4 {
+        .index-php #postbox-container-1,
+        .index-php #postbox-container-2,
+        .index-php #postbox-container-3,
+        .index-php #postbox-container-4 {
             width: 100% !important;
         }
     </style>';
