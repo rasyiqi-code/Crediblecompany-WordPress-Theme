@@ -122,8 +122,7 @@
      * 4. Card Styling (Non-Scroll Mode)
      * ---------------------------------------------------------------------- */
     .app-landing-wrapper .feature-item,
-    .app-landing-wrapper .stat-item,
-    .app-landing-wrapper .price-card {
+    .app-landing-wrapper .stat-item {
         background: var(--brand-white);
         border-radius: 16px;
         padding: 24px;
@@ -195,10 +194,6 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
-        border: none;
     }
 
     .app-landing-wrapper .price-card.popular {

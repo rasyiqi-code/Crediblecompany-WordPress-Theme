@@ -211,7 +211,7 @@
 .price-card.has-poster-image {
     overflow: hidden;
     position: relative;
-    background: var(--brand-white);
+    background: var(--cc-pricing-card-bg-color, var(--brand-white));
 }
 
 .price-card.has-poster-image .price-card-image-wrap {
@@ -241,6 +241,6 @@
 /* Padding area action untuk poster card */
 .price-card.has-poster-image .price-card-action {
     padding: 1rem 1.25rem 1.25rem;
-    background: var(--brand-white);
+    background: var(--cc-pricing-card-bg-color, var(--brand-white));
     border-top: 1px solid var(--cc-pricing-card-border-color, var(--gray-100));
 }
