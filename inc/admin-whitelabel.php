@@ -22,6 +22,10 @@ if ( get_theme_mod( 'cc_enable_admin_theme', false ) ) {
     // Pembersihan Dashboard
     add_action( 'wp_dashboard_setup', 'cc_remove_dashboard_widgets' );
 
+    // Pendaftaran Widget Kustom Support
+    add_action( 'wp_dashboard_setup', 'cc_add_custom_support_dashboard_widgets', 20 );
+    add_action( 'admin_head', 'cc_support_widgets_custom_css' );
+
     // Pembersihan Admin Bar
     add_action( 'admin_bar_menu', 'cc_remove_wp_logo', 999 );
     add_action( 'wp_before_admin_bar_render', 'cc_remove_admin_bar_item' );
@@ -78,6 +82,83 @@ function cc_remove_dashboard_widgets() {
         $context = in_array( $widget, array( 'dashboard_quick_press', 'dashboard_primary' ), true ) ? 'side' : 'normal';
         remove_meta_box( $widget, 'dashboard', $context );
     }
+}
+
+// Mendaftarkan widget dashboard kustom baru (KBM Support & Developer Support)
+function cc_add_custom_support_dashboard_widgets() {
+    wp_add_dashboard_widget(
+        'cc_kbm_support_widget',
+        __( 'KBM Support', 'crediblecompany' ),
+        'cc_kbm_support_widget_display'
+    );
+
+    wp_add_dashboard_widget(
+        'cc_developer_support_widget',
+        __( 'Developer Support', 'crediblecompany' ),
+        'cc_developer_support_widget_display'
+    );
+}
+
+// Merender konten widget KBM Support
+function cc_kbm_support_widget_display() {
+    ?>
+    <div class="cc-dashboard-widget-content">
+        <p style="margin-bottom: 15px; color: #475569; font-size: 13px; line-height: 1.6;">
+            Dapatkan bantuan layanan penerbitan buku, pemasaran, dan dukungan operasional langsung dari tim KBM Support kami.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="https://wa.me/6281357517526" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-top: 1px;"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.333 4.982L2 22l5.233-1.371a9.948 9.948 0 004.773 1.21h.005c5.505 0 9.989-4.478 9.99-9.984A9.998 9.998 0 0012.012 2zm5.727 14.153c-.246.696-1.233 1.277-1.696 1.325-.463.048-.962.062-1.602-.144a7.373 7.373 0 01-3.217-1.89 7.42 7.42 0 01-1.89-3.217 3.513 3.513 0 01-.144-1.602c.048-.463.629-1.45 1.325-1.696.177-.063.35-.12.493-.12.143 0 .229.006.335.012a1.867 1.867 0 01.442.06c.148.042.316.14.417.375.14.331.479 1.168.52 1.25.042.083.07.18.013.298-.057.118-.086.19-.172.29-.086.1-.182.222-.26.3-.086.086-.176.18-.076.353a4.996 4.996 0 001.21 1.48c.465.412.92.68 1.092.766.172.086.27.071.37-.043.1-.115.43-.502.545-.674.115-.172.229-.144.387-.086.158.058 1.004.474 1.176.56.172.086.287.13.33.202.043.072.043.416-.203 1.112z"/></svg>
+                WhatsApp KBM Support
+            </a>
+            <a href="https://penerbitkbm.com/" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0f172a; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn site-btn">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                Kunjungi penerbitkbm.com
+            </a>
+        </div>
+    </div>
+    <?php
+}
+
+// Merender konten widget Developer Support
+function cc_developer_support_widget_display() {
+    ?>
+    <div class="cc-dashboard-widget-content">
+        <p style="margin-bottom: 15px; color: #475569; font-size: 13px; line-height: 1.6;">
+            Butuh bantuan teknis, perbaikan bug, atau penambahan fitur kustom pada website? Hubungi tim Developer kami langsung dari sini.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="https://wa.me/6285183131249" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn wa-btn">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-top: 1px;"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.333 4.982L2 22l5.233-1.371a9.948 9.948 0 004.773 1.21h.005c5.505 0 9.989-4.478 9.99-9.984A9.998 9.998 0 0012.012 2zm5.727 14.153c-.246.696-1.233 1.277-1.696 1.325-.463.048-.962.062-1.602-.144a7.373 7.373 0 01-3.217-1.89 7.42 7.42 0 01-1.89-3.217 3.513 3.513 0 01-.144-1.602c.048-.463.629-1.45 1.325-1.696.177-.063.35-.12.493-.12.143 0 .229.006.335.012a1.867 1.867 0 01.442.06c.148.042.316.14.417.375.14.331.479 1.168.52 1.25.042.083.07.18.013.298-.057.118-.086.19-.172.29-.086.1-.182.222-.26.3-.086.086-.176.18-.076.353a4.996 4.996 0 001.21 1.48c.465.412.92.68 1.092.766.172.086.27.071.37-.043.1-.115.43-.502.545-.674.115-.172.229-.144.387-.086.158.058 1.004.474 1.176.56.172.086.287.13.33.202.043.072.043.416-.203 1.112z"/></svg>
+                WhatsApp Developer
+            </a>
+            <a href="https://crediblemark.com/" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0f172a; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: all 0.2s ease-in-out;" class="cc-support-btn site-btn">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                Kunjungi crediblemark.com
+            </a>
+        </div>
+    </div>
+    <?php
+}
+
+// Menambahkan CSS kustom untuk tombol support di admin head
+function cc_support_widgets_custom_css() {
+    echo '<style>
+        .cc-support-btn {
+            transition: all 0.2s ease-in-out !important;
+        }
+        .cc-support-btn:hover {
+            opacity: 0.95 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+        }
+        .cc-support-btn.wa-btn:hover {
+            background: #1ebe57 !important;
+        }
+        .cc-support-btn.site-btn:hover {
+            background: #1e293b !important;
+        }
+    </style>';
 }
 
 
