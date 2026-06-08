@@ -226,6 +226,46 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_pricing_section',
     ) ) );
 
+    // Warna Latar Tombol CTA Card
+    $wp_customize->add_setting( 'cc_pricing_card_btn_bg', array(
+        'default'           => '#c01314',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_btn_bg', array(
+        'label'   => __( 'Warna Latar Tombol Paket', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    // Warna Teks Tombol CTA Card
+    $wp_customize->add_setting( 'cc_pricing_card_btn_text', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_btn_text', array(
+        'label'   => __( 'Warna Teks Tombol Paket', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    // Warna Latar Hover Tombol CTA Card
+    $wp_customize->add_setting( 'cc_pricing_card_btn_hover_bg', array(
+        'default'           => '#a00f10',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_btn_hover_bg', array(
+        'label'   => __( 'Warna Hover Latar Tombol', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    // Warna Teks Hover Tombol CTA Card
+    $wp_customize->add_setting( 'cc_pricing_card_btn_hover_text', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_btn_hover_text', array(
+        'label'   => __( 'Warna Hover Teks Tombol', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
     // 8a. [Desktop] Spasi Padding Atas/Bawah Section (Tinggi Section)
     $wp_customize->add_setting( 'cc_pricing_padding_desktop', array(
         'default'           => 64,
@@ -273,6 +313,11 @@ add_action( 'wp_head', function() {
     $card_bdg_bg   = cc_get( 'pricing_card_badge_bg', '#ffffff' );
     $card_bdg_txt  = cc_get( 'pricing_card_badge_text', '#c01314' );
 
+    $card_btn_bg   = cc_get( 'pricing_card_btn_bg', '#c01314' );
+    $card_btn_txt  = cc_get( 'pricing_card_btn_text', '#ffffff' );
+    $card_btn_hbg  = cc_get( 'pricing_card_btn_hover_bg', '#a00f10' );
+    $card_btn_htxt = cc_get( 'pricing_card_btn_hover_text', '#ffffff' );
+
     $pad_desktop   = cc_get( 'pricing_padding_desktop', 64 );
     $pad_mobile    = cc_get( 'pricing_padding_mobile', 40 );
 
@@ -295,6 +340,11 @@ add_action( 'wp_head', function() {
             --cc-pricing-card-feat-title-color: <?php echo esc_attr( $card_feat ); ?>;
             --cc-pricing-card-badge-bg: <?php echo esc_attr( $card_bdg_bg ); ?>;
             --cc-pricing-card-badge-text: <?php echo esc_attr( $card_bdg_txt ); ?>;
+
+            --cc-pricing-card-btn-bg: <?php echo esc_attr( $card_btn_bg ); ?>;
+            --cc-pricing-card-btn-text: <?php echo esc_attr( $card_btn_txt ); ?>;
+            --cc-pricing-card-btn-hover-bg: <?php echo esc_attr( $card_btn_hbg ); ?>;
+            --cc-pricing-card-btn-hover-text: <?php echo esc_attr( $card_btn_htxt ); ?>;
 
             --cc-pricing-padding-desktop: <?php echo esc_attr( $pad_desktop ) . 'px'; ?>;
             --cc-pricing-padding-mobile: <?php echo esc_attr( $pad_mobile ) . 'px'; ?>;

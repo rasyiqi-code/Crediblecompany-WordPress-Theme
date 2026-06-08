@@ -30,7 +30,7 @@
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--grid-cols, 4), 1fr);
     gap: var(--cc-pricing-card-gap-desktop, 1.5rem);
     text-align: left;
 }
@@ -191,6 +191,20 @@
 .price-card-action {
     padding: 0.75rem 1.25rem 1.25rem;
     margin-top: auto;
+}
+
+.price-card-action .btn {
+    background-color: var(--cc-pricing-card-btn-bg, var(--brand-red));
+    border-color: var(--cc-pricing-card-btn-bg, var(--brand-red));
+    color: var(--cc-pricing-card-btn-text, var(--brand-white));
+    transition: var(--transition);
+}
+
+.price-card-action .btn:hover,
+.price-card-action .btn:focus {
+    background-color: var(--cc-pricing-card-btn-hover-bg, #a00f10);
+    border-color: var(--cc-pricing-card-btn-hover-bg, #a00f10);
+    color: var(--cc-pricing-card-btn-hover-text, var(--brand-white));
 }
 
 /* --- Card Poster / Image Layout --- */
