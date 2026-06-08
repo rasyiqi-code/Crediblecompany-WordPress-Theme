@@ -165,13 +165,7 @@ function cc_custom_login_branding() {
 add_filter( 'login_headerurl', function() { return home_url(); } );
 add_filter( 'login_headertext', function() { return get_bloginfo( 'name' ); } );
 
-// 2. Admin Footer Branding
-add_filter( 'admin_footer_text', 'cc_custom_admin_footer' );
-function cc_custom_admin_footer() {
-    // Gunakan esc_html() untuk mencegah XSS jika nama situs mengandung karakter HTML
-    echo '<span id="footer-thankyou">Dashboard Kelola &bull; <strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong></span>';
-}
-add_filter( 'update_footer', '__return_empty_string', 11 );
+
 
 // 3. Toolbar Cleaning (Hapus Logo WP)
 add_action( 'wp_before_admin_bar_render', 'cc_remove_wp_logo_admin_bar', 0 );
