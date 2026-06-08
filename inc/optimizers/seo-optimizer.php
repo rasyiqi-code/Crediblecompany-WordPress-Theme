@@ -401,8 +401,10 @@ function cc_update_featured_image_meta( $post_id ) {
             update_post_meta( $thumbnail_id, '_wp_attachment_image_alt', $post_title );
         }
 
-        // Selalu perbarui judul meskipun tidak kosong
-        $update_data['post_title'] = $post_title;
+        // Perbarui judul jika berbeda
+        if ( get_the_title( $thumbnail_id ) !== $post_title ) {
+            $update_data['post_title'] = $post_title;
+        }
         
         // Perbarui caption jika kosong
         if ( empty( $caption ) ) {

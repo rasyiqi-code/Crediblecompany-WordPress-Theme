@@ -396,10 +396,14 @@ function cc_check_if_attachment_used_elsewhere( $attachment_id, $post_id ) {
     );
     $count_thumbnail = $wpdb->get_var( $query );
 
-    // 2. Cek penggunaan URL/ID lampiran di dalam konten postingan lain
+    // 2. Cek penggunaan URL/Nama File lampiran di dalam konten postingan lain (lebih akurat daripada ID mentah)
+    $attachment_file = get_post_meta( $attachment_id, '_wp_attached_file', true );
+    $filename        = $attachment_file ? basename( $attachment_file ) : '';
+    $search_term     = $filename ? $filename : $attachment_id;
+
     $query_content = $wpdb->prepare(
         "SELECT COUNT(*) FROM $wpdb->posts WHERE post_content LIKE %s AND ID != %d",
-        '%' . $wpdb->esc_like( $attachment_id ) . '%',
+        '%' . $wpdb->esc_like( $search_term ) . '%',
         $post_id
     );
     $count_content = $wpdb->get_var( $query_content );
@@ -413,12 +417,12 @@ function cc_cleanup_unused_attachments() {
     global $wpdb;
 
     // Ambil list ID attachment yang tidak terikat ke pos aktif mana pun,
-    // tidak diset sebagai featured image, dan tidak muncul di post_content manapun.
+    // tidak diset sebagai featured image, dan tidak muncul di post_content manapun (berdasarkan nama file/basename).
     $query = "
         SELECT p.ID
         FROM {$wpdb->posts} p
         LEFT JOIN {$wpdb->postmeta} pm ON pm.meta_value = p.ID AND pm.meta_key = '_thumbnail_id'
-        LEFT JOIN {$wpdb->posts} pp ON pp.post_content LIKE CONCAT('%', p.guid, '%')
+        LEFT JOIN {$wpdb->posts} pp ON pp.post_content LIKE CONCAT('%', SUBSTRING_INDEX(p.guid, '/', -1), '%')
         WHERE p.post_type = 'attachment'
         AND (p.post_parent = 0 OR p.post_parent NOT IN (SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' OR post_status = 'draft' OR post_status = 'pending' OR post_status = 'private' OR post_status = 'future'))
         AND pm.post_id IS NULL
@@ -476,9 +480,9 @@ function cc_auto_convert_upload_to_webp( $upload ) {
             // Hapus file JPG/PNG asli dari disk agar menghemat disk space
             @unlink( $file_path );
 
-            // Perbarui array metadata upload agar WordPress meregistrasikan file WebP yang baru dibuat
+            // Perbarui array metadata upload agar WordPress meregistrasikan file WebP yang baru dibuat (hanya ganti nama file di ujung URL)
             $upload['file'] = $new_file_path;
-            $upload['url']  = str_replace( $path_info['basename'], $webp_filename, $upload['url'] );
+            $upload['url']  = substr( $upload['url'], 0, -strlen( $path_info['basename'] ) ) . $webp_filename;
             $upload['type'] = 'image/webp';
         }
     }

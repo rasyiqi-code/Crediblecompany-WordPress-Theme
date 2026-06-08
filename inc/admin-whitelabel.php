@@ -182,15 +182,6 @@ function cc_change_admin_title( $admin_title, $title ) {
  * 5. Penyederhanaan Halaman Profil & Opsi Pengguna
  * ---------------------------------------------------------------------- */
 
-// Menghapus section profile bawaan
-add_action( 'admin_init', 'cc_remove_profile_sections' );
-function cc_remove_profile_sections() {
-    $sections_to_remove = array( 'rich_editing_profile', 'syntax_highlighting_profile' );
-    foreach ( $sections_to_remove as $section ) {
-        remove_meta_box( $section, 'user-profile', 'normal' );
-    }
-}
-
 // Menyembunyikan Opsi Personal dan Opsi Elementor AI/Notes bagi administrator situs non-super admin
 add_action( 'admin_head', 'cc_hide_personal_options_and_elementor_for_site_admins' );
 function cc_hide_personal_options_and_elementor_for_site_admins() {

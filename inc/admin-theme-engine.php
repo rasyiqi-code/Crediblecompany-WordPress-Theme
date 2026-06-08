@@ -16,64 +16,71 @@ if ( ! get_theme_mod( 'cc_enable_admin_theme', false ) ) {
     return;
 }
 
-/**
- * Mendapatkan warna primer tema secara dinamis dari Customizer.
- * Digunakan untuk aksen tombol login, menu aktif, hover sidebar, dll.
- *
- * @return string Kode warna Hex.
- */
-function cc_get_admin_primary_color() {
-    $header_style = get_theme_mod( 'cc_header_style', 'classic' );
-    $primary      = '#c01314'; // Fallback default (merah brand)
+if ( ! function_exists( 'cc_get_admin_primary_color' ) ) {
+    /**
+     * Mendapatkan warna primer tema secara dinamis dari Customizer.
+     * Digunakan untuk aksen tombol login, menu aktif, hover sidebar, dll.
+     *
+     * @return string Kode warna Hex.
+     */
+    function cc_get_admin_primary_color() {
+        $header_style = get_theme_mod( 'cc_header_style', 'classic' );
+        $primary      = '#c01314'; // Fallback default (merah brand)
 
-    if ( 'classic' === $header_style ) {
-        $primary = get_theme_mod( 'cc_header_classic_bg_color', '#c01314' );
-    } elseif ( 'centered' === $header_style ) {
-        $primary = get_theme_mod( 'cc_header_centered_bg_color', '#c01314' );
-    } else {
-        $primary = get_theme_mod( 'cc_header_glass_bg_color', '#ffffff' );
+        if ( 'classic' === $header_style ) {
+            $primary = get_theme_mod( 'cc_header_classic_bg_color', '#c01314' );
+        } elseif ( 'centered' === $header_style ) {
+            $primary = get_theme_mod( 'cc_header_centered_bg_color', '#c01314' );
+        } else {
+            $primary = get_theme_mod( 'cc_header_glass_bg_color', '#ffffff' );
+        }
+
+        // Jika warna terlalu terang/putih, gunakan fallback merah agar tombol tetap kontras dan terbaca
+        if ( in_array( strtolower( $primary ), array( '#ffffff', '#fff', '#f8fafc', '#f1f5f9' ), true ) ) {
+            $primary = '#c01314';
+        }
+
+        return $primary;
     }
-
-    // Jika warna terlalu terang/putih, gunakan fallback merah agar tombol tetap kontras dan terbaca
-    if ( in_array( strtolower( $primary ), array( '#ffffff', '#fff', '#f8fafc', '#f1f5f9' ), true ) ) {
-        $primary = '#c01314';
-    }
-
-    return $primary;
 }
 
-/**
- * Mendapatkan warna latar belakang gelap tema dari Customizer (warna footer).
- * Digunakan untuk latar belakang sidebar admin dan admin bar.
- *
- * @return string Kode warna Hex.
- */
-function cc_get_admin_dark_color() {
-    return get_theme_mod( 'cc_footer_bg_color', '#0b1c3f' );
-}
-
-/**
- * Helper untuk menghitung warna yang lebih gelap (darken) untuk hover state tombol.
- *
- * @param string $hex Warna hex asal.
- * @param int    $percent Persentase penggelapan (1-100).
- * @return string Warna hex yang lebih gelap.
- */
-function cc_admin_color_darken( $hex, $percent ) {
-    $hex = str_replace( '#', '', $hex );
-    if ( strlen( $hex ) == 3 ) {
-        $hex = str_repeat( substr( $hex, 0, 1 ), 2 ) . str_repeat( substr( $hex, 1, 1 ), 2 ) . str_repeat( substr( $hex, 2, 1 ), 2 );
+if ( ! function_exists( 'cc_get_admin_dark_color' ) ) {
+    /**
+     * Mendapatkan warna latar belakang gelap tema dari Customizer (warna footer).
+     * Digunakan untuk latar belakang sidebar admin dan admin bar.
+     *
+     * @return string Kode warna Hex.
+     */
+    function cc_get_admin_dark_color() {
+        return get_theme_mod( 'cc_footer_bg_color', '#0b1c3f' );
     }
-    $r = hexdec( substr( $hex, 0, 2 ) );
-    $g = hexdec( substr( $hex, 2, 2 ) );
-    $b = hexdec( substr( $hex, 4, 2 ) );
-
-    $r = max( 0, min( 255, $r - ( $r * ( $percent / 100 ) ) ) );
-    $g = max( 0, min( 255, $g - ( $g * ( $percent / 100 ) ) ) );
-    $b = max( 0, min( 255, $b - ( $b * ( $percent / 100 ) ) ) );
-
-    return sprintf( '#%02x%02x%02x', $r, $g, $b );
 }
+
+if ( ! function_exists( 'cc_admin_color_darken' ) ) {
+    /**
+     * Helper untuk menghitung warna yang lebih gelap (darken) untuk hover state tombol.
+     *
+     * @param string $hex Warna hex asal.
+     * @param int    $percent Persentase penggelapan (1-100).
+     * @return string Warna hex yang lebih gelap.
+     */
+    function cc_admin_color_darken( $hex, $percent ) {
+        $hex = str_replace( '#', '', $hex );
+        if ( strlen( $hex ) == 3 ) {
+            $hex = str_repeat( substr( $hex, 0, 1 ), 2 ) . str_repeat( substr( $hex, 1, 1 ), 2 ) . str_repeat( substr( $hex, 2, 1 ), 2 );
+        }
+        $r = hexdec( substr( $hex, 0, 2 ) );
+        $g = hexdec( substr( $hex, 2, 2 ) );
+        $b = hexdec( substr( $hex, 4, 2 ) );
+
+        $r = max( 0, min( 255, $r - ( $r * ( $percent / 100 ) ) ) );
+        $g = max( 0, min( 255, $g - ( $g * ( $percent / 100 ) ) ) );
+        $b = max( 0, min( 255, $b - ( $b * ( $percent / 100 ) ) ) );
+
+        return sprintf( '#%02x%02x%02x', $r, $g, $b );
+    }
+}
+
 
 /* --------------------------------------------------------------------------
  * 1. Kustomisasi Halaman Login WordPress
