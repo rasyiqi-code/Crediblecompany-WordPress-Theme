@@ -180,12 +180,19 @@
         padding: 0 !important; /* Hilangkan padding kontainer agar gambar dapat melebar penuh */
         border-radius: 0 !important; /* Hilangkan border radius kontainer */
         gap: 1.5rem; /* Jarak antara gambar dan teks di bawahnya */
+        margin-left: -1rem !important; /* Negatif margin kiri agar gambar menempel ke tepi layar luar */
+        margin-right: -1rem !important; /* Negatif margin kanan agar gambar menempel ke tepi layar luar */
+        width: calc(100% + 2rem) !important; /* Lebarkan kontainer melewati batas padding container global */
     }
 
     .about-block img {
         width: 100% !important;
-        border-radius: 12px; /* Memberikan kelengkungan langsung pada gambar agar estetik */
-        box-shadow: var(--shadow-sm); /* Bayangan tipis pada gambar */
+        border-radius: 0 !important; /* Hilangkan kelengkungan agar menyatu dengan tepi layar */
+        box-shadow: none !important;
+    }
+
+    .about-block p {
+        padding: 0 1rem !important; /* Menjaga teks agar tetap memiliki padding kiri-kanan seperti layout section lainnya */
     }
 
     /* Features */
