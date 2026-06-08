@@ -8,6 +8,8 @@
  */
 
 // Mengambil variabel teks dengan fallback dari data Figma
+$title_line_1    = cc_get( 'hero_v3_title_line_1', 'DESIGN' );
+$title_line_2    = cc_get( 'hero_v3_title_line_2', 'CULTURE' );
 $hero_title      = cc_get( 'hero_title', 'Delightful remarkably mr on announcing themselves entreaties favourable.' );
 $hero_desc       = cc_get( 'hero_desc', 'Of on affixed civilly moments promise explain fertile in. Assurance advantage belonging happiness departure so of. Now improving and one sincerity intention allowance.' );
 $hero_image      = cc_img( 'hero_v3_image', get_template_directory_uri() . '/assets/images/hero_v3_model.png' );
@@ -48,8 +50,8 @@ $btn2_url        = cc_get( 'hero_v3_btn2_url', '#explore' );
         <div class="hero-v3-right-side">
             <!-- Judul Kategori Raksasa -->
             <h1 class="hero-v3-main-title">
-                <span class="title-line-1">DESIGN</span>
-                <span class="title-line-2">CULTURE</span>
+                <span class="title-line-1"><?php echo esc_html( $title_line_1 ); ?></span>
+                <span class="title-line-2"><?php echo esc_html( $title_line_2 ); ?></span>
             </h1>
             
             <!-- Detail Layout Dua Kolom -->

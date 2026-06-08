@@ -11,22 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Tambahkan pengaturan khusus Hero V3 ke Customizer
-$emoji_choices = array(
-    '📚' => '📚 Buku (Edukasi)',
-    '🚀' => '🚀 Roket (Startup / Launch)',
-    '💡' => '💡 Ide (Kreatif / Inspirasi)',
-    '📈' => '📈 Grafik Naik (Growth / Bisnis)',
-    '✨' => '✨ Kilauan (Modern / Premium)',
-    '🎓' => '🎓 Toga (Akademik)',
-    '🎯' => '🎯 Target (Goal / Fokus)',
-    '⚡' => '⚡ Petir (Kecepatan / Energi)',
-    '💻' => '💻 Laptop (Teknologi / Coding)',
-    '🔥' => '🔥 Api (Populer / Trending)',
-    '💬' => '💬 Chat (Komunikasi)',
-    '🔴' => '🔴 Bulatan Merah (Status / Live)',
-    '🟢' => '🟢 Bulatan Hijau (Aktif / Sukses)',
-    '🔵' => '🔵 Bulatan Biru (Informasi)',
-);
 
 // Callback aktif untuk V3
 $v3_active_callback = function() {
@@ -47,7 +31,7 @@ $wp_customize->add_control( 'cc_hero_v3_padding_top_px', array(
 ) );
 
 $wp_customize->add_setting( 'cc_hero_v3_padding_bottom_px', array(
-    'default'           => 144, // Default ditingkatkan untuk ruang udara yang seimbang di desain minimalis
+    'default'           => 144, // Ditingkatkan untuk ruang udara yang seimbang di desain minimalis
     'sanitize_callback' => 'absint',
 ) );
 $wp_customize->add_control( 'cc_hero_v3_padding_bottom_px', array(
@@ -58,184 +42,46 @@ $wp_customize->add_control( 'cc_hero_v3_padding_bottom_px', array(
     'active_callback' => $v3_active_callback,
 ) );
 
-$wp_customize->add_setting( 'cc_hero_v3_title_size_px', array(
-    'default'           => 72,
-    'sanitize_callback' => 'absint',
-) );
-$wp_customize->add_control( 'cc_hero_v3_title_size_px', array(
-    'label'           => __( 'V3: Ukuran Font Judul (Pixel)', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => array( 'min' => 32, 'max' => 100, 'step' => 1 ),
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_title_margin_bottom_px', array(
-    'default'           => 32,
-    'sanitize_callback' => 'absint',
-) );
-$wp_customize->add_control( 'cc_hero_v3_title_margin_bottom_px', array(
-    'label'           => __( 'V3: Jarak Bawah Judul (Pixel)', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => array( 'min' => 5, 'max' => 100, 'step' => 1 ),
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_desc_size_px', array(
-    'default'           => 20,
-    'sanitize_callback' => 'absint',
-) );
-$wp_customize->add_control( 'cc_hero_v3_desc_size_px', array(
-    'label'           => __( 'V3: Ukuran Font Deskripsi (Pixel)', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => array( 'min' => 12, 'max' => 26, 'step' => 1 ),
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_desc_margin_bottom_px', array(
-    'default'           => 56,
-    'sanitize_callback' => 'absint',
-) );
-$wp_customize->add_control( 'cc_hero_v3_desc_margin_bottom_px', array(
-    'label'           => __( 'V3: Jarak Bawah Deskripsi (Pixel)', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => array( 'min' => 10, 'max' => 100, 'step' => 2 ),
-    'active_callback' => $v3_active_callback,
-) );
-
-// --- PENGATURAN KELENGKUNGAN SUDUT V3 ---
-$wp_customize->add_setting( 'cc_hero_v3_card_radius_px', array(
-    'default'           => 16,
-    'sanitize_callback' => 'absint',
-) );
-$wp_customize->add_control( 'cc_hero_v3_card_radius_px', array(
-    'label'           => __( 'V3: Kelengkungan Kartu Melayang (Pixel)', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => array( 'min' => 0, 'max' => 40, 'step' => 1 ),
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_canvas_radius_px', array(
-    'default'           => 24,
-    'sanitize_callback' => 'absint',
-) );
-$wp_customize->add_control( 'cc_hero_v3_canvas_radius_px', array(
-    'label'           => __( 'V3: Kelengkungan Canvas Grafis (Pixel)', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => array( 'min' => 0, 'max' => 60, 'step' => 1 ),
-    'active_callback' => $v3_active_callback,
-) );
-
-// --- PROMO BADGE & GAMBAR V3 ---
-$wp_customize->add_setting( 'cc_hero_v3_promo_tag', array(
-    'default'           => 'New!',
+// --- PENGATURAN KONTEN TITEL RAKSASA V3 ---
+$wp_customize->add_setting( 'cc_hero_v3_title_line_1', array(
+    'default'           => 'DESIGN',
     'sanitize_callback' => 'sanitize_text_field',
 ) );
-$wp_customize->add_control( 'cc_hero_v3_promo_tag', array(
-    'label'           => __( 'V3: Label Promo Badge', 'crediblecompany' ),
+$wp_customize->add_control( 'cc_hero_v3_title_line_1', array(
+    'label'           => __( 'V3: Judul Baris 1', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'text',
     'active_callback' => $v3_active_callback,
 ) );
 
-$wp_customize->add_setting( 'cc_hero_v3_promo_text', array(
-    'default'           => 'New! Introducing the new Jasper: Canvas, Agents, and a bold rebrand.',
+$wp_customize->add_setting( 'cc_hero_v3_title_line_2', array(
+    'default'           => 'CULTURE',
     'sanitize_callback' => 'sanitize_text_field',
 ) );
-$wp_customize->add_control( 'cc_hero_v3_promo_text', array(
-    'label'           => __( 'V3: Teks Promo Badge', 'crediblecompany' ),
+$wp_customize->add_control( 'cc_hero_v3_title_line_2', array(
+    'label'           => __( 'V3: Judul Baris 2', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'text',
     'active_callback' => $v3_active_callback,
 ) );
 
-$wp_customize->add_setting( 'cc_hero_v3_promo_url', array(
-    'default'           => '#',
-    'sanitize_callback' => 'esc_url_raw',
-) );
-$wp_customize->add_control( 'cc_hero_v3_promo_url', array(
-    'label'           => __( 'V3: URL Promo Badge', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'url',
-    'active_callback' => $v3_active_callback,
-) );
-
+// --- PENGATURAN GAMBAR MODEL V3 ---
 $wp_customize->add_setting( 'cc_hero_v3_image', array(
     'default'           => '',
     'sanitize_callback' => 'esc_url_raw',
 ) );
 $wp_customize->add_control( new \WP_Customize_Image_Control( $wp_customize, 'cc_hero_v3_image', array(
-    'label'           => __( 'V3: Gambar Model Utama Canvas', 'crediblecompany' ),
+    'label'           => __( 'V3: Gambar Model Mosaic (4x4)', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'active_callback' => $v3_active_callback,
 ) ) );
 
-// --- KARTU MELAYANG & PARTNERS V3 ---
-$wp_customize->add_setting( 'cc_hero_v3_card_left_icon', array(
-    'default'           => '🔴',
-    'sanitize_callback' => 'sanitize_text_field',
-) );
-$wp_customize->add_control( 'cc_hero_v3_card_left_icon', array(
-    'label'           => __( 'V3: Emoji Kartu Melayang Kiri', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'select',
-    'choices'         => $emoji_choices,
-    'active_callback' => $v3_active_callback,
-) );
+// --- PENGATURAN TOMBOL & TAUTAN V3 ---
 
-$wp_customize->add_setting( 'cc_hero_v3_card_left_text', array(
-    'default'           => 'Buat 6.000 email super-personal dalam hitungan menit',
-    'sanitize_callback' => 'sanitize_text_field',
-) );
-$wp_customize->add_control( 'cc_hero_v3_card_left_text', array(
-    'label'           => __( 'V3: Teks Kartu Melayang Kiri', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'text',
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_card_right_num', array(
-    'default'           => '11x',
-    'sanitize_callback' => 'sanitize_text_field',
-) );
-$wp_customize->add_control( 'cc_hero_v3_card_right_num', array(
-    'label'           => __( 'V3: Angka Kartu Melayang Kanan', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'text',
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_card_right_text', array(
-    'default'           => 'rasio klik-tayang',
-    'sanitize_callback' => 'sanitize_text_field',
-) );
-$wp_customize->add_control( 'cc_hero_v3_card_right_text', array(
-    'label'           => __( 'V3: Label Kartu Melayang Kanan', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'text',
-    'active_callback' => $v3_active_callback,
-) );
-
-$wp_customize->add_setting( 'cc_hero_v3_partners_title', array(
-    'default'           => 'Dipercaya oleh tim pemasaran kelas dunia',
-    'sanitize_callback' => 'sanitize_text_field',
-) );
-$wp_customize->add_control( 'cc_hero_v3_partners_title', array(
-    'label'           => __( 'V3: Judul Logo Kredibilitas Mitra', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'text',
-    'active_callback' => $v3_active_callback,
-) );
-
-// --- TOMBOL CTA KUSTOM UNIK V3 ---
+// Tombol 1: Link Read More (Utama)
 $wp_customize->add_setting( 'cc_hero_v3_btn1_enable', array( 'default' => true, 'sanitize_callback' => 'wp_validate_boolean' ) );
 $wp_customize->add_control( 'cc_hero_v3_btn1_enable', array(
-    'label'           => __( 'V3: Tampilkan Tombol Utama (Outline)', 'crediblecompany' ),
+    'label'           => __( 'V3: Tampilkan Link Read More', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'checkbox',
     'active_callback' => $v3_active_callback,
@@ -243,7 +89,7 @@ $wp_customize->add_control( 'cc_hero_v3_btn1_enable', array(
 
 $wp_customize->add_setting( 'cc_hero_v3_btn1_text', array( 'default' => 'Read More', 'sanitize_callback' => 'sanitize_text_field' ) );
 $wp_customize->add_control( 'cc_hero_v3_btn1_text', array(
-    'label'           => __( 'V3: Teks Tombol Utama', 'crediblecompany' ),
+    'label'           => __( 'V3: Teks Link Read More', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'text',
     'active_callback' => $v3_active_callback,
@@ -251,37 +97,24 @@ $wp_customize->add_control( 'cc_hero_v3_btn1_text', array(
 
 $wp_customize->add_setting( 'cc_hero_v3_btn1_url', array( 'default' => '#about', 'sanitize_callback' => 'esc_url_raw' ) );
 $wp_customize->add_control( 'cc_hero_v3_btn1_url', array(
-    'label'           => __( 'V3: URL Tombol Utama', 'crediblecompany' ),
+    'label'           => __( 'V3: URL Link Read More', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'url',
     'active_callback' => $v3_active_callback,
 ) );
 
-$wp_customize->add_setting( 'cc_hero_v3_btn1_bg_color', array( 'default' => 'transparent', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn1_bg_color', array(
-    'label'           => 'V3: Warna Latar Tombol Utama',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_btn1_text_color', array( 'default' => '#1f2937', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn1_text_color', array(
-    'label'           => 'V3: Warna Teks/Border Tombol Utama',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
+// Tombol 2: Tombol Explore (Sekunder)
 $wp_customize->add_setting( 'cc_hero_v3_btn2_enable', array( 'default' => true, 'sanitize_callback' => 'wp_validate_boolean' ) );
 $wp_customize->add_control( 'cc_hero_v3_btn2_enable', array(
-    'label'           => __( 'V3: Tampilkan Tombol Sekunder (Solid)', 'crediblecompany' ),
+    'label'           => __( 'V3: Tampilkan Tombol Explore', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'checkbox',
     'active_callback' => $v3_active_callback,
 ) );
 
-$wp_customize->add_setting( 'cc_hero_v3_btn2_text', array( 'default' => 'Explore Collection', 'sanitize_callback' => 'sanitize_text_field' ) );
+$wp_customize->add_setting( 'cc_hero_v3_btn2_text', array( 'default' => 'EXPLORE COLLECTION', 'sanitize_callback' => 'sanitize_text_field' ) );
 $wp_customize->add_control( 'cc_hero_v3_btn2_text', array(
-    'label'           => __( 'V3: Teks Tombol Sekunder', 'crediblecompany' ),
+    'label'           => __( 'V3: Teks Tombol Explore', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'text',
     'active_callback' => $v3_active_callback,
@@ -289,71 +122,16 @@ $wp_customize->add_control( 'cc_hero_v3_btn2_text', array(
 
 $wp_customize->add_setting( 'cc_hero_v3_btn2_url', array( 'default' => '#explore', 'sanitize_callback' => 'esc_url_raw' ) );
 $wp_customize->add_control( 'cc_hero_v3_btn2_url', array(
-    'label'           => __( 'V3: URL Tombol Sekunder', 'crediblecompany' ),
+    'label'           => __( 'V3: URL Tombol Explore', 'crediblecompany' ),
     'section'         => 'cc_hero_section',
     'type'            => 'url',
     'active_callback' => $v3_active_callback,
 ) );
 
-$wp_customize->add_setting( 'cc_hero_v3_btn2_bg_color', array( 'default' => '#c01314', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn2_bg_color', array(
-    'label'           => 'V3: Warna Latar Tombol Sekunder',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_btn2_text_color', array( 'default' => '#ffffff', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_btn2_text_color', array(
-    'label'           => 'V3: Warna Teks Tombol Sekunder',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_btn_shape', array( 'default' => '8px', 'sanitize_callback' => 'sanitize_text_field' ) );
-$wp_customize->add_control( 'cc_hero_v3_btn_shape', array(
-    'label'           => __( 'V3: Bentuk Kelengkungan Tombol', 'crediblecompany' ),
-    'section'         => 'cc_hero_section',
-    'type'            => 'select',
-    'choices'         => array(
-        '50px' => 'Bulat Melengkung (Pill)',
-        '8px'  => 'Sudut Tumpul (Rounded)',
-        '0px'  => 'Kotak Persegi (Square)',
-    ),
-    'active_callback' => $v3_active_callback,
-) );
-
-// --- WARNA VISUAL CANVAS & ORNAMEN V3 ---
-$wp_customize->add_setting( 'cc_hero_v3_canvas_bg', array( 'default' => '#00df89', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_canvas_bg', array(
-    'label'           => 'V3: Warna Canvas Grid Utama',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_triangle_color', array( 'default' => '#f472b6', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_triangle_color', array(
-    'label'           => 'V3: Warna Segitiga Melayang',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_card_right_bg', array( 'default' => '#0b1c3f', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_card_right_bg', array(
-    'label'           => 'V3: Warna Latar Kartu Kanan',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_circle_color', array( 'default' => '#047857', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_circle_color', array(
-    'label'           => 'V3: Warna Aksen Lingkaran',
-    'section'         => 'cc_hero_section',
-    'active_callback' => $v3_active_callback,
-) ) );
-
-$wp_customize->add_setting( 'cc_hero_v3_blue_bars_color', array( 'default' => '#3b82f6', 'sanitize_callback' => 'sanitize_hex_color' ) );
-$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_blue_bars_color', array(
-    'label'           => 'V3: Warna Garis Biru Miring',
+// --- PENGATURAN WARNA AKSEN V3 ---
+$wp_customize->add_setting( 'cc_hero_v3_accent_color', array( 'default' => '#f37021', 'sanitize_callback' => 'sanitize_hex_color' ) );
+$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'cc_hero_v3_accent_color', array(
+    'label'           => 'V3: Warna Aksen Kotak (Oranye/Kuning)',
     'section'         => 'cc_hero_section',
     'active_callback' => $v3_active_callback,
 ) ) );

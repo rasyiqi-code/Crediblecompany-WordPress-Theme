@@ -60,27 +60,9 @@ function cc_hero_dynamic_css_variables() {
     $v2_stat_label = cc_get( 'hero_v2_stat_label_color', '#64748b' );
 
     // --- AMBIL NILAI HERO V3 ---
-    $v3_pad_top    = cc_get( 'hero_v3_padding_top_px', 96 );
-    $v3_pad_bottom = cc_get( 'hero_v3_padding_bottom_px', 144 ); // Default baru disesuaikan
-    $v3_title_size = cc_get( 'hero_v3_title_size_px', 72 );
-    $v3_title_marg = cc_get( 'hero_v3_title_margin_bottom_px', 32 );
-    $v3_desc_size  = cc_get( 'hero_v3_desc_size_px', 20 );
-    $v3_desc_marg  = cc_get( 'hero_v3_desc_margin_bottom_px', 56 );
-
-    $v3_card_radius   = cc_get( 'hero_v3_card_radius_px', 16 );
-    $v3_canvas_radius = cc_get( 'hero_v3_canvas_radius_px', 24 );
-
-    $v3_btn1_bg    = cc_get( 'hero_v3_btn1_bg_color', 'transparent' );
-    $v3_btn1_txt   = cc_get( 'hero_v3_btn1_text_color', '#1f2937' ); // Default warna teks gelap
-    $v3_btn2_bg    = cc_get( 'hero_v3_btn2_bg_color', '#c01314' ); // Default warna brand merah
-    $v3_btn2_txt   = cc_get( 'hero_v3_btn2_text_color', '#ffffff' );
-    $v3_btn_shape  = cc_get( 'hero_v3_btn_shape', '8px' ); // Default kelengkungan minimalis 8px
-
-    $v3_canvas_bg     = cc_get( 'hero_v3_canvas_bg', '#00df89' );
-    $v3_triangle      = cc_get( 'hero_v3_triangle_color', '#f472b6' );
-    $v3_card_right_bg = cc_get( 'hero_v3_card_right_bg', '#0b1c3f' );
-    $v3_circle        = cc_get( 'hero_v3_circle_color', '#047857' );
-    $v3_blue_bars     = cc_get( 'hero_v3_blue_bars_color', '#3b82f6' );
+    $v3_pad_top      = cc_get( 'hero_v3_padding_top_px', 96 );
+    $v3_pad_bottom   = cc_get( 'hero_v3_padding_bottom_px', 144 );
+    $v3_accent_color = cc_get( 'hero_v3_accent_color', '#f37021' );
 
     // --- GLOBAL ---
     $title_weight  = cc_get( 'hero_title_weight', '900' );
@@ -134,28 +116,10 @@ function cc_hero_dynamic_css_variables() {
             --cc-hero-v2-stat-num-color: <?php echo esc_attr( $v2_stat_num ); ?>;
             --cc-hero-v2-stat-label-color: <?php echo esc_attr( $v2_stat_label ); ?>;
 
-            /* === VARIAN 3 (JASPER) === */
+            /* === VARIAN 3 (MOSAIC GRID & EDITORIAL) === */
             --cc-hero-v3-padding-top: <?php echo esc_attr( $v3_pad_top ) . 'px'; ?>;
             --cc-hero-v3-padding-bottom: <?php echo esc_attr( $v3_pad_bottom ) . 'px'; ?>;
-            --cc-hero-v3-title-size: <?php echo esc_attr( $v3_title_size ) . 'px'; ?>;
-            --cc-hero-v3-title-margin-bottom: <?php echo esc_attr( $v3_title_marg ) . 'px'; ?>;
-            --cc-hero-v3-desc-size: <?php echo esc_attr( $v3_desc_size ) . 'px'; ?>;
-            --cc-hero-v3-desc-margin-bottom: <?php echo esc_attr( $v3_desc_marg ) . 'px'; ?>;
-
-            --cc-hero-v3-card-radius: <?php echo esc_attr( $v3_card_radius ) . 'px'; ?>;
-            --cc-hero-v3-canvas-radius: <?php echo esc_attr( $v3_canvas_radius ) . 'px'; ?>;
-
-            --cc-hero-v3-btn1-bg: <?php echo esc_attr( $v3_btn1_bg ); ?>;
-            --cc-hero-v3-btn1-text: <?php echo esc_attr( $v3_btn1_txt ); ?>;
-            --cc-hero-v3-btn2-bg: <?php echo esc_attr( $v3_btn2_bg ); ?>;
-            --cc-hero-v3-btn2-text: <?php echo esc_attr( $v3_btn2_txt ); ?>;
-            --cc-hero-v3-btn-radius: <?php echo esc_attr( $v3_btn_shape ); ?>;
-
-            --cc-hero-v3-canvas-bg: <?php echo esc_attr( $v3_canvas_bg ); ?>;
-            --cc-hero-v3-triangle-color: <?php echo esc_attr( $v3_triangle ); ?>;
-            --cc-hero-v3-card-right-bg: <?php echo esc_attr( $v3_card_right_bg ); ?>;
-            --cc-hero-v3-circle-color: <?php echo esc_attr( $v3_circle ); ?>;
-            --cc-hero-v3-blue-bars-color: <?php echo esc_attr( $v3_blue_bars ); ?>;
+            --cc-hero-v3-accent-color: <?php echo esc_attr( $v3_accent_color ); ?>;
 
             /* === GLOBAL === */
             --cc-hero-title-weight: <?php echo esc_attr( $title_weight ); ?>;

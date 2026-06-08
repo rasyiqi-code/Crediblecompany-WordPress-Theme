@@ -6,7 +6,7 @@
 
 .hero-v3-section {
     background-color: var(--brand-white);
-    padding: 5.5rem 0 6.5rem; /* Padding dirapatkan agar lebih kompak di layar */
+    padding: var(--cc-hero-v3-padding-top, 5.5rem) 0 var(--cc-hero-v3-padding-bottom, 6.5rem); /* Menggunakan padding dinamis dari Customizer */
     position: relative;
     overflow: hidden;
 }
@@ -89,19 +89,19 @@
     top: 32%; /* Sejajar dengan baris kedua dari grid mosaic */
     width: 44px;
     height: 44px;
-    background-color: #f37021; /* Warna oranye khas logo PPNS */
+    background-color: var(--cc-hero-v3-accent-color, #f37021); /* Warna aksen dinamis dari Customizer */
     z-index: 10;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* Sel 9: Baris 3 Kolom 1 - Oranye Solid Penuh */
 .hero-v3-mosaic-grid .cell-9 {
-    background-color: #f37021;
+    background-color: var(--cc-hero-v3-accent-color, #f37021);
 }
 
 /* Sel 16: Kanan Bawah - Oranye Solid Penuh */
 .hero-v3-mosaic-grid .cell-16 {
-    background-color: #f37021;
+    background-color: var(--cc-hero-v3-accent-color, #f37021);
 }
 
 
