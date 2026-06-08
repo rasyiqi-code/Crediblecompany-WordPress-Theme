@@ -54,33 +54,26 @@ $btn2_url        = cc_get( 'hero_v3_btn2_url', '#explore' );
                 <span class="title-line-2"><?php echo esc_html( $title_line_2 ); ?></span>
             </h1>
             
-            <!-- Detail Layout Dua Kolom -->
-            <div class="hero-v3-details-grid">
-                <!-- Kolom Kiri: Headline & Tombol Explore -->
-                <div class="hero-v3-col-left">
-                    <h2 class="hero-v3-headline"><?php echo esc_html( $hero_title ); ?></h2>
-                    
-                    <?php if ( $btn2_enable ) : ?>
-                        <div class="hero-v3-action-wrapper">
+            <!-- Detail Layout Satu Kolom -->
+            <div class="hero-v3-details-content">
+                <h2 class="hero-v3-headline"><?php echo esc_html( $hero_title ); ?></h2>
+                <p class="hero-v3-paragraph"><?php echo esc_html( $hero_desc ); ?></p>
+                
+                <?php if ( $btn1_enable || $btn2_enable ) : ?>
+                    <div class="hero-v3-actions">
+                        <?php if ( $btn2_enable ) : ?>
                             <a href="<?php echo esc_url( $btn2_url ); ?>" class="hero-btn-v3-explore">
                                 <?php echo esc_html( $btn2_text ); ?>
                             </a>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                
-                <!-- Kolom Kanan: Deskripsi Paragraf & Read More -->
-                <div class="hero-v3-col-right">
-                    <p class="hero-v3-paragraph"><?php echo esc_html( $hero_desc ); ?></p>
-                    
-                    <?php if ( $btn1_enable ) : ?>
-                        <div class="hero-v3-readmore-wrapper">
+                        <?php endif; ?>
+                        
+                        <?php if ( $btn1_enable ) : ?>
                             <a href="<?php echo esc_url( $btn1_url ); ?>" class="hero-btn-v3-readmore">
                                 <?php echo esc_html( $btn1_text ); ?>
                             </a>
-                        </div>
-                    <?php endif; ?>
-                </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 

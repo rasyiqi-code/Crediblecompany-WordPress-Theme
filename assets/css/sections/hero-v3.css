@@ -132,27 +132,37 @@
     display: block;
 }
 
-/* Sub-Layout Detail 2 Kolom */
-.hero-v3-details-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 3.5rem;
-}
-
-/* Kolom Kiri: Headline & Tombol Explore */
-.hero-v3-col-left {
+/* Sub-Layout Detail 1 Kolom */
+.hero-v3-details-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 620px; /* Batasi lebar agar baris teks tetap nyaman dibaca */
 }
 
 .hero-v3-headline {
-    font-size: 1.35rem;
+    font-size: 1.5rem; /* Ukuran headline disesuaikan agar kokoh pada layout 1 kolom */
     font-weight: 700;
-    line-height: 1.45;
+    line-height: 1.4;
     color: #000000;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 1.5rem 0;
     text-align: left;
+}
+
+.hero-v3-paragraph {
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin: 0 0 2rem 0;
+    text-align: left;
+}
+
+/* Wrapper Tombol Aksi */
+.hero-v3-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* Spasi antar tombol */
+    flex-wrap: wrap; /* Fleksibel untuk layar mobile */
 }
 
 .hero-btn-v3-explore {
@@ -166,7 +176,7 @@
     padding: 1.15rem 2.5rem;
     text-decoration: none;
     border: 2px solid #000000;
-    border-radius: 0px; /* Desain kotak tegas sesuai Figma */
+    border-radius: 0px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: center;
 }
@@ -175,21 +185,6 @@
     background-color: transparent;
     color: #000000;
     transform: translateY(-2px);
-}
-
-/* Kolom Kanan: Deskripsi & Read More */
-.hero-v3-col-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.hero-v3-paragraph {
-    font-size: 0.925rem;
-    line-height: 1.7;
-    color: var(--gray-600);
-    margin: 0 0 2rem 0;
-    text-align: left;
 }
 
 .hero-btn-v3-readmore {
@@ -243,14 +238,9 @@
         margin-bottom: 2.5rem;
     }
 
-    .hero-v3-details-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
     .hero-v3-headline {
-        font-size: 1.2rem;
-        margin-bottom: 1.75rem;
+        font-size: 1.3rem; /* Diperkecil sedikit di layar mobile */
+        margin-bottom: 1.25rem;
     }
 
 
