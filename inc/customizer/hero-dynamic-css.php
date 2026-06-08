@@ -61,7 +61,7 @@ function cc_hero_dynamic_css_variables() {
 
     // --- AMBIL NILAI HERO V3 ---
     $v3_pad_top    = cc_get( 'hero_v3_padding_top_px', 96 );
-    $v3_pad_bottom = cc_get( 'hero_v3_padding_bottom_px', 0 );
+    $v3_pad_bottom = cc_get( 'hero_v3_padding_bottom_px', 144 ); // Default baru disesuaikan
     $v3_title_size = cc_get( 'hero_v3_title_size_px', 72 );
     $v3_title_marg = cc_get( 'hero_v3_title_margin_bottom_px', 32 );
     $v3_desc_size  = cc_get( 'hero_v3_desc_size_px', 20 );
@@ -71,10 +71,10 @@ function cc_hero_dynamic_css_variables() {
     $v3_canvas_radius = cc_get( 'hero_v3_canvas_radius_px', 24 );
 
     $v3_btn1_bg    = cc_get( 'hero_v3_btn1_bg_color', 'transparent' );
-    $v3_btn1_txt   = cc_get( 'hero_v3_btn1_text_color', '#0f172a' );
-    $v3_btn2_bg    = cc_get( 'hero_v3_btn2_bg_color', '#ff4f38' );
+    $v3_btn1_txt   = cc_get( 'hero_v3_btn1_text_color', '#1f2937' ); // Default warna teks gelap
+    $v3_btn2_bg    = cc_get( 'hero_v3_btn2_bg_color', '#c01314' ); // Default warna brand merah
     $v3_btn2_txt   = cc_get( 'hero_v3_btn2_text_color', '#ffffff' );
-    $v3_btn_shape  = cc_get( 'hero_v3_btn_shape', '50px' );
+    $v3_btn_shape  = cc_get( 'hero_v3_btn_shape', '8px' ); // Default kelengkungan minimalis 8px
 
     $v3_canvas_bg     = cc_get( 'hero_v3_canvas_bg', '#00df89' );
     $v3_triangle      = cc_get( 'hero_v3_triangle_color', '#f472b6' );

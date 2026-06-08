@@ -1,26 +1,14 @@
 /* ==========================================================================
- * Bagian Hero: Varian 3 (Layout Jasper — Konten Terpusat, Grid Visual, Kartu Melayang)
+ * Bagian Hero: Varian 3 (Gaya Minimalis Modern & Editorial)
  *
  * @package CredibleCompany
  * ========================================================================== */
 
 .hero-v3-section {
     background-color: var(--brand-white);
-    padding: var(--cc-hero-v3-padding-top) 0 var(--cc-hero-v3-padding-bottom);
+    padding: 8rem 0 9rem; /* Memberikan ruang udara (whitespace) yang luas agar terkesan mewah */
     position: relative;
     overflow: hidden;
-}
-
-.hero-v3-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(120px);
-    z-index: 1;
-    top: 35%;
-    right: -10%;
-    pointer-events: none;
 }
 
 .hero-v3-container {
@@ -30,455 +18,198 @@
     position: relative;
     z-index: 5;
     width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-/* 1. Badge Promo / Pengumuman */
-.hero-v3-promo-wrapper {
-    margin-bottom: 2rem;
-    text-align: center;
+/* 1. Navigasi Mini di Bagian Atas Hero */
+.hero-v3-mini-nav {
+    margin-bottom: 3.5rem;
+    width: 100%;
 }
 
-.hero-v3-promo-badge {
-    display: inline-flex;
+.hero-v3-mini-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: #f0fdf4; /* Hijau muda transparan */
-    border: 1px solid #bbf7d0;
-    border-radius: 9999px;
-    padding: 0.5rem 1.25rem;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-.hero-v3-promo-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.promo-badge-tag {
-    background-color: #d1fae5;
-    color: #065f46;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 2px 10px;
-    border-radius: 9999px;
-    margin-right: 0.75rem;
-    text-transform: uppercase;
-    border: 1px solid #a7f3d0;
-}
-
-.promo-badge-text {
-    font-size: 0.875rem;
-    color: #1e293b;
-    font-weight: 500;
-}
-
-.promo-badge-arrow {
-    margin-left: 0.5rem;
-    color: #10b981;
+.hero-v3-mini-nav-link {
+    font-size: 0.825rem;
     font-weight: 700;
-    transition: transform 0.2s ease;
+    color: var(--gray-500);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; /* Spasi antar huruf lebar untuk gaya minimalis modern */
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
 }
 
-.hero-v3-promo-badge:hover .promo-badge-arrow {
-    transform: translateX(3px);
+.hero-v3-mini-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background-color: var(--brand-red);
+    transition: width 0.3s ease, left 0.3s ease;
 }
 
-/* 2. Konten Teks Terpusat (Centered) */
+.hero-v3-mini-nav-link:hover {
+    color: var(--brand-dark);
+}
+
+.hero-v3-mini-nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* 2. Konten Teks Terpusat (Centered Content) */
 .hero-v3-text-content {
     text-align: center;
-    max-width: 850px;
-    margin: 0 auto 3.5rem;
+    max-width: 920px;
+    margin: 0 auto;
 }
 
 .hero-v3-title {
-    font-size: var(--cc-hero-v3-title-size);
-    font-weight: var(--cc-hero-title-weight);
-    line-height: 1.1;
-    margin-bottom: var(--cc-hero-v3-title-margin-bottom);
-    color: #0f172a;
-    letter-spacing: -2px;
+    font-size: 4rem; /* Judul yang megah dan berani */
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--brand-dark);
+    letter-spacing: -0.03em; /* Karakteristik tipografi modern */
+    margin-bottom: 2rem;
+    text-transform: none;
 }
 
 .hero-v3-title .highlight-text-v3 {
     font-family: Georgia, Cambria, "Times New Roman", Times, serif;
     font-style: italic;
     font-weight: 400;
-    color: #0f172a;
+    color: var(--brand-red); /* Memberikan aksen warna brand pada kata terakhir */
 }
 
 .hero-v3-desc {
-    font-size: var(--cc-hero-v3-desc-size);
-    line-height: 1.65;
-    color: var(--gray-500);
-    max-width: 650px;
-    margin: 0 auto var(--cc-hero-v3-desc-margin-bottom);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--gray-600);
+    max-width: 720px;
+    margin: 0 auto 3rem;
 }
 
+/* 3. Tombol Aksi */
 .hero-v3-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    align-items: center;
+    gap: 1.25rem;
 }
 
 .hero-btn-v3 {
-    padding: 1rem 2.5rem;
-    font-weight: 700;
-    text-transform: capitalize;
-    letter-spacing: 0.5px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-}
-
-.hero-btn-v3:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-/* 3. Area Grafis Visual (Canvas Grid Hijau Neon) */
-.hero-v3-visual-canvas {
-    position: relative;
-    width: 100%;
-    max-width: 950px;
-    height: 480px;
-    background-color: var(--cc-hero-v3-canvas-bg); /* Warna hijau neon khas Jasper */
-    border-top-left-radius: var(--cc-hero-canvas-radius);
-    border-top-right-radius: var(--cc-hero-canvas-radius);
-    overflow: hidden;
-    clip-path: polygon(
-        0% 0%, 
-        100% 0%, 
-        100% 88%, 
-        92% 88%, 
-        92% 94%, 
-        76% 94%, 
-        76% 88%, 
-        60% 88%, 
-        60% 98%, 
-        40% 98%, 
-        40% 88%, 
-        24% 88%, 
-        24% 94%, 
-        8% 94%, 
-        8% 88%, 
-        0% 88%
-    );
-}
-
-/* Pola Grid Canvas */
-.hero-v3-grid-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
-    background-size: 24px 24px;
-    z-index: 1;
-}
-
-.hero-v3-visual-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-/* Foto Model Utama */
-.hero-v3-main-img {
-    max-height: 420px;
-    width: auto;
-    object-fit: contain;
-    z-index: 5;
-    position: relative;
-    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
-}
-
-/* Kartu Melayang */
-.floating-card-v3 {
-    position: absolute;
-    background: #ffffff;
-    border-radius: var(--cc-hero-card-radius);
-    padding: 1rem 1.25rem;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.08), 
-        0 1px 3px rgba(0, 0, 0, 0.02);
-    z-index: 10;
-}
-
-/* Kartu Kiri */
-.card-v3-left {
-    top: 30%;
-    left: 8%;
-    max-width: 280px;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.card-dot-red {
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
-
-.card-v3-left .card-text {
+    padding: 1rem 2.25rem;
     font-size: 0.95rem;
-    font-weight: 800;
-    line-height: 1.4;
-    color: #0f172a;
-    text-align: left;
-}
-
-/* Kartu Kanan */
-.card-v3-right {
-    top: 25%;
-    right: 10%;
-    background-color: var(--cc-hero-v3-card-right-bg); /* Deep blue/navy */
-    color: #ffffff;
-    min-width: 160px;
-    padding: 1.25rem;
-    text-align: left;
-}
-
-.card-v3-right .rate-number {
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1;
-    font-family: Georgia, serif;
-    color: #ffffff;
-    margin-bottom: 0.25rem;
-}
-
-.card-v3-right .rate-label {
-    font-size: 0.8rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.2;
-}
-
-/* Ornamen Segitiga Pink/Magenta */
-.shape-v3-pink-triangle {
-    position: absolute;
-    top: 20%;
-    left: 5%;
-    width: 140px;
-    height: 140px;
-    background-color: var(--cc-hero-v3-triangle-color);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    transform: rotate(-15deg);
-    z-index: 1;
-    opacity: 0.85;
-}
-
-/* Kolom Lingkaran Hijau (Kanan) */
-.shape-v3-circle-column {
-    position: absolute;
-    top: 15%;
-    right: 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 3;
-}
-
-.shape-v3-circle-column .circle-item {
-    width: 65px;
-    height: 65px;
-    background-color: var(--cc-hero-v3-circle-color);
-    border-radius: 50%;
-}
-
-/* Garis Biru Miring */
-.shape-v3-blue-bars {
-    position: absolute;
-    bottom: 15%;
-    right: 25%;
-    display: flex;
-    gap: 0.4rem;
-    transform: rotate(25deg);
-    z-index: 3;
-}
-
-.shape-v3-blue-bars .bar-item {
-    width: 8px;
-    height: 45px;
-    background-color: var(--cc-hero-v3-blue-bars-color);
-    border-radius: 4px;
-}
-
-/* Lingkaran Hijau Solid di Bawah */
-.shape-v3-green-circle-bottom {
-    position: absolute;
-    bottom: -35px;
-    left: 55%;
-    width: 90px;
-    height: 90px;
-    background-color: var(--cc-hero-v3-circle-color);
-    border-radius: 50%;
-    z-index: 3;
-}
-
-/* 4. Logo-Logo Mitra / Partners */
-.hero-v3-partners {
-    width: 100%;
-    padding: 5rem 0 3rem;
-    text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    background: #ffffff;
-}
-
-.partners-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--gray-500);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 2.5rem;
-}
-
-.partners-logos-container {
-    display: flex;
-    justify-content: center;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 3.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
+    justify-content: center;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
 }
 
-.partner-logo-item img {
-    max-height: 32px;
-    width: auto;
-    filter: grayscale(1) opacity(0.65);
-    transition: all 0.3s ease;
+/* Tombol Primer (Explore Collection) */
+.hero-btn-v3-primary {
+    background-color: var(--brand-red);
+    color: var(--brand-white);
+    border-color: var(--brand-red);
 }
 
-.partner-logo-item img:hover {
-    filter: grayscale(0) opacity(1);
+.hero-btn-v3-primary:hover {
+    background-color: var(--brand-red-dark);
+    border-color: var(--brand-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(192, 19, 20, 0.15);
 }
 
-.partner-logo-text {
-    font-size: 1.35rem;
-    font-weight: 900;
-    color: #94a3b8;
-    letter-spacing: -0.5px;
-    text-transform: uppercase;
-    filter: grayscale(1);
-    opacity: 0.65;
-    transition: all 0.3s ease;
+/* Tombol Outline (Read More) */
+.hero-btn-v3-outline {
+    background-color: transparent;
+    color: var(--brand-dark);
+    border-color: var(--brand-dark);
 }
 
-.partner-logo-text:hover {
-    color: #0f172a;
-    opacity: 1;
+.hero-btn-v3-outline:hover {
+    background-color: var(--brand-dark);
+    color: var(--brand-white);
+    border-color: var(--brand-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(31, 41, 55, 0.1);
 }
 
-/* --- Responsif Varian 3 --- */
+/* --- Media Queries Responsif --- */
 @media (max-width: 1024px) {
+    .hero-v3-section {
+        padding: 6rem 0 7rem;
+    }
+
     .hero-v3-title {
-        font-size: 3.5rem;
-        letter-spacing: -1.5px;
-    }
-    
-    .hero-v3-visual-canvas {
-        height: 420px;
-        max-width: 800px;
-    }
-    
-    .card-v3-left {
-        left: 5%;
-        max-width: 220px;
-    }
-    
-    .card-v3-right {
-        right: 5%;
-    }
-    
-    .shape-v3-pink-triangle {
-        width: 110px;
-        height: 110px;
-    }
-    
-    .shape-v3-circle-column .circle-item {
-        width: 50px;
-        height: 50px;
+        font-size: 3.25rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero-v3-section {
-        padding: 4rem 0 0;
+        padding: 5rem 0 6rem;
     }
 
-    .hero-v3-text-content {
-        margin-bottom: 2.5rem;
-        padding: 0 1rem;
+    .hero-v3-container {
+        padding: 0 1.5rem;
     }
-    
+
+    .hero-v3-mini-nav {
+        margin-bottom: 2.5rem;
+    }
+
+    .hero-v3-mini-nav-list {
+        gap: 1.25rem;
+    }
+
+    .hero-v3-mini-nav-link {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+    }
+
     .hero-v3-title {
         font-size: 2.5rem;
-        letter-spacing: -1px;
-    }
-    
-    .hero-v3-desc {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .hero-v3-buttons {
-        flex-direction: column;
-        gap: 0.75rem;
-        width: 100%;
-        max-width: 320px;
-        margin: 0 auto;
-    }
-    
-    .hero-btn-v3 {
-        width: 100%;
-    }
-
-    .hero-v3-visual-canvas {
-        height: 350px;
-        border-radius: 16px;
-        clip-path: none;
-        width: calc(100% - 2rem);
-        margin: 0 1rem;
-    }
-    
-    .hero-v3-main-img {
-        max-height: 300px;
-    }
-
-    /* Sembunyikan ornamen melayang rumit di mobile untuk mencegah overflow */
-    .shape-v3-pink-triangle,
-    .shape-v3-circle-column,
-    .shape-v3-blue-bars,
-    .shape-v3-green-circle-bottom,
-    .floating-card-v3 {
-        display: none !important;
-    }
-
-    .hero-v3-partners {
-        padding: 3rem 1rem 2rem;
-        background: #f8fafc;
-    }
-    
-    .partners-title {
-        font-size: 0.875rem;
         margin-bottom: 1.5rem;
     }
-    
-    .partners-logos-container {
-        gap: 2rem;
+
+    .hero-v3-desc {
+        font-size: 1.05rem;
+        margin-bottom: 2.25rem;
+        line-height: 1.65;
     }
-    
-    .partner-logo-text {
-        font-size: 1.1rem;
+
+    .hero-v3-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        gap: 0.75rem;
+    }
+
+    .hero-btn-v3 {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
     }
 }
+
