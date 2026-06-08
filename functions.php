@@ -36,6 +36,9 @@ require_once $_cc_inc . 'ajax-loadmore.php';
 // Customizer (semua panel & settings)
 require_once $_cc_inc . 'customizer/loader.php';
 
+// Custom Admin & Login Theme Engine
+require_once $_cc_inc . 'admin-theme-engine.php';
+
 // Optimizers (SEO, Keamanan, Performa) — urutan: performance dulu, SEO terakhir
 require_once $_cc_inc . 'optimizers/performance-optimizer.php';
 require_once $_cc_inc . 'optimizers/security-optimizer.php';
