@@ -93,6 +93,20 @@ function cc_sections_dynamic_css_variables() {
     // 9. Footer
     $foot_bg  = cc_get( 'footer_bg_color', '#0b1c3f' );
     $foot_txt = cc_get( 'footer_text_color', '#ffffff' );
+    $foot_logo_bg = cc_get( 'cc_footer_logo_bg', '#ffffff' );
+    $foot_middle_bg = cc_get( 'cc_footer_middle_bg', '#ffffff' );
+    $foot_middle_txt = cc_get( 'cc_footer_middle_text_color', '#000000' );
+    $foot_stats_bg = cc_get( 'cc_footer_stats_bg', '#ffffff' );
+    $foot_stats_txt = cc_get( 'cc_footer_stats_text_color', '#000000' );
+
+    $foot_social_bg = cc_get( 'cc_footer_social_bg', '#ffffff' );
+    $foot_social_icon = cc_get( 'cc_footer_social_icon_color', '#000000' );
+    $foot_social_hover_bg = cc_get( 'cc_footer_social_hover_bg', '#d4af37' );
+    $foot_social_hover_icon = cc_get( 'cc_footer_social_hover_icon_color', '#000000' );
+
+    $foot_top_pad = cc_get( 'cc_footer_top_padding', 40 );
+    $foot_middle_pad = cc_get( 'cc_footer_middle_padding', 24 );
+    $foot_bottom_pad = cc_get( 'cc_footer_bottom_padding', 24 );
     ?>
     <style type="text/css" id="cc-sections-dynamic-variables">
         :root {
@@ -189,6 +203,20 @@ function cc_sections_dynamic_css_variables() {
             /* === FOOTER === */
             --cc-footer-bg-color: <?php echo esc_attr( $foot_bg ); ?>;
             --cc-footer-text-color: <?php echo esc_attr( $foot_txt ); ?>;
+            --cc-footer-logo-bg: <?php echo esc_attr( $foot_logo_bg ); ?>;
+            --cc-footer-middle-bg: <?php echo esc_attr( $foot_middle_bg ); ?>;
+            --cc-footer-middle-text-color: <?php echo esc_attr( $foot_middle_txt ); ?>;
+            --cc-footer-stats-bg: <?php echo esc_attr( $foot_stats_bg ); ?>;
+            --cc-footer-stats-text-color: <?php echo esc_attr( $foot_stats_txt ); ?>;
+
+            --cc-footer-social-bg: <?php echo esc_attr( $foot_social_bg ); ?>;
+            --cc-footer-social-icon-color: <?php echo esc_attr( $foot_social_icon ); ?>;
+            --cc-footer-social-hover-bg: <?php echo esc_attr( $foot_social_hover_bg ); ?>;
+            --cc-footer-social-hover-icon-color: <?php echo esc_attr( $foot_social_hover_icon ); ?>;
+
+            --cc-footer-top-padding: <?php echo esc_attr( $foot_top_pad ) . 'px'; ?>;
+            --cc-footer-middle-padding: <?php echo esc_attr( $foot_middle_pad ) . 'px'; ?>;
+            --cc-footer-bottom-padding: <?php echo esc_attr( $foot_bottom_pad ) . 'px'; ?>;
         }
     </style>
     <?php

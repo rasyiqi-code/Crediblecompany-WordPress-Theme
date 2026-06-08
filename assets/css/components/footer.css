@@ -22,13 +22,13 @@
 
 /* --- Row 1: Top (Red BG) --- */
 .footer-top {
-    padding: 2.5rem 0;
+    padding: var(--cc-footer-top-padding, 2.5rem) 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Logo Boxed */
 .footer-logo-box {
-    background: #ffffff;
+    background: var(--cc-footer-logo-bg, #ffffff);
     padding: 10px 20px;
     border-radius: 4px;
     display: flex;
@@ -64,8 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--cc-footer-text-color, #ffffff);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s, color 0.2s;
 }
 
 .footer-social a:hover {
@@ -78,30 +77,46 @@
     fill: currentColor;
 }
 
-.social-fb {
+/* Mode Kustom Sosial Media */
+.footer-social.social-custom-mode a {
+    background-color: var(--cc-footer-social-bg, #ffffff);
+    color: var(--cc-footer-social-icon-color, #000000);
+}
+
+.footer-social.social-custom-mode a:hover {
+    background-color: var(--cc-footer-social-hover-bg, #d4af37);
+    color: var(--cc-footer-social-hover-icon-color, #000000);
+}
+
+/* Mode Brand Resmi Sosial Media */
+.footer-social.social-brand-mode a {
+    color: #ffffff;
+}
+
+.footer-social.social-brand-mode .social-fb {
     background-color: #3b5998;
 }
 
-.social-tw {
+.footer-social.social-brand-mode .social-tw {
     background-color: #1da1f2;
 }
 
-.social-ig {
+.footer-social.social-brand-mode .social-ig {
     background-color: #e1306c;
 }
 
-.social-yt {
+.footer-social.social-brand-mode .social-yt {
     background-color: #ff0000;
 }
 
-.social-tk {
+.footer-social.social-brand-mode .social-tk {
     background-color: #000000;
 }
 
 /* Stats Widget */
 .stats-card {
-    background: #ffffff;
-    color: #000000;
+    background: var(--cc-footer-stats-bg, #ffffff);
+    color: var(--cc-footer-stats-text-color, #000000);
     padding: 0.75rem 1.25rem;
     border-radius: 8px;
     display: flex;
@@ -112,7 +127,8 @@
 
 .stats-icon {
     display: flex;
-    color: #666;
+    color: currentColor;
+    opacity: 0.8;
 }
 
 .stats-text {
@@ -122,9 +138,9 @@
 
 /* --- Row 2: Middle (White BG) --- */
 .footer-middle {
-    background: #ffffff;
-    color: #000000;
-    padding: 1.5rem 0;
+    background: var(--cc-footer-middle-bg, #ffffff);
+    color: var(--cc-footer-middle-text-color, #000000);
+    padding: var(--cc-footer-middle-padding, 1.5rem) 0;
     text-align: center;
 }
 
@@ -141,7 +157,7 @@
 
 /* --- Row 3: Bottom (Red BG) --- */
 .footer-bottom {
-    padding: 1.5rem 0;
+    padding: var(--cc-footer-bottom-padding, 1.5rem) 0;
     background: var(--cc-footer-bg-color, var(--brand-red, #cc0000));
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 0.875rem;
