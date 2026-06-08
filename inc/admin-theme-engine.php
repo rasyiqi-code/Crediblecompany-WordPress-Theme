@@ -520,13 +520,9 @@ add_action( 'admin_head', function() {
 
 // Mengubah teks footer kiri admin WordPress
 add_filter( 'admin_footer_text', function() {
-    return sprintf(
-        /* translators: 1: site name, 2: link developer */
-        __( 'Terima kasih telah menggunakan tema %1$s. Dikembangkan oleh %2$s.', 'crediblecompany' ),
-        '<strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong>',
-        '<a href="https://crediblemark.com/" target="_blank" rel="noopener" style="font-weight: 600;">Rasyiqi - Crediblemark.com</a>'
-    );
+    return 'Theme & Plugin Developed by <a href="https://crediblemark.com/" target="_blank" rel="noopener" style="font-weight: 600;">Rasyiqi - KBM x Crediblemark</a>';
 } );
+
 
 
 // Menyembunyikan versi WordPress di footer kanan admin
