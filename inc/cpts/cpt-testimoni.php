@@ -18,6 +18,11 @@
  * 1. Register CPT — hanya jika plugin Customer Says TIDAK aktif
  * ---------------------------------------------------------------------- */
 add_action( 'init', function () {
+    // Jika seksi testimoni dinonaktifkan di Customizer, jangan daftarkan CPT
+    if ( ! get_theme_mod( 'cc_testimonials_enable', true ) ) {
+        return;
+    }
+
     // Jika plugin customer-says sudah aktif, skip registrasi CPT
     if ( post_type_exists( 'testimoni' ) ) {
         return;
