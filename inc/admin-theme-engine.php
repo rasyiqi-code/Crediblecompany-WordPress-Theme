@@ -389,9 +389,20 @@ add_action( 'admin_head', function() {
         #adminmenu a:hover {
             color: <?php echo esc_attr( $dark_bg ); ?> !important;
         }
+        /* Ikon menu default: putih */
         #adminmenu div.wp-menu-image::before {
             color: #ffffff !important;
         }
+
+        /* Ikon menu saat aktif (current), sub-menu aktif (wp-has-current-submenu), atau dihover */
+        #adminmenu li.current div.wp-menu-image::before,
+        #adminmenu li.wp-has-current-submenu div.wp-menu-image::before,
+        #adminmenu li.menu-top:hover div.wp-menu-image::before,
+        #adminmenu li.opensub > a.menu-top div.wp-menu-image::before,
+        #adminmenu li > a.menu-top:focus div.wp-menu-image::before {
+            color: <?php echo esc_attr( $dark_bg ); ?> !important;
+        }
+
 
         /* General links */
         a {
