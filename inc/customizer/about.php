@@ -72,30 +72,56 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_about_section',
     ) ) );
 
-    // 6. Padding Horizontal Teks (Kanan/Kiri)
-    $wp_customize->add_setting( 'cc_about_text_padding_lr', array(
-        'default'           => 16,
+    // 6a. [Desktop] Padding Horizontal Teks (Kanan/Kiri)
+    $wp_customize->add_setting( 'cc_about_text_padding_lr_desktop', array(
+        'default'           => 0,
         'sanitize_callback' => 'absint',
     ) );
-    $wp_customize->add_control( 'cc_about_text_padding_lr', array(
-        'label'       => __( 'Spasi Padding Kanan/Kiri Teks (Pixel)', 'crediblecompany' ),
-        'description' => __( 'Mengatur padding horizontal teks About agar presisi, terutama di tampilan mobile.', 'crediblecompany' ),
+    $wp_customize->add_control( 'cc_about_text_padding_lr_desktop', array(
+        'label'       => __( 'Desktop: Spasi Kanan/Kiri Teks (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Tambahan spasi horizontal teks About di desktop (bawaan kontainer sudah memiliki 2rem).', 'crediblecompany' ),
         'section'     => 'cc_about_section',
         'type'        => 'range',
         'input_attrs' => array( 'min' => 0, 'max' => 80, 'step' => 2 ),
     ) );
 
-    // 7. Spasi Padding Atas/Bawah Section (Tinggi Section)
-    $wp_customize->add_setting( 'cc_about_padding', array(
+    // 6b. [Mobile] Padding Horizontal Teks (Kanan/Kiri)
+    $wp_customize->add_setting( 'cc_about_text_padding_lr_mobile', array(
+        'default'           => 16,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_about_text_padding_lr_mobile', array(
+        'label'       => __( 'Mobile: Spasi Kanan/Kiri Teks (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Spasi horizontal teks About di tampilan layar mobile (ketika kontainer disembunyikan).', 'crediblecompany' ),
+        'section'     => 'cc_about_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 0, 'max' => 80, 'step' => 2 ),
+    ) );
+
+    // 7a. [Desktop] Spasi Padding Atas/Bawah Section (Tinggi Section)
+    $wp_customize->add_setting( 'cc_about_padding_desktop', array(
         'default'           => 64,
         'sanitize_callback' => 'absint',
     ) );
-    $wp_customize->add_control( 'cc_about_padding', array(
-        'label'       => __( 'Tinggi Spasi Atas/Bawah (Pixel)', 'crediblecompany' ),
-        'description' => __( 'Mengatur jarak spasi vertical (padding) atas dan bawah untuk About section.', 'crediblecompany' ),
+    $wp_customize->add_control( 'cc_about_padding_desktop', array(
+        'label'       => __( 'Desktop: Tinggi Spasi Section (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Mengatur padding vertikal atas dan bawah About section di layar desktop.', 'crediblecompany' ),
         'section'     => 'cc_about_section',
         'type'        => 'range',
         'input_attrs' => array( 'min' => 20, 'max' => 150, 'step' => 2 ),
+    ) );
+
+    // 7b. [Mobile] Spasi Padding Atas/Bawah Section (Tinggi Section)
+    $wp_customize->add_setting( 'cc_about_padding_mobile', array(
+        'default'           => 40,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'cc_about_padding_mobile', array(
+        'label'       => __( 'Mobile: Tinggi Spasi Section (Pixel)', 'crediblecompany' ),
+        'description' => __( 'Mengatur padding vertikal atas dan bawah About section di layar mobile.', 'crediblecompany' ),
+        'section'     => 'cc_about_section',
+        'type'        => 'range',
+        'input_attrs' => array( 'min' => 10, 'max' => 120, 'step' => 2 ),
     ) );
 
 } );

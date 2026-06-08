@@ -36,7 +36,7 @@
  * 1b. About Section
  * ---------------------------------------------------------------------- */
 .about-section {
-    padding: var(--cc-about-padding, 4rem) 0;
+    padding: var(--cc-about-padding-desktop, 4rem) 0;
     background: var(--cc-about-bg-color, var(--brand-white));
 }
 
@@ -60,6 +60,7 @@
 .about-block p {
     color: var(--cc-about-text-color, var(--gray-700));
     line-height: 1.8;
+    padding: 0 var(--cc-about-text-padding-lr-desktop, 0);
 }
 
 /* --------------------------------------------------------------------------

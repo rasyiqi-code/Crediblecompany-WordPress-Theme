@@ -192,7 +192,11 @@
     }
 
     .about-block p {
-        padding: 0 var(--cc-about-text-padding-lr, 1rem) !important; /* Menjaga teks agar tetap memiliki padding kiri-kanan sesuai setelan Customizer */
+        padding: 0 var(--cc-about-text-padding-lr-mobile, 1rem) !important; /* Menjaga teks agar tetap memiliki padding kiri-kanan sesuai setelan Customizer */
+    }
+
+    .about-section {
+        padding: var(--cc-about-padding-mobile, 2.5rem) 0 !important; /* Mengatur tinggi spasi vertikal seksi About di mobile */
     }
 
     /* Features */
