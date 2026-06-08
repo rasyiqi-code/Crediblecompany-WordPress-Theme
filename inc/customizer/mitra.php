@@ -23,6 +23,18 @@ add_action( 'customize_register', function( $wp_customize ) {
         'type'    => 'text',
     ) );
 
+    // Fallback Teks Mitra Resmi (dipisahkan koma)
+    $wp_customize->add_setting( 'cc_mitra_names', array(
+        'default'           => 'Mitra 1, Mitra 2, Mitra 3, Mitra 4',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'cc_mitra_names', array(
+        'label'       => __( 'Fallback Teks Mitra Resmi (pisahkan koma)', 'crediblecompany' ),
+        'description' => __( 'Teks yang tampil jika gambar logo Mitra Resmi di bawah ini kosong.', 'crediblecompany' ),
+        'section'     => 'cc_mitra_section',
+        'type'        => 'text',
+    ) );
+
     // Daftar 6 slot logo Mitra Resmi
     for ( $i = 1; $i <= 6; $i++ ) {
         $wp_customize->add_setting( "cc_mitra_logo_{$i}", array(

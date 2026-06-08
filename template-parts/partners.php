@@ -18,7 +18,8 @@ for ( $i = 1; $i <= 6; $i++ ) {
 }
 
 // Fallback teks jika belum ada 1 pun logo diupload
-$mitra_resmi_fallback = array( 'Mitra 1', 'Mitra 2', 'Mitra 3', 'Mitra 4' );
+$mitra_resmi_raw      = cc_get( 'mitra_names', 'Mitra 1, Mitra 2, Mitra 3, Mitra 4' );
+$mitra_resmi_fallback = array_filter( array_map( 'trim', explode( ',', $mitra_resmi_raw ) ) );
 
 // Tagline proses kerja (dari Customizer)
 $proses_tagline = cc_get(
