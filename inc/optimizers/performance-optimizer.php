@@ -110,8 +110,8 @@ function cc_minify_html_output( $buffer ) {
 // Menambahkan atribut Defer ke Script (Non-Kritikal)
 add_filter( 'script_loader_tag', 'cc_defer_scripts', 10, 3 );
 function cc_defer_scripts( $tag, $handle, $src ) {
-    // Abaikan jQuery inti agar tidak merusak inline script yang butuh jQuery
-    if ( is_admin() || 'jquery' === $handle || 'jquery-core' === $handle ) {
+    // Abaikan di admin, customizer preview, atau untuk jQuery inti agar tidak merusak inline script
+    if ( is_admin() || is_customize_preview() || 'jquery' === $handle || 'jquery-core' === $handle ) {
         return $tag;
     }
     return str_replace( ' src', ' defer src', $tag );
