@@ -175,10 +175,17 @@
 
     .about-block {
         flex-direction: column;
+        background: transparent !important; /* Menyembunyikan background kontainer card */
+        box-shadow: none !important; /* Menyembunyikan bayangan kontainer card */
+        padding: 0 !important; /* Hilangkan padding kontainer agar gambar dapat melebar penuh */
+        border-radius: 0 !important; /* Hilangkan border radius kontainer */
+        gap: 1.5rem; /* Jarak antara gambar dan teks di bawahnya */
     }
 
     .about-block img {
-        width: 100%;
+        width: 100% !important;
+        border-radius: 12px; /* Memberikan kelengkungan langsung pada gambar agar estetik */
+        box-shadow: var(--shadow-sm); /* Bayangan tipis pada gambar */
     }
 
     /* Features */
