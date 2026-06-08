@@ -271,8 +271,13 @@
     }
 
     /* Books */
+    .books {
+        padding: var(--cc-books-padding-mobile, 2.5rem) 0 !important;
+    }
+
     .books-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--cc-books-gap-mobile, 0.75rem) !important;
     }
 
     /* Blog */
@@ -315,6 +320,7 @@
 
     .books-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--cc-books-gap-mobile, 0.75rem) !important;
     }
 
     .partners-logos {

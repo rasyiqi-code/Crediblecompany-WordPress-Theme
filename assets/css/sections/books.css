@@ -8,7 +8,7 @@
 .books {
     background-color: var(--cc-books-bg-color, var(--brand-red));
     color: var(--cc-books-title-color, var(--brand-white));
-    padding: 4rem 0;
+    padding: var(--cc-books-padding-desktop, 4rem) 0;
     position: relative;
     overflow: hidden;
 }
@@ -24,7 +24,7 @@
 .books-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
+    gap: var(--cc-books-gap-desktop, 1.5rem);
     margin-bottom: 2.5rem;
 }
 
@@ -89,7 +89,17 @@
 }
 
 .books .btn {
+    background-color: var(--cc-books-btn-bg-color, transparent);
+    color: var(--cc-books-btn-text-color, currentColor);
+    border-color: var(--cc-books-btn-text-color, currentColor);
     margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.books .btn:hover {
+    background-color: var(--cc-books-btn-hover-bg-color, var(--cc-books-title-color, var(--brand-white)));
+    color: var(--cc-books-btn-hover-text-color, var(--cc-books-bg-color, var(--brand-red)));
+    border-color: var(--cc-books-btn-hover-bg-color, var(--cc-books-title-color, var(--brand-white)));
 }
 
 @media (max-width: 992px) {

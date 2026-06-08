@@ -61,8 +61,16 @@ function cc_sections_dynamic_css_variables() {
     $partners_pad_mob = cc_get( 'mitra_partners_padding_mobile', 24 );
 
     // 5. Books
-    $books_bg  = cc_get( 'books_bg_color', '#ffffff' );
-    $books_tit = cc_get( 'books_title_color', '#0f172a' );
+    $books_bg      = cc_get( 'books_bg_color', '#ffffff' );
+    $books_tit     = cc_get( 'books_title_color', '#0f172a' );
+    $books_btn_bg  = cc_get( 'books_btn_bg_color', 'transparent' );
+    $books_btn_txt = cc_get( 'books_btn_text_color', '#0f172a' );
+    $books_btn_hbg = cc_get( 'books_btn_hover_bg_color', '#0f172a' );
+    $books_btn_htxt = cc_get( 'books_btn_hover_text_color', '#ffffff' );
+    $books_pad_dt  = cc_get( 'books_padding_desktop', 64 );
+    $books_pad_mob = cc_get( 'books_padding_mobile', 40 );
+    $books_gap_dt  = cc_get( 'books_gap_desktop', 24 );
+    $books_gap_mob = cc_get( 'books_gap_mobile', 12 );
 
     // 6. Blog Homepage
     $blog_bg  = cc_get( 'blog_section_bg_color', '#f8fafc' );
@@ -138,6 +146,14 @@ function cc_sections_dynamic_css_variables() {
             /* === BOOKS === */
             --cc-books-bg-color: <?php echo esc_attr( $books_bg ); ?>;
             --cc-books-title-color: <?php echo esc_attr( $books_tit ); ?>;
+            --cc-books-btn-bg-color: <?php echo esc_attr( $books_btn_bg ); ?>;
+            --cc-books-btn-text-color: <?php echo esc_attr( $books_btn_txt ); ?>;
+            --cc-books-btn-hover-bg-color: <?php echo esc_attr( $books_btn_hbg ); ?>;
+            --cc-books-btn-hover-text-color: <?php echo esc_attr( $books_btn_htxt ); ?>;
+            --cc-books-padding-desktop: <?php echo esc_attr( $books_pad_dt ) . 'px'; ?>;
+            --cc-books-padding-mobile: <?php echo esc_attr( $books_pad_mob ) . 'px'; ?>;
+            --cc-books-gap-desktop: <?php echo esc_attr( $books_gap_dt ) . 'px'; ?>;
+            --cc-books-gap-mobile: <?php echo esc_attr( $books_gap_mob ) . 'px'; ?>;
 
             /* === BLOG HOMEPAGE === */
             --cc-blog-section-bg-color: <?php echo esc_attr( $blog_bg ); ?>;
