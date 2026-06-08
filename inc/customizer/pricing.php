@@ -266,6 +266,46 @@ add_action( 'customize_register', function( $wp_customize ) {
         'section' => 'cc_pricing_section',
     ) ) );
 
+    // Warna Border Card
+    $wp_customize->add_setting( 'cc_pricing_card_border_color', array(
+        'default'           => '#e2e8f0',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_border_color', array(
+        'label'   => __( 'Warna Border Card', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    // Warna Teks Catatan / Keterangan Card
+    $wp_customize->add_setting( 'cc_pricing_card_note_color', array(
+        'default'           => '#64748b',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_note_color', array(
+        'label'   => __( 'Warna Teks Keterangan / Catatan', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    // Warna Teks List Fasilitas
+    $wp_customize->add_setting( 'cc_pricing_card_feat_text_color', array(
+        'default'           => '#334155',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_feat_text_color', array(
+        'label'   => __( 'Warna Teks List Fasilitas', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
+    // Warna Ikon Centang Fasilitas
+    $wp_customize->add_setting( 'cc_pricing_card_check_icon_color', array(
+        'default'           => '#10b981',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_pricing_card_check_icon_color', array(
+        'label'   => __( 'Warna Ikon Centang Fasilitas', 'crediblecompany' ),
+        'section' => 'cc_pricing_section',
+    ) ) );
+
     // 8a. [Desktop] Spasi Padding Atas/Bawah Section (Tinggi Section)
     $wp_customize->add_setting( 'cc_pricing_padding_desktop', array(
         'default'           => 64,
@@ -318,6 +358,11 @@ add_action( 'wp_head', function() {
     $card_btn_hbg  = cc_get( 'pricing_card_btn_hover_bg', '#a00f10' );
     $card_btn_htxt = cc_get( 'pricing_card_btn_hover_text', '#ffffff' );
 
+    $card_border   = cc_get( 'pricing_card_border_color', '#e2e8f0' );
+    $card_note     = cc_get( 'pricing_card_note_color', '#64748b' );
+    $card_feat_txt = cc_get( 'pricing_card_feat_text_color', '#334155' );
+    $card_check    = cc_get( 'pricing_card_check_icon_color', '#10b981' );
+
     $pad_desktop   = cc_get( 'pricing_padding_desktop', 64 );
     $pad_mobile    = cc_get( 'pricing_padding_mobile', 40 );
 
@@ -345,6 +390,11 @@ add_action( 'wp_head', function() {
             --cc-pricing-card-btn-text: <?php echo esc_attr( $card_btn_txt ); ?>;
             --cc-pricing-card-btn-hover-bg: <?php echo esc_attr( $card_btn_hbg ); ?>;
             --cc-pricing-card-btn-hover-text: <?php echo esc_attr( $card_btn_htxt ); ?>;
+
+            --cc-pricing-card-border-color: <?php echo esc_attr( $card_border ); ?>;
+            --cc-pricing-card-note-color: <?php echo esc_attr( $card_note ); ?>;
+            --cc-pricing-card-feat-text-color: <?php echo esc_attr( $card_feat_txt ); ?>;
+            --cc-pricing-card-check-icon-color: <?php echo esc_attr( $card_check ); ?>;
 
             --cc-pricing-padding-desktop: <?php echo esc_attr( $pad_desktop ) . 'px'; ?>;
             --cc-pricing-padding-mobile: <?php echo esc_attr( $pad_mobile ) . 'px'; ?>;

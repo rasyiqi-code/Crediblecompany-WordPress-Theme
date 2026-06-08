@@ -58,7 +58,7 @@
 /* --- Card Container --- */
 .price-card {
     background: var(--cc-pricing-card-bg-color, var(--brand-white));
-    border: 1px solid var(--gray-200);
+    border: 1px solid var(--cc-pricing-card-border-color, var(--gray-200));
     border-radius: var(--radius);
     overflow: visible;
     box-shadow: var(--shadow-sm);
@@ -117,7 +117,7 @@
     background: var(--cc-pricing-card-body-bg, var(--gray-100));
     padding: 1.25rem;
     text-align: center;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--cc-pricing-card-border-color, var(--gray-200));
 }
 
 .price-current {
@@ -142,7 +142,7 @@
 
 .price-catatan {
     font-size: 0.75rem;
-    color: var(--gray-500);
+    color: var(--cc-pricing-card-note-color, var(--gray-500));
     font-style: italic;
     line-height: 1.5;
     margin-top: 0.5rem;
@@ -174,7 +174,7 @@
     font-size: 0.875rem;
     font-weight: 400;
     margin-bottom: 0.375rem;
-    color: var(--gray-700);
+    color: var(--cc-pricing-card-feat-text-color, var(--gray-700));
     break-inside: avoid;
     line-height: 1.4;
 }
@@ -183,7 +183,7 @@
     flex-shrink: 0;
     width: 14px;
     height: 14px;
-    color: var(--green-500);
+    color: var(--cc-pricing-card-check-icon-color, var(--green-500));
     margin-top: 1px;
 }
 
@@ -242,5 +242,5 @@
 .price-card.has-poster-image .price-card-action {
     padding: 1rem 1.25rem 1.25rem;
     background: var(--brand-white);
-    border-top: 1px solid var(--gray-100);
+    border-top: 1px solid var(--cc-pricing-card-border-color, var(--gray-100));
 }
