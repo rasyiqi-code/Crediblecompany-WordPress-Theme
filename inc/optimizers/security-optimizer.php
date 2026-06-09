@@ -234,7 +234,7 @@ foreach ( $cc_url_filters as $filter ) {
  * Filter string URL untuk mengubah http:// menjadi https:// di domain produksi atau jika SSL aktif.
  */
 function cc_force_ssl_url( $url ) {
-    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'];
+    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && false !== strpos( $_SERVER['HTTP_HOST'], 'publisher.ppns.ac.id' );
     if ( ( is_ssl() || $is_prod ) && ! empty( $url ) && is_string( $url ) ) {
         if ( 0 === strpos( $url, 'http://' ) ) {
             $url = 'https://' . substr( $url, 7 );
@@ -248,11 +248,25 @@ function cc_force_ssl_url( $url ) {
  */
 add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url', 999 );
 function cc_force_ssl_image_src_url( $image ) {
-    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'];
+    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && false !== strpos( $_SERVER['HTTP_HOST'], 'publisher.ppns.ac.id' );
     if ( ( is_ssl() || $is_prod ) && is_array( $image ) && ! empty( $image[0] ) ) {
         if ( 0 === strpos( $image[0], 'http://' ) ) {
             $image[0] = 'https://' . substr( $image[0], 7 );
         }
     }
     return $image;
+}
+
+/**
+ * Tambahkan tag meta Content-Security-Policy (CSP) upgrade-insecure-requests
+ * untuk memaksa browser meng-upgrade semua request HTTP eksternal/internal ke HTTPS secara dinamis.
+ */
+add_action( 'wp_head', 'cc_add_csp_upgrade_insecure', 1 );
+add_action( 'admin_head', 'cc_add_csp_upgrade_insecure', 1 );
+add_action( 'login_head', 'cc_add_csp_upgrade_insecure', 1 );
+function cc_add_csp_upgrade_insecure() {
+    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && false !== strpos( $_SERVER['HTTP_HOST'], 'publisher.ppns.ac.id' );
+    if ( is_ssl() || $is_prod ) {
+        echo '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">' . "\n";
+    }
 }
