@@ -135,7 +135,7 @@ function cc_disable_user_enumeration() {
 
 // Blokir Rest API User Endpoints (Untuk User Non-Admin, kecuali jika mengakses data dirinya sendiri)
 add_filter( 'rest_prepare_user', function( $response, $user, $request ) {
-    if ( ! current_user_can( 'manage_options' ) && get_current_user_id() !== $user->ID ) {
+    if ( ! current_user_can( 'manage_options' ) && (int) get_current_user_id() !== (int) $user->ID ) {
         return new WP_Error( 'rest_cannot_read', __( 'Anda tidak memiliki akses.', 'crediblecompany' ), array( 'status' => 403 ) );
     }
     return $response;
