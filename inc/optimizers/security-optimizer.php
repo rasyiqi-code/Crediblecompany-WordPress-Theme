@@ -233,9 +233,23 @@ foreach ( $cc_url_filters as $filter ) {
 /**
  * Filter string URL untuk mengubah http:// menjadi https:// di domain produksi atau jika SSL aktif.
  */
+/**
+ * Mengecek apakah website berjalan di lingkungan produksi (domain publisher.ppns.ac.id).
+ */
+function cc_is_prod_env() {
+    $http_host   = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
+    $server_name = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
+    return (
+        false !== stripos( $http_host, 'publisher.ppns.ac.id' ) ||
+        false !== stripos($server_name, 'publisher.ppns.ac.id' )
+    );
+}
+
+/**
+ * Filter string URL untuk mengubah http:// menjadi https:// di domain produksi atau jika SSL aktif.
+ */
 function cc_force_ssl_url( $url ) {
-    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && false !== strpos( $_SERVER['HTTP_HOST'], 'publisher.ppns.ac.id' );
-    if ( ( is_ssl() || $is_prod ) && ! empty( $url ) && is_string( $url ) ) {
+    if ( ( is_ssl() || cc_is_prod_env() ) && ! empty( $url ) && is_string( $url ) ) {
         if ( 0 === strpos( $url, 'http://' ) ) {
             $url = 'https://' . substr( $url, 7 );
         }
@@ -248,8 +262,7 @@ function cc_force_ssl_url( $url ) {
  */
 add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url', 999 );
 function cc_force_ssl_image_src_url( $image ) {
-    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && false !== strpos( $_SERVER['HTTP_HOST'], 'publisher.ppns.ac.id' );
-    if ( ( is_ssl() || $is_prod ) && is_array( $image ) && ! empty( $image[0] ) ) {
+    if ( ( is_ssl() || cc_is_prod_env() ) && is_array( $image ) && ! empty( $image[0] ) ) {
         if ( 0 === strpos( $image[0], 'http://' ) ) {
             $image[0] = 'https://' . substr( $image[0], 7 );
         }
@@ -265,8 +278,7 @@ add_action( 'wp_head', 'cc_add_csp_upgrade_insecure', 1 );
 add_action( 'admin_head', 'cc_add_csp_upgrade_insecure', 1 );
 add_action( 'login_head', 'cc_add_csp_upgrade_insecure', 1 );
 function cc_add_csp_upgrade_insecure() {
-    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && false !== strpos( $_SERVER['HTTP_HOST'], 'publisher.ppns.ac.id' );
-    if ( is_ssl() || $is_prod ) {
+    if ( is_ssl() || cc_is_prod_env() ) {
         echo '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">' . "\n";
     }
 }
