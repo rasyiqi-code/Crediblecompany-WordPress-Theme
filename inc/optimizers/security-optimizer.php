@@ -209,14 +209,16 @@ add_filter( 'wp_get_attachment_url', 'cc_force_ssl_url' );
 add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url' );
 
 function cc_force_ssl_url( $url ) {
-    if ( is_ssl() && ! empty( $url ) ) {
+    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'];
+    if ( ( is_ssl() || $is_prod ) && ! empty( $url ) ) {
         $url = str_replace( 'http://', 'https://', $url );
     }
     return $url;
 }
 
 function cc_force_ssl_image_src_url( $image ) {
-    if ( is_ssl() && is_array( $image ) && ! empty( $image[0] ) ) {
+    $is_prod = isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'];
+    if ( ( is_ssl() || $is_prod ) && is_array( $image ) && ! empty( $image[0] ) ) {
         $image[0] = str_replace( 'http://', 'https://', $image[0] );
     }
     return $image;

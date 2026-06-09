@@ -9,14 +9,28 @@
 // Sembunyikan Admin Bar di frontend
 add_filter( 'show_admin_bar', '__return_false' );
 
-// Deteksi HTTPS dari Reverse Proxy / Load Balancer / Cloudflare untuk mencegah Mixed Content
+// Deteksi HTTPS dari nama domain produksi atau Reverse Proxy / Load Balancer / Cloudflare untuk mencegah Mixed Content
 if (
+    ( isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'] ) ||
     ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === strtolower( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) ||
     ( isset( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === strtolower( $_SERVER['HTTP_X_FORWARDED_SSL'] ) ) ||
     ( isset( $_SERVER['HTTP_FRONT_END_HTTPS'] ) && 'on' === strtolower( $_SERVER['HTTP_FRONT_END_HTTPS'] ) ) ||
-    ( isset( $_SERVER['HTTP_X_URL_SCHEME'] ) && 'https' === strtolower( $_SERVER['HTTP_X_URL_SCHEME'] ) )
+    ( isset( $_SERVER['HTTP_X_URL_SCHEME'] ) && 'https' === strtolower( $_SERVER['HTTP_X_URL_SCHEME'] ) ) ||
+    ( isset( $_SERVER['HTTP_X_FORWARDED_PORT'] ) && '443' == $_SERVER['HTTP_X_FORWARDED_PORT'] )
 ) {
     $_SERVER['HTTPS'] = 'on';
+}
+
+// Filter pengaman tambahan untuk memaksakan skema HTTPS pada semua stylesheet dan script yang dimuat di domain produksi
+add_filter( 'style_loader_src', 'cc_force_https_assets', 999 );
+add_filter( 'script_loader_src', 'cc_force_https_assets', 999 );
+function cc_force_https_assets( $src ) {
+    if ( isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'] ) {
+        if ( is_string( $src ) && 0 === strpos( $src, 'http://' ) ) {
+            $src = str_replace( 'http://', 'https://', $src );
+        }
+    }
+    return $src;
 }
 
 /* --------------------------------------------------------------------------
