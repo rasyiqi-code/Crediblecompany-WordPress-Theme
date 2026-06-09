@@ -133,6 +133,7 @@ function cc_disable_user_enumeration() {
     }
 }
 
+/* 
 // Blokir Rest API User Endpoints (Untuk User Non-Admin, kecuali jika mengakses data dirinya sendiri)
 add_filter( 'rest_prepare_user', function( $response, $user, $request ) {
     if ( ! current_user_can( 'manage_options' ) && (int) get_current_user_id() !== (int) $user->ID ) {
@@ -140,6 +141,7 @@ add_filter( 'rest_prepare_user', function( $response, $user, $request ) {
     }
     return $response;
 }, 10, 3 );
+*/
 
 /* --------------------------------------------------------------------------
  * 4. Admin White-labeling (Professional Branding)
