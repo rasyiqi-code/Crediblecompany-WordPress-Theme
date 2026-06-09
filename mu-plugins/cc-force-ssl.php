@@ -4,10 +4,8 @@
  *
  * File ini HARUS ditempatkan di wp-content/mu-plugins/cc-force-ssl.php
  * MU Plugin dimuat SEBELUM tema dan plugin biasa, sehingga $_SERVER['HTTPS']
- * sudah diatur sebelum WordPress membaca siteurl/home dari database.
- *
- * Ini adalah best practice resmi WordPress untuk mengatasi Mixed Content
- * di balik reverse proxy (Nginx, Cloudflare, Load Balancer kampus, dsb.).
+ * dan konstanta WP_HOME/WP_SITEURL sudah diatur sebelum WordPress Core
+ * mendefinisikan WP_CONTENT_URL dan membaca option dari database.
  *
  * @package CredibleCompany
  * @see https://developer.wordpress.org/advanced-administration/server/administration/#using-a-reverse-proxy
@@ -17,44 +15,46 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/**
- * Deteksi apakah koneksi asli dari pengunjung menggunakan HTTPS
- * meskipun reverse proxy meneruskan traffic sebagai HTTP ke server WordPress.
- */
+/* --------------------------------------------------------------------------
+ * 1. Deteksi domain produksi dan header reverse proxy
+ * ---------------------------------------------------------------------- */
+$cc_host   = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( $_SERVER['HTTP_HOST'] ) : '';
 $cc_is_ssl = false;
 
-// 1. Cek header X-Forwarded-Proto (standar industri untuk reverse proxy)
-if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === strtolower( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
+// Deteksi domain produksi (diketahui menggunakan HTTPS)
+if ( false !== strpos( $cc_host, 'publisher.ppns.ac.id' ) ) {
     $cc_is_ssl = true;
 }
 
-// 2. Cek header X-Forwarded-SSL
-if ( isset( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === strtolower( $_SERVER['HTTP_X_FORWARDED_SSL'] ) ) {
+// Deteksi header reverse proxy standar
+if (
+    ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === strtolower( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) ||
+    ( isset( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === strtolower( $_SERVER['HTTP_X_FORWARDED_SSL'] ) ) ||
+    ( isset( $_SERVER['HTTP_FRONT_END_HTTPS'] ) && 'on' === strtolower( $_SERVER['HTTP_FRONT_END_HTTPS'] ) ) ||
+    ( isset( $_SERVER['HTTP_X_FORWARDED_PORT'] ) && 443 == $_SERVER['HTTP_X_FORWARDED_PORT'] ) ||
+    ( isset( $_SERVER['HTTP_X_URL_SCHEME'] ) && 'https' === strtolower( $_SERVER['HTTP_X_URL_SCHEME'] ) )
+) {
     $cc_is_ssl = true;
 }
 
-// 3. Cek header Front-End-Https (digunakan oleh beberapa load balancer Microsoft/IIS)
-if ( isset( $_SERVER['HTTP_FRONT_END_HTTPS'] ) && 'on' === strtolower( $_SERVER['HTTP_FRONT_END_HTTPS'] ) ) {
-    $cc_is_ssl = true;
-}
-
-// 4. Cek forwarded port 443
-if ( isset( $_SERVER['HTTP_X_FORWARDED_PORT'] ) && 443 == $_SERVER['HTTP_X_FORWARDED_PORT'] ) {
-    $cc_is_ssl = true;
-}
-
-// 5. Cek header X-Url-Scheme
-if ( isset( $_SERVER['HTTP_X_URL_SCHEME'] ) && 'https' === strtolower( $_SERVER['HTTP_X_URL_SCHEME'] ) ) {
-    $cc_is_ssl = true;
-}
-
-// 6. Fallback: deteksi berdasarkan domain produksi yang diketahui menggunakan HTTPS
-$cc_host = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
-if ( false !== stripos( $cc_host, 'publisher.ppns.ac.id' ) ) {
-    $cc_is_ssl = true;
-}
-
-// Atur $_SERVER['HTTPS'] agar WordPress mengenali koneksi sebagai HTTPS
-if ( $cc_is_ssl && ( ! isset( $_SERVER['HTTPS'] ) || 'on' !== $_SERVER['HTTPS'] ) ) {
+/* --------------------------------------------------------------------------
+ * 2. Paksa HTTPS jika terdeteksi SSL
+ * ---------------------------------------------------------------------- */
+if ( $cc_is_ssl ) {
+    // Beritahu WordPress bahwa koneksi menggunakan HTTPS
     $_SERVER['HTTPS'] = 'on';
+
+    // Override URL dasar WordPress agar selalu menggunakan https://
+    // Ini meng-override nilai siteurl & home di database wp_options
+    if ( ! defined( 'WP_HOME' ) ) {
+        define( 'WP_HOME', 'https://' . $cc_host );
+    }
+    if ( ! defined( 'WP_SITEURL' ) ) {
+        define( 'WP_SITEURL', 'https://' . $cc_host );
+    }
+
+    // Paksa SSL di halaman admin juga
+    if ( ! defined( 'FORCE_SSL_ADMIN' ) ) {
+        define( 'FORCE_SSL_ADMIN', true );
+    }
 }
