@@ -9,6 +9,16 @@
 // Sembunyikan Admin Bar di frontend
 add_filter( 'show_admin_bar', '__return_false' );
 
+// Deteksi HTTPS dari Reverse Proxy / Load Balancer / Cloudflare untuk mencegah Mixed Content
+if (
+    ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === strtolower( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) ||
+    ( isset( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === strtolower( $_SERVER['HTTP_X_FORWARDED_SSL'] ) ) ||
+    ( isset( $_SERVER['HTTP_FRONT_END_HTTPS'] ) && 'on' === strtolower( $_SERVER['HTTP_FRONT_END_HTTPS'] ) ) ||
+    ( isset( $_SERVER['HTTP_X_URL_SCHEME'] ) && 'https' === strtolower( $_SERVER['HTTP_X_URL_SCHEME'] ) )
+) {
+    $_SERVER['HTTPS'] = 'on';
+}
+
 /* --------------------------------------------------------------------------
  * 1. Loader — Muat semua modul dari folder inc/
  *    Urutan penting: helpers & CPT sebelum modul yang bergantung padanya.
