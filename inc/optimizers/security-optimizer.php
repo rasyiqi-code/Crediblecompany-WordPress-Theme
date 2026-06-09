@@ -133,9 +133,9 @@ function cc_disable_user_enumeration() {
     }
 }
 
-// Blokir Rest API User Endpoints (Untuk User Non-Admin)
+// Blokir Rest API User Endpoints (Untuk User Non-Admin, kecuali jika mengakses data dirinya sendiri)
 add_filter( 'rest_prepare_user', function( $response, $user, $request ) {
-    if ( ! current_user_can( 'manage_options' ) ) {
+    if ( ! current_user_can( 'manage_options' ) && get_current_user_id() !== $user->ID ) {
         return new WP_Error( 'rest_cannot_read', __( 'Anda tidak memiliki akses.', 'crediblecompany' ), array( 'status' => 403 ) );
     }
     return $response;
