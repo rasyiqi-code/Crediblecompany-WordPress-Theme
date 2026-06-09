@@ -21,18 +21,6 @@ if (
     $_SERVER['HTTPS'] = 'on';
 }
 
-// Filter pengaman tambahan untuk memaksakan skema HTTPS pada semua stylesheet dan script yang dimuat di domain produksi
-add_filter( 'style_loader_src', 'cc_force_https_assets', 999 );
-add_filter( 'script_loader_src', 'cc_force_https_assets', 999 );
-function cc_force_https_assets( $src ) {
-    if ( isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'] ) {
-        if ( is_string( $src ) && 0 === strpos( $src, 'http://' ) ) {
-            $src = str_replace( 'http://', 'https://', $src );
-        }
-    }
-    return $src;
-}
-
 /* --------------------------------------------------------------------------
  * 1. Loader — Muat semua modul dari folder inc/
  *    Urutan penting: helpers & CPT sebelum modul yang bergantung padanya.

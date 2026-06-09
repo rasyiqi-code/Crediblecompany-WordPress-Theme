@@ -205,21 +205,54 @@ function cc_clean_admin_menu() {
  * Memaksa semua URL aset internal menggunakan HTTPS jika situs diakses via SSL.
  * ---------------------------------------------------------------------- */
 
-add_filter( 'wp_get_attachment_url', 'cc_force_ssl_url' );
-add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url' );
+// Daftar filter WordPress untuk memaksakan HTTPS pada semua jenis URL internal
+$cc_url_filters = array(
+    'home_url',
+    'site_url',
+    'admin_url',
+    'content_url',
+    'plugins_url',
+    'wp_get_attachment_url',
+    'style_loader_src',
+    'script_loader_src',
+    'theme_file_uri',
+    'parent_theme_file_uri',
+    'post_link',
+    'post_type_link',
+    'page_link',
+    'attachment_link',
+    'term_link',
+    'author_link',
+    'get_canonical_url'
+);
 
+foreach ( $cc_url_filters as $filter ) {
+    add_filter( $filter, 'cc_force_ssl_url', 999 );
+}
+
+/**
+ * Filter string URL untuk mengubah http:// menjadi https:// di domain produksi atau jika SSL aktif.
+ */
 function cc_force_ssl_url( $url ) {
     $is_prod = isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'];
-    if ( ( is_ssl() || $is_prod ) && ! empty( $url ) ) {
-        $url = str_replace( 'http://', 'https://', $url );
+    if ( ( is_ssl() || $is_prod ) && ! empty( $url ) && is_string( $url ) ) {
+        if ( 0 === strpos( $url, 'http://' ) ) {
+            $url = 'https://' . substr( $url, 7 );
+        }
     }
     return $url;
 }
 
+/**
+ * Filter array attachment image src untuk memaksakan HTTPS pada URL gambar.
+ */
+add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url', 999 );
 function cc_force_ssl_image_src_url( $image ) {
     $is_prod = isset( $_SERVER['HTTP_HOST'] ) && 'publisher.ppns.ac.id' === $_SERVER['HTTP_HOST'];
     if ( ( is_ssl() || $is_prod ) && is_array( $image ) && ! empty( $image[0] ) ) {
-        $image[0] = str_replace( 'http://', 'https://', $image[0] );
+        if ( 0 === strpos( $image[0], 'http://' ) ) {
+            $image[0] = 'https://' . substr( $image[0], 7 );
+        }
     }
     return $image;
 }
