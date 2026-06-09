@@ -47,6 +47,9 @@ require_once $_cc_inc . 'optimizers/performance-optimizer.php';
 require_once $_cc_inc . 'optimizers/security-optimizer.php';
 require_once $_cc_inc . 'optimizers/seo-optimizer.php';
 
+// Auto-installer MU Plugin (force SSL untuk reverse proxy)
+require_once $_cc_inc . 'mu-plugin-installer.php';
+
 unset( $_cc_inc ); // Bersihkan variabel temporary
 
 /* --------------------------------------------------------------------------
