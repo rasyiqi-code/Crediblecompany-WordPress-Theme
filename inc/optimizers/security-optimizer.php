@@ -200,39 +200,6 @@ function cc_clean_admin_menu() {
     // remove_menu_page( 'index.php' ); 
 }
 
-/* --------------------------------------------------------------------------
- * 5. SSL / HTTPS Force (Cegah Mixed Content)
- * Memaksa semua URL aset internal menggunakan HTTPS jika situs diakses via SSL.
- * ---------------------------------------------------------------------- */
-
-// Daftar filter WordPress untuk memaksakan HTTPS pada semua jenis URL internal
-$cc_url_filters = array(
-    'home_url',
-    'site_url',
-    'admin_url',
-    'content_url',
-    'plugins_url',
-    'wp_get_attachment_url',
-    'style_loader_src',
-    'script_loader_src',
-    'theme_file_uri',
-    'parent_theme_file_uri',
-    'post_link',
-    'post_type_link',
-    'page_link',
-    'attachment_link',
-    'term_link',
-    'author_link',
-    'get_canonical_url'
-);
-
-foreach ( $cc_url_filters as $filter ) {
-    add_filter( $filter, 'cc_force_ssl_url', 999 );
-}
-
-/**
- * Filter string URL untuk mengubah http:// menjadi https:// di domain produksi atau jika SSL aktif.
- */
 /**
  * Mengecek apakah website berjalan di lingkungan produksi (domain publisher.ppns.ac.id).
  */
@@ -241,13 +208,14 @@ function cc_is_prod_env() {
     $server_name = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
     return (
         false !== stripos( $http_host, 'publisher.ppns.ac.id' ) ||
-        false !== stripos($server_name, 'publisher.ppns.ac.id' )
+        false !== stripos( $server_name, 'publisher.ppns.ac.id' )
     );
 }
 
-/**
- * Filter string URL untuk mengubah http:// menjadi https:// di domain produksi atau jika SSL aktif.
- */
+// Filter URL attachment media agar menggunakan HTTPS saat di produksi
+add_filter( 'wp_get_attachment_url', 'cc_force_ssl_url' );
+add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url' );
+
 function cc_force_ssl_url( $url ) {
     if ( ( is_ssl() || cc_is_prod_env() ) && ! empty( $url ) && is_string( $url ) ) {
         if ( 0 === strpos( $url, 'http://' ) ) {
@@ -257,10 +225,6 @@ function cc_force_ssl_url( $url ) {
     return $url;
 }
 
-/**
- * Filter array attachment image src untuk memaksakan HTTPS pada URL gambar.
- */
-add_filter( 'wp_get_attachment_image_src', 'cc_force_ssl_image_src_url', 999 );
 function cc_force_ssl_image_src_url( $image ) {
     if ( ( is_ssl() || cc_is_prod_env() ) && is_array( $image ) && ! empty( $image[0] ) ) {
         if ( 0 === strpos( $image[0], 'http://' ) ) {
@@ -272,7 +236,7 @@ function cc_force_ssl_image_src_url( $image ) {
 
 /**
  * Tambahkan tag meta Content-Security-Policy (CSP) upgrade-insecure-requests
- * untuk memaksa browser meng-upgrade semua request HTTP eksternal/internal ke HTTPS secara dinamis.
+ * sebagai lapisan pertahanan tambahan di sisi browser.
  */
 add_action( 'wp_head', 'cc_add_csp_upgrade_insecure', 1 );
 add_action( 'admin_head', 'cc_add_csp_upgrade_insecure', 1 );
@@ -282,3 +246,4 @@ function cc_add_csp_upgrade_insecure() {
         echo '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">' . "\n";
     }
 }
+

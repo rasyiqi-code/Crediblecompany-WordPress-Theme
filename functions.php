@@ -9,21 +9,6 @@
 // Sembunyikan Admin Bar di frontend
 add_filter( 'show_admin_bar', '__return_false' );
 
-// Deteksi HTTPS dari nama domain produksi atau Reverse Proxy / Load Balancer / Cloudflare untuk mencegah Mixed Content
-$cc_http_host   = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
-$cc_server_name = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
-if (
-    false !== stripos( $cc_http_host, 'publisher.ppns.ac.id' ) ||
-    false !== stripos( $cc_server_name, 'publisher.ppns.ac.id' ) ||
-    ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === strtolower( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) ||
-    ( isset( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && 'on' === strtolower( $_SERVER['HTTP_X_FORWARDED_SSL'] ) ) ||
-    ( isset( $_SERVER['HTTP_FRONT_END_HTTPS'] ) && 'on' === strtolower( $_SERVER['HTTP_FRONT_END_HTTPS'] ) ) ||
-    ( isset( $_SERVER['HTTP_X_URL_SCHEME'] ) && 'https' === strtolower( $_SERVER['HTTP_X_URL_SCHEME'] ) ) ||
-    ( isset( $_SERVER['HTTP_X_FORWARDED_PORT'] ) && '443' == $_SERVER['HTTP_X_FORWARDED_PORT'] )
-) {
-    $_SERVER['HTTPS'] = 'on';
-}
-
 /* --------------------------------------------------------------------------
  * 1. Loader — Muat semua modul dari folder inc/
  *    Urutan penting: helpers & CPT sebelum modul yang bergantung padanya.
