@@ -27,7 +27,10 @@ function cc_maybe_ssl_url( $value ) {
 }
 
 function cc_get( $key, $default = '' ) {
-    $value = get_theme_mod( 'cc_' . $key, $default );
+    $value = get_theme_mod( 'cc_' . $key, '' );
+    if ( $value === '' || $value === false || $value === null ) {
+        $value = $default;
+    }
     return cc_maybe_ssl_url( $value );
 }
 

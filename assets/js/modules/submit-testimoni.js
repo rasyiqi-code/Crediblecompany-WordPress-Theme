@@ -1,6 +1,6 @@
 /**
- * Modul: Validasi & Submit Form Testimoni
- * Memeriksa ukuran berkas (maks 1MB) dan rasio dimensi gambar secara dinamis.
+ * Modul: Validasi & Submit Form Testimoni dengan Cropper.js
+ * Memotong foto profil menjadi kotak (1:1) dan mengirimkannya sebagai Base64.
  * Mengambil nonce CSRF fresh via AJAX sebelum submit (kompatibel dengan halaman cache).
  *
  * @package CredibleCompany
@@ -9,10 +9,21 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function () {
-        const form      = document.querySelector('.cc-submit-form');
-        const fileInput = document.getElementById('client_photo');
-        const uploadUi  = document.querySelector('.custom-file-upload .upload-ui span');
-        const nonceInput = document.getElementById('cc_form_nonce');
+        const form        = document.querySelector('.cc-submit-form');
+        const fileInput   = document.getElementById('client_photo');
+        const hiddenPhoto = document.getElementById('client_photo_base64');
+        const uploadUi    = document.querySelector('.custom-file-upload .upload-ui span');
+        const nonceInput  = document.getElementById('cc_form_nonce');
+
+        // Elemen Cropper Modal
+        const cropperModal = document.getElementById('cc-cropper-modal');
+        const cropperImage = document.getElementById('cc-cropper-image');
+        const closeBtn     = document.getElementById('cc-cropper-close');
+        const cancelBtn    = document.getElementById('cc-cropper-cancel');
+        const saveBtn      = document.getElementById('cc-cropper-save');
+
+        let cropper = null;
+        let currentFile = null;
 
         // Ambil ajaxurl dari ccAjax (di-localize oleh enqueue.php)
         const ajaxUrl = (typeof ccAjax !== 'undefined') ? ccAjax.ajaxurl : '/wp-admin/admin-ajax.php';
@@ -22,6 +33,7 @@
          */
         function resetUploadUI() {
             if (fileInput) fileInput.value = '';
+            if (hiddenPhoto) hiddenPhoto.value = '';
             if (uploadUi) {
                 uploadUi.textContent = 'Pilih Gambar';
                 uploadUi.parentElement.classList.remove('has-file');
@@ -32,9 +44,6 @@
 
         /**
          * Ambil nonce segar dari server via AJAX.
-         * Tidak menggunakan nonce yang di-bake ke markup agar halaman boleh di-cache.
-         *
-         * @returns {Promise<string>} Nonce string.
          */
         function fetchFreshNonce() {
             const data = new FormData();
@@ -49,51 +58,109 @@
                 });
         }
 
-        // Validasi input gambar saat file dipilih
+        // Ketika file dipilih oleh user
         if (fileInput && uploadUi) {
             fileInput.addEventListener('change', function () {
                 if (this.files && this.files.length > 0) {
                     const file = this.files[0];
 
-                    // Cek ukuran berkas (1MB = 1.048.576 bytes)
-                    if (file.size > 1048576) {
-                        alert('Ukuran file foto melebihi batas maksimum 1MB.');
+                    // Soft limit ukuran berkas (misal: 10MB) agar browser tidak crash
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar. Batas maksimal memilih file adalah 10MB.');
                         resetUploadUI();
                         return;
                     }
 
-                    // Cek rasio dimensi gambar menggunakan API Image
-                    const img = new Image();
-                    img.onload = function () {
-                        URL.revokeObjectURL(this.src);
-                        const ratio = this.width / this.height;
-                        if (ratio < 0.75 || ratio > 1.33) {
-                            alert('Rasio gambar terlalu ekstrem. Pastikan gambar tidak terlalu persegi panjang (lebar dan tinggi kurang lebih seimbang).');
-                            resetUploadUI();
-                            return;
-                        }
-                        // Perbarui tampilan UI jika lolos validasi
-                        uploadUi.textContent = file.name;
-                        uploadUi.parentElement.classList.add('has-file');
-                        uploadUi.parentElement.style.borderColor = 'var(--accent-color, #2563eb)';
-                        uploadUi.parentElement.style.background = '#f0f7ff';
-                    };
-                    img.onerror = function () {
-                        URL.revokeObjectURL(this.src);
-                        alert('File yang diunggah bukan gambar yang valid.');
-                        resetUploadUI();
-                    };
-                    img.src = URL.createObjectURL(file);
+                    // Tampilkan file dalam Cropper modal
+                    currentFile = file;
+                    const objectUrl = URL.createObjectURL(file);
+                    cropperImage.src = objectUrl;
+                    cropperModal.classList.add('active');
+
+                    // Inisialisasi Cropper.js
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    cropper = new Cropper(cropperImage, {
+                        aspectRatio: 1, // Memaksa rasio kotak 1:1
+                        viewMode: 1,
+                        dragMode: 'move',
+                        autoCropArea: 1,
+                        restore: false,
+                        guides: true,
+                        center: true,
+                        highlight: false,
+                        cropBoxMovable: true,
+                        cropBoxResizable: true,
+                        toggleDragModeOnDblclick: false,
+                    });
                 } else {
                     resetUploadUI();
                 }
             });
         }
 
-        // Intercept submit: ambil nonce segar, isi hidden input, lalu submit
+        // Fungsi Menutup Modal Cropper
+        function closeModal() {
+            cropperModal.classList.remove('active');
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            if (cropperImage.src.startsWith('blob:')) {
+                URL.revokeObjectURL(cropperImage.src);
+            }
+            cropperImage.src = '';
+        }
+
+        // Batal / Close Cropper
+        if (closeBtn) closeBtn.addEventListener('click', function() {
+            closeModal();
+            if (!hiddenPhoto.value) resetUploadUI();
+        });
+        if (cancelBtn) cancelBtn.addEventListener('click', function() {
+            closeModal();
+            if (!hiddenPhoto.value) resetUploadUI();
+        });
+
+        // Simpan Hasil Potong (Crop)
+        if (saveBtn) {
+            saveBtn.addEventListener('click', function() {
+                if (cropper) {
+                    // Dapatkan canvas dengan resolusi output terkontrol (500x500 px)
+                    const canvas = cropper.getCroppedCanvas({
+                        width: 500,
+                        height: 500,
+                        imageSmoothingEnabled: true,
+                        imageSmoothingQuality: 'high',
+                    });
+
+                    if (canvas) {
+                        // Konversi ke base64 JPEG berkualitas tinggi (90%)
+                        const base64Data = canvas.toDataURL('image/jpeg', 0.9);
+                        hiddenPhoto.value = base64Data;
+
+                        // Perbarui UI label unggahan
+                        uploadUi.textContent = currentFile.name + ' (Sudah Dipotong)';
+                        uploadUi.parentElement.classList.add('has-file');
+                        uploadUi.parentElement.style.borderColor = '#c01314'; // KBM Red
+                        uploadUi.parentElement.style.background = '#fff5f5'; // Light KBM red
+                    }
+
+                    closeModal();
+                }
+            });
+        }
+
+        // Intercept form submit: cek base64, ambil nonce, kirim
         if (form && nonceInput) {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
+
+                if (!hiddenPhoto.value) {
+                    alert('Mohon pilih dan potong foto profil Anda terlebih dahulu.');
+                    return;
+                }
 
                 const submitBtn = form.querySelector('[type="submit"]');
                 if (submitBtn) {

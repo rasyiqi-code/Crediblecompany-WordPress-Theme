@@ -121,7 +121,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Pengaturan Warna Section Features
     $wp_customize->add_setting( 'cc_features_bg_color', array(
-        'default'           => '#f8fafc',
+        'default'           => '#c01314',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_features_bg_color', array(
@@ -130,7 +130,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) ) );
 
     $wp_customize->add_setting( 'cc_features_title_color', array(
-        'default'           => '#0f172a',
+        'default'           => '#ffffff',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_features_title_color', array(
@@ -139,7 +139,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) ) );
 
     $wp_customize->add_setting( 'cc_features_desc_color', array(
-        'default'           => '#475569',
+        'default'           => '#ffffff',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_features_desc_color', array(

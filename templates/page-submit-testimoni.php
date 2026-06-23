@@ -118,13 +118,15 @@ get_header(); ?>
                     <div class="form-group-app">
                         <label for="client_photo">Foto Profil <span class="req">*</span></label>
                         <div class="custom-file-upload">
-                            <input type="file" id="client_photo" name="client_photo" class="form-control-file" required accept="image/png, image/jpeg, image/jpg, image/webp">
+                            <!-- name="client_photo" removed so the original large file is not uploaded in $_FILES -->
+                            <input type="file" id="client_photo" class="form-control-file" required accept="image/png, image/jpeg, image/jpg, image/webp">
+                            <input type="hidden" name="client_photo_base64" id="client_photo_base64" value="" required>
                             <div class="upload-ui">
                                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                                 <span>Pilih Gambar</span>
                             </div>
                         </div>
-                        <small class="form-help">Maksimal 1MB (JPG/PNG/WEBP). Rasio bebas asal tidak terlalu panjang/lebar.</small>
+                        <small class="form-help">Pilih foto apa saja (JPG/PNG/WEBP) untuk dipotong menjadi kotak (square).</small>
                     </div>
 
                     <div class="form-actions-app">
@@ -136,6 +138,26 @@ get_header(); ?>
 
     </div>
 </main>
+
+<!-- Cropper Modal Overlay -->
+<div id="cc-cropper-modal" class="cc-cropper-modal">
+    <div class="cc-cropper-modal-content">
+        <div class="cc-cropper-modal-header">
+            <h3>Potong Foto Profil</h3>
+            <button type="button" id="cc-cropper-close" class="cc-cropper-close-btn">&times;</button>
+        </div>
+        <div class="cc-cropper-modal-body">
+            <div class="cc-cropper-img-container">
+                <img id="cc-cropper-image" src="" alt="Image to crop">
+            </div>
+        </div>
+        <div class="cc-cropper-modal-footer">
+            <button type="button" id="cc-cropper-cancel" class="btn btn-secondary-app">Batal</button>
+            <button type="button" id="cc-cropper-save" class="btn btn-primary-app">Potong & Simpan</button>
+        </div>
+    </div>
+</div>
+
 
 
 <?php get_footer(); ?>

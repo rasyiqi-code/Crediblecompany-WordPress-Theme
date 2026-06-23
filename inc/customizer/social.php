@@ -28,7 +28,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     /* --- Nomor WhatsApp untuk Floating Chat --- */
     $wp_customize->add_setting( 'cc_whatsapp_number', array(
-        'default'           => '',
+        'default'           => '6281357517526',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_whatsapp_number', array(
@@ -40,7 +40,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     /* --- Pesan Default WhatsApp --- */
     $wp_customize->add_setting( 'cc_whatsapp_message', array(
-        'default'           => 'Halo, saya tertarik dengan layanan Anda.',
+        'default'           => 'Halo {Nama Marketing}, saya tertarik dengan layanan Anda .... Note: Transaksi HANYA di rekening atas nama:- Sutrisno (BSI - 7145671967), - Ahmad Fathur Rozaq (BSI - 7187174923).',
         'sanitize_callback' => 'sanitize_textarea_field',
     ) );
     $wp_customize->add_control( 'cc_whatsapp_message', array(

@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     /* --- Alamat Kantor --- */
     $wp_customize->add_setting( 'cc_footer_address', array(
-        'default'           => '',
+        'default'           => 'Kantor : Paingan, (Halaman Masjid Ash Sholihin), Maguwoharjo, Depok, Sleman, Daerah Istimewa Yogyakarta.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ) );
     $wp_customize->add_control( 'cc_footer_address', array(
@@ -38,7 +38,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Pengaturan Warna Section Footer
     $wp_customize->add_setting( 'cc_footer_bg_color', array(
-        'default'           => '#0b1c3f',
+        'default'           => '#c01314',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cc_footer_bg_color', array(

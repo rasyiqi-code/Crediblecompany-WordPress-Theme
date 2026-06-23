@@ -7,8 +7,8 @@
  * @package CredibleCompany
  */
 
-$section_title    = cc_get( 'pricing_title', 'Lorem Ipsum Dolor' );
-$section_subtitle = cc_get( 'pricing_subtitle', 'Anda bisa memilih kami untuk jasa berikut:' );
+$section_title    = cc_get( 'pricing_title', 'PAKET PENERBIT BUKU KBM INDONESIA' );
+$section_subtitle = cc_get( 'pricing_subtitle', 'Silahkan pilih paket penerbitan buku di bawah ini. Dan jika anda seorang Guru ajar, Dosen, Pelajar dan Mahasiswa maka dapatkan diskon harga khusus untuk anda.' );
 
 $paket_query = new WP_Query( array(
     'post_type'      => 'paket_jasa',
@@ -30,7 +30,7 @@ $check_svg = '<svg class="check-icon" fill="none" stroke="currentColor" viewBox=
 
         <?php 
         $scroll_class = cc_get( 'mobile_scroll_pricing', true ) ? 'has-horizontal-scroll' : '';
-        $grid_columns = cc_get( 'pricing_grid_columns', 4 );
+        $grid_columns = cc_get( 'pricing_grid_columns', 3 );
         ?>
 
         <?php if ( $paket_query->have_posts() ) : ?>

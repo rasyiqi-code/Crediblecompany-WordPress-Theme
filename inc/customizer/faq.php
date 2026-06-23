@@ -111,9 +111,38 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Default FAQ data in JSON
     $faq_defaults_json = json_encode(array(
-        array( 'q' => 'Lorem ipsum dolor sit amet?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'q' => 'Consectetur adipiscing elit?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'q' => 'Proin sodales imperdiet diam?', 'a' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 
+            'q' => 'Berapa lama estimasi proses penerbitan buku?', 
+            'a' => 'Estimasi proses penerbitan berkisar antara 1 hingga 3 minggu, bergantung pada kelengkapan naskah dan antrean pendaftaran ISBN/QRSBN di Perpusnas. Kami juga menyediakan fasilitas kilat khusus untuk pengurusan ISBN dalam 1-2 hari.' 
+        ),
+        array( 
+            'q' => 'Apakah penulis mendapatkan royalti dari penjualan buku melalui penerbit?', 
+            'a' => 'Ya, penulis akan mendapatkan royalti penjualan buku sebesar 25%. Laporan penjualan buku akan disampaikan secara transparan melalui email setiap bulannya.' 
+        ),
+        array( 
+            'q' => 'Bagaimana cara mendaftarkan naskah untuk diterbitkan?', 
+            'a' => 'Anda cukup memilih paket penerbitan yang sesuai dengan kebutuhan Anda di website kami, kemudian mengirimkan naskah Anda beserta data diri melalui WhatsApp admin atau email resmi kami.' 
+        ),
+        array( 
+            'q' => 'Keuntungan apa saja yang didapat oleh penulis saat menerbitkan buku?', 
+            'a' => 'Penulis mendapatkan fasilitas gratis ongkos kirim ke seluruh Indonesia, buku terindeks di Google Scholar dan Google Playbook, laporan royalti bulanan yang transparan, hak cipta buku (HAKI) dari Kemenkumham, serta bantuan pemasaran di marketplace nasional milik KBM Indonesia.' 
+        ),
+        array( 
+            'q' => 'Penerbit buku KBM Indonesia bisa menerbitkan buku apa saja?', 
+            'a' => 'Kami menerima berbagai jenis naskah baik fiksi maupun non-fiksi (sastra dan non-sastra), seperti novel, kumpulan puisi, buku ajar/dosen, biografi, opini, hingga buku ilmiah/penelitian.' 
+        ),
+        array( 
+            'q' => 'Apakah semua naskah yang masuk di Penerbit buku KBM Indonesia pasti terbit?', 
+            'a' => 'Kami berkomitmen membantu semua penulis untuk menerbitkan karyanya. Naskah Anda pasti terbit selama tidak mengandung unsur SARA, pornografi, plagiasi, atau pelanggaran hukum lainnya.' 
+        ),
+        array( 
+            'q' => 'Apakah setiap naskah yang akan diterbitkan akan diedit oleh penerbit?', 
+            'a' => 'Ya, naskah Anda akan melewati proses layout (tata letak) dan desain cover oleh tim ahli kami sesuai dengan ketentuan paket yang Anda pilih agar buku tampil profesional dan siap cetak.' 
+        ),
+        array( 
+            'q' => 'Bagaimana cara mengirim naskah buku ke penerbit?', 
+            'a' => 'Sangat gampang, yaitu langsung dikirim naskah buku anda via email ke naskah@penerbitkbm.com atau di kirim melalui nomer whatsapp kantor pusat di 081357517526 dan buku anda akan kami rubah ukurannya sesuai keinginan dan kebutuhan penulis.' 
+        ),
     ));
 
     // Judul Seksi FAQ

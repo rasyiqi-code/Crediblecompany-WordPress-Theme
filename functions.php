@@ -151,6 +151,17 @@ add_filter( 'template_include', 'cc_resolve_template' );
 function cc_resolve_template( $template ) {
     $dir = get_template_directory() . '/templates/';
 
+    // Jika ini adalah page dan memiliki custom template, prioritaskan custom template tersebut
+    if ( is_page() ) {
+        $custom_template = get_page_template_slug();
+        if ( $custom_template ) {
+            $custom_template_path = get_stylesheet_directory() . '/' . $custom_template;
+            if ( file_exists( $custom_template_path ) ) {
+                return $custom_template_path;
+            }
+        }
+    }
+
     $map = array(
         'is_404'                  => '404.php',
         'is_search'               => 'search.php',

@@ -6,11 +6,11 @@
  * @package CredibleCompany
  */
 
-$hero_title      = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
-$hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
+$hero_title      = cc_get( 'hero_title', 'Penerbit Buku Profesional' );
+$hero_desc       = cc_get( 'hero_desc', 'Penerbit Buku KBM Indonesia mempersembahkan lebih dari 5.000 judul buku. Yuk, wujudkan mimpimu menjadi penulis — jadikan naskahmu memiliki ISBN.' );
 $hero_image      = cc_img( 'hero_v1_image', cc_placeholder_svg( 500, 400, 'c01314', 'ffffff', 'Hero Image' ) );
 $hero_ornament_1 = cc_get( 'hero_v1_ornament_1', '📚' );
-$hero_ornament_2 = cc_get( 'hero_v1_ornament_2', '🎓' );
+$hero_ornament_2 = cc_get( 'hero_v1_ornament_2', '💡' );
 
 // Tombol CTA khusus V1
 $btn1_enable     = cc_get( 'hero_v1_btn1_enable', true );

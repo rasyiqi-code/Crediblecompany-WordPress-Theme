@@ -22,9 +22,9 @@ $stats_count = intval( cc_get( 'stats_count', 3 ) );
 
 // Fallback defaults jika data di Customizer kosong
 $defaults = [
-    1 => ['1,200+', 'Lorem Ipsum'],
-    2 => ['85,000+', 'Dolor Sit'],
-    3 => ['4,500+', 'Consectetur'],
+    1 => ['5.000+', 'Judul Terbit'],
+    2 => ['700.000+', 'Eksemplar Cetak'],
+    3 => ['6.500+', 'Penulis KBM'],
     4 => ['500+', 'Mitra Resmi'],
     5 => ['100k', 'Pengguna Aktif'],
     6 => ['99%', 'Tingkat Kepuasan']

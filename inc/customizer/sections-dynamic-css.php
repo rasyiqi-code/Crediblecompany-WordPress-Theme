@@ -30,9 +30,9 @@ function cc_sections_dynamic_css_variables() {
     $about_padding_mobile  = cc_get( 'about_padding_mobile', 40 );
 
     // 2. Features
-    $feat_bg       = cc_get( 'features_bg_color', '#f8fafc' );
-    $feat_tit      = cc_get( 'features_title_color', '#0f172a' );
-    $feat_desc     = cc_get( 'features_desc_color', '#475569' );
+    $feat_bg       = cc_get( 'features_bg_color', '#c01314' );
+    $feat_tit      = cc_get( 'features_title_color', '#ffffff' );
+    $feat_desc     = cc_get( 'features_desc_color', '#ffffff' );
     $feat_count    = cc_get( 'features_count', 3 );
     $feat_item_bg  = cc_get( 'features_item_bg_color', 'transparent' );
     $feat_item_pad = ( $feat_item_bg !== 'transparent' && ! empty( $feat_item_bg ) ) ? '24px' : '0px';
@@ -91,7 +91,7 @@ function cc_sections_dynamic_css_variables() {
     $cta_btn_htxt    = cc_get( 'cta_btn_hover_text', '' );
 
     // 9. Footer
-    $foot_bg  = cc_get( 'footer_bg_color', '#0b1c3f' );
+    $foot_bg  = cc_get( 'footer_bg_color', '#c01314' );
     $foot_txt = cc_get( 'footer_text_color', '#ffffff' );
     $foot_logo_bg = cc_get( 'footer_logo_bg', '#ffffff' );
     $foot_middle_bg = cc_get( 'footer_middle_bg', '#ffffff' );
@@ -189,7 +189,7 @@ function cc_sections_dynamic_css_variables() {
             --cc-features-bg-color: <?php echo esc_attr( $feat_bg ); ?>;
             --cc-features-title-color: <?php echo esc_attr( $feat_tit ); ?>;
             --cc-features-desc-color: <?php echo esc_attr( $feat_desc ); ?>;
-            --cc-features-count: <?php echo esc_attr( $feat_count ); ?>;
+            --cc-features-count: <?php echo esc_attr( $feat_count == 6 ? 3 : $feat_count ); ?>;
             --cc-features-item-bg-color: <?php echo esc_attr( $feat_item_bg ); ?>;
             --cc-features-item-padding: <?php echo esc_attr( $feat_item_pad ); ?>;
             --cc-features-icon-bg-color: <?php echo esc_attr( $feat_icon_bg ); ?>;

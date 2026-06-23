@@ -36,12 +36,12 @@ $icon_defaults = array(
 
         <?php
         $feat_defaults = array(
-            array( 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-            array( 'Dolor Sit Amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-            array( 'Consectetur', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-            array( 'Adipiscing Elit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-            array( 'Proin Sodales', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-            array( 'Imperdiet Diam', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+            array( 'Profesional', 'Naskah anda akan ditangani langsung oleh tim ahli layout naskah, desain sampul dan admin marketing yang berkompeten. Bahkan anda bisa terhubung dengan Owner Penerbit buku KBM Indonesia.' ),
+            array( 'Harga Murah', 'Anda dapat membuktikan dan melakukan riset ke tempat lain, untuk cetakan 25 eksemplar ke atas, maka biaya di Penerbit buku KBM Indonesia sangat terjangkau dan lebih murah.' ),
+            array( 'Proses Cepat', 'Penerbit buku KBM Indonesia selalu berusaha menyesuaikan waktu anda. Dengan jumlah minimal cetak 100 eksemplar, anda bisa melakukan request waktu selesai cetak.' ),
+            array( 'Free Ongkir', 'Penerbit buku KBM Indonesia akan memberikan Gratis ongkos kirim ke seluruh wilayah Indonesia, dari Aceh sampai Papua. Bahkan ada layanan kirim buku melalui ekspedisi Travel.' ),
+            array( 'Proses Bergaransi', 'Penerbit buku KBM Indonesia akan memberikan GARANSI cetak ulang tanpa tambahan biaya cetak dan ongkos kirim apabila terjadi cacat 100% pada buku yang kami kirim.' ),
+            array( 'Distribusi Luas', 'Buku yang kamu terbitkan di Penerbit buku KBM Indonesia akan dibantu jualkan ke berbagai marketplace nasional milik penerbit buku KBM Indonesia.' ),
         );
 
         $scroll_class = cc_get( 'mobile_scroll_features', true ) ? 'has-horizontal-scroll' : ''; 

@@ -111,11 +111,33 @@ add_action( 'wp_enqueue_scripts', function () {
     }
 
     // Submit Testimoni Validator (hanya di template Submit Testimoni)
-    if ( is_page_template( 'page-submit-testimoni.php' ) ) {
+    if ( is_page_template( 'templates/page-submit-testimoni.php' ) ) {
+        // Enqueue Cropper.js — file lokal agar tidak bergantung CDN (kompatibel dev environment)
+        wp_enqueue_style(
+            'cropper-css',
+            $theme_uri . '/assets/css/components/cropper.min.css',
+            array(),
+            '1.6.2'
+        );
+        // Enqueue Local Submit Testimoni Style
+        wp_enqueue_style(
+            'cc-submit-testimoni-css',
+            $theme_uri . '/assets/css/components/submit-testimoni.css',
+            array( 'cc-main', 'cropper-css' ),
+            $theme_version
+        );
+        wp_enqueue_script(
+            'cropper-js',
+            $theme_uri . '/assets/js/modules/cropper.min.js',
+            array(),
+            '1.6.2',
+            true
+        );
+
         wp_enqueue_script(
             'cc-submit-testimoni',
             $theme_uri . '/assets/js/modules/submit-testimoni.js',
-            array(),
+            array('cropper-js'), // depends on cropper-js
             $theme_version,
             true
         );

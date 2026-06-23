@@ -48,50 +48,9 @@ function cc_handle_submit_testimoni() {
 
     $referer = wp_get_referer() ? wp_get_referer() : home_url();
 
-    if ( empty( $name ) || empty( $title ) || empty( $city ) || empty( $rating ) || empty( $review ) || empty( $_FILES['client_photo']['name'] ) ) {
+    if ( empty( $name ) || empty( $title ) || empty( $city ) || empty( $rating ) || empty( $review ) || empty( $_POST['client_photo_base64'] ) ) {
         wp_redirect( add_query_arg( 'err', '1', $referer ) );
         exit;
-    }
-
-    // Validasi Ukuran File (Max 1MB)
-    $max_size = 1 * 1024 * 1024; // 1MB
-    if ( $_FILES['client_photo']['size'] > $max_size ) {
-        wp_die( 'Ukuran file foto melebihi batas maksimum 1MB.', 'Error Upload', array( 'response' => 400 ) );
-    }
-
-    // Validasi Dimensi (Rasio wajar, tidak terlalu panjang/lebar)
-    $img_info = @getimagesize( $_FILES['client_photo']['tmp_name'] );
-    if ( $img_info ) {
-        $width  = $img_info[0];
-        $height = $img_info[1];
-        $ratio  = $width / $height;
-        if ( $ratio < 0.75 || $ratio > 1.33 ) {
-            wp_die( 'Rasio gambar terlalu ekstrem. Pastikan gambar tidak terlalu persegi panjang (lebar dan tinggi kurang lebih seimbang).', 'Error Upload', array( 'response' => 400 ) );
-        }
-    } else {
-        wp_die( 'File yang diunggah bukan gambar yang valid.', 'Error Upload', array( 'response' => 400 ) );
-    }
-
-    // Validasi Ekstensi/MIME Type (Hanya JPG/PNG/WEBP)
-    $allowed_mimes = array(
-        'jpg'  => 'image/jpeg',
-        'jpeg' => 'image/jpeg',
-        'png'  => 'image/png',
-        'webp' => 'image/webp',
-    );
-    
-    // Periksa ekstensi nama file
-    $file_info = wp_check_filetype( basename( $_FILES['client_photo']['name'] ), $allowed_mimes );
-    if ( empty( $file_info['ext'] ) || empty( $file_info['type'] ) ) {
-        wp_die( 'Hanya format gambar JPG, PNG, dan WEBP yang diperbolehkan.', 'Error Upload', array( 'response' => 400 ) );
-    }
-
-    // Periksa tipe MIME fisik file temp untuk mencegah pemalsuan ekstensi (bypass file jahat)
-    if ( function_exists( 'mime_content_type' ) ) {
-        $real_mime = mime_content_type( $_FILES['client_photo']['tmp_name'] );
-        if ( ! in_array( $real_mime, $allowed_mimes, true ) ) {
-            wp_die( 'Isi file tidak cocok dengan format gambar yang diperbolehkan.', 'Error Upload', array( 'response' => 400 ) );
-        }
     }
 
     // Buat Postingan Testimoni "Menunggu Peninjauan" (Pending)
@@ -113,32 +72,62 @@ function cc_handle_submit_testimoni() {
         update_post_meta( $post_id, 'cc_testimonial_title', $title );
         update_post_meta( $post_id, 'cc_testimonial_rating', $rating );
 
-        // Tangani Unggahan Foto & Convert ke WEBP
-        if ( ! empty( $_FILES['client_photo']['name'] ) ) {
-            // Coba convert gambar ke webp secara on-the-fly
-            $editor = wp_get_image_editor( $_FILES['client_photo']['tmp_name'] );
-            if ( ! is_wp_error( $editor ) ) {
-                $editor->set_quality( 80 );
-                $tmp_webp = dirname( $_FILES['client_photo']['tmp_name'] ) . '/' . wp_unique_filename( dirname( $_FILES['client_photo']['tmp_name'] ), 'converted.webp' );
-                $saved = $editor->save( $tmp_webp, 'image/webp' );
-                if ( ! is_wp_error( $saved ) ) {
-                    // Berhasil dikonversi, timpa detail $_FILES
-                    $_FILES['client_photo']['tmp_name'] = $saved['path'];
-                    $_FILES['client_photo']['type']     = 'image/webp';
-                    
-                    $name_parts = pathinfo( $_FILES['client_photo']['name'] );
-                    $_FILES['client_photo']['name'] = $name_parts['filename'] . '.webp';
-                    $_FILES['client_photo']['size'] = filesize( $saved['path'] );
+        // Tangani Unggahan Foto
+        $base64_photo = $_POST['client_photo_base64'];
+        if ( ! empty( $base64_photo ) ) {
+            // Validasi format data URI (harus base64 image/jpeg, image/png, atau image/webp)
+            if ( preg_match( '/^data:image\/(jpeg|jpg|png|webp);base64,(.+)$/i', $base64_photo, $matches ) ) {
+                $image_ext  = strtolower( $matches[1] );
+                if ( $image_ext === 'jpg' ) {
+                    $image_ext = 'jpeg';
                 }
-            }
-            require_once( ABSPATH . 'wp-admin/includes/image.php' );
-            require_once( ABSPATH . 'wp-admin/includes/file.php' );
-            require_once( ABSPATH . 'wp-admin/includes/media.php' );
-            
-            $attachment_id = media_handle_upload( 'client_photo', $post_id );
-            
-            if ( ! is_wp_error( $attachment_id ) ) {
-                set_post_thumbnail( $post_id, $attachment_id );
+                $image_data = base64_decode( $matches[2] );
+                
+                if ( $image_data !== false ) {
+                    // Simpan sementara di folder uploads WordPress
+                    $wp_upload_dir = wp_upload_dir();
+                    $temp_dir      = $wp_upload_dir['path'];
+                    
+                    // Buat file sementara
+                    $temp_name     = 'testimoni_' . uniqid() . '.' . $image_ext;
+                    $temp_path     = $temp_dir . '/' . $temp_name;
+                    
+                    if ( file_put_contents( $temp_path, $image_data ) !== false ) {
+                        // Sediakan library WordPress
+                        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+                        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                        require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+                        // Coba convert gambar ke webp secara on-the-fly demi optimalisasi ukuran
+                        $editor = wp_get_image_editor( $temp_path );
+                        if ( ! is_wp_error( $editor ) ) {
+                            $editor->set_quality( 80 );
+                            $tmp_webp = $temp_dir . '/' . wp_unique_filename( $temp_dir, 'converted.webp' );
+                            $saved = $editor->save( $tmp_webp, 'image/webp' );
+                            if ( ! is_wp_error( $saved ) ) {
+                                // Hapus file jpeg/png sementara, ganti dengan webp
+                                @unlink( $temp_path );
+                                $temp_path = $saved['path'];
+                                $temp_name = basename( $temp_path );
+                            }
+                        }
+
+                        // Kirim ke media library
+                        $file_array = array(
+                            'name'     => $temp_name,
+                            'tmp_name' => $temp_path,
+                        );
+
+                        $attachment_id = media_handle_sideload( $file_array, $post_id );
+
+                        if ( ! is_wp_error( $attachment_id ) ) {
+                            set_post_thumbnail( $post_id, $attachment_id );
+                        } else {
+                            // Hapus file sisa jika sideload gagal
+                            @unlink( $temp_path );
+                        }
+                    }
+                }
             }
         }
         

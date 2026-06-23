@@ -31,7 +31,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Judul CTA
     $wp_customize->add_setting( 'cc_cta_title', array(
-        'default'           => 'Hubungi Marketing Kami',
+        'default'           => 'Konsultasi Gratis',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_cta_title', array(
@@ -42,7 +42,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Deskripsi CTA
     $wp_customize->add_setting( 'cc_cta_desc', array(
-        'default'           => 'Untuk mendapatkan Harga Promo dan Diskon menarik 50%',
+        'default'           => 'Untuk mendapatkan Harga Promo dan Diskon bulan ini',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_cta_desc', array(
@@ -53,7 +53,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Teks Tombol CTA
     $wp_customize->add_setting( 'cc_cta_button_text', array(
-        'default'           => 'Hubungi Admin',
+        'default'           => 'Hubungi Kantor Pusat',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_cta_button_text', array(
@@ -64,7 +64,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // URL Tombol CTA (WhatsApp / link)
     $wp_customize->add_setting( 'cc_cta_button_url', array(
-        'default'           => 'https://wa.me/6281234567890',
+        'default'           => 'https://wa.me/6281357517526?text=Halo+{Nama+Marketing},+saya+tertarik+dengan+layanan+Anda+....+Note:+Transaksi+HANYA+di+rekening+atas+nama:-+Sutrisno+(BSI+-+7145671967),+-+Ahmad+Fathur+Rozaq+(BSI+-+7187174923).',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     $wp_customize->add_control( 'cc_cta_button_url', array(

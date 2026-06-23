@@ -6,10 +6,10 @@
  * @package CredibleCompany
  */
 
-$cta_title  = cc_get( 'cta_title', 'Hubungi Marketing Kami' );
-$cta_desc   = cc_get( 'cta_desc', 'Untuk mendapatkan Harga Promo dan Diskon menarik 50%' );
-$cta_btn    = cc_get( 'cta_button_text', 'Hubungi Admin' );
-$cta_url    = cc_get( 'cta_button_url', 'https://wa.me/6281234567890' );
+$cta_title  = cc_get( 'cta_title', 'Konsultasi Gratis' );
+$cta_desc   = cc_get( 'cta_desc', 'Untuk mendapatkan Harga Promo dan Diskon bulan ini' );
+$cta_btn    = cc_get( 'cta_button_text', 'Hubungi Kantor Pusat' );
+$cta_url    = cc_get( 'cta_button_url', 'https://wa.me/6281357517526?text=Halo+{Nama+Marketing},+saya+tertarik+dengan+layanan+Anda+....+Note:+Transaksi+HANYA+di+rekening+atas+nama:-+Sutrisno+(BSI+-+7145671967),+-+Ahmad+Fathur+Rozaq+(BSI+-+7187174923).' );
 $cta_layout = cc_get( 'cta_layout', 'centered' );
 ?>
 

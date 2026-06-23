@@ -71,7 +71,8 @@ function cc_track_marketing_referral() {
 function cc_dynamic_wa_url( $original_url ) {
     // 1. Cek dulu apakah pengunjung punya data referral
     if ( ! isset( $_COOKIE[ CC_MARKETER_COOKIE ] ) || empty( $_COOKIE[ CC_MARKETER_COOKIE ] ) ) {
-        return $original_url; // Gak pake referral, kembalikan URL Default Perusahaan
+        $fallback = get_theme_mod( 'cc_marketing_fallback_name', 'Admin' );
+        return str_replace( array( '{Nama Marketing}', '{nama marketing}' ), $fallback, $original_url );
     }
 
     $marketing_id = intval( $_COOKIE[ CC_MARKETER_COOKIE ] );
@@ -109,7 +110,7 @@ function cc_dynamic_wa_url( $original_url ) {
     } 
     // Jika tidak diisi custom text agen, dan ternyata tombol dari Elementor emang ga ada param text-nya
     elseif ( ! isset( $query_array['text'] ) || empty( $query_array['text'] ) ) {
-         $query_array['text'] = "Halo, saya tertarik dengan layanan Anda.";
+         $query_array['text'] = 'Halo {Nama Marketing}, saya tertarik dengan layanan Anda .... Note: Transaksi HANYA di rekening atas nama:- Sutrisno (BSI - 7145671967), - Ahmad Fathur Rozaq (BSI - 7187174923).';
     }
     
     // String Replace: Jika teks berisi {Nama Marketing}, ganti dengan nama aslinya

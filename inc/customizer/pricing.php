@@ -14,7 +14,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_pricing_title', array(
-        'default'           => 'Lorem Ipsum Dolor',
+        'default'           => 'PAKET PENERBIT BUKU KBM INDONESIA',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_pricing_title', array(
@@ -24,7 +24,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_pricing_subtitle', array(
-        'default'           => 'Anda bisa memilih kami untuk jasa berikut:',
+        'default'           => 'Silahkan pilih paket penerbitan buku di bawah ini. Dan jika anda seorang Guru ajar, Dosen, Pelajar dan Mahasiswa maka dapatkan diskon harga khusus untuk anda.',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_pricing_subtitle', array(
@@ -34,7 +34,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_pricing_grid_columns', array(
-        'default'           => 4,
+        'default'           => 3,
         'sanitize_callback' => 'absint',
     ) );
     $wp_customize->add_control( 'cc_pricing_grid_columns', array(

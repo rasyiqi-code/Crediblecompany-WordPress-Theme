@@ -64,7 +64,7 @@ if ( ! function_exists( 'cc_get_admin_dark_color' ) ) {
             return $custom_admin_dark;
         }
 
-        return get_theme_mod( 'cc_footer_bg_color', '#0b1c3f' );
+        return get_theme_mod( 'cc_footer_bg_color', '#c01314' );
     }
 }
 

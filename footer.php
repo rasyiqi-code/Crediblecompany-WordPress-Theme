@@ -73,7 +73,7 @@
         <!-- Row 2: Alamat (White BG) -->
         <div class="footer-middle">
             <div class="container container--narrow">
-                <?php $footer_address = cc_get( 'footer_address' ); ?>
+                <?php $footer_address = cc_get( 'footer_address', 'Kantor : Paingan, (Halaman Masjid Ash Sholihin), Maguwoharjo, Depok, Sleman, Daerah Istimewa Yogyakarta.' ); ?>
                 <?php if ( ! empty( $footer_address ) ) : ?>
                     <p class="footer-address-text">
                         <?php echo nl2br( esc_html( $footer_address ) ); ?>
@@ -118,7 +118,7 @@
  * Hanya ditampilkan jika nomor WA diisi di Customizer > Social Media.
  */
 $wa_number  = cc_get( 'whatsapp_number', '' );
-$wa_message = cc_get( 'whatsapp_message', 'Halo, saya tertarik dengan layanan Anda.' );
+$wa_message = cc_get( 'whatsapp_message', 'Halo {Nama Marketing}, saya tertarik dengan layanan Anda .... Note: Transaksi HANYA di rekening atas nama:- Sutrisno (BSI - 7145671967), - Ahmad Fathur Rozaq (BSI - 7187174923).' );
 
 if ( ! empty( $wa_number ) && ! is_single() ) :
     // Bersihkan nomor dari karakter non-digit
