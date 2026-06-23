@@ -21,7 +21,7 @@ $books        = $product_repo->get_all( $books_limit, 0, ['orderby' => 'newest']
 
 <section class="books section-divider-top section-divider-bottom" id="books">
     <div class="container text-center">
-        <h2><?php echo esc_html( cc_get( 'books_title', 'Katalog Novel Terpopuler' ) ); ?></h2>
+        <h2><?php echo esc_html( cc_get( 'books_title', 'Buku Terbitan KBM' ) ); ?></h2>
         <?php $scroll_class = cc_get( 'mobile_scroll_books', true ) ? 'has-horizontal-scroll' : ''; ?>
         <div class="books-grid <?php echo esc_attr( $scroll_class ); ?>">
             <?php foreach ( $books as $book ) : ?>

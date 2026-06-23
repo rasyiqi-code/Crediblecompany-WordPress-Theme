@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Judul Buku Terbitan
     $wp_customize->add_setting( 'cc_books_title', array(
-        'default'           => 'Katalog Novel Terpopuler',
+        'default'           => 'Buku Terbitan KBM',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_books_title', array(
