@@ -6,8 +6,8 @@
  * @package CredibleCompany
  */
 
-$hero_title      = cc_get( 'hero_title', 'Lorem Ipsum Dolor Sit Amet' );
-$hero_desc       = cc_get( 'hero_desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.' );
+$hero_title      = cc_get( 'hero_title', 'Penerbit Buku Profesional' );
+$hero_desc       = cc_get( 'hero_desc', 'Penerbit Buku KBM Indonesia mempersembahkan lebih dari 5.000 judul buku. Yuk, wujudkan mimpimu menjadi penulis — jadikan naskahmu memiliki ISBN.' );
 $hero_ornament_1 = cc_get( 'hero_v2_ornament_1', '🚀' );
 $hero_ornament_2 = cc_get( 'hero_v2_ornament_2', '✨' );
 $hero_ornament_3 = cc_get( 'hero_v2_ornament_3', '🎓' );

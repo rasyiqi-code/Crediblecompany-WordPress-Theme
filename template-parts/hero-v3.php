@@ -10,8 +10,8 @@
 // Mengambil variabel teks dengan fallback dari data Figma
 $title_line_1    = cc_get( 'hero_v3_title_line_1', 'DESIGN' );
 $title_line_2    = cc_get( 'hero_v3_title_line_2', 'CULTURE' );
-$hero_title      = cc_get( 'hero_title', 'Delightful remarkably mr on announcing themselves entreaties favourable.' );
-$hero_desc       = cc_get( 'hero_desc', 'Of on affixed civilly moments promise explain fertile in. Assurance advantage belonging happiness departure so of. Now improving and one sincerity intention allowance.' );
+$hero_title      = cc_get( 'hero_title', 'Penerbit Buku Profesional' );
+$hero_desc       = cc_get( 'hero_desc', 'Penerbit Buku KBM Indonesia mempersembahkan lebih dari 5.000 judul buku. Yuk, wujudkan mimpimu menjadi penulis — jadikan naskahmu memiliki ISBN.' );
 $hero_image      = cc_img( 'hero_v3_image', get_template_directory_uri() . '/assets/images/hero_v3_model.png' );
 
 // Tombol CTA V3

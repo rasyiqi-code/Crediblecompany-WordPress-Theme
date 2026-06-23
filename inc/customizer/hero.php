@@ -39,7 +39,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // --- JUDUL HERO (GLOBAL) ---
     $wp_customize->add_setting( 'cc_hero_title', array(
-        'default'           => 'Platform Membaca & Menulis Terbesar di Indonesia',
+        'default'           => 'Penerbit Buku Profesional',
         'sanitize_callback' => 'sanitize_text_field',
         'transport'         => 'postMessage',
     ) );
@@ -51,7 +51,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // --- DESKRIPSI HERO (GLOBAL) ---
     $wp_customize->add_setting( 'cc_hero_desc', array(
-        'default'           => 'Temukan ribuan cerita seru, novel berkualitas, dan bangun komunitas menulis Anda bersama jutaan pengguna aktif lainnya.',
+        'default'           => 'Penerbit Buku KBM Indonesia mempersembahkan lebih dari 5.000 judul buku. Yuk, wujudkan mimpimu menjadi penulis — jadikan naskahmu memiliki ISBN.',
         'sanitize_callback' => 'sanitize_textarea_field',
         'transport'         => 'postMessage',
     ) );
