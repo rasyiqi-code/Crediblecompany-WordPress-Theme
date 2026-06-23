@@ -45,12 +45,24 @@ add_action( 'wp_enqueue_scripts', function () {
         $theme_version
     );
 
-    // Khusus Landing Page Mobile App Stylings (hub @import → landing/)
+    // Khusus Landing Page Mobile App Stylings (Dimuat langsung secara modular untuk menghindari isu browser caching @import)
     if ( is_front_page() || is_home() ) {
         wp_enqueue_style(
-            'cc-landing-mobile',
-            $theme_uri . '/assets/css/landing-mobile.css',
+            'cc-landing-header-mobile',
+            $theme_uri . '/assets/css/landing/header-mobile.css',
             array( 'cc-responsive' ),
+            $theme_version
+        );
+        wp_enqueue_style(
+            'cc-landing-layout-mobile',
+            $theme_uri . '/assets/css/landing/layout-mobile.css',
+            array( 'cc-landing-header-mobile' ),
+            $theme_version
+        );
+        wp_enqueue_style(
+            'cc-landing-sections-mobile',
+            $theme_uri . '/assets/css/landing/sections-mobile.css',
+            array( 'cc-landing-layout-mobile' ),
             $theme_version
         );
     }

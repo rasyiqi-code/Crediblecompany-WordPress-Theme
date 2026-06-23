@@ -12,8 +12,8 @@
      * 1. Site Header
      * ---------------------------------------------------------------------- */
     .site-header {
-        position: relative !important;
-        top: 0;
+        position: sticky !important;
+        top: 0 !important;
         background-color: var(--cc-header-mobile-bg, var(--brand-red)) !important;
         z-index: 2000;
         border: none;
@@ -22,12 +22,12 @@
 
     /* Kompensasi Admin Bar WordPress */
     .admin-bar .site-header {
-        top: calc(-50px + 32px) !important;
+        top: 32px !important;
     }
 
     @media screen and (max-width: 600px) {
         .admin-bar .site-header {
-            top: calc(-50px + 46px) !important;
+            top: 46px !important;
         }
     }
 
