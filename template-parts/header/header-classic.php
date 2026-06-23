@@ -15,12 +15,12 @@
         <!-- Navigasi Desktop -->
         <?php get_template_part( 'template-parts/header/nav-desktop' ); ?>
 
-        <!-- Tombol Aksi Kanan (Cari & Profil Akun) -->
-        <?php get_template_part( 'template-parts/header/actions' ); ?>
+        <div class="header-right-actions">
+            <!-- Tombol Aksi Kanan (Cari & Profil Akun) -->
+            <?php get_template_part( 'template-parts/header/actions' ); ?>
 
-
-
-        <!-- Hamburger menu toggle -->
-        <button class="menu-toggle" aria-expanded="false" aria-label="Menu">&#9776;</button>
+            <!-- Hamburger menu toggle -->
+            <button class="menu-toggle" aria-expanded="false" aria-label="Menu">&#9776;</button>
+        </div>
     </div>
 </header>

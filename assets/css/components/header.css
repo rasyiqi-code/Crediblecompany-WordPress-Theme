@@ -203,6 +203,12 @@
     stroke: var(--cc-header-text-hover, #ffcccc) !important;
 }
 
+.header-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
@@ -211,6 +217,12 @@
     color: var(--cc-header-text, var(--brand-white, #ffffff)) !important;
     cursor: pointer;
     font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.25rem;
+    height: 28px;
+    width: 28px;
+    align-items: center;
+    justify-content: center;
     transition: var(--transition, 0.2s);
 }
 
@@ -532,7 +544,7 @@
         color: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
     }
     .site-header:not(.header-style-glass) .menu-toggle {
-        display: block !important;
+        display: inline-flex !important;
     }
     .site-header:not(.header-style-glass) .header-icons svg {
         stroke: var(--cc-header-mobile-text, var(--cc-header-text)) !important;
