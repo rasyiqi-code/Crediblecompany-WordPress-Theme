@@ -572,16 +572,16 @@
 /* Kompensasi menu horizontal mobile Klasik / Terpusat */
 @media (max-width: 1024px) {
     .site-header:not(.header-style-glass) {
-        position: sticky !important;
-        top: 0 !important;
+        position: var(--cc-header-sticky, relative) !important;
+        top: var(--cc-header-sticky-top-mobile, 0) !important;
         z-index: 1999 !important;
     }
     .admin-bar .site-header:not(.header-style-glass) {
-        top: 32px !important;
+        top: var(--cc-header-sticky-top-admin, 32px) !important;
     }
     @media screen and (max-width: 782px) {
         .admin-bar .site-header:not(.header-style-glass) {
-            top: 46px !important;
+            top: var(--cc-header-sticky-top-mobile-admin, 46px) !important;
         }
     }
     .primary-nav {

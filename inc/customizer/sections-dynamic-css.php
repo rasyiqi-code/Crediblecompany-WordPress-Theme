@@ -289,8 +289,8 @@ function cc_sections_dynamic_css_variables() {
             --cc-header-border: <?php echo esc_attr( $border_style ); ?>;
             --cc-header-sticky: <?php echo $header_sticky ? 'sticky' : 'relative'; ?>;
             --cc-header-sticky-top: <?php echo $header_style === 'glass' ? '1.25rem' : '0'; ?>;
-            --cc-header-sticky-top-admin: <?php echo $header_style === 'glass' ? 'calc(32px + 1.25rem)' : '32px'; ?>;
-            --cc-header-sticky-top-mobile-admin: <?php echo $header_style === 'glass' ? 'calc(46px + 0.75rem)' : '46px'; ?>;
+            --cc-header-sticky-top-admin: <?php echo $header_sticky ? ( $header_style === 'glass' ? 'calc(32px + 1.25rem)' : '32px' ) : ( $header_style === 'glass' ? '1.25rem' : '0' ); ?>;
+            --cc-header-sticky-top-mobile-admin: <?php echo $header_sticky ? ( $header_style === 'glass' ? 'calc(46px + 0.75rem)' : '46px' ) : ( $header_style === 'glass' ? '0.75rem' : '0' ); ?>;
             --cc-header-sticky-top-mobile: <?php echo $header_style === 'glass' ? '0.75rem' : '0'; ?>;
 
             /* Mobile Overrides */
