@@ -43,9 +43,9 @@
         background-color: var(--cc-header-mobile-bg, var(--brand-red)) !important;
     }
 
-    /* Baris Logo & Icons (Row 1) */
+    /* Baris Logo & Actions (Row 1) */
     .site-header .site-logo,
-    .site-header .header-icons {
+    .site-header .header-right-actions {
         height: 50px;
         padding: 0 16px;
         display: flex;
@@ -55,9 +55,23 @@
         margin: 0 !important;
     }
 
-    /* Sembunyikan hamburger toggle */
+    /* Sembunyikan hamburger toggle bawaan (di-override oleh gaya klasik/centered) */
     .menu-toggle {
         display: none !important;
+    }
+
+    .site-header:not(.header-style-glass) .menu-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        background: transparent !important;
+        border: none;
+        padding: 0;
+        height: 50px;
+        width: 40px;
+        color: var(--cc-header-mobile-text, #ffffff) !important;
+        font-size: 1.5rem;
+        cursor: pointer;
     }
 
     .site-logo img {
@@ -76,11 +90,18 @@
     /* ----------------------------------------------------------------------
      * 2. Header Icons
      * ---------------------------------------------------------------------- */
-    .header-icons {
+    .header-right-actions {
         display: flex !important;
         margin-left: auto;
         align-items: center;
-        gap: 16px;
+        gap: 0;
+        height: 100%;
+    }
+
+    .header-icons {
+        display: flex !important;
+        align-items: center;
+        gap: 0;
         height: 100%;
     }
 
