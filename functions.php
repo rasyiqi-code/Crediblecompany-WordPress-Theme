@@ -159,6 +159,12 @@ function cc_resolve_template( $template ) {
             if ( file_exists( $custom_template_path ) ) {
                 return $custom_template_path;
             }
+            if ( strpos( $custom_template, 'templates/' ) === false ) {
+                $subfolder_path = get_stylesheet_directory() . '/templates/' . $custom_template;
+                if ( file_exists( $subfolder_path ) ) {
+                    return $subfolder_path;
+                }
+            }
         }
     }
 

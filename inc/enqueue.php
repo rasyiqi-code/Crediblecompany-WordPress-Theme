@@ -111,7 +111,7 @@ add_action( 'wp_enqueue_scripts', function () {
     }
 
     // Submit Testimoni Validator (hanya di template Submit Testimoni)
-    if ( is_page_template( 'templates/page-submit-testimoni.php' ) ) {
+    if ( is_page_template( 'templates/page-submit-testimoni.php' ) || is_page_template( 'page-submit-testimoni.php' ) ) {
         // Enqueue Cropper.js — file lokal agar tidak bergantung CDN (kompatibel dev environment)
         wp_enqueue_style(
             'cropper-css',

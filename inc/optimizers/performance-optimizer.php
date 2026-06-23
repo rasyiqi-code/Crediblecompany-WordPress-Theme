@@ -194,7 +194,7 @@ function cc_perform_db_cleanup() {
 add_action( 'template_redirect', 'cc_auto_page_cache_start', 1 );
 function cc_auto_page_cache_start() {
     // Jangan cache untuk user login, admin, request POST/Search, atau halaman submit testimoni
-    if ( is_user_logged_in() || is_admin() || ! empty( $_POST ) || is_search() || is_page_template( 'templates/page-submit-testimoni.php' ) ) {
+    if ( is_user_logged_in() || is_admin() || ! empty( $_POST ) || is_search() || is_page_template( 'templates/page-submit-testimoni.php' ) || is_page_template( 'page-submit-testimoni.php' ) ) {
         return;
     }
 
