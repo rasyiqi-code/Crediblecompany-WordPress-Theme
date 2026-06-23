@@ -19,9 +19,8 @@ add_action( 'customize_register', function( $wp_customize ) {
         'priority' => 21,
     ) );
 
-    // 1. Deskripsi Tentang Kami
     $wp_customize->add_setting( 'cc_about_desc', array(
-        'default'           => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi, eget elementum ligula tempor sit amet.',
+        'default'           => 'KBM App hadir sebagai wadah kreativitas tanpa batas bagi para penulis dan pembaca di seluruh Indonesia. Kami berkomitmen untuk terus berinovasi dalam menyajikan platform literasi digital yang interaktif, edukatif, dan menghibur demi memajukan dunia perbukuan Indonesia.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ) );
     $wp_customize->add_control( 'cc_about_desc', array(

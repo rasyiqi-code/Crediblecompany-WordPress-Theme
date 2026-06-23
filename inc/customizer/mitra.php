@@ -14,7 +14,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_mitra_proses_tagline', array(
-        'default'           => 'Lorem Ipsum → Dolor Sit → Consectetur → Adipiscing → Proin Sodales',
+        'default'           => 'Tulis Karya Anda → Publikasikan → Bangun Pembaca → Dapatkan Koin → Tarik Pendapatan',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_mitra_proses_tagline', array(
@@ -25,7 +25,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Fallback Teks Mitra Resmi (dipisahkan koma)
     $wp_customize->add_setting( 'cc_mitra_names', array(
-        'default'           => 'Mitra 1, Mitra 2, Mitra 3, Mitra 4',
+        'default'           => 'Penerbit KBM, Komunitas Menulis Indonesia, KBM Book Store, Asosiasi Penulis Digital',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_mitra_names', array(

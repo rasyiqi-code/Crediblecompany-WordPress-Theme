@@ -39,7 +39,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // --- JUDUL HERO (GLOBAL) ---
     $wp_customize->add_setting( 'cc_hero_title', array(
-        'default'           => 'Lorem Ipsum Dolor Sit Amet',
+        'default'           => 'Platform Membaca & Menulis Terbesar di Indonesia',
         'sanitize_callback' => 'sanitize_text_field',
         'transport'         => 'postMessage',
     ) );
@@ -51,7 +51,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // --- DESKRIPSI HERO (GLOBAL) ---
     $wp_customize->add_setting( 'cc_hero_desc', array(
-        'default'           => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam, nec imperdiet elit tempor ut. Duis lobortis scelerisque nisi.',
+        'default'           => 'Temukan ribuan cerita seru, novel berkualitas, dan bangun komunitas menulis Anda bersama jutaan pengguna aktif lainnya.',
         'sanitize_callback' => 'sanitize_textarea_field',
         'transport'         => 'postMessage',
     ) );

@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Judul Utama (Mengapa Memilih Kami?)
     $wp_customize->add_setting( 'cc_features_main_title', array(
-        'default'           => __( 'Lorem Ipsum Dolor', 'crediblecompany' ),
+        'default'           => __( 'Mengapa Memilih KBM App?', 'crediblecompany' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_features_main_title', array(
@@ -25,12 +25,12 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $feat_defaults = array(
-        array( 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'Dolor Sit Amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'Consectetur', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'Adipiscing Elit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'Proin Sodales', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
-        array( 'Imperdiet Diam', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales imperdiet diam.' ),
+        array( 'Akses Ribuan Novel', 'Nikmati perpustakaan digital lengkap dengan berbagai genre novel terpopuler di Indonesia.' ),
+        array( 'Royalti Penulis Adil', 'Dapatkan penghasilan dari karya Anda melalui sistem bagi hasil koin emas yang transparan.' ),
+        array( 'Komunitas Kreatif', 'Berinteraksi langsung dengan pembaca dan sesama penulis untuk mengembangkan kemampuan Anda.' ),
+        array( 'Update Setiap Hari', 'Dapatkan bab-bab terbaru dari novel favorit Anda yang diperbarui setiap hari oleh kreator.' ),
+        array( 'Keamanan Hak Cipta', 'Perlindungan hak cipta karya tulis Anda dengan sistem enkripsi dan anti-copy digital.' ),
+        array( 'Aplikasi Ringan', 'Aplikasi mobile dan web yang responsif, cepat, serta hemat penggunaan kuota data internet.' ),
     );
 
     $icon_defaults = array(
