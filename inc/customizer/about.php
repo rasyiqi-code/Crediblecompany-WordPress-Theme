@@ -20,7 +20,7 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'cc_about_desc', array(
-        'default'           => 'KBM App hadir sebagai wadah kreativitas tanpa batas bagi para penulis dan pembaca di seluruh Indonesia. Kami berkomitmen untuk terus berinovasi dalam menyajikan platform literasi digital yang interaktif, edukatif, dan menghibur demi memajukan dunia perbukuan Indonesia.',
+        'default'           => 'Penerbit Buku KBM Indonesia telah terbukti menjadi mitra penerbitan buku ber ISBN yang terbaik di Indonesia. Dengan modal pelayanan dedikasi secara ramah, fast respon dalam melayani para penulis di seluruh Indonesia. Di sini, anda akan mendapatkan gratis ongkos kirim buku ke seluruh Indonesia, terindeks di google schoolar, buku diupload di google playbook dan royalti penjualan buku sebanyak 25% yang mana laporan penjualan disampaikan melalui email setiap bulannya dan bahkan ada fasilitas khusus yang mampu mengeluarkan ISBN dalam 1-2 hari.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ) );
     $wp_customize->add_control( 'cc_about_desc', array(

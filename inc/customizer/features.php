@@ -15,7 +15,7 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Judul Utama (Mengapa Memilih Kami?)
     $wp_customize->add_setting( 'cc_features_main_title', array(
-        'default'           => __( 'Mengapa Memilih KBM App?', 'crediblecompany' ),
+        'default'           => __( 'Mengapa Memilih Kami?', 'crediblecompany' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     $wp_customize->add_control( 'cc_features_main_title', array(
@@ -25,12 +25,12 @@ add_action( 'customize_register', function( $wp_customize ) {
     ) );
 
     $feat_defaults = array(
-        array( 'Akses Ribuan Novel', 'Nikmati perpustakaan digital lengkap dengan berbagai genre novel terpopuler di Indonesia.' ),
-        array( 'Royalti Penulis Adil', 'Dapatkan penghasilan dari karya Anda melalui sistem bagi hasil koin emas yang transparan.' ),
-        array( 'Komunitas Kreatif', 'Berinteraksi langsung dengan pembaca dan sesama penulis untuk mengembangkan kemampuan Anda.' ),
-        array( 'Update Setiap Hari', 'Dapatkan bab-bab terbaru dari novel favorit Anda yang diperbarui setiap hari oleh kreator.' ),
-        array( 'Keamanan Hak Cipta', 'Perlindungan hak cipta karya tulis Anda dengan sistem enkripsi dan anti-copy digital.' ),
-        array( 'Aplikasi Ringan', 'Aplikasi mobile dan web yang responsif, cepat, serta hemat penggunaan kuota data internet.' ),
+        array( 'Profesional', 'Naskah anda akan ditangani langsung oleh tim ahli layout naskah, desain sampul dan admin marketing yang berkompeten. Bahkan anda bisa terhubung dengan Owner Penerbit buku KBM Indonesia.' ),
+        array( 'Harga Murah', 'Anda dapat membuktikan dan melakukan riset ke tempat lain, untuk cetakan 25 eksemplar ke atas, maka biaya di Penerbit buku KBM Indonesia sangat terjangkau dan lebih murah.' ),
+        array( 'Proses Cepat', 'Penerbit buku KBM Indonesia selalu berusaha menyesuaikan waktu anda. Dengan jumlah minimal cetak 100 eksemplar, anda bisa melakukan request waktu selesai cetak.' ),
+        array( 'Free Ongkir', 'Penerbit buku KBM Indonesia akan memberikan Gratis ongkos kirim ke seluruh wilayah Indonesia, dari Aceh sampai Papua. Bahkan ada layanan kirim buku melalui ekspedisi Travel.' ),
+        array( 'Proses Bergaransi', 'Penerbit buku KBM Indonesia akan memberikan GARANSI cetak ulang tanpa tambahan biaya cetak dan ongkos kirim apabila terjadi cacat 100% pada buku yang kami kirim.' ),
+        array( 'Distribusi Luas', 'Buku yang kamu terbitkan di Penerbit buku KBM Indonesia akan dibantu jualkan ke berbagai marketplace nasional milik penerbit buku KBM Indonesia.' ),
     );
 
     $icon_defaults = array(

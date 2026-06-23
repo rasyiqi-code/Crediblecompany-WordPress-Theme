@@ -22,9 +22,9 @@ $header_style = isset( $args['header_style'] ) ? $args['header_style'] : 'classi
     } else {
         // Fallback menu jika menu admin belum terpasang
         echo '<ul>';
-        echo '<li><a href="#">Blog</a></li>';
-        echo '<li><a href="#">Lorem</a></li>';
-        echo '<li><a href="#">Ipsum</a></li>';
+        echo '<li><a href="#">Blog Penerbit</a></li>';
+        echo '<li><a href="#">Testimoni</a></li>';
+        echo '<li><a href="#">Toko Buku</a></li>';
         echo '</ul>';
     }
     ?>

@@ -18,9 +18,9 @@
     } else {
         // Fallback menu bawaan jika menu primary_navigation belum dibuat di admin
         echo '<ul>';
-        echo '<li><a href="#">Blog</a></li>';
-        echo '<li><a href="#">Lorem</a></li>';
-        echo '<li><a href="#">Ipsum</a></li>';
+        echo '<li><a href="#">Blog Penerbit</a></li>';
+        echo '<li><a href="#">Testimoni</a></li>';
+        echo '<li><a href="#">Toko Buku</a></li>';
         echo '</ul>';
     }
     ?>

@@ -56,12 +56,12 @@ add_action( 'customize_register', function( $wp_customize ) {
 
     // Default values untuk 6 stats
     $stats_defaults = array(
-        array( '10,000+', 'Penulis Aktif' ),
-        array( '50,000+', 'Karya Terbit' ),
-        array( '1.5M+', 'Pembaca Bulanan' ),
-        array( '500+', 'Komunitas Daerah' ),
-        array( '10M+', 'Download Aplikasi' ),
-        array( '98%', 'Kepuasan Pengguna' ),
+        array( '5.000+', 'Judul Terbit' ),
+        array( '700.000+', 'Eksemplar Cetak' ),
+        array( '6.500+', 'Penulis KBM' ),
+        array( '500+', 'Mitra Resmi' ),
+        array( '100k', 'Pengguna Aktif' ),
+        array( '99%', 'Tingkat Kepuasan' ),
     );
 
     // Render control input angka dan label secara dinamis
